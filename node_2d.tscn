@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://3vc6sblkfrbw"]
+
+[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_2gos3"]
+[ext_resource type="Texture2D" path="res://Textures/icon.svg" id="1_sq211"]
+[ext_resource type="Script" path="res://Scripts/Jeffery.gd" id="1_yi0jn"]
+[ext_resource type="Shader" path="res://node_2d.gdshader" id="2_8cm07"]
+[ext_resource type="Texture2D" path="res://whitebox.png" id="3_yc5do"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1araf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkrwf"]
+size = Vector2(128, 129)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_binv0"]
+shader = ExtResource("2_8cm07")
+shader_parameter/size = null
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tffjn"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(0, -2)
+script = ExtResource("1_2gos3")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(245, 165)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_1araf")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(50, 50)
+texture = ExtResource("3_yc5do")
+
+[node name="Jeffery2" type="CharacterBody2D" parent="."]
+position = Vector2(600, 300)
+script = ExtResource("1_yi0jn")
+metadata/testing = 8283
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jeffery2"]
+shape = SubResource("RectangleShape2D_fkrwf")
+
+[node name="Icon" type="Sprite2D" parent="Jeffery2"]
+material = SubResource("ShaderMaterial_binv0")
+position = Vector2(2, 1)
+texture = ExtResource("1_sq211")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(600, 600)
+scale = Vector2(100, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_tffjn")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+scale = Vector2(20, 20)
+texture = ExtResource("3_yc5do")
