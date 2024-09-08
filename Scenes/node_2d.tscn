@@ -1,0 +1,72 @@
+[gd_scene load_steps=13 format=3 uid="uid://cgi22rw2oexdx"]
+
+[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_k3xtd"]
+[ext_resource type="Script" path="res://Scripts/TestCharacter.gd" id="2_hifh6"]
+[ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_mxtlc"]
+[ext_resource type="Script" path="res://Scripts/Jeffery.gd" id="3_u5i55"]
+[ext_resource type="Shader" path="res://node_2d.gdshader" id="4_cexo7"]
+[ext_resource type="Texture2D" uid="uid://c7iw1fh0e3p8u" path="res://Textures/icon.svg" id="5_iaopm"]
+[ext_resource type="Script" path="res://Scripts/DamageArea.gd" id="6_afb4y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epq2w"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkrwf"]
+size = Vector2(126, 127.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_binv0"]
+shader = ExtResource("4_cexo7")
+shader_parameter/size = null
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tffjn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wsfas"]
+radius = 165.027
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(0, -2)
+script = ExtResource("1_k3xtd")
+
+[node name="RigidBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(942, 185)
+script = ExtResource("2_hifh6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_epq2w")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(50, 50)
+texture = ExtResource("2_mxtlc")
+
+[node name="Jeffery2" type="CharacterBody2D" parent="."]
+position = Vector2(600, 300)
+script = ExtResource("3_u5i55")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jeffery2"]
+position = Vector2(1, 0.75)
+shape = SubResource("RectangleShape2D_fkrwf")
+
+[node name="Icon" type="Sprite2D" parent="Jeffery2"]
+material = SubResource("ShaderMaterial_binv0")
+position = Vector2(2, 1)
+texture = ExtResource("5_iaopm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(600, 600)
+scale = Vector2(100, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_tffjn")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+scale = Vector2(20, 20)
+texture = ExtResource("2_mxtlc")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(960, 593)
+script = ExtResource("6_afb4y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_wsfas")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
