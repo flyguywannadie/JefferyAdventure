@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 	
 	_setMovement(sideVelocity, movement.y)
 	
-	if (Input.is_action_just_pressed("cm_Jump")):
+	if (Input.is_action_just_pressed("jef_Jump")):
 		_addMovement(0,-500)
 	
 	super._process(delta)
