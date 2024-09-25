@@ -18,7 +18,7 @@ size = Vector2(50, 50)
 script = ExtResource("1_k3xtd")
 
 [node name="Jeffery" parent="." instance=ExtResource("4_oebhw")]
-position = Vector2(58, -42)
+position = Vector2(54, -114)
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-1286, -101)
