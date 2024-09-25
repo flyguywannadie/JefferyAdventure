@@ -1,35 +1,43 @@
-[gd_scene load_steps=14 format=3 uid="uid://cgi22rw2oexdx"]
+[gd_scene load_steps=10 format=4 uid="uid://cgi22rw2oexdx"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_k3xtd"]
 [ext_resource type="Script" path="res://Scripts/TestCharacter.gd" id="2_hifh6"]
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_mxtlc"]
-[ext_resource type="Script" path="res://Scripts/Jeffery.gd" id="3_u5i55"]
-[ext_resource type="Shader" path="res://node_2d.gdshader" id="4_cexo7"]
-[ext_resource type="Texture2D" uid="uid://c7iw1fh0e3p8u" path="res://Textures/icon.svg" id="5_iaopm"]
+[ext_resource type="PackedScene" uid="uid://bwib2ihjobuvm" path="res://Scenes/Prefabs/jeffery.tscn" id="4_oebhw"]
 [ext_resource type="Script" path="res://Scripts/DamageArea.gd" id="6_afb4y"]
-[ext_resource type="Script" path="res://Scripts/Gun.gd" id="8_s2ssl"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_epq2w"]
-size = Vector2(50, 50)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkrwf"]
-size = Vector2(126, 127.5)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_binv0"]
-shader = ExtResource("4_cexo7")
-shader_parameter/size = null
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tffjn"]
+[ext_resource type="Texture2D" uid="uid://c7iw1fh0e3p8u" path="res://Textures/icon.svg" id="6_sgp45"]
+[ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="7_ngi6t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wsfas"]
 radius = 165.027
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epq2w"]
+size = Vector2(50, 50)
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_k3xtd")
 
+[node name="Jeffery" parent="." instance=ExtResource("4_oebhw")]
+position = Vector2(58, -42)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-1286, -101)
+script = ExtResource("6_afb4y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_wsfas")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(-1.00009, 0)
+scale = Vector2(322, 154)
+texture = ExtResource("2_mxtlc")
+
 [node name="RigidBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(942, 185)
+position = Vector2(683, -86)
+collision_layer = 2
+collision_mask = 9
 script = ExtResource("2_hifh6")
+health = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("RectangleShape2D_epq2w")
@@ -38,43 +46,73 @@ shape = SubResource("RectangleShape2D_epq2w")
 scale = Vector2(50, 50)
 texture = ExtResource("2_mxtlc")
 
-[node name="Jeffery2" type="CharacterBody2D" parent="."]
-position = Vector2(600, 300)
-script = ExtResource("3_u5i55")
+[node name="RigidBody2D2" type="CharacterBody2D" parent="."]
+position = Vector2(793, -80)
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("2_hifh6")
+health = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Jeffery2"]
-position = Vector2(1, 0.75)
-shape = SubResource("RectangleShape2D_fkrwf")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+shape = SubResource("RectangleShape2D_epq2w")
 
-[node name="Icon" type="Sprite2D" parent="Jeffery2"]
-material = SubResource("ShaderMaterial_binv0")
-position = Vector2(2, 1)
-texture = ExtResource("5_iaopm")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(600, 600)
-scale = Vector2(100, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_tffjn")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-scale = Vector2(20, 20)
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D2"]
+scale = Vector2(50, 50)
 texture = ExtResource("2_mxtlc")
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-168, 591)
-script = ExtResource("6_afb4y")
+[node name="RigidBody2D3" type="CharacterBody2D" parent="."]
+position = Vector2(618, -23)
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("2_hifh6")
+health = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_wsfas")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D3"]
+shape = SubResource("RectangleShape2D_epq2w")
 
-[node name="Weapon" type="Node2D" parent="."]
-position = Vector2(262, 303)
-script = ExtResource("8_s2ssl")
-
-[node name="Sprite2D" type="Sprite2D" parent="Weapon"]
-scale = Vector2(40, 40)
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D3"]
+scale = Vector2(50, 50)
 texture = ExtResource("2_mxtlc")
+
+[node name="RigidBody2D4" type="CharacterBody2D" parent="."]
+position = Vector2(728, -17)
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("2_hifh6")
+health = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D4"]
+shape = SubResource("RectangleShape2D_epq2w")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D4"]
+scale = Vector2(50, 50)
+texture = ExtResource("2_mxtlc")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -4)
+zoom = Vector2(0.5, 0.5)
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(1879, -3)
+texture = ExtResource("6_sgp45")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(3033, 339)
+scale = Vector2(6.6, 1)
+texture = ExtResource("6_sgp45")
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(-3033, 195)
+rotation = -0.831484
+scale = Vector2(0.910803, 3.45412)
+texture = ExtResource("6_sgp45")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAANAAEAAAAAAAAAAAAMAAIAAAAAAAAAAAALAAMAAAAAAAAAAAACAAIAAAAAAAAAAAD5/wAAAAAAAAAAAAD4/wAAAAAAAAAAAAD3/wAAAAAAAAAAAAD2/wAAAAAAAAAAAAD1/wAAAAAAAAAAAAD0/wAAAAAAAAAAAAD7/wAAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAD3/wQAAAAAAAAAAAD2/wQAAAAAAAAAAAD1/wQAAAAAAAAAAAD0/wQAAAAAAAAAAADz/wQAAAAAAAAAAAD4/wQAAAAAAAAAAAD5/wQAAAAAAAAAAAD6/wQAAAAAAAAAAAD7/wQAAAAAAAAAAAD8/wQAAAAAAAAAAAD9/wQAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wQAAAAAAAAAAAD//wQAAAAAAAAAAAAAAAQAAAAAAAAAAAABAAQAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAAAAAAAAAAKAAQAAAAAAAAAAAA=")
+tile_set = ExtResource("7_ngi6t")
+use_kinematic_bodies = true
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="."]
+tile_set = ExtResource("7_ngi6t")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

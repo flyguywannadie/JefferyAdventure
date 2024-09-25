@@ -1,11 +1,12 @@
 extends Node2D
 class_name Weapon
 
-var inputAction: String = "jef_shoot"
-var damage: int = 1
+@export var inputAction: String = "jef_shoot"
+@export var damage: int = 1
 var cooldown: float = 1
-var COOLDOWNSTART: float = 1
+@export var COOLDOWNSTART: float = 1
 var readyUse: bool = true
+@export var visuals: Sprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

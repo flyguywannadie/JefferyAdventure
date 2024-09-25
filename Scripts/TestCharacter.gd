@@ -8,10 +8,10 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	
 	if (is_on_floor()):
-		_setMovement(0,-500)
+		setMovement(0,-500)
 	
-	super._process(delta)
+	super._physics_process(delta)
 	pass

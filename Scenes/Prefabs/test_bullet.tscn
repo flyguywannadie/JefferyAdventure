@@ -1,18 +1,24 @@
 [gd_scene load_steps=4 format=3 uid="uid://cbw86gvtjj2oo"]
 
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="1_4cr8c"]
-[ext_resource type="Script" path="res://Scripts/DamageArea.gd" id="1_lomph"]
+[ext_resource type="Script" path="res://Scenes/Prefabs/Bullet.gd" id="1_vtpw3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4im6f"]
+size = Vector2(34, 33)
 
 [node name="TestBullet" type="Area2D"]
-script = ExtResource("1_lomph")
+collision_layer = 4
+collision_mask = 10
+script = ExtResource("1_vtpw3")
+velocity = 50.0
+damage = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(20, 20)
 texture = ExtResource("1_4cr8c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_4im6f")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
