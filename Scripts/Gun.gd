@@ -2,7 +2,7 @@ extends Weapon
 class_name Gun
 
 @export var bullet = preload("res://Scenes/Prefabs/test_bullet.tscn")
-@onready var bulletSpawn: Node2D = $BulletSpawn
+@export var bulletSpawn: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

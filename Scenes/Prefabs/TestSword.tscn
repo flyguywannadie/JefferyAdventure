@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctgukpulbvl10"]
+
+[ext_resource type="Texture2D" uid="uid://c01qyf8po7nby" path="res://Textures/Sword.png" id="1_5ge77"]
+[ext_resource type="Script" path="res://Scripts/Gun.gd" id="1_j31ku"]
+[ext_resource type="PackedScene" uid="uid://rg2cput8yfby" path="res://Scenes/Prefabs/test_slash.tscn" id="2_wli2x"]
+
+[node name="Sword" type="Node2D" node_paths=PackedStringArray("bulletSpawn", "visuals")]
+script = ExtResource("1_j31ku")
+bullet = ExtResource("2_wli2x")
+bulletSpawn = NodePath("SlashSpawn")
+inputAction = "jef_slash"
+visuals = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5ge77")
+
+[node name="SlashSpawn" type="Node2D" parent="."]
+position = Vector2(100, 0)

@@ -2,15 +2,14 @@ extends Node2D
 class_name Weapon
 
 @export var inputAction: String = "jef_shoot"
-@export var damage: int = 1
 var cooldown: float = 1
-@export var COOLDOWNSTART: float = 1
+@export var COOLDOWNLENGTH: float = 1
 var readyUse: bool = true
 @export var visuals: Sprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	cooldown = COOLDOWNSTART
+	cooldown = COOLDOWNLENGTH
 	pass # Replace with function body.
 
 
@@ -20,7 +19,7 @@ func _process(delta: float) -> void:
 		cooldown -= delta
 		if(cooldown<= 0):
 			readyUse = true
-			cooldown = COOLDOWNSTART
+			cooldown = COOLDOWNLENGTH
 	pass
 
 func _input(event: InputEvent) -> void:

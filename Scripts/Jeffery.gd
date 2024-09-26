@@ -4,23 +4,33 @@ class_name Jeffery
 var test: int = 10
 @export var speed: float = 200
 
-const TEST_WEAPON = preload("res://Scenes/Prefabs/TestWeapon.tscn")
+const TEST_GUN = preload("res://Scenes/Prefabs/TestGun.tscn")
 @onready var gun_holder: Node2D = $GunArm/GunHolder
 var currentGun: Weapon
+
+const TEST_SWORD = preload("res://Scenes/Prefabs/TestSword.tscn")
+@onready var sword_holder: Node2D = $SwordArm
+var currentSword: Weapon
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
-	var gun = TEST_WEAPON.instantiate()
+	
+	#create base gun
+	var gun = TEST_GUN.instantiate()
 	gun_holder.add_child(gun)
 	gun.owner = $"."
 	currentGun = gun as Weapon
-	#elocity = Vector2(0, -10)
-	#Replace with function body.
+	
+	#create base sword
+	var sword = TEST_SWORD.instantiate()
+	sword_holder.add_child(sword)
+	sword.owner = $"."
+	currentSword = sword as Weapon
+	
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	
 	var sideVelocity: float = 0
 	
@@ -40,12 +50,20 @@ func _physics_process(delta: float) -> void:
 	
 	if (mousePos.x < position.x):
 		currentGun.visuals.flip_v = true
+		currentSword.visuals.flip_v = true
+		currentSword.rotation_degrees = 180
 		$Sprite.flip_h = true
 	else:
 		currentGun.visuals.flip_v = false
+		currentSword.visuals.flip_v = false
+		currentSword.rotation_degrees = 0
 		$Sprite.flip_h = false
 	
+	super._process(delta)
+	
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	#position = Vector2(0,0)
-	#move_and_slide()
 	pass

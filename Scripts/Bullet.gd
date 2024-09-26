@@ -1,4 +1,5 @@
 extends DamageArea
+class_name Bullet
 
 @export var velocity: float = 5
 @export var grav: float = 9.8
