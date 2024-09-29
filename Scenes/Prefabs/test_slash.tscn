@@ -12,6 +12,7 @@ collision_mask = 10
 script = ExtResource("1_iuic3")
 velocity = 0.0
 grav = 0.0
+lifetime = 0.2
 damage = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

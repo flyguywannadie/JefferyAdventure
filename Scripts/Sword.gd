@@ -1,8 +1,8 @@
 extends Weapon
-class_name Sword
+class_name Gun
 
-@export var bullet = preload("res://Scenes/Prefabs/test_bullet.tscn")
-@export var bulletSpawn: Node2D
+@export var slash = preload("res://Scenes/Prefabs/test_slash.tscn")
+@export var slashSpawn: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,11 +15,15 @@ func _process(delta: float) -> void:
 	#rotate(1 * delta)
 	pass
 
+func spawnHitbox() -> void:
+	var s = slash.instantiate()
+	owner.add_child(s)
+	
+	s.position = slashSpawn.position.rotated(rotation)
+	pass
+
 func onUse() -> void:
 	#print("weaponUse")
 	startCooldown()
-	var t = bullet.instantiate()
-	t.rotation = global_rotation
-	t.position = bulletSpawn.global_position
-	owner.owner.add_child(t)
+	$AnimationPlayer.play("SwordSlash")
 	pass
