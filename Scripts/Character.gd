@@ -10,6 +10,10 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _process(delta: float) -> void:
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta: float) -> void:
 	velocity = movement;
 	
 	move_and_slide()
@@ -23,10 +27,6 @@ func _process(delta: float) -> void:
 		setMovement(movement.x, 0)
 		position.y += 4
 	
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
 	pass
 
 func addMovement(x: float, y: float):

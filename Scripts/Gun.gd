@@ -22,4 +22,9 @@ func onUse() -> void:
 	t.rotation = global_rotation
 	t.position = bulletSpawn.global_position
 	owner.owner.add_child(t)
+	$AnimationPlayer.play("GunShoot")
+	pass
+
+func endCooldown() -> void:
+	$AnimationPlayer.play("GunHold")
 	pass

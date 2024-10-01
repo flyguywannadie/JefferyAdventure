@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwib2ihjobuvm"]
+[gd_scene load_steps=16 format=3 uid="uid://bwib2ihjobuvm"]
 
 [ext_resource type="Script" path="res://Scripts/Jeffery.gd" id="1_vcdsa"]
 [ext_resource type="Shader" path="res://node_2d.gdshader" id="2_q8qc8"]
 [ext_resource type="Texture2D" uid="uid://c8rauysdnlu3a" path="res://Textures/JefferyNoArm.png" id="3_ktrsr"]
 [ext_resource type="Texture2D" uid="uid://d1pwdsx7eulsc" path="res://Textures/JefferyGunArm.png" id="4_pjefk"]
+[ext_resource type="Texture2D" uid="uid://bbqsb6ud57ja6" path="res://Textures/JefferyWalkAnim/003.png" id="5_5lrf3"]
+[ext_resource type="Texture2D" uid="uid://d3n2kkbfhrip0" path="res://Textures/JefferyWalkAnim/004.png" id="6_xkvpu"]
+[ext_resource type="Texture2D" uid="uid://dg0wljoyh1bts" path="res://Textures/JefferyWalkAnim/005.png" id="7_vhmne"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkrwf"]
 size = Vector2(73, 174)
@@ -16,10 +19,82 @@ shader_parameter/size = null
 shader = ExtResource("2_q8qc8")
 shader_parameter/size = null
 
+[sub_resource type="Animation" id="Animation_4111j"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_ktrsr")]
+}
+
+[sub_resource type="Animation" id="Animation_h78jd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_ktrsr")]
+}
+
+[sub_resource type="Animation" id="Animation_eequt"]
+resource_name = "Walk"
+length = 0.225
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_5lrf3"), ExtResource("6_xkvpu"), ExtResource("7_vhmne"), ExtResource("3_ktrsr")]
+}
+
+[sub_resource type="Animation" id="Animation_6gbsn"]
+resource_name = "WalkBackwards"
+length = 0.225
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_ktrsr"), ExtResource("7_vhmne"), ExtResource("6_xkvpu"), ExtResource("5_5lrf3")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q7o8a"]
+_data = {
+"Idle": SubResource("Animation_4111j"),
+"RESET": SubResource("Animation_h78jd"),
+"Walk": SubResource("Animation_eequt"),
+"WalkBackwards": SubResource("Animation_6gbsn")
+}
+
 [node name="Jeffery" type="CharacterBody2D"]
 collision_mask = 10
 script = ExtResource("1_vcdsa")
-speed = 700.0
+speed = 600.0
 health = 11
 GRAVITY = 64.0
 
@@ -28,6 +103,7 @@ position = Vector2(-5, 4)
 shape = SubResource("RectangleShape2D_fkrwf")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+z_as_relative = false
 material = SubResource("ShaderMaterial_binv0")
 texture = ExtResource("3_ktrsr")
 
@@ -38,8 +114,15 @@ position = Vector2(0, 5)
 position = Vector2(54, 0)
 
 [node name="GunArmSprite" type="Sprite2D" parent="GunArm"]
+z_index = -2
+z_as_relative = false
 material = SubResource("ShaderMaterial_x4i71")
 position = Vector2(8, -5)
 texture = ExtResource("4_pjefk")
 
 [node name="SwordArm" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_q7o8a")
+}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ctgukpulbvl10"]
+[gd_scene load_steps=12 format=3 uid="uid://ctgukpulbvl10"]
 
 [ext_resource type="Script" path="res://Scripts/Sword.gd" id="1_fdem6"]
 [ext_resource type="Texture2D" uid="uid://rbu453mi54hq" path="res://Textures/BaseSwordSwin/002.png" id="2_8rmx3"]
@@ -7,36 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bklfwpi4no4a8" path="res://Textures/BaseSwordSwin/004.png" id="5_icjn2"]
 [ext_resource type="Texture2D" uid="uid://gwxk8u4xkh6u" path="res://Textures/BaseSwordSwin/005.png" id="6_wix4j"]
 [ext_resource type="Texture2D" uid="uid://cxvtgp8ltth7s" path="res://Textures/BaseSwordSwin/006.png" id="7_cocst"]
-
-[sub_resource type="Animation" id="Animation_6paf1"]
-resource_name = "SwordSlash"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.133333, 0.3, 0.366667, 1.96667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("2_8rmx3"), ExtResource("4_6xpqq"), ExtResource("5_icjn2"), ExtResource("6_wix4j"), ExtResource("7_cocst"), ExtResource("2_8rmx3")]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.133333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"spawnHitbox"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_bgu8v"]
 length = 0.001
@@ -53,9 +23,55 @@ tracks/0/keys = {
 "values": [ExtResource("2_8rmx3")]
 }
 
+[sub_resource type="Animation" id="Animation_5ghy8"]
+resource_name = "SwordHold"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_8rmx3")]
+}
+
+[sub_resource type="Animation" id="Animation_6paf1"]
+resource_name = "SwordSlash"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.133333, 0.3, 0.366667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_8rmx3"), ExtResource("4_6xpqq"), ExtResource("5_icjn2"), ExtResource("6_wix4j"), ExtResource("7_cocst")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawnHitbox"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x2h1l"]
 _data = {
 "RESET": SubResource("Animation_bgu8v"),
+"SwordHold": SubResource("Animation_5ghy8"),
 "SwordSlash": SubResource("Animation_6paf1")
 }
 
@@ -63,9 +79,12 @@ _data = {
 script = ExtResource("1_fdem6")
 slashSpawn = NodePath("SlashSpawn")
 inputAction = "jef_slash"
+COOLDOWNLENGTH = 1.5
 visuals = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+z_as_relative = false
 position = Vector2(128, 0)
 texture = ExtResource("2_8rmx3")
 
@@ -73,6 +92,7 @@ texture = ExtResource("2_8rmx3")
 position = Vector2(100, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="SlashSpawn"]
+visible = false
 scale = Vector2(20, 20)
 texture = ExtResource("3_y86dp")
 

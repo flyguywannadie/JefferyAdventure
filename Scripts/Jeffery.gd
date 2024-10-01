@@ -12,6 +12,8 @@ const TEST_SWORD = preload("res://Scenes/Prefabs/TestSword.tscn")
 @onready var sword_holder: Node2D = $SwordArm
 var currentSword: Weapon
 
+@onready var anims: AnimationPlayer = $AnimationPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
@@ -42,8 +44,8 @@ func _process(delta: float) -> void:
 	
 	setMovement(sideVelocity, movement.y)
 	
-	if (Input.is_action_just_pressed("jef_Jump")):
-		setMovement(0,-1400)
+	if (Input.is_action_just_pressed("jef_Jump") && is_on_floor()):
+		addMovement(0,-1400)
 	
 	var mousePos = get_viewport().get_camera_2d().get_global_mouse_position()
 	$GunArm.look_at(mousePos)
@@ -59,11 +61,27 @@ func _process(delta: float) -> void:
 		currentSword.rotation_degrees = 0
 		$Sprite.flip_h = false
 	
+	
+	if (sideVelocity != 0):
+		if (mousePos.x < position.x) :
+			if (sideVelocity > 0) :
+				anims.play("WalkBackwards")
+			else :
+				anims.play("Walk")
+		else :
+			if (sideVelocity < 0) :
+				anims.play("WalkBackwards")
+			else :
+				anims.play("Walk")
+	else:
+		anims.play("Idle")
+	
 	super._process(delta)
 	
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	
 	super._physics_process(delta)
 	pass

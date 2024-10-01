@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://cgi22rw2oexdx"]
+[gd_scene load_steps=11 format=4 uid="uid://cgi22rw2oexdx"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_k3xtd"]
 [ext_resource type="Script" path="res://Scripts/TestCharacter.gd" id="2_hifh6"]
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_mxtlc"]
 [ext_resource type="PackedScene" uid="uid://bwib2ihjobuvm" path="res://Scenes/Prefabs/jeffery.tscn" id="4_oebhw"]
+[ext_resource type="PackedScene" uid="uid://dc2oo5d4e4gee" path="res://Scenes/Prefabs/testguybounce.tscn" id="5_1qprb"]
 [ext_resource type="Script" path="res://Scripts/DamageArea.gd" id="6_afb4y"]
 [ext_resource type="Texture2D" uid="uid://c7iw1fh0e3p8u" path="res://Textures/icon.svg" id="6_sgp45"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="7_ngi6t"]
@@ -33,19 +34,7 @@ position = Vector2(-1.00009, 0)
 scale = Vector2(322, 154)
 texture = ExtResource("2_mxtlc")
 
-[node name="RigidBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(683, -86)
-collision_layer = 2
-collision_mask = 9
-script = ExtResource("2_hifh6")
-health = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-shape = SubResource("RectangleShape2D_epq2w")
-
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
-scale = Vector2(50, 50)
-texture = ExtResource("2_mxtlc")
+[node name="RigidBody2D" parent="." instance=ExtResource("5_1qprb")]
 
 [node name="RigidBody2D2" type="CharacterBody2D" parent="."]
 position = Vector2(793, -80)

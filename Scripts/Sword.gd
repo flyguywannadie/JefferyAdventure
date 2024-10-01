@@ -22,8 +22,13 @@ func spawnHitbox() -> void:
 	s.position = slashSpawn.position.rotated(rotation)
 	pass
 
+func endCooldown() -> void:
+	$AnimationPlayer.play("SwordHold")
+	pass
+
 func onUse() -> void:
 	#print("weaponUse")
 	startCooldown()
+	print("SwordSlash")
 	$AnimationPlayer.play("SwordSlash")
 	pass

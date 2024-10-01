@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dc2oo5d4e4gee"]
+
+[ext_resource type="Script" path="res://Scripts/TestCharacter.gd" id="1_udrul"]
+[ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_d24ef"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epq2w"]
+size = Vector2(50, 50)
+
+[node name="RigidBody2D" type="CharacterBody2D"]
+position = Vector2(-1471, 226)
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_udrul")
+health = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_epq2w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(50, 50)
+texture = ExtResource("2_d24ef")

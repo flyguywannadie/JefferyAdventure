@@ -2,12 +2,15 @@ extends DamageArea
 class_name Bullet
 
 @export var velocity: float = 5
-@export var grav: float = 9.8
 @export var lifetime: float = 5
+@export var slowdown: float = 1
+@export var dieOnStop: bool
+
 @export var pierce: int = 0
 
 var prevPosition: Vector2
 var motion: Vector2
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,9 +30,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	prevPosition = position
 	
-	var gravMotion = Vector2(0, grav * delta)
-	motion += gravMotion
-	translate(motion )
+	translate(motion)
 	
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsRayQueryParameters2D.create(prevPosition, position)
@@ -37,6 +38,11 @@ func _physics_process(delta: float) -> void:
 	
 	if (result):
 		position = result.position
+	
+	motion = lerp(motion, Vector2(0,0), slowdown * delta)
+	
+	if (dieOnStop && motion.is_zero_approx()) :
+		pass
 	
 	pass
 
