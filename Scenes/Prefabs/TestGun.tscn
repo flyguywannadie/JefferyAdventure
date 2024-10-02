@@ -21,21 +21,6 @@ tracks/0/keys = {
 "values": [ExtResource("2_103kc")]
 }
 
-[sub_resource type="Animation" id="Animation_8f8m3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_103kc")]
-}
-
 [sub_resource type="Animation" id="Animation_nb5r5"]
 resource_name = "GunShoot"
 length = 0.3
@@ -50,6 +35,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [ExtResource("3_fg07v"), ExtResource("4_lj184"), ExtResource("5_j3kh6")]
+}
+
+[sub_resource type="Animation" id="Animation_8f8m3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_103kc")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k2ltk"]

@@ -1,12 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://bwib2ihjobuvm"]
+[gd_scene load_steps=19 format=3 uid="uid://bwib2ihjobuvm"]
 
 [ext_resource type="Script" path="res://Scripts/Jeffery.gd" id="1_vcdsa"]
 [ext_resource type="Shader" path="res://node_2d.gdshader" id="2_q8qc8"]
 [ext_resource type="Texture2D" uid="uid://c8rauysdnlu3a" path="res://Textures/JefferyNoArm.png" id="3_ktrsr"]
 [ext_resource type="Texture2D" uid="uid://d1pwdsx7eulsc" path="res://Textures/JefferyGunArm.png" id="4_pjefk"]
 [ext_resource type="Texture2D" uid="uid://bbqsb6ud57ja6" path="res://Textures/JefferyWalkAnim/003.png" id="5_5lrf3"]
+[ext_resource type="Texture2D" uid="uid://birxy5xf01kur" path="res://Textures/JefferyWalkAnim/007.png" id="6_3mwh3"]
 [ext_resource type="Texture2D" uid="uid://d3n2kkbfhrip0" path="res://Textures/JefferyWalkAnim/004.png" id="6_xkvpu"]
 [ext_resource type="Texture2D" uid="uid://dg0wljoyh1bts" path="res://Textures/JefferyWalkAnim/005.png" id="7_vhmne"]
+[ext_resource type="Texture2D" uid="uid://bw30y4w4q5wkc" path="res://Textures/JefferyWalkAnim/006.png" id="8_jn2f0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rsqeg"]
+shader = ExtResource("2_q8qc8")
+shader_parameter/size = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkrwf"]
 size = Vector2(73, 174)
@@ -60,10 +66,10 @@ tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("5_5lrf3"), ExtResource("6_xkvpu"), ExtResource("7_vhmne"), ExtResource("3_ktrsr")]
+"values": [ExtResource("5_5lrf3"), ExtResource("6_3mwh3"), ExtResource("6_xkvpu"), ExtResource("8_jn2f0"), ExtResource("7_vhmne"), ExtResource("3_ktrsr")]
 }
 
 [sub_resource type="Animation" id="Animation_6gbsn"]
@@ -77,10 +83,10 @@ tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("3_ktrsr"), ExtResource("7_vhmne"), ExtResource("6_xkvpu"), ExtResource("5_5lrf3")]
+"values": [ExtResource("7_vhmne"), ExtResource("8_jn2f0"), ExtResource("6_xkvpu"), ExtResource("6_3mwh3"), ExtResource("5_5lrf3"), ExtResource("3_ktrsr")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q7o8a"]
@@ -92,6 +98,7 @@ _data = {
 }
 
 [node name="Jeffery" type="CharacterBody2D"]
+material = SubResource("ShaderMaterial_rsqeg")
 collision_mask = 10
 script = ExtResource("1_vcdsa")
 speed = 600.0

@@ -36,8 +36,10 @@ void fragment() {
 	//const float EPSILON = 0.05;
 	//const float SIZES = 0.1;
 	//const float REP =  cos(mod(TIME, 3.0)) * 2.0;
-	//if (UV.x + UV.y >= (SIZES + REP) - EPSILON && UV.x + UV.y <= (SIZES + 0.2+ REP) + EPSILON) {
-		//COLOR = vec4(1.0);
+	//if (COLOR.a > 0.0) {
+		//if (UV.x + UV.y >= (SIZES + REP) - EPSILON && UV.x + UV.y <= (SIZES + 0.2+ REP) + EPSILON) {
+			//COLOR = vec4(1.0);
+		//}
 	//}
 	
 	
