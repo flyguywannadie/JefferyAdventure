@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 	
 	setMovement(sideVelocity, movement.y)
 	
-	if (Input.is_action_just_pressed("jef_Jump") && is_on_floor()):
+	if (Input.is_action_just_pressed("jef_Jump")):# && is_on_floor()):
 		addMovement(0,-1400)
 	
 	var mousePos = get_viewport().get_camera_2d().get_global_mouse_position()

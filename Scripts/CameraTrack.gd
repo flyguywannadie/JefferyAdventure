@@ -23,13 +23,13 @@ func isVectorWithinBounds(given: Vector2) -> bool:
 
 func isXYWithinBounds(givenX: float, givenY: float) -> bool:
 	#print(isXWithinBounds(givenX), isYWithinBounds(givenY))
-	return isXWithinBounds(givenX) || isYWithinBounds(givenY)
+	return isXWithinBounds(givenX) && isYWithinBounds(givenY)
 
 func isXWithinBounds(x: float) -> bool:
-	return (x < position.x + (trackBounds.x/2) && x > position.x - (trackBounds.x/2))
+	return (x <= position.x + (trackBounds.x/2) && x >= position.x - (trackBounds.x/2))
 
 func isYWithinBounds(y: float) -> bool:
-	return (y < position.y + (trackBounds.y/2) && y > position.y - (trackBounds.y/2))
+	return (y <= position.y + (trackBounds.y/2) && y >= position.y - (trackBounds.y/2))
 
 
 
