@@ -1,4 +1,4 @@
-extends Node2D
+@tool extends Node2D
 class_name CamTrack
 
 @export var trackBounds: Vector2
@@ -7,19 +7,28 @@ class_name CamTrack
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if (visuals.visible) :
-		visuals.scale = trackBounds + Vector2(5,5)
+		#visuals.scale = trackBounds + Vector2(5,5)
+		pass
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if (Engine.is_editor_hint()) :
+		if (visuals.visible) :
+			visuals.scale = trackBounds + Vector2(10,10)
 	pass
-
-
 
 
 func isVectorWithinBounds(given: Vector2) -> bool:
 	return isXYWithinBounds(given.x, given.y)
+
+func isVectorWithinABound(given: Vector2) -> bool:
+	return isXYWithinABound(given.x, given.y)
+
+func isXYWithinABound(givenX: float, givenY: float) -> bool:
+	#print(isXWithinBounds(givenX), isYWithinBounds(givenY))
+	return isXWithinBounds(givenX) || isYWithinBounds(givenY)
 
 func isXYWithinBounds(givenX: float, givenY: float) -> bool:
 	#print(isXWithinBounds(givenX), isYWithinBounds(givenY))
