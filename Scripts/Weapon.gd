@@ -16,7 +16,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if (!readyUse):
 		cooldown -= delta
 		if(cooldown <= 0):
@@ -40,24 +40,24 @@ func _input(event: InputEvent) -> void:
 	pass
 
 func startCooldown() -> void:
-	print("cooldown started ", COOLDOWNLENGTH)
+	#print("cooldown started ", COOLDOWNLENGTH)
 	readyUse = false
 	pass
 
 func endCooldown() -> void:
-	print("end of cooldown")
+	#print("end of cooldown")
 	pass
 
 func onUse() -> void:
-	print("on click use")
+	#print("on click use")
 	pressed = true
 	pass
 
 func onHold() -> void:
-	print("on hold use")
+	#print("on hold use")
 	pass
 
 func onRelease() -> void:
-	print("on release use")
+	#print("on release use")
 	pressed = false
 	pass

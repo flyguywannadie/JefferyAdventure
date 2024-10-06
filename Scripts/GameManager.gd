@@ -10,9 +10,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	if (Input.is_key_pressed(KEY_ESCAPE)):
-		get_tree().quit(0)
-	
 	
 	if (Input.is_key_pressed(KEY_G)):
 		print("spawn thing")

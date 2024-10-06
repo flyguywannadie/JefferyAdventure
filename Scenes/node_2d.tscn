@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=4 uid="uid://cgi22rw2oexdx"]
+[gd_scene load_steps=13 format=4 uid="uid://cgi22rw2oexdx"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_k3xtd"]
-[ext_resource type="Script" path="res://Scripts/TestCharacter.gd" id="2_hifh6"]
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_mxtlc"]
 [ext_resource type="PackedScene" uid="uid://bwib2ihjobuvm" path="res://Scenes/Prefabs/jeffery.tscn" id="4_oebhw"]
 [ext_resource type="PackedScene" uid="uid://dc2oo5d4e4gee" path="res://Scenes/Prefabs/testguybounce.tscn" id="5_1qprb"]
@@ -10,13 +9,11 @@
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="7_2u6g4"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="7_ngi6t"]
 [ext_resource type="PackedScene" uid="uid://soputgv8t7rk" path="res://Scenes/Prefabs/CamTrackSwitch.tscn" id="10_ivdcg"]
+[ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="11_1d1kq"]
 [ext_resource type="PackedScene" uid="uid://bh523bxi5rvi" path="res://Scenes/Prefabs/camera_track.tscn" id="12_lhr3g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wsfas"]
 radius = 165.027
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_epq2w"]
-size = Vector2(50, 50)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_k3xtd")
@@ -47,48 +44,6 @@ texture = ExtResource("2_mxtlc")
 [node name="RigidBody2D" parent="FunnyBouncingGuys" instance=ExtResource("5_1qprb")]
 position = Vector2(-1080, 337)
 
-[node name="RigidBody2D2" type="CharacterBody2D" parent="FunnyBouncingGuys"]
-position = Vector2(793, -80)
-collision_layer = 2
-collision_mask = 9
-script = ExtResource("2_hifh6")
-health = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FunnyBouncingGuys/RigidBody2D2"]
-shape = SubResource("RectangleShape2D_epq2w")
-
-[node name="Sprite2D" type="Sprite2D" parent="FunnyBouncingGuys/RigidBody2D2"]
-scale = Vector2(50, 50)
-texture = ExtResource("2_mxtlc")
-
-[node name="RigidBody2D3" type="CharacterBody2D" parent="FunnyBouncingGuys"]
-position = Vector2(618, -23)
-collision_layer = 2
-collision_mask = 9
-script = ExtResource("2_hifh6")
-health = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FunnyBouncingGuys/RigidBody2D3"]
-shape = SubResource("RectangleShape2D_epq2w")
-
-[node name="Sprite2D" type="Sprite2D" parent="FunnyBouncingGuys/RigidBody2D3"]
-scale = Vector2(50, 50)
-texture = ExtResource("2_mxtlc")
-
-[node name="RigidBody2D4" type="CharacterBody2D" parent="FunnyBouncingGuys"]
-position = Vector2(728, -17)
-collision_layer = 2
-collision_mask = 9
-script = ExtResource("2_hifh6")
-health = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FunnyBouncingGuys/RigidBody2D4"]
-shape = SubResource("RectangleShape2D_epq2w")
-
-[node name="Sprite2D" type="Sprite2D" parent="FunnyBouncingGuys/RigidBody2D4"]
-scale = Vector2(50, 50)
-texture = ExtResource("2_mxtlc")
-
 [node name="RigidBody2D5" parent="FunnyBouncingGuys" instance=ExtResource("5_1qprb")]
 position = Vector2(7230, 3992)
 
@@ -101,11 +56,25 @@ position = Vector2(8499, 4037)
 [node name="RigidBody2D8" parent="FunnyBouncingGuys" instance=ExtResource("5_1qprb")]
 position = Vector2(1152, 2505)
 
+[node name="RigidBody2D2" parent="FunnyBouncingGuys" instance=ExtResource("5_1qprb")]
+position = Vector2(992, 312)
+
+[node name="RigidBody2D3" parent="FunnyBouncingGuys" instance=ExtResource("5_1qprb")]
+position = Vector2(-872, -128)
+
+[node name="RigidBody2D4" parent="FunnyBouncingGuys" instance=ExtResource("5_1qprb")]
+position = Vector2(-3344, 320)
+GRAVITY = 4.9
+
+[node name="RigidBody2D9" parent="FunnyBouncingGuys" instance=ExtResource("5_1qprb")]
+position = Vector2(4360, 40)
+GRAVITY = 19.6
+
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("toFollow", "currentTrack")]
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("7_2u6g4")
 toFollow = NodePath("../Jeffery")
-currentTrack = NodePath("../CameraTrack")
+currentTrack = NodePath("../CameraTracks/CameraTrack")
 
 [node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
 visible = false
@@ -127,77 +96,142 @@ rotation = -0.831484
 scale = Vector2(0.910803, 3.45412)
 texture = ExtResource("6_sgp45")
 
-[node name="pitfrommain" parent="." node_paths=PackedStringArray("myTrack") instance=ExtResource("10_ivdcg")]
-position = Vector2(3012, 269)
-scale = Vector2(44.92, 3.76)
-myTrack = NodePath("../PitCamtrack")
+[node name="CameraTracks" type="Node2D" parent="."]
 
-[node name="bottomfrompit" parent="." node_paths=PackedStringArray("myTrack") instance=ExtResource("10_ivdcg")]
-position = Vector2(3021, 4553)
-scale = Vector2(99, 3.64)
-myTrack = NodePath("../BottomPitTrack")
-
-[node name="PitCamtrack" parent="." instance=ExtResource("12_lhr3g")]
+[node name="PitCamtrack" parent="CameraTracks" instance=ExtResource("12_lhr3g")]
 position = Vector2(3008, 2048)
 trackBounds = Vector2(32, 3840)
 
-[node name="CameraTrack" parent="." instance=ExtResource("12_lhr3g")]
+[node name="CameraTrack" parent="CameraTracks" instance=ExtResource("12_lhr3g")]
 position = Vector2(448, 0)
 trackBounds = Vector2(6016, 0)
 
-[node name="BottomPitTrack" parent="." instance=ExtResource("12_lhr3g")]
+[node name="BottomPitTrack" parent="CameraTracks" instance=ExtResource("12_lhr3g")]
 position = Vector2(1472, 3968)
 trackBounds = Vector2(6272, 0)
 
-[node name="RuinedHallwayTrack" parent="." instance=ExtResource("12_lhr3g")]
+[node name="RuinedHallwayTrack" parent="CameraTracks" instance=ExtResource("12_lhr3g")]
 position = Vector2(5888, 3968)
 trackBounds = Vector2(3072, 0)
 
-[node name="PlatformRoomTrack" parent="." instance=ExtResource("12_lhr3g")]
+[node name="PlatformRoomTrack" parent="CameraTracks" instance=ExtResource("12_lhr3g")]
 position = Vector2(-1920, 3200)
 trackBounds = Vector2(1792, 1536)
 
-[node name="platRoomTopTrack" parent="." instance=ExtResource("12_lhr3g")]
+[node name="platRoomTopTrack" parent="CameraTracks" instance=ExtResource("12_lhr3g")]
 position = Vector2(-384, 2560)
 trackBounds = Vector2(2304, 256)
 
-[node name="platformfrombottom" parent="." node_paths=PackedStringArray("myTrack") instance=ExtResource("10_ivdcg")]
-position = Vector2(-1585, 4424)
-scale = Vector2(3.04, 21.92)
-myTrack = NodePath("../PlatformRoomTrack")
-
-[node name="bottomfromplatform" parent="." node_paths=PackedStringArray("myTrack") instance=ExtResource("10_ivdcg")]
-position = Vector2(-1336, 4418)
-scale = Vector2(3.32, 19.76)
-myTrack = NodePath("../BottomPitTrack")
-
-[node name="topfromplatform" parent="." node_paths=PackedStringArray("myTrack") instance=ExtResource("10_ivdcg")]
-position = Vector2(-1064, 2379)
-scale = Vector2(2.44, 36.84)
-myTrack = NodePath("../platRoomTopTrack")
-
-[node name="platformfromtop" parent="." node_paths=PackedStringArray("myTrack") instance=ExtResource("10_ivdcg")]
-position = Vector2(-1275, 2670)
-scale = Vector2(2.04, 36.96)
-myTrack = NodePath("../PlatformRoomTrack")
-
-[node name="ruinfrombottom" parent="." node_paths=PackedStringArray("myTrack") instance=ExtResource("10_ivdcg")]
-position = Vector2(4573, 4411)
-scale = Vector2(2.2, 23.88)
-myTrack = NodePath("../RuinedHallwayTrack")
-
-[node name="bottomfromruin" parent="." node_paths=PackedStringArray("myTrack") instance=ExtResource("10_ivdcg")]
-position = Vector2(4384, 4384)
-scale = Vector2(2.28001, 29.8)
-myTrack = NodePath("../BottomPitTrack")
-
-[node name="InbetweenbottomPitTrack" parent="." instance=ExtResource("12_lhr3g")]
+[node name="InbetweenbottomPitTrack" parent="CameraTracks" instance=ExtResource("12_lhr3g")]
 position = Vector2(3008, 3200)
 trackBounds = Vector2(1920, 1536)
 
-[node name="inbetweenBottomAndPitSwitch" parent="." node_paths=PackedStringArray("myTrack") instance=ExtResource("10_ivdcg")]
+[node name="CameraTrackSwitchers" type="Node2D" parent="."]
+
+[node name="pitfrommain" parent="CameraTrackSwitchers" node_paths=PackedStringArray("myTrack") instance=ExtResource("10_ivdcg")]
+position = Vector2(3012, 269)
+scale = Vector2(44.92, 3.76)
+myTrack = NodePath("../../CameraTracks/PitCamtrack")
+
+[node name="bottomfrompit" parent="CameraTrackSwitchers" node_paths=PackedStringArray("myTrack") instance=ExtResource("10_ivdcg")]
+position = Vector2(3021, 4553)
+scale = Vector2(99, 3.64)
+myTrack = NodePath("../../CameraTracks/BottomPitTrack")
+
+[node name="platformfrombottom" parent="CameraTrackSwitchers" node_paths=PackedStringArray("myTrack") instance=ExtResource("10_ivdcg")]
+position = Vector2(-1585, 4424)
+scale = Vector2(3.04, 21.92)
+myTrack = NodePath("../../CameraTracks/PlatformRoomTrack")
+
+[node name="bottomfromplatform" parent="CameraTrackSwitchers" node_paths=PackedStringArray("myTrack") instance=ExtResource("10_ivdcg")]
+position = Vector2(-1336, 4418)
+scale = Vector2(3.32, 19.76)
+myTrack = NodePath("../../CameraTracks/BottomPitTrack")
+
+[node name="topfromplatform" parent="CameraTrackSwitchers" node_paths=PackedStringArray("myTrack") instance=ExtResource("10_ivdcg")]
+position = Vector2(-1064, 2379)
+scale = Vector2(2.44, 36.84)
+myTrack = NodePath("../../CameraTracks/platRoomTopTrack")
+
+[node name="platformfromtop" parent="CameraTrackSwitchers" node_paths=PackedStringArray("myTrack") instance=ExtResource("10_ivdcg")]
+position = Vector2(-1275, 2670)
+scale = Vector2(2.04, 36.96)
+myTrack = NodePath("../../CameraTracks/PlatformRoomTrack")
+
+[node name="ruinfrombottom" parent="CameraTrackSwitchers" node_paths=PackedStringArray("myTrack") instance=ExtResource("10_ivdcg")]
+position = Vector2(4573, 4411)
+scale = Vector2(2.2, 23.88)
+myTrack = NodePath("../../CameraTracks/RuinedHallwayTrack")
+
+[node name="bottomfromruin" parent="CameraTrackSwitchers" node_paths=PackedStringArray("myTrack") instance=ExtResource("10_ivdcg")]
+position = Vector2(4384, 4384)
+scale = Vector2(2.28001, 29.8)
+myTrack = NodePath("../../CameraTracks/BottomPitTrack")
+
+[node name="inbetweenBottomAndPitSwitch" parent="CameraTrackSwitchers" node_paths=PackedStringArray("myTrack") instance=ExtResource("10_ivdcg")]
 position = Vector2(3017, 2584)
 scale = Vector2(61.92, 6.12)
-myTrack = NodePath("../InbetweenbottomPitTrack")
+myTrack = NodePath("../../CameraTracks/InbetweenbottomPitTrack")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_1d1kq")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Seperator" type="Control" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "PAUSE MENU"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PauseMenu/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Resume" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Resume
+"
+
+[node name="Back To Title" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Title"
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/Resume" to="CanvasLayer/PauseMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/Back To Title" to="CanvasLayer/PauseMenu" method="_on_back_to_title_pressed"]

@@ -24,8 +24,8 @@ func _physics_process(delta: float) -> void:
 		setMovement(movement.x, 0)
 	
 	if (is_on_ceiling()):
-		setMovement(movement.x, 0)
-		position.y += 4
+			setMovement(movement.x, 0)
+			position.y += 4
 	
 	pass
 
@@ -38,13 +38,13 @@ func setMovement(x: float, y: float):
 	pass
 
 func _die():
-	print("I have died")
+	print(name,	" has died")
 	queue_free();
 	pass
 
 func takeDamage(damage: int):
 	health -= damage
-	print("ouch ", health);
+	print(name, " ouch ", health);
 	if (health <= 0) :
 		_die()
 	pass

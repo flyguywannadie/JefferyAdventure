@@ -10,8 +10,8 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	super._process(delta)
+func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
 	#rotate(1 * delta)
 	pass
 
@@ -29,6 +29,6 @@ func endCooldown() -> void:
 func onUse() -> void:
 	#print("weaponUse")
 	startCooldown()
-	print("SwordSlash")
+	#print("SwordSlash")
 	$AnimationPlayer.play("SwordSlash")
 	pass

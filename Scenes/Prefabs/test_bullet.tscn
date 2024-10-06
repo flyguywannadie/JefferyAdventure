@@ -12,7 +12,7 @@ collision_mask = 10
 script = ExtResource("1_vtpw3")
 velocity = 50.0
 lifetime = 2.0
-slowdown = 3.0
+slowdown = 5.0
 dieOnStop = true
 damage = 1
 
