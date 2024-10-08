@@ -3,6 +3,10 @@ class_name Jeffery
 
 var test: int = 10
 @export var speed: float = 200
+@export var jumpPower: float = 1400
+var jumpTimer: float
+var cayoteTime: int = 3
+var onGround: bool = true
 
 const TEST_GUN = preload("res://Scenes/Prefabs/TestGun.tscn")
 @onready var gun_holder: Node2D = $GunArm/GunHolder
@@ -32,7 +36,7 @@ func _ready() -> void:
 	
 	pass
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	
 	var sideVelocity: float = 0
 	
@@ -44,8 +48,29 @@ func _process(delta: float) -> void:
 	
 	setMovement(sideVelocity, movement.y)
 	
-	if (Input.is_action_just_pressed("jef_Jump")):# && is_on_floor()):
-		addMovement(0,-1400)
+	if (!is_on_floor() && onGround):
+		print(cayoteTime)
+		cayoteTime -= 1
+		if (cayoteTime < 0):
+			onGround = false
+	if (cayoteTime < 0 && is_on_floor()):
+		cayoteTime = 3
+		#cayoteTime = Engine.get_frames_per_second() / 20
+		#print("should be ", Engine.get_frames_per_second() / 20, " --- but I got ", cayoteTime)
+		#if (Engine.get_frames_per_second() < 20) :
+			#cayoteTime += 1
+		onGround = true
+	
+	if (Input.is_action_just_pressed("jef_Jump") && onGround):
+		onGround = false
+		cayoteTime = -1
+		addMovement(0,-jumpPower/1.5)
+		jumpTimer = 0.15
+	if (Input.is_action_pressed("jef_Jump") && jumpTimer > 0):
+		addMovement(0,-jumpPower/20.0)
+		jumpTimer -= delta
+	if (Input.is_action_just_released("jef_Jump")):
+		jumpTimer = 0
 	
 	var mousePos = get_viewport().get_camera_2d().get_global_mouse_position()
 	$GunArm.look_at(mousePos)
@@ -76,15 +101,9 @@ func _process(delta: float) -> void:
 	else:
 		anims.play("Idle")
 	
-	super._process(delta)
+	super._physics_process(delta)
 	
 	pass
 
 func getFacingDirection() -> bool:
 	return $Sprite.flip_h
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
-	
-	super._physics_process(delta)
-	pass
