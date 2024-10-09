@@ -1,29 +1,18 @@
 extends Weapon
-class_name Gun
+class_name Sword
 
-@export var slash = preload("res://Scenes/Prefabs/test_slash.tscn")
+@export var slash : PackedScene = preload("res://Scenes/Prefabs/Projectiles/test_slash.tscn")
 @export var slashSpawn: Node2D
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	super._ready()
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
-	super._physics_process(delta)
-	#rotate(1 * delta)
-	pass
 
 func spawnHitbox() -> void:
 	var s = slash.instantiate()
 	owner.add_child(s)
 	
-	s.position = slashSpawn.position.rotated(rotation)
+	s.position = slashSpawn.position.rotated(rotation) * scale
 	pass
 
 func endCooldown() -> void:
-	$AnimationPlayer.play("SwordHold")
+	$AnimationPlayer.play("RESET")
 	pass
 
 func onUse() -> void:

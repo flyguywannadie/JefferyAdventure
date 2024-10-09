@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3sca70jsiy2x"]
+
+[ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_rta3y"]
+[ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_uwjd7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4bxn7"]
+radius = 40.0
+
+[node name="ChainsawSlash" type="Area2D"]
+collision_layer = 4
+collision_mask = 10
+script = ExtResource("1_rta3y")
+velocity = 0.0
+lifetime = 0.05
+damage = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(80.435, 80.776)
+texture = ExtResource("2_uwjd7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4bxn7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

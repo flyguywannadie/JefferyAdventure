@@ -1,12 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctgukpulbvl10"]
+[gd_scene load_steps=12 format=3 uid="uid://b3c8kftksktwg"]
 
-[ext_resource type="Script" path="res://Scripts/Sword.gd" id="1_fdem6"]
-[ext_resource type="Texture2D" uid="uid://rbu453mi54hq" path="res://Textures/BaseSwordSwin/002.png" id="2_8rmx3"]
-[ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="3_y86dp"]
-[ext_resource type="Texture2D" uid="uid://yba5nymobhj6" path="res://Textures/BaseSwordSwin/003.png" id="4_6xpqq"]
-[ext_resource type="Texture2D" uid="uid://bklfwpi4no4a8" path="res://Textures/BaseSwordSwin/004.png" id="5_icjn2"]
-[ext_resource type="Texture2D" uid="uid://gwxk8u4xkh6u" path="res://Textures/BaseSwordSwin/005.png" id="6_wix4j"]
-[ext_resource type="Texture2D" uid="uid://cxvtgp8ltth7s" path="res://Textures/BaseSwordSwin/006.png" id="7_cocst"]
+[ext_resource type="Script" path="res://Scripts/Sword.gd" id="1_mxw10"]
+[ext_resource type="Texture2D" uid="uid://cd3sesw8bx5yo" path="res://Textures/DaggerWeapon/Idle.png" id="2_ir6p1"]
+[ext_resource type="Texture2D" uid="uid://rbu453mi54hq" path="res://Textures/BaseSwordSwin/002.png" id="3_cyq2q"]
+[ext_resource type="Texture2D" uid="uid://yba5nymobhj6" path="res://Textures/BaseSwordSwin/003.png" id="5_fb1dl"]
+[ext_resource type="Texture2D" uid="uid://bklfwpi4no4a8" path="res://Textures/BaseSwordSwin/004.png" id="6_xjm1w"]
+[ext_resource type="Texture2D" uid="uid://gwxk8u4xkh6u" path="res://Textures/BaseSwordSwin/005.png" id="7_vuocl"]
+[ext_resource type="Texture2D" uid="uid://cxvtgp8ltth7s" path="res://Textures/BaseSwordSwin/006.png" id="8_7hsb0"]
 
 [sub_resource type="Animation" id="Animation_bgu8v"]
 length = 0.001
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_8rmx3")]
+"values": [ExtResource("2_ir6p1")]
 }
 
 [sub_resource type="Animation" id="Animation_5ghy8"]
@@ -35,7 +35,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_8rmx3")]
+"values": [ExtResource("3_cyq2q")]
 }
 
 [sub_resource type="Animation" id="Animation_6paf1"]
@@ -51,7 +51,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0333333, 0.133333, 0.3, 0.366667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("2_8rmx3"), ExtResource("4_6xpqq"), ExtResource("5_icjn2"), ExtResource("6_wix4j"), ExtResource("7_cocst")]
+"values": [ExtResource("3_cyq2q"), ExtResource("5_fb1dl"), ExtResource("6_xjm1w"), ExtResource("7_vuocl"), ExtResource("8_7hsb0")]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -75,8 +75,8 @@ _data = {
 "SwordSlash": SubResource("Animation_6paf1")
 }
 
-[node name="Sword" type="Node2D" node_paths=PackedStringArray("slashSpawn", "visuals")]
-script = ExtResource("1_fdem6")
+[node name="Dagger" type="Node2D" node_paths=PackedStringArray("slashSpawn", "visuals")]
+script = ExtResource("1_mxw10")
 slashSpawn = NodePath("SlashSpawn")
 inputAction = "jef_slash"
 COOLDOWNLENGTH = 1.5
@@ -85,16 +85,11 @@ visuals = NodePath("Sprite2D")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 z_as_relative = false
-position = Vector2(128, 0)
-texture = ExtResource("2_8rmx3")
+position = Vector2(0, -128)
+texture = ExtResource("2_ir6p1")
 
 [node name="SlashSpawn" type="Node2D" parent="."]
-position = Vector2(100, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="SlashSpawn"]
-visible = false
-scale = Vector2(20, 20)
-texture = ExtResource("3_y86dp")
+position = Vector2(71, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

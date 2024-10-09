@@ -8,11 +8,11 @@ var jumpTimer: float
 var cayoteTime: int = 3
 var onGround: bool = true
 
-const TEST_GUN = preload("res://Scenes/Prefabs/TestGun.tscn")
+const TEST_GUN = preload("res://Scenes/Prefabs/Weapons/TestGun.tscn")
 @onready var gun_holder: Node2D = $GunArm/GunHolder
 var currentGun: Weapon
 
-const TEST_SWORD = preload("res://Scenes/Prefabs/TestSword.tscn")
+const TEST_SWORD = preload("res://Scenes/Prefabs/Weapons/TestSword.tscn")
 @onready var sword_holder: Node2D = $SwordArm
 var currentSword: Weapon
 
@@ -77,13 +77,11 @@ func _physics_process(delta: float) -> void:
 	
 	if (mousePos.x < position.x):
 		currentGun.visuals.flip_v = true
-		currentSword.visuals.flip_v = true
-		currentSword.rotation_degrees = 180
+		currentSword.scale.x = -1
 		$Sprite.flip_h = true
 	else:
 		currentGun.visuals.flip_v = false
-		currentSword.visuals.flip_v = false
-		currentSword.rotation_degrees = 0
+		currentSword.scale.x = 1
 		$Sprite.flip_h = false
 	
 	
@@ -107,3 +105,42 @@ func _physics_process(delta: float) -> void:
 
 func getFacingDirection() -> bool:
 	return $Sprite.flip_h
+
+func EvolveWeapon(gunorsowrd: bool, piece: String) -> void:
+	
+	match (piece):
+		"d":
+			if (gunorsowrd) :
+				print("gun")
+			else :
+				if (currentSword.dEvo) :
+					var sword = currentSword.dEvo.instantiate()
+					currentSword.queue_free()
+					sword_holder.add_child(sword)
+					sword.owner = $"."
+					currentSword = sword as Weapon
+			pass
+		"c":
+			if (gunorsowrd) :
+				print("gun")
+			else :
+				if (currentSword.cEvo) :
+					var sword = currentSword.cEvo.instantiate()
+					currentSword.queue_free()
+					sword_holder.add_child(sword)
+					sword.owner = $"."
+					currentSword = sword as Weapon
+			pass
+		"f":
+			if (gunorsowrd) :
+				print("gun")
+			else :
+				if (currentSword.fEvo) :
+					var sword = currentSword.fEvo.instantiate()
+					currentSword.queue_free()
+					sword_holder.add_child(sword)
+					sword.owner = $"."
+					currentSword = sword as Weapon
+			pass
+	
+	pass

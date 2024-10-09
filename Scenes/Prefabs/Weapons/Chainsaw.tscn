@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://vbwtcpv5tduf"]
+
+[ext_resource type="Script" path="res://Scripts/Chainsaw.gd" id="1_mq1hk"]
+[ext_resource type="Texture2D" uid="uid://d0clfkrqewrq7" path="res://Textures/ChainsawWeapon/ChainsawIdle1.png" id="2_o0ndy"]
+[ext_resource type="Texture2D" uid="uid://b7l0mubv1buxj" path="res://Textures/ChainsawWeapon/ChainsawIdle2.png" id="3_d2b7m"]
+[ext_resource type="Texture2D" uid="uid://cjp8judseksrf" path="res://Textures/ChainsawWeapon/ChainsawIdle3.png" id="4_oj40q"]
+[ext_resource type="Texture2D" uid="uid://dyxqv5mg4antn" path="res://Textures/ChainsawWeapon/Chainsawidle4.png" id="5_k4qma"]
+[ext_resource type="PackedScene" uid="uid://d3sca70jsiy2x" path="res://Scenes/Prefabs/Projectiles/ChainsawSlash.tscn" id="6_dhc0t"]
+[ext_resource type="Texture2D" uid="uid://dpcf1btyjnvkw" path="res://Textures/ChainsawWeapon/ChainsawAttack1.png" id="8_jx2nl"]
+[ext_resource type="Texture2D" uid="uid://bjxn4c8624aum" path="res://Textures/ChainsawWeapon/ChainsawAttack2.png" id="9_23jl7"]
+[ext_resource type="Texture2D" uid="uid://d1aogvy6av4ci" path="res://Textures/ChainsawWeapon/attackArm.png" id="9_ya8fv"]
+
+[sub_resource type="Animation" id="Animation_atsju"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_o0ndy")]
+}
+
+[sub_resource type="Animation" id="Animation_kmfi4"]
+resource_name = "attack"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("8_jx2nl"), ExtResource("9_23jl7")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawnHitbox"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ngc8a"]
+_data = {
+"RESET": SubResource("Animation_atsju"),
+"attack": SubResource("Animation_kmfi4")
+}
+
+[node name="Chainsaw" type="Node2D" node_paths=PackedStringArray("slashSpawn", "visuals")]
+script = ExtResource("1_mq1hk")
+idleFrames = Array[Texture]([ExtResource("2_o0ndy"), ExtResource("3_d2b7m"), ExtResource("4_oj40q"), ExtResource("5_k4qma")])
+slash = ExtResource("6_dhc0t")
+slashSpawn = NodePath("SlashSpawner")
+inputAction = "jef_slash"
+visuals = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -128)
+texture = ExtResource("2_o0ndy")
+
+[node name="SlashSpawner" type="Node2D" parent="."]
+position = Vector2(59, 29)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ngc8a")
+}
+
+[node name="AttackArm" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -128)
+texture = ExtResource("9_ya8fv")

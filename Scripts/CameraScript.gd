@@ -1,4 +1,4 @@
-extends Camera2D
+@tool extends Camera2D
 class_name GameCamera
 
 @export var toFollow: Jeffery
@@ -16,7 +16,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	if (currentTrack):
+	if (currentTrack && toFollow):
 		# move the camera to desired location relative to player
 		#var motion: Vector2 = toFollow.position - followPreviousPosition
 		

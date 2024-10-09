@@ -8,6 +8,9 @@ var readyUse: bool = true
 var pressed: bool = false
 @export var visuals: Sprite2D
 
+@export var dEvo : PackedScene
+@export var cEvo : PackedScene
+@export var fEvo : PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

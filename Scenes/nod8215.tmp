@@ -35,7 +35,7 @@ use_kinematic_bodies = true
 script = ExtResource("1_k3xtd")
 
 [node name="Jeffery" parent="." instance=ExtResource("4_oebhw")]
-position = Vector2(-1057, 1875)
+position = Vector2(32, -32)
 slide_on_ceiling = false
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -81,7 +81,7 @@ position = Vector2(4360, 40)
 GRAVITY = 19.6
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("toFollow", "currentTrack")]
-position = Vector2(-1057, 0)
+position = Vector2(32, 0)
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("7_2u6g4")
 toFollow = NodePath("../Jeffery")
