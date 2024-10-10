@@ -6,9 +6,9 @@ class_name Sword
 
 func spawnHitbox() -> void:
 	var s = slash.instantiate()
-	owner.add_child(s)
-	
 	s.position = slashSpawn.position.rotated(rotation) * scale
+	s.rotation_degrees = 0 if (scale.x == 1) else 90
+	owner.add_child(s)
 	pass
 
 func endCooldown() -> void:

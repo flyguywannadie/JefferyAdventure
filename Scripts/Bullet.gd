@@ -5,6 +5,7 @@ class_name Bullet
 @export var lifetime: float = 5
 @export var slowdown: float = 1
 @export var dieOnStop: bool
+@export var knockback: Vector2 = Vector2(1,1)
 
 @export var pierce: int = 0
 
@@ -15,7 +16,9 @@ var motion: Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	motion = Vector2(velocity, 0)
+	print("before rot ", motion, " and ", rotation)
 	motion = motion.rotated(rotation)
+	print("after rot ", motion)
 	pass # Replace with function body.
 
 func _process(delta: float) -> void:
@@ -43,7 +46,6 @@ func _physics_process(delta: float) -> void:
 	
 	if (dieOnStop && motion.is_zero_approx()) :
 		pass
-	
 	pass
 
 func _bulletDeath() -> void:
@@ -55,6 +57,12 @@ func _bulletHit() -> void:
 	pass
 
 func _on_body_entered(body: Node2D) -> void:
+	
+	var char = body as Character
+	
+	if (char):
+		char.setKnockback(knockback.x * sign(motion.x), knockback.y * sign(motion.y))
+	
 	super._on_body_entered(body)
 	pierce -= 1
 	if (pierce < 0) :

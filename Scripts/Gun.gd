@@ -18,11 +18,15 @@ func _physics_process(delta: float) -> void:
 func onUse() -> void:
 	#print("weaponUse")
 	startCooldown()
+	SpawnBullet()
+	$AnimationPlayer.play("GunShoot")
+	pass
+
+func SpawnBullet() -> void:
 	var t = bullet.instantiate()
 	t.rotation = global_rotation
 	t.position = bulletSpawn.global_position
 	owner.owner.add_child(t)
-	$AnimationPlayer.play("GunShoot")
 	pass
 
 func endCooldown() -> void:

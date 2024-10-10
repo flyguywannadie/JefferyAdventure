@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3c8kftksktwg"]
+[gd_scene load_steps=12 format=3 uid="uid://b3c8kftksktwg"]
 
 [ext_resource type="Script" path="res://Scripts/Dagger.gd" id="1_5a2jj"]
 [ext_resource type="Texture2D" uid="uid://cd3sesw8bx5yo" path="res://Textures/DaggerWeapon/Idle.png" id="2_ir6p1"]
-[ext_resource type="PackedScene" uid="uid://dcn7ph8v16ujw" path="res://Scenes/Prefabs/Projectiles/DaggerSlash.tscn" id="2_tdlli"]
 [ext_resource type="Texture2D" uid="uid://rbu453mi54hq" path="res://Textures/BaseSwordSwin/002.png" id="3_cyq2q"]
 [ext_resource type="Texture2D" uid="uid://yba5nymobhj6" path="res://Textures/BaseSwordSwin/003.png" id="5_fb1dl"]
 [ext_resource type="Texture2D" uid="uid://bklfwpi4no4a8" path="res://Textures/BaseSwordSwin/004.png" id="6_xjm1w"]
@@ -78,10 +77,8 @@ _data = {
 
 [node name="Dagger" type="Node2D" node_paths=PackedStringArray("slashSpawn", "visuals")]
 script = ExtResource("1_5a2jj")
-slash = ExtResource("2_tdlli")
 slashSpawn = NodePath("SlashSpawn")
 inputAction = "jef_slash"
-COOLDOWNLENGTH = 0.8
 visuals = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -92,8 +89,6 @@ texture = ExtResource("2_ir6p1")
 
 [node name="SlashSpawn" type="Node2D" parent="."]
 position = Vector2(71, 0)
-
-[node name="DaggerSlash" parent="SlashSpawn" instance=ExtResource("2_tdlli")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

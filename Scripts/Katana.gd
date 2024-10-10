@@ -1,29 +1,59 @@
 extends Sword
 class_name Katana
 
+var bonusDamage: int
+var totalBonusTime: float
+
+func _ready() -> void:
+	super._ready()
+	pass
+
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	pass
 
 func endCooldown() -> void:
+	$AnimationPlayer.play("RESET")
+	totalBonusTime = 0
 	pass
 
 func onUse() -> void:
 	#print("on click use")
 	pressed = true
-	#$AttackArm.visible = true
+	$AnimationPlayer.play("SwordHold")
 	pass
 
-func onHold() -> void:
+func onHold(delta: float) -> void:
 	#print("on hold use")
-	$Sprite2D.position = Vector2(randf_range(0, 10), -128 + randf_range(-10, 10))
+	# will add damage based on held length
+	
+	if (totalBonusTime < 3):
+		totalBonusTime += delta
+	
+	#scale = Vector2(1 + totalBonusTime, 1 + totalBonusTime)
+	
 	pass
 
 func onRelease() -> void:
 	#print("on release use")
 	pressed = false
-	$Sprite2D.position = Vector2(0, -128)
-	$AnimationPlayer.play("RESET")
-	#$AttackArm.visible = false
 	startCooldown()
+	$AnimationPlayer.play("SwordSlash")
+	#scale = Vector2(1, 1)
+	cooldown = COOLDOWNLENGTH / clampf(totalBonusTime, 1, 3)
+	print("Cooldown Length ", cooldown)
 	pass
+
+func spawnHitbox() -> void:
+	var s = slash.instantiate()
+	s.position = slashSpawn.position.rotated(rotation) * scale
+	s.rotation_degrees = 0 if (scale.x == 1) else 90
+	var s2 = s as Bullet
+	if (s2):
+		s2.damage += roundi(totalBonusTime)
+		print("slash Damage ", s2.damage, " added ", totalBonusTime )
+	owner.add_child(s)
+	pass
+
+func swordDown() -> void:
+	$AnimationPlayer.play("SwordDown")

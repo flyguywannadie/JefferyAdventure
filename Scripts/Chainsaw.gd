@@ -24,7 +24,7 @@ func onUse() -> void:
 	#$AttackArm.visible = true
 	pass
 
-func onHold() -> void:
+func onHold(delta: float) -> void:
 	#print("on hold use")
 	$Sprite2D.position = Vector2(randf_range(0, 10), -128 + randf_range(-10, 10))
 	pass

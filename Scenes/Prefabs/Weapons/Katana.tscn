@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://d322aro5xk1k"]
+[gd_scene load_steps=14 format=3 uid="uid://d322aro5xk1k"]
 
-[ext_resource type="Script" path="res://Scripts/Sword.gd" id="1_5764a"]
+[ext_resource type="Script" path="res://Scripts/Katana.gd" id="1_xxwqj"]
+[ext_resource type="PackedScene" uid="uid://bnrrqi0kl0764" path="res://Scenes/Prefabs/Projectiles/KatanaSlash.tscn" id="2_rwcp6"]
 [ext_resource type="Texture2D" uid="uid://co44uwbhbet1x" path="res://Textures/KatanaWeapon/idle.png" id="3_m10b4"]
-[ext_resource type="Texture2D" uid="uid://rbu453mi54hq" path="res://Textures/BaseSwordSwin/002.png" id="3_vnk8g"]
-[ext_resource type="Texture2D" uid="uid://yba5nymobhj6" path="res://Textures/BaseSwordSwin/003.png" id="5_bdfoa"]
-[ext_resource type="Texture2D" uid="uid://bklfwpi4no4a8" path="res://Textures/BaseSwordSwin/004.png" id="6_kgprd"]
-[ext_resource type="Texture2D" uid="uid://gwxk8u4xkh6u" path="res://Textures/BaseSwordSwin/005.png" id="7_f1cfm"]
-[ext_resource type="Texture2D" uid="uid://cxvtgp8ltth7s" path="res://Textures/BaseSwordSwin/006.png" id="8_3e3h7"]
+[ext_resource type="Texture2D" uid="uid://bibgij7fcg6yf" path="res://Textures/KatanaWeapon/KatanaSlash1.png" id="3_vagql"]
+[ext_resource type="Texture2D" uid="uid://ber1f757s7o8t" path="res://Textures/KatanaWeapon/KatanaSlash2.png" id="4_kavcx"]
+[ext_resource type="Texture2D" uid="uid://bcehrjkq6g47r" path="res://Textures/KatanaWeapon/KatanaHold.png" id="5_jc6ws"]
+[ext_resource type="Texture2D" uid="uid://cwmcopw6tcyri" path="res://Textures/KatanaWeapon/KatanaDown1.png" id="6_e7osj"]
+[ext_resource type="Texture2D" uid="uid://cd0tfy58wgqo1" path="res://Textures/KatanaWeapon/KatanaDown2.png" id="7_e52p0"]
 
 [sub_resource type="Animation" id="Animation_bgu8v"]
 length = 0.001
@@ -25,7 +26,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_6paf1"]
 resource_name = "SwordSlash"
-length = 2.0
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -33,10 +34,10 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.133333, 0.3, 0.366667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("3_vnk8g"), ExtResource("5_bdfoa"), ExtResource("6_kgprd"), ExtResource("7_f1cfm"), ExtResource("8_3e3h7")]
+"values": [ExtResource("3_vagql"), ExtResource("4_kavcx")]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -45,22 +46,61 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.133333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.02, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"spawnHitbox"
+}, {
+"args": [],
+"method": &"swordDown"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_dnutw"]
+resource_name = "SwordHold"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_jc6ws")]
+}
+
+[sub_resource type="Animation" id="Animation_1j75h"]
+resource_name = "SwordDown"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("6_e7osj"), ExtResource("7_e52p0")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x2h1l"]
 _data = {
 "RESET": SubResource("Animation_bgu8v"),
+"SwordDown": SubResource("Animation_1j75h"),
+"SwordHold": SubResource("Animation_dnutw"),
 "SwordSlash": SubResource("Animation_6paf1")
 }
 
 [node name="Katana" type="Node2D" node_paths=PackedStringArray("slashSpawn", "visuals")]
-script = ExtResource("1_5764a")
+script = ExtResource("1_xxwqj")
+slash = ExtResource("2_rwcp6")
 slashSpawn = NodePath("SlashSpawn")
 inputAction = "jef_slash"
 COOLDOWNLENGTH = 2.0
@@ -73,7 +113,7 @@ position = Vector2(0, -128)
 texture = ExtResource("3_m10b4")
 
 [node name="SlashSpawn" type="Node2D" parent="."]
-position = Vector2(71, 0)
+position = Vector2(48, -37)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

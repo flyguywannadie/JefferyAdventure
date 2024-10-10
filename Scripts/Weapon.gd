@@ -17,6 +17,8 @@ func _ready() -> void:
 	cooldown = COOLDOWNLENGTH
 	pass # Replace with function body.
 
+func OnCreate() -> void:
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -26,9 +28,13 @@ func _physics_process(delta: float) -> void:
 			endCooldown()
 			readyUse = true
 			cooldown = COOLDOWNLENGTH
+			if (Input.is_action_pressed(inputAction)) :
+				onUse()
 	
 	if (pressed):
-		onHold()
+		onHold(delta)
+		if(!Input.is_action_pressed(inputAction)):
+			onRelease()
 	
 	pass
 
@@ -56,7 +62,7 @@ func onUse() -> void:
 	pressed = true
 	pass
 
-func onHold() -> void:
+func onHold(delta: float) -> void:
 	#print("on hold use")
 	pass
 

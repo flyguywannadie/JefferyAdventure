@@ -27,7 +27,7 @@ func aiLogic(delta: float) -> void:
 			
 			pass
 		1:
-			if (is_on_wall() || (!is_on_floor() && !walkOffEdge)):
+			if (is_on_wall()):
 				#print("hit wall")
 				walkDirection = !walkDirection
 			$Sprite2D.flip_h = !walkDirection
@@ -44,6 +44,14 @@ func aiLogic(delta: float) -> void:
 			
 			pass
 
+func setKnockback(x: float, y: float) -> void:
+	
+	if ((walkDirection && sign(x) == -1) || (!walkDirection && sign(x) == 1)):
+		walkDirection = !walkDirection
+		pass
+	
+	super.setKnockback(x,y)
+	pass
 
 func setIdleTimer() -> void:
 	idleTimer = randf_range(-2.0, 1.5)

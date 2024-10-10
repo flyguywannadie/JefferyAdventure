@@ -10,6 +10,7 @@ var onGround: bool = true
 
 const TEST_GUN = preload("res://Scenes/Prefabs/Weapons/TestGun.tscn")
 @onready var gun_holder: Node2D = $GunArm/GunHolder
+@onready var GunArm: Node2D = $GunArm
 var currentGun: Weapon
 
 const TEST_SWORD = preload("res://Scenes/Prefabs/Weapons/TestSword.tscn")
@@ -49,16 +50,11 @@ func _physics_process(delta: float) -> void:
 	setMovement(sideVelocity, movement.y)
 	
 	if (!is_on_floor() && onGround):
-		print(cayoteTime)
 		cayoteTime -= 1
 		if (cayoteTime < 0):
 			onGround = false
 	if (cayoteTime < 0 && is_on_floor()):
 		cayoteTime = 3
-		#cayoteTime = Engine.get_frames_per_second() / 20
-		#print("should be ", Engine.get_frames_per_second() / 20, " --- but I got ", cayoteTime)
-		#if (Engine.get_frames_per_second() < 20) :
-			#cayoteTime += 1
 		onGround = true
 	
 	if (Input.is_action_just_pressed("jef_Jump") && onGround):
@@ -73,7 +69,7 @@ func _physics_process(delta: float) -> void:
 		jumpTimer = 0
 	
 	var mousePos = get_viewport().get_camera_2d().get_global_mouse_position()
-	$GunArm.look_at(mousePos)
+	GunArm.look_at(mousePos)
 	
 	if (mousePos.x < position.x):
 		currentGun.visuals.flip_v = true
@@ -119,6 +115,7 @@ func EvolveWeapon(gunorsowrd: bool, piece: String) -> void:
 					sword_holder.add_child(sword)
 					sword.owner = $"."
 					currentSword = sword as Weapon
+					currentSword.OnCreate()
 			pass
 		"c":
 			if (gunorsowrd) :
@@ -130,6 +127,7 @@ func EvolveWeapon(gunorsowrd: bool, piece: String) -> void:
 					sword_holder.add_child(sword)
 					sword.owner = $"."
 					currentSword = sword as Weapon
+					currentSword.OnCreate()
 			pass
 		"f":
 			if (gunorsowrd) :
@@ -141,6 +139,7 @@ func EvolveWeapon(gunorsowrd: bool, piece: String) -> void:
 					sword_holder.add_child(sword)
 					sword.owner = $"."
 					currentSword = sword as Weapon
+					currentSword.OnCreate()
 			pass
 	
 	pass
