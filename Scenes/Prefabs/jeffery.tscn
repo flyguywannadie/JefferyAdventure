@@ -15,7 +15,7 @@ shader = ExtResource("2_q8qc8")
 shader_parameter/size = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkrwf"]
-size = Vector2(73, 174)
+size = Vector2(73, 171)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_binv0"]
 shader = ExtResource("2_q8qc8")
@@ -106,7 +106,7 @@ health = 11
 GRAVITY = 64.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, 4)
+position = Vector2(-5, 2.5)
 shape = SubResource("RectangleShape2D_fkrwf")
 
 [node name="Sprite" type="Sprite2D" parent="."]

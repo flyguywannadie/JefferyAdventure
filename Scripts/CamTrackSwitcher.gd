@@ -1,7 +1,12 @@
 extends Area2D
 
 @export var myTrack: CamTrack
-@onready var camera: GameCamera = $"../../Camera2D"
+var camera: GameCamera
+
+func _ready() -> void:
+	for child in $"..".get_children():
+		if child is GameCamera:
+			camera = child
 
 func _on_body_entered(body: Node2D) -> void:
 	var other: Jeffery = body as Jeffery
