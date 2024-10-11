@@ -1,19 +1,13 @@
 extends Area2D
 class_name Doorway
 
-var camera: GameCamera
-var jeffery: Jeffery
-var gamemanager: GameManager
+@export var nextRoom: PackedScene
+
+@export var myRoom: Room
 
 func _ready() -> void:
-	for child in $"..".get_children():
-		if child is GameCamera:
-			camera = child
-		if child is Jeffery:
-			jeffery = child
-		if child is GameManager:
-			gamemanager = child
-
+	myRoom = owner as Room
 
 func _on_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+	print("Touched Jeffery")
+	pass

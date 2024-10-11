@@ -1,4 +1,4 @@
-@tool extends Camera2D
+extends Camera2D
 class_name GameCamera
 
 @export var toFollow: Jeffery

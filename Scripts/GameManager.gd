@@ -4,10 +4,6 @@ class_name GameManager
 const TESTGUYBOUNCE = preload("res://Scenes/Prefabs/testguybounce.tscn")
 @onready var evolution_screen: EvolutionScreen = $"../CanvasLayer/EvolutionScreen"
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	

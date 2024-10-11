@@ -4,7 +4,7 @@ extends Area2D
 var camera: GameCamera
 
 func _ready() -> void:
-	for child in $"..".get_children():
+	for child in get_tree().root.get_child(0).get_children():
 		if child is GameCamera:
 			camera = child
 

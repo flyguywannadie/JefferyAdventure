@@ -16,9 +16,9 @@ var motion: Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	motion = Vector2(velocity, 0)
-	print("before rot ", motion, " and ", rotation)
+	#print("before rot ", motion, " and ", rotation)
 	motion = motion.rotated(rotation)
-	print("after rot ", motion)
+	#print("after rot ", motion)
 	pass # Replace with function body.
 
 func _process(delta: float) -> void:
