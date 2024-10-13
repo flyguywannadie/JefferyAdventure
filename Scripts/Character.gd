@@ -46,10 +46,6 @@ func _physics_process(delta: float) -> void:
 	if (is_on_wall()):
 		knockback = 0
 	
-	if (is_on_ceiling()):
-			setMovement(movement.x, 0)
-			position.y += 4
-	
 	pass
 
 func setKnockback(x: float, y: float):

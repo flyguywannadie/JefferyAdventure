@@ -37,6 +37,10 @@ func aiLogic(delta: float) -> void:
 			else :
 				setMovement(-200, movement.y)
 			
+			if(is_on_ceiling() && is_on_floor()):
+				setMovement(0,movement.y)
+				setIdleTimer()
+			
 			walkTimer -= delta
 			
 			if (walkTimer <= 0):

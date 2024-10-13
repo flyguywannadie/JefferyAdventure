@@ -1,0 +1,305 @@
+[gd_scene load_steps=32 format=4 uid="uid://b4x5i41o7t1j1"]
+
+[ext_resource type="Script" path="res://Scripts/Room.gd" id="1_y6yf7"]
+[ext_resource type="Script" path="res://Scripts/TankBoss.gd" id="2_kg316"]
+[ext_resource type="Texture2D" uid="uid://ci5dr22nn2a8h" path="res://Textures/ChargeBoss/TankGun.png" id="3_7v0af"]
+[ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="3_nhxys"]
+[ext_resource type="Texture2D" uid="uid://pun1x300rofk" path="res://Textures/ChargeBoss/TankHatch.png" id="4_lv41s"]
+[ext_resource type="PackedScene" uid="uid://bh523bxi5rvi" path="res://Scenes/Prefabs/camera_track.tscn" id="4_pgogi"]
+[ext_resource type="Texture2D" uid="uid://bqx3m2rgdgqgp" path="res://Textures/ChargeBoss/TankTrack1.png" id="5_0at73"]
+[ext_resource type="PackedScene" uid="uid://v42kviymhbdq" path="res://Scenes/Prefabs/doorway.tscn" id="6_7ad3p"]
+[ext_resource type="Texture2D" uid="uid://dkep6n4rtlsvd" path="res://Textures/ChargeBoss/TankTrack2.png" id="6_tps44"]
+[ext_resource type="Texture2D" uid="uid://dj2aksup3bd0c" path="res://Textures/ChargeBoss/TankTrack3.png" id="7_ij7cq"]
+[ext_resource type="Texture2D" uid="uid://diu0ufs35ddk3" path="res://Textures/ChargeBoss/TankHatchTurn1.png" id="8_8ykdf"]
+[ext_resource type="Texture2D" uid="uid://deq8ackp7mr1f" path="res://Textures/ChargeBoss/TankHatchTurn2.png" id="9_er5ij"]
+[ext_resource type="Texture2D" uid="uid://pmbyi0vje251" path="res://Textures/ChargeBoss/TankHatchTurn3.png" id="10_suh4c"]
+[ext_resource type="Texture2D" uid="uid://u1egukioccf8" path="res://Textures/ChargeBoss/TankHatchTurn4.png" id="11_p7jne"]
+[ext_resource type="Texture2D" uid="uid://cgmhvl6vx5mnc" path="res://Textures/ChargeBoss/TankHatchTurn5.png" id="12_l26y2"]
+[ext_resource type="Texture2D" uid="uid://cx24sdw3n0qfr" path="res://Textures/ChargeBoss/TankHatchTurn6.png" id="13_kd8w1"]
+[ext_resource type="Texture2D" uid="uid://dfwu1yiwn3gva" path="res://Textures/ChargeBoss/TankHatchFlip.png" id="13_ws5tu"]
+[ext_resource type="Script" path="res://Scripts/DamageArea.gd" id="15_f2405"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0b5nr"]
+size = Vector2(384, 87)
+
+[sub_resource type="Animation" id="Animation_rbmun"]
+resource_name = "MoveTracks"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TankTracks:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_0at73"), ExtResource("6_tps44"), ExtResource("7_ij7cq")]
+}
+
+[sub_resource type="Animation" id="Animation_snqwa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TankTracks:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_0at73")]
+}
+
+[sub_resource type="Animation" id="Animation_0jcs1"]
+resource_name = "TrackCharge"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TankTracks:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_0at73"), ExtResource("6_tps44"), ExtResource("7_ij7cq")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gn6dd"]
+_data = {
+"MoveTracks": SubResource("Animation_rbmun"),
+"RESET": SubResource("Animation_snqwa"),
+"TrackCharge": SubResource("Animation_0jcs1")
+}
+
+[sub_resource type="Animation" id="Animation_afk4j"]
+resource_name = "HatchRotate"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TankHatch:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_8ykdf"), ExtResource("9_er5ij"), ExtResource("10_suh4c"), ExtResource("11_p7jne"), ExtResource("12_l26y2"), ExtResource("13_ws5tu")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gun/TankGun:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gun/TankGun:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_quyhf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TankHatch:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_lv41s")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gun/TankGun:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gun/TankGun:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_gj5wr"]
+resource_name = "HatchRight"
+
+[sub_resource type="Animation" id="Animation_xruac"]
+resource_name = "HatchLeft"
+
+[sub_resource type="Animation" id="Animation_8whpr"]
+resource_name = "HatchRotateBack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TankHatch:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("13_kd8w1"), ExtResource("12_l26y2"), ExtResource("11_p7jne"), ExtResource("10_suh4c"), ExtResource("9_er5ij"), ExtResource("4_lv41s")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gun/TankGun:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gun/TankGun:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3q5hb"]
+_data = {
+"HatchLeft": SubResource("Animation_xruac"),
+"HatchRight": SubResource("Animation_gj5wr"),
+"HatchRotate": SubResource("Animation_afk4j"),
+"HatchRotateBack": SubResource("Animation_8whpr"),
+"RESET": SubResource("Animation_quyhf")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w60wy"]
+size = Vector2(407.5, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_443x5"]
+size = Vector2(2115, 36)
+
+[node name="BossScene" type="Node2D" node_paths=PackedStringArray("camTracks")]
+script = ExtResource("1_y6yf7")
+camTracks = [NodePath("CameraTrack")]
+
+[node name="TankBoss" type="CharacterBody2D" parent="." node_paths=PackedStringArray("hatchAnims", "anims")]
+position = Vector2(15565, 4341)
+scale = Vector2(2, 2)
+collision_layer = 2
+collision_mask = 9
+floor_stop_on_slope = false
+floor_block_on_wall = false
+platform_on_leave = 2
+platform_floor_layers = 4294901760
+script = ExtResource("2_kg316")
+hatchAnims = NodePath("HatchAnimations")
+pieceIHold = "c"
+anims = NodePath("TrackAnimation")
+health = 15
+GRAVITY = 100.0
+FRICTION = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TankBoss"]
+position = Vector2(-1, 80.5)
+shape = SubResource("RectangleShape2D_0b5nr")
+
+[node name="Gun" type="Node2D" parent="TankBoss"]
+position = Vector2(0, -6.5)
+
+[node name="TankGun" type="Sprite2D" parent="TankBoss/Gun"]
+texture = ExtResource("3_7v0af")
+flip_h = true
+
+[node name="TankHatch" type="Sprite2D" parent="TankBoss"]
+position = Vector2(0, -6.5)
+texture = ExtResource("4_lv41s")
+flip_h = true
+
+[node name="TankTracks" type="Sprite2D" parent="TankBoss"]
+texture = ExtResource("5_0at73")
+
+[node name="TrackAnimation" type="AnimationPlayer" parent="TankBoss"]
+libraries = {
+"": SubResource("AnimationLibrary_gn6dd")
+}
+
+[node name="HatchAnimations" type="AnimationPlayer" parent="TankBoss"]
+libraries = {
+"": SubResource("AnimationLibrary_3q5hb")
+}
+
+[node name="TrackDamageArea" type="Area2D" parent="TankBoss"]
+collision_layer = 2
+script = ExtResource("15_f2405")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TankBoss/TrackDamageArea"]
+position = Vector2(-0.25, 100)
+shape = SubResource("RectangleShape2D_w60wy")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AABsABgAAAAAAAAAAABsABkAAAAAAAAAAABsACQAAAAAAAAAAABsACUAAAAAAAAAAABsACYAAAAAAAAAAABtABgAAAAAAAAAAABtABkAAAAAAAAAAABtACQAAAAAAAAAAABtACUAAAAAAAAAAABtACYAAAAAAAAAAABuABgAAAAAAAAAAABuABkAAAAAAAAAAABuACQAAAAAAAAAAABuACUAAAAAAAAAAABuACYAAAAAAAAAAABvABgAAAAAAAAAAABvABkAAAAAAAAAAABvACQAAAAAAAAAAABvACUAAAAAAAAAAABvACYAAAAAAAAAAABqABgAAAAAAAAAAABqABkAAAAAAAAAAABqABoAAAAAAAAAAABqABsAAAAAAAAAAABqABwAAAAAAAAAAABqAB0AAAAAAAAAAABqACEAAAAAAAAAAABqACIAAAAAAAAAAABqACMAAAAAAAAAAABqACQAAAAAAAAAAABqACUAAAAAAAAAAABqACYAAAAAAAAAAABrABgAAAAAAAAAAABrABkAAAAAAAAAAABrACIAAAAAAAAAAABrACMAAAAAAAAAAABrACQAAAAAAAAAAABrACUAAAAAAAAAAABrACYAAAAAAAAAAABwACQAAAAAAAAAAABwACUAAAAAAAAAAABwACYAAAAAAAAAAABxACQAAAAAAAAAAABxACUAAAAAAAAAAABxACYAAAAAAAAAAAByACQAAAAAAAAAAAByACUAAAAAAAAAAAByACYAAAAAAAAAAABzACQAAAAAAAAAAABzACUAAAAAAAAAAABzACYAAAAAAAAAAAB0ACQAAAAAAAAAAAB0ACUAAAAAAAAAAAB0ACYAAAAAAAAAAAB1ACQAAAAAAAAAAAB1ACUAAAAAAAAAAAB1ACYAAAAAAAAAAAB2ACQAAAAAAAAAAAB2ACUAAAAAAAAAAAB2ACYAAAAAAAAAAAB3ACQAAAAAAAAAAAB3ACUAAAAAAAAAAAB3ACYAAAAAAAAAAAB4ACQAAAAAAAAAAAB4ACUAAAAAAAAAAAB4ACYAAAAAAAAAAAB5ACQAAAAAAAAAAAB5ACUAAAAAAAAAAAB5ACYAAAAAAAAAAAB6ACQAAAAAAAAAAAB6ACUAAAAAAAAAAAB6ACYAAAAAAAAAAAB7ACQAAAAAAAAAAAB7ACUAAAAAAAAAAAB7ACYAAAAAAAAAAAB8ACQAAAAAAAAAAAB8ACUAAAAAAAAAAAB8ACYAAAAAAAAAAAB9ACQAAAAAAAAAAAB9ACUAAAAAAAAAAAB9ACYAAAAAAAAAAAB+ACQAAAAAAAAAAAB+ACUAAAAAAAAAAAB+ACYAAAAAAAAAAABwABgAAAAAAAAAAABwABkAAAAAAAAAAABxABgAAAAAAAAAAABxABkAAAAAAAAAAAByABgAAAAAAAAAAAByABkAAAAAAAAAAABzABgAAAAAAAAAAABzABkAAAAAAAAAAAB0ABgAAAAAAAAAAAB0ABkAAAAAAAAAAAB1ABgAAAAAAAAAAAB1ABkAAAAAAAAAAAB2ABgAAAAAAAAAAAB2ABkAAAAAAAAAAAB3ABgAAAAAAAAAAAB3ABkAAAAAAAAAAAB4ABgAAAAAAAAAAAB4ABkAAAAAAAAAAAB5ABgAAAAAAAAAAAB5ABkAAAAAAAAAAAB6ABgAAAAAAAAAAAB6ABkAAAAAAAAAAAB7ABgAAAAAAAAAAAB7ABkAAAAAAAAAAAB8ABgAAAAAAAAAAAB8ABkAAAAAAAAAAAB9ABgAAAAAAAAAAAB9ABkAAAAAAAAAAAB+ABgAAAAAAAAAAAB+ABkAAAAAAAAAAAB+ABoAAAAAAAAAAAB+ABsAAAAAAAAAAAB+ABwAAAAAAAAAAAB+AB0AAAAAAAAAAAB+AB4AAAAAAAAAAAB+AB8AAAAAAAAAAAB+ACAAAAAAAAAAAAB+ACEAAAAAAAAAAAB+ACIAAAAAAAAAAAB+ACMAAAAAAAAAAAB9ABoAAAAAAAAAAAB9ABsAAAAAAAAAAAB9ABwAAAAAAAAAAAB9AB0AAAAAAAAAAAB9AB4AAAAAAAAAAAB9AB8AAAAAAAAAAAB9ACAAAAAAAAAAAAB9ACEAAAAAAAAAAAB9ACIAAAAAAAAAAAB9ACMAAAAAAAAAAABrACEAAAAAAAAAAABsACIAAAAAAAAAAABsACMAAAAAAAAAAABrAB0AAAAAAAAAAABrABwAAAAAAAAAAABrABsAAAAAAAAAAABrABoAAAAAAAAAAAA=")
+tile_set = ExtResource("3_nhxys")
+
+[node name="CameraTrack" parent="." instance=ExtResource("4_pgogi")]
+position = Vector2(14848, 3968)
+
+[node name="Doorway" parent="." node_paths=PackedStringArray("myRoom") instance=ExtResource("6_7ad3p")]
+position = Vector2(13568, 4032)
+rotation = 3.14159
+nextRoom = "TestSecondScene"
+myRoom = NodePath("..")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(14907, 4006)
+zoom = Vector2(0.5, 0.5)
+
+[node name="fake Jeffery" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(14923, 4613)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(43.5, 8)
+shape = SubResource("RectangleShape2D_443x5")
+
+[connection signal="body_entered" from="TankBoss/TrackDamageArea" to="TankBoss/TrackDamageArea" method="_on_body_entered"]

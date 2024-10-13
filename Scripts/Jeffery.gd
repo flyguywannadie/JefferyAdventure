@@ -97,6 +97,10 @@ func _physics_process(delta: float) -> void:
 	
 	super._physics_process(delta)
 	
+	if (is_on_ceiling()):
+		setMovement(movement.x, 0)
+		position.y += 4
+	
 	pass
 
 func getFacingDirection() -> bool:

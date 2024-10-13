@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_h4t45"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4bxn7"]
-radius = 40.0
+radius = 91.0
 
 [node name="DaggerSlash" type="Area2D"]
 collision_layer = 4
@@ -13,10 +13,10 @@ script = ExtResource("1_nr0tg")
 velocity = 1.0
 lifetime = 0.05
 knockback = Vector2(350, 1)
-damage = 0
+damage = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(80.435, 80.776)
+scale = Vector2(142.428, 150.777)
 texture = ExtResource("2_h4t45")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

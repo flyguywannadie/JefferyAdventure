@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgi22rw2oexdx"]
+[gd_scene load_steps=11 format=3 uid="uid://cgi22rw2oexdx"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_k3xtd"]
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_mxtlc"]
@@ -6,23 +6,23 @@
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="7_2u6g4"]
 [ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="11_1d1kq"]
 [ext_resource type="Script" path="res://Scripts/EvolutionScreen.gd" id="12_cvh8f"]
-[ext_resource type="PackedScene" uid="uid://yvyx6mtm7sgc" path="res://Scenes/TestFirstScene.tscn" id="12_na5hb"]
 [ext_resource type="Texture2D" uid="uid://cq67xj1g1bm8q" path="res://Textures/SwordEvoButton.png" id="13_1tk7r"]
 [ext_resource type="Texture2D" uid="uid://qotynlinrtcj" path="res://Textures/SwordEvoButtonHover.png" id="14_k02nj"]
 [ext_resource type="Texture2D" uid="uid://07jullcmmn2w" path="res://Textures/GunEvoButton.png" id="15_bv6un"]
 [ext_resource type="Texture2D" uid="uid://dqgv2ia0li61e" path="res://Textures/GunEvoButtonHover.png" id="16_vvsn2"]
-[ext_resource type="PackedScene" uid="uid://cv7qnaqkfgdmk" path="res://Scenes/TestSecondScene.tscn" id="18_ec103"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="GameManager" type="Node2D" parent="."]
+process_mode = 3
 script = ExtResource("1_k3xtd")
 
 [node name="Jeffery" parent="." instance=ExtResource("4_oebhw")]
-position = Vector2(4563, 4361)
 slide_on_ceiling = false
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("toFollow")]
+z_index = 100
+position = Vector2(14848, 3968)
 ignore_rotation = false
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("7_2u6g4")
@@ -160,10 +160,6 @@ texture_hover = ExtResource("16_vvsn2")
 layout_mode = 2
 text = "Gun"
 horizontal_alignment = 1
-
-[node name="SecondScene" parent="." instance=ExtResource("18_ec103")]
-
-[node name="FirstScene" parent="." instance=ExtResource("12_na5hb")]
 
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/Resume" to="CanvasLayer/PauseMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/Back To Title" to="CanvasLayer/PauseMenu" method="_on_back_to_title_pressed"]

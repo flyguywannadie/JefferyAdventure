@@ -2,62 +2,14 @@ extends Node2D
 class_name Room
 
 @export var camTracks: Array[CamTrack]
+#@export var entrances: Array[Doorway]
 
-var transitionStep: int = 0
-var timer: float = 1
-var prevJeffPos: Vector2
-var nextJeffPos: Vector2
-var prevCamPos: Vector2
-var camLerp: float = 0
-
-var camera: GameCamera
-var jeffery: Jeffery
 var gamemanager: GameManager
 
 func _ready() -> void:
 	for child in get_tree().root.get_child(0).get_children():
-		if child is GameCamera:
-			camera = child
-		if child is Jeffery:
-			jeffery = child
 		if child is GameManager:
 			gamemanager = child
-	
-	transitionStep = 0
-
-func _physics_process(delta: float) -> void:
-	match (transitionStep):
-		1: # Wait a bit
-			#timer -= delta
-			#if (timer <= 0) :
-				#timer = 1
-				#transitionStep = 2
-			pass
-		2: # load next room
-			pass
-		3: # Move Jeffery and Camera to new positions
-			#camLerp += 1.0/60.0
-			#jeffery.position = lerp(prevJeffPos, nextJeffPos, camLerp)
-			#camera.position = lerp(prevCamPos, nextJeffPos, camLerp)#camera.currentTrack.placeVectorWithinBounds(camera.position), camLerp)
-			#
-			#if (camLerp >= 1):
-				#transitionStep = 3
-			pass
-		4: # unload previous room
-			#print("PISS")
-			pass
-
-func _on_body_entered(body: Node2D) -> void:
-	
-	if (body == jeffery && !get_tree().paused) :
-		get_tree().paused = true
-		transitionStep = 1
-		prevCamPos = camera.position
-		#camera.changeTrack(nextRoom.getClosestTrack(prevCamPos))
-		prevJeffPos = jeffery.position
-		nextJeffPos = jeffery.position + (Vector2(128 * 4, 0).rotated(rotation))
-	
-	pass # Replace with function body.
 
 func getClosestTrack(pos: Vector2) -> CamTrack:
 	var closest: CamTrack = null
@@ -69,3 +21,32 @@ func getClosestTrack(pos: Vector2) -> CamTrack:
 			closest = track
 	
 	return closest
+
+func leaveRoom(roomName: String, entranceDirection: float) -> void:
+	gamemanager.swapRoom(roomName, entranceDirection)
+	pass
+
+func gameStateChanges(gamestate: String) -> void:
+	# upon the room being loaded, change things based on the game state
+	# I can probably do something better than this with some seperate script that this functi#on will check through
+	# just keep this here for thinking, should be updated with next week's level creation thinking
+	
+	# ds = Deadly Sword
+	if (gamestate.contains("ds")):
+		pass
+	# cs = Charge Sword
+	if (gamestate.contains("cs")):
+		pass
+	# fs = Fast Sword
+	if (gamestate.contains("fs")):
+		pass
+	# dg = Deadly Gun
+	if (gamestate.contains("dg")):
+		pass
+	# cg = Charge Gun
+	if (gamestate.contains("cg")):
+		pass
+	# fg = Fast Gun
+	if (gamestate.contains("fg")):
+		pass
+	pass

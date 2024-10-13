@@ -6,7 +6,7 @@ var gamemanager: GameManager
 
 func _ready() -> void:
 	# https://www.reddit.com/r/godot/comments/16kkpo2/finding_child_node_by_type/
-	for child in $"..".get_children():
+	for child in get_tree().root.get_child(0).get_children():
 		if child is GameManager:
 			gamemanager = child
 	
