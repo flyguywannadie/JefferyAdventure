@@ -20,8 +20,12 @@ func endCooldown() -> void:
 func onUse() -> void:
 	#print("on click use")
 	pressed = true
-	$AnimationPlayer.play("attack")
+	$AnimationPlayer.play("Swing")
 	#$AttackArm.visible = true
+	pass
+
+func swingDonw() -> void:
+	$AnimationPlayer.play("attack")
 	pass
 
 func onHold(delta: float) -> void:

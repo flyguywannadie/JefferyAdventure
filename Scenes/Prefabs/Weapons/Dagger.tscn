@@ -1,13 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3c8kftksktwg"]
+[gd_scene load_steps=11 format=3 uid="uid://b3c8kftksktwg"]
 
 [ext_resource type="Script" path="res://Scripts/Dagger.gd" id="1_5a2jj"]
 [ext_resource type="Texture2D" uid="uid://cd3sesw8bx5yo" path="res://Textures/DaggerWeapon/Idle.png" id="2_ir6p1"]
 [ext_resource type="PackedScene" uid="uid://dcn7ph8v16ujw" path="res://Scenes/Prefabs/Projectiles/DaggerSlash.tscn" id="2_tdlli"]
-[ext_resource type="Texture2D" uid="uid://rbu453mi54hq" path="res://Textures/BaseSwordSwin/002.png" id="3_cyq2q"]
-[ext_resource type="Texture2D" uid="uid://yba5nymobhj6" path="res://Textures/BaseSwordSwin/003.png" id="5_fb1dl"]
-[ext_resource type="Texture2D" uid="uid://bklfwpi4no4a8" path="res://Textures/BaseSwordSwin/004.png" id="6_xjm1w"]
-[ext_resource type="Texture2D" uid="uid://gwxk8u4xkh6u" path="res://Textures/BaseSwordSwin/005.png" id="7_vuocl"]
-[ext_resource type="Texture2D" uid="uid://cxvtgp8ltth7s" path="res://Textures/BaseSwordSwin/006.png" id="8_7hsb0"]
+[ext_resource type="Texture2D" uid="uid://54q07tjpfhii" path="res://Textures/DaggerWeapon/Slash1.png" id="4_w7p23"]
+[ext_resource type="Texture2D" uid="uid://cvk8do7xny4jv" path="res://Textures/DaggerWeapon/Slash2.png" id="5_tbby2"]
+[ext_resource type="Texture2D" uid="uid://bj7iamqh6p0gv" path="res://Textures/DaggerWeapon/Slash3.png" id="6_gavp6"]
+[ext_resource type="Texture2D" uid="uid://c1qa7m8vvem1i" path="res://Textures/DaggerWeapon/Slash4.png" id="7_p3uqh"]
 
 [sub_resource type="Animation" id="Animation_bgu8v"]
 length = 0.001
@@ -24,21 +23,6 @@ tracks/0/keys = {
 "values": [ExtResource("2_ir6p1")]
 }
 
-[sub_resource type="Animation" id="Animation_5ghy8"]
-resource_name = "SwordHold"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_cyq2q")]
-}
-
 [sub_resource type="Animation" id="Animation_6paf1"]
 resource_name = "SwordSlash"
 length = 2.0
@@ -49,10 +33,10 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.133333, 0.3, 0.366667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0666667, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("3_cyq2q"), ExtResource("5_fb1dl"), ExtResource("6_xjm1w"), ExtResource("7_vuocl"), ExtResource("8_7hsb0")]
+"values": [ExtResource("4_w7p23"), ExtResource("5_tbby2"), ExtResource("6_gavp6"), ExtResource("7_p3uqh")]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -61,7 +45,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.133333),
+"times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -72,7 +56,6 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x2h1l"]
 _data = {
 "RESET": SubResource("Animation_bgu8v"),
-"SwordHold": SubResource("Animation_5ghy8"),
 "SwordSlash": SubResource("Animation_6paf1")
 }
 
@@ -91,9 +74,7 @@ position = Vector2(0, -128)
 texture = ExtResource("2_ir6p1")
 
 [node name="SlashSpawn" type="Node2D" parent="."]
-position = Vector2(71, 0)
-
-[node name="DaggerSlash" parent="SlashSpawn" instance=ExtResource("2_tdlli")]
+position = Vector2(71, 35)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
