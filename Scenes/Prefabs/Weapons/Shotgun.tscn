@@ -1,13 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://crao8r2kw8mhy"]
+[gd_scene load_steps=11 format=3 uid="uid://beh3os1o53qfn"]
 
-[ext_resource type="Script" path="res://Scripts/Gun.gd" id="1_yvqmw"]
-[ext_resource type="Texture2D" uid="uid://cab61l5aahjll" path="res://Textures/Gun.png" id="2_103kc"]
-[ext_resource type="PackedScene" uid="uid://beh3os1o53qfn" path="res://Scenes/Prefabs/Weapons/Shotgun.tscn" id="2_nwjkh"]
-[ext_resource type="PackedScene" uid="uid://0t2v8d4kxbg6" path="res://Scenes/Prefabs/Weapons/Sniper.tscn" id="3_b1775"]
-[ext_resource type="Texture2D" uid="uid://egtg0d18q2qq" path="res://Textures/BaseGun/002.png" id="3_fg07v"]
-[ext_resource type="PackedScene" uid="uid://mai187yxyo5a" path="res://Scenes/Prefabs/Weapons/GrappleHook.tscn" id="4_ab1ey"]
-[ext_resource type="Texture2D" uid="uid://cgkbwkj4tgprx" path="res://Textures/BaseGun/003.png" id="4_lj184"]
-[ext_resource type="Texture2D" uid="uid://bek86tx1noxal" path="res://Textures/BaseGun/004.png" id="5_j3kh6"]
+[ext_resource type="Script" path="res://Scripts/Shotgun.gd" id="1_k5rqv"]
+[ext_resource type="PackedScene" uid="uid://dj1f0t1ndcxyk" path="res://Scenes/Prefabs/Projectiles/ShotgunBullet.tscn" id="2_crqtj"]
+[ext_resource type="Texture2D" uid="uid://dyxdcbf2kyfyx" path="res://Textures/ShotgunWeapon/Shotgun.png" id="3_qgsw0"]
+[ext_resource type="Texture2D" uid="uid://i1anceto50qq" path="res://Textures/ShotgunWeapon/ShotgunShoot1.png" id="4_b0kbs"]
+[ext_resource type="Texture2D" uid="uid://ba1itqd5xsxk0" path="res://Textures/ShotgunWeapon/ShotgunShoot2.png" id="5_8ypew"]
+[ext_resource type="Texture2D" uid="uid://8q1vbrg0hmx2" path="res://Textures/ShotgunWeapon/ShotgunShoot3.png" id="6_oq6w4"]
 
 [sub_resource type="Animation" id="Animation_83tqf"]
 resource_name = "GunHold"
@@ -21,12 +19,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_103kc")]
+"values": [ExtResource("3_qgsw0")]
 }
 
 [sub_resource type="Animation" id="Animation_nb5r5"]
 resource_name = "GunShoot"
-length = 0.3
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -34,10 +32,10 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
+"times": PackedFloat32Array(0, 0.1, 0.333333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("3_fg07v"), ExtResource("4_lj184"), ExtResource("5_j3kh6")]
+"values": [ExtResource("4_b0kbs"), ExtResource("5_8ypew"), ExtResource("6_oq6w4")]
 }
 
 [sub_resource type="Animation" id="Animation_8f8m3"]
@@ -52,7 +50,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_103kc")]
+"values": [ExtResource("3_qgsw0")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k2ltk"]
@@ -62,23 +60,21 @@ _data = {
 "RESET": SubResource("Animation_8f8m3")
 }
 
-[node name="Weapon" type="Node2D" node_paths=PackedStringArray("bulletSpawn", "visuals")]
+[node name="Shotgun" type="Node2D" node_paths=PackedStringArray("bulletSpawn", "visuals")]
 z_index = -1
 z_as_relative = false
-script = ExtResource("1_yvqmw")
+script = ExtResource("1_k5rqv")
+bullet = ExtResource("2_crqtj")
 bulletSpawn = NodePath("BulletSpawn")
-COOLDOWNLENGTH = 0.75
+COOLDOWNLENGTH = 1.25
 visuals = NodePath("Sprite2D")
-dEvo = ExtResource("2_nwjkh")
-cEvo = ExtResource("3_b1775")
-fEvo = ExtResource("4_ab1ey")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(22, 1)
-texture = ExtResource("2_103kc")
+position = Vector2(58, 1)
+texture = ExtResource("3_qgsw0")
 
 [node name="BulletSpawn" type="Node2D" parent="."]
-position = Vector2(53, -11)
+position = Vector2(107, -7)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

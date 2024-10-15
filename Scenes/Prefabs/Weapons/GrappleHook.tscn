@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://mai187yxyo5a"]
+
+[ext_resource type="Script" path="res://Scripts/GrappleHook.gd" id="1_yfv2y"]
+[ext_resource type="PackedScene" uid="uid://1wywytfwmv3u" path="res://Scenes/Prefabs/Projectiles/GrappleHookBullet.tscn" id="2_msowe"]
+[ext_resource type="Texture2D" uid="uid://bqayaqwh2g0hm" path="res://Textures/GrappleWeapon/GrappleGun.png" id="3_uikve"]
+[ext_resource type="Texture2D" uid="uid://bc6ha863357vt" path="res://Textures/GrappleWeapon/GrappleShoot1.png" id="4_bgbak"]
+[ext_resource type="Texture2D" uid="uid://dsflcngmp6cog" path="res://Textures/GrappleWeapon/GrappleShoot2.png" id="5_h3pc7"]
+
+[sub_resource type="Animation" id="Animation_nb5r5"]
+resource_name = "GunShoot"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("4_bgbak"), ExtResource("5_h3pc7")]
+}
+
+[sub_resource type="Animation" id="Animation_8f8m3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_uikve")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k2ltk"]
+_data = {
+"GunShoot": SubResource("Animation_nb5r5"),
+"RESET": SubResource("Animation_8f8m3")
+}
+
+[node name="GrappleHook" type="Node2D" node_paths=PackedStringArray("bulletSpawn", "visuals")]
+z_index = -1
+z_as_relative = false
+script = ExtResource("1_yfv2y")
+bullet = ExtResource("2_msowe")
+bulletSpawn = NodePath("BulletSpawn")
+COOLDOWNLENGTH = 0.5
+visuals = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, -1)
+texture = ExtResource("3_uikve")
+
+[node name="BulletSpawn" type="Node2D" parent="."]
+position = Vector2(27, -11)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k2ltk")
+}
+
+[node name="Tether" type="Line2D" parent="."]
+position = Vector2(27, -11)
+width = 5.0
+default_color = Color(0, 0, 0, 1)

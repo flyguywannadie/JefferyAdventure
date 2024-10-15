@@ -9,7 +9,6 @@ func _ready() -> void:
 
 func OnCreate() -> void:
 	player = owner as Jeffery
-	print(owner)
 	super.OnCreate()
 
 func _physics_process(delta: float) -> void:

@@ -72,11 +72,11 @@ func _physics_process(delta: float) -> void:
 	GunArm.look_at(mousePos)
 	
 	if (mousePos.x < position.x):
-		currentGun.visuals.flip_v = true
+		currentGun.scale.y = -1
 		currentSword.scale.x = -1
 		$Sprite.flip_h = true
 	else:
-		currentGun.visuals.flip_v = false
+		currentGun.scale.y = 1
 		currentSword.scale.x = 1
 		$Sprite.flip_h = false
 	
@@ -111,7 +111,13 @@ func EvolveWeapon(gunorsowrd: bool, piece: String) -> void:
 	match (piece):
 		"d":
 			if (gunorsowrd) :
-				print("gun")
+				if (currentGun.dEvo) :
+					var gun = currentGun.dEvo.instantiate()
+					currentGun.queue_free()
+					gun_holder.add_child(gun)
+					gun.owner = $"."
+					currentGun = gun as Weapon
+					currentGun.OnCreate()
 			else :
 				if (currentSword.dEvo) :
 					var sword = currentSword.dEvo.instantiate()
@@ -123,7 +129,13 @@ func EvolveWeapon(gunorsowrd: bool, piece: String) -> void:
 			pass
 		"c":
 			if (gunorsowrd) :
-				print("gun")
+				if (currentGun.cEvo) :
+					var gun = currentGun.cEvo.instantiate()
+					currentGun.queue_free()
+					gun_holder.add_child(gun)
+					gun.owner = $"."
+					currentGun = gun as Weapon
+					currentGun.OnCreate()
 			else :
 				if (currentSword.cEvo) :
 					var sword = currentSword.cEvo.instantiate()
@@ -135,7 +147,13 @@ func EvolveWeapon(gunorsowrd: bool, piece: String) -> void:
 			pass
 		"f":
 			if (gunorsowrd) :
-				print("gun")
+				if (currentGun.fEvo) :
+					var gun = currentGun.fEvo.instantiate()
+					currentGun.queue_free()
+					gun_holder.add_child(gun)
+					gun.owner = $"."
+					currentGun = gun as Weapon
+					currentGun.OnCreate()
 			else :
 				if (currentSword.fEvo) :
 					var sword = currentSword.fEvo.instantiate()

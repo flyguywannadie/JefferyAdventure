@@ -30,5 +30,5 @@ func SpawnBullet() -> void:
 	pass
 
 func endCooldown() -> void:
-	$AnimationPlayer.play("GunHold")
+	$AnimationPlayer.play("RESET")
 	pass

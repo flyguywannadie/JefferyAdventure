@@ -33,6 +33,9 @@ func _ready() -> void:
 	speed += 50 * gameProgress
 	pass
 
+func setKnockback(x:float, y:float):
+	pass
+
 func aiLogic(delta: float) -> void:
 	
 	var hasJefferySwitchedSides = ((jeffery.position.x - position.x < 0) && leftOrRight) || ((jeffery.position.x - position.x > 0) && !leftOrRight)
@@ -76,10 +79,10 @@ func aiLogic(delta: float) -> void:
 		2:
 			
 			if (moveDirection) :
-				setMovement(speed * (3+gameProgress), movement.y)
+				setMovement(speed * 3, movement.y)
 				anims.play("TrackCharge")
 			else:
-				setMovement(-speed * (3+gameProgress), movement.y)
+				setMovement(-speed * 3, movement.y)
 				anims.play_backwards("TrackCharge")
 			
 			if (waitTimer <= 0) :

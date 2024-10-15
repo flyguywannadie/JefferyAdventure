@@ -7,11 +7,8 @@ class_name Bullet
 @export var dieOnStop: bool
 @export var knockback: Vector2 = Vector2(1,1)
 
-@export var pierce: int = 0
-
 var prevPosition: Vector2
 var motion: Vector2
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,40 +33,41 @@ func _physics_process(delta: float) -> void:
 	translate(motion)
 	
 	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(prevPosition, position)
+	var query = PhysicsRayQueryParameters2D.create(prevPosition, position, 10)
 	var result = space_state.intersect_ray(query)
 	
 	if (result):
-		position = result.position
+		print("result hit")
+		_on_body_entered(result.get("collider"))
 	
-	motion = lerp(motion, Vector2(0,0), slowdown * delta)
+	ApplySlowdown(delta)
 	
 	if (dieOnStop && motion.is_zero_approx()) :
-		pass
+		_bulletDeath()
+	pass
+
+func ApplySlowdown(delta: float) -> void:
+	motion = lerp(motion, Vector2(0,0), slowdown * delta)
 	pass
 
 func _bulletDeath() -> void:
 	queue_free()
 	pass
 
-func _bulletHit() -> void:
-	print("bullet Hit Effect")
+func _hitCharacter(char: Character):
+	char.setKnockback(knockback.x * sign(motion.x), knockback.y * sign(motion.y))
+	super._hitCharacter(char)
+
+func _hitWall():
 	pass
 
 func _on_body_entered(body: Node2D) -> void:
-	
 	var char = body as Character
 	
 	if (char):
-		char.setKnockback(knockback.x * sign(motion.x), knockback.y * sign(motion.y))
-	
-	super._on_body_entered(body)
-	pierce -= 1
-	if (pierce < 0) :
-		#motion = Vector2(0,0)
-		#grav = 0
-		_bulletDeath()
+		_hitCharacter(char)
 	else:
-		_bulletHit()
+		_hitWall()
 	
+	_bulletDeath()
 	pass

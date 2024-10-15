@@ -6,6 +6,7 @@ var movement: Vector2
 @export var GRAVITY: float = 9.8
 @export var FRICTION: float = 9.8
 var knockback: float
+@export var pierceConsumed: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

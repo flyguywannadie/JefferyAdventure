@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://0t2v8d4kxbg6"]
+
+[ext_resource type="Script" path="res://Scripts/Sniper.gd" id="1_5v62g"]
+[ext_resource type="PackedScene" uid="uid://cbepbkr1ttvbl" path="res://Scenes/Prefabs/Projectiles/SniperBullet.tscn" id="2_il0to"]
+[ext_resource type="Texture2D" uid="uid://cyc5r8kkawoug" path="res://Textures/SniperWeapon/Sniper.png" id="3_mr6tw"]
+[ext_resource type="Texture2D" uid="uid://bk0xbmqes04j7" path="res://Textures/SniperWeapon/SniperShoot1.png" id="4_i0yxf"]
+[ext_resource type="Texture2D" uid="uid://spsdqwn7ohys" path="res://Textures/SniperWeapon/SniperShoot2.png" id="5_1kipx"]
+[ext_resource type="Texture2D" uid="uid://dpygqk0pyg7ym" path="res://Textures/SniperWeapon/SniperShoot3.png" id="6_fbni5"]
+
+[sub_resource type="Animation" id="Animation_nb5r5"]
+resource_name = "GunShoot"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_i0yxf"), ExtResource("5_1kipx"), ExtResource("6_fbni5")]
+}
+
+[sub_resource type="Animation" id="Animation_8f8m3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_mr6tw")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k2ltk"]
+_data = {
+"GunShoot": SubResource("Animation_nb5r5"),
+"RESET": SubResource("Animation_8f8m3")
+}
+
+[node name="Sniper" type="Node2D" node_paths=PackedStringArray("bulletSpawn", "visuals")]
+z_index = -1
+z_as_relative = false
+script = ExtResource("1_5v62g")
+bullet = ExtResource("2_il0to")
+bulletSpawn = NodePath("BulletSpawn")
+COOLDOWNLENGTH = 2.0
+visuals = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(30, 10)
+texture = ExtResource("3_mr6tw")
+
+[node name="BulletSpawn" type="Node2D" parent="."]
+position = Vector2(107, -2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k2ltk")
+}
