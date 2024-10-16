@@ -74,11 +74,11 @@ func _physics_process(delta: float) -> void:
 	if (mousePos.x < position.x):
 		currentGun.scale.y = -1
 		currentSword.scale.x = -1
-		$Sprite.flip_h = true
+		visuals.flip_h = true
 	else:
 		currentGun.scale.y = 1
 		currentSword.scale.x = 1
-		$Sprite.flip_h = false
+		visuals.flip_h = false
 	
 	
 	if (sideVelocity != 0):
@@ -97,14 +97,8 @@ func _physics_process(delta: float) -> void:
 	
 	super._physics_process(delta)
 	
-	if (is_on_ceiling()):
-		setMovement(movement.x, 0)
-		position.y += 4
 	
 	pass
-
-func getFacingDirection() -> bool:
-	return $Sprite.flip_h
 
 func EvolveWeapon(gunorsowrd: bool, piece: String) -> void:
 	

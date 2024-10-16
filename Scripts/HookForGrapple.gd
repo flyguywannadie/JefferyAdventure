@@ -15,7 +15,7 @@ func _physics_process(delta: float) -> void:
 		
 		speedUp *= 2
 		
-		if (myGrapple.bulletSpawn.global_position.distance_to(global_position) < 50 || lifetime <= 0) :
+		if (myGrapple.bulletSpawn.global_position.distance_to(global_position) < 50 || lifetime <= 0 || position.distance_to(myGrapple.position) > 100000) :
 			myGrapple.startCooldown()
 			queue_free()
 		
@@ -30,12 +30,12 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func _hitCharacter(char: Character):
-	var move = (global_position - myGrapple.bulletSpawn.global_position).normalized() * 2500
+	var move = (global_position - myGrapple.bulletSpawn.global_position).normalized() * 1000
 	super._hitCharacter(char)
 	char.setKnockback(-move.x, -move.y)
 
 func _hitWall():
-	var move = (global_position - myGrapple.bulletSpawn.global_position).normalized() * 2000
+	var move = (global_position - myGrapple.bulletSpawn.global_position).normalized() * 1500
 	myGrapple.player.setKnockback( 1.5 * move.x, move.y)
 	super._hitWall()
 

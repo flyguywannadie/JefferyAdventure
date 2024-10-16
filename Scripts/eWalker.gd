@@ -4,6 +4,7 @@ class_name Walker
 #states reference
 #0 = idle
 #1 = walking
+#2 = hurt
 
 var walkDirection: bool = true
 
@@ -30,22 +31,28 @@ func aiLogic(delta: float) -> void:
 			if (is_on_wall()):
 				#print("hit wall")
 				walkDirection = !walkDirection
-			$Sprite2D.flip_h = !walkDirection
+			visuals.flip_h = !walkDirection
 			
 			if (walkDirection) :
 				setMovement(200, movement.y)
 			else :
 				setMovement(-200, movement.y)
 			
-			if(is_on_ceiling() && is_on_floor()):
-				setMovement(0,movement.y)
-				setIdleTimer()
+			#if(is_on_ceiling() && is_on_floor()):
+				#setMovement(0,movement.y)
+				#setIdleTimer()
 			
 			walkTimer -= delta
 			
 			if (walkTimer <= 0):
 				setIdleTimer()
 			
+			pass
+		2: 
+			idleTimer -= delta
+			
+			if (idleTimer <= 0):
+				setIdleTimer()
 			pass
 
 func setKnockback(x: float, y: float) -> void:
@@ -56,6 +63,15 @@ func setKnockback(x: float, y: float) -> void:
 	
 	super.setKnockback(x,y)
 	pass
+
+func hitStunDone() -> void:
+	pass
+
+func takeDamage(damage: int):
+	state = 2
+	anims.play("Hurt")
+	idleTimer = 0.1
+	super.takeDamage(damage)
 
 func setIdleTimer() -> void:
 	idleTimer = randf_range(-2.0, 1.5)

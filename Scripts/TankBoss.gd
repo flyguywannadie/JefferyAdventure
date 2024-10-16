@@ -38,6 +38,10 @@ func setKnockback(x:float, y:float):
 
 func aiLogic(delta: float) -> void:
 	
+	if (jeffery == null) :
+		return
+	#setMovement(movement.x, 0)
+	
 	var hasJefferySwitchedSides = ((jeffery.position.x - position.x < 0) && leftOrRight) || ((jeffery.position.x - position.x > 0) && !leftOrRight)
 	
 	if (hasJefferySwitchedSides) :

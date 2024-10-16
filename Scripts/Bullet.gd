@@ -10,6 +10,8 @@ class_name Bullet
 var prevPosition: Vector2
 var motion: Vector2
 
+var alreadyHit: Array[Node2D]
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	motion = Vector2(velocity, 0)
@@ -63,6 +65,10 @@ func _hitWall():
 
 func _on_body_entered(body: Node2D) -> void:
 	var char = body as Character
+	
+	if (alreadyHit.has(body)):
+		return
+	alreadyHit.append(body)
 	
 	if (char):
 		_hitCharacter(char)

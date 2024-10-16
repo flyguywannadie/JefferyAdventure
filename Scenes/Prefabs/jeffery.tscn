@@ -97,14 +97,18 @@ _data = {
 "WalkBackwards": SubResource("Animation_6gbsn")
 }
 
-[node name="Jeffery" type="CharacterBody2D"]
+[node name="Jeffery" type="CharacterBody2D" node_paths=PackedStringArray("visuals")]
 material = SubResource("ShaderMaterial_rsqeg")
 collision_mask = 10
+floor_constant_speed = true
+floor_max_angle = 1.0472
+floor_snap_length = 7.3
 script = ExtResource("1_vcdsa")
 speed = 600.0
 health = 11
 GRAVITY = 64.0
 FRICTION = 20.0
+visuals = NodePath("Sprite")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, 2.5)

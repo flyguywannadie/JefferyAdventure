@@ -6,7 +6,10 @@ var movement: Vector2
 @export var GRAVITY: float = 9.8
 @export var FRICTION: float = 9.8
 var knockback: float
-@export var pierceConsumed: int = 1
+
+var flashFrames: int = 3
+var flashesLeft: int
+@export var visuals: Sprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,6 +21,11 @@ func _process(delta: float) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	velocity = Vector2(movement.x + knockback, movement.y)
+	
+	if (flashesLeft > 0) :
+		flashesLeft -= 1
+		if (flashesLeft <= 0) :
+			visuals.visible = true
 	
 	# basically making knockback decrease regarless of sign
 	var sig = sign(knockback)
@@ -39,6 +47,9 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+	if (is_on_ceiling()):
+		setMovement(movement.x, 0)
+	
 	if(!is_on_floor()):
 		addMovement(0, GRAVITY)
 	else:
@@ -46,6 +57,7 @@ func _physics_process(delta: float) -> void:
 	
 	if (is_on_wall()):
 		knockback = 0
+	
 	
 	pass
 
@@ -70,6 +82,8 @@ func _die():
 func takeDamage(damage: int):
 	health -= damage
 	print(name, " ouch ", health, " Took ", damage);
+	visuals.visible = false
+	flashesLeft = flashFrames
 	if (health <= 0) :
 		_die()
 	pass

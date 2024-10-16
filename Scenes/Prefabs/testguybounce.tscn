@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dc2oo5d4e4gee"]
+[gd_scene load_steps=14 format=3 uid="uid://dc2oo5d4e4gee"]
 
 [ext_resource type="Script" path="res://Scripts/eWalker.gd" id="1_242kc"]
 [ext_resource type="Texture2D" uid="uid://0g8484u17gnh" path="res://Textures/WalkerEnemy/IdleWalker.png" id="2_gyqev"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://de7lfcd6q6d1j" path="res://Textures/WalkerEnemy/007.png" id="4_jabk0"]
 [ext_resource type="Texture2D" uid="uid://qd2t47oa33pv" path="res://Textures/WalkerEnemy/008.png" id="5_xtj0r"]
 [ext_resource type="Texture2D" uid="uid://vb0msanwj0by" path="res://Textures/WalkerEnemy/009.png" id="6_cfpo2"]
+[ext_resource type="Texture2D" uid="uid://ge01k5whrqsw" path="res://Textures/WalkerEnemy/WalkerHurt.png" id="7_ohne1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epq2w"]
 size = Vector2(50, 88)
@@ -57,21 +58,41 @@ tracks/0/keys = {
 "values": [ExtResource("3_60npi"), ExtResource("4_jabk0"), ExtResource("5_xtj0r"), ExtResource("6_cfpo2")]
 }
 
+[sub_resource type="Animation" id="Animation_3y8mp"]
+resource_name = "Hurt"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_ohne1")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e1vjx"]
 _data = {
+"Hurt": SubResource("Animation_3y8mp"),
 "Idle": SubResource("Animation_m8li8"),
 "RESET": SubResource("Animation_5tqps"),
 "Walk": SubResource("Animation_uv52e")
 }
 
-[node name="Walker" type="CharacterBody2D" node_paths=PackedStringArray("anims")]
+[node name="Walker" type="CharacterBody2D" node_paths=PackedStringArray("anims", "visuals")]
 collision_layer = 2
 collision_mask = 25
-safe_margin = 1.0
+floor_constant_speed = true
+floor_snap_length = 13.5
+platform_on_leave = 2
 script = ExtResource("1_242kc")
 anims = NodePath("AnimationPlayer")
 health = 3
 FRICTION = 16.0
+visuals = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
