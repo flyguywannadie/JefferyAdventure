@@ -6,8 +6,8 @@ class_name CamTrack
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if (visuals.visible) :
-		#visuals.scale = trackBounds + Vector2(5,5)
+	if (!Engine.is_editor_hint() && visuals.visible) :
+		visuals.visible = false
 		pass
 	pass # Replace with function body.
 

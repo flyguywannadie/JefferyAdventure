@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bwib2ihjobuvm"]
+[gd_scene load_steps=22 format=3 uid="uid://bwib2ihjobuvm"]
 
 [ext_resource type="Script" path="res://Scripts/Jeffery.gd" id="1_vcdsa"]
 [ext_resource type="Shader" path="res://node_2d.gdshader" id="2_q8qc8"]
@@ -9,13 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://d3n2kkbfhrip0" path="res://Textures/JefferyWalkAnim/004.png" id="6_xkvpu"]
 [ext_resource type="Texture2D" uid="uid://dg0wljoyh1bts" path="res://Textures/JefferyWalkAnim/005.png" id="7_vhmne"]
 [ext_resource type="Texture2D" uid="uid://bw30y4w4q5wkc" path="res://Textures/JefferyWalkAnim/006.png" id="8_jn2f0"]
+[ext_resource type="Texture2D" uid="uid://bjlm6w5ic53au" path="res://Textures/JefferyWalkAnim/JefferyHurt.png" id="10_cr6eu"]
+[ext_resource type="AudioStream" uid="uid://cpkr8rhdhgtuf" path="res://Sounds/Hurt.wav" id="11_34jt6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rsqeg"]
 shader = ExtResource("2_q8qc8")
 shader_parameter/size = null
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkrwf"]
-size = Vector2(73, 171)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_binv0"]
 shader = ExtResource("2_q8qc8")
@@ -25,12 +24,63 @@ shader_parameter/size = null
 shader = ExtResource("2_q8qc8")
 shader_parameter/size = null
 
+[sub_resource type="Animation" id="Animation_oy8t5"]
+resource_name = "Hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_cr6eu")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/GunArm:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17, 7)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/SwordArm:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17, 7)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/SwordArm:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.785398]
+}
+
 [sub_resource type="Animation" id="Animation_4111j"]
 resource_name = "Idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Node2D/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -45,7 +95,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Node2D/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -54,15 +104,50 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("3_ktrsr")]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/GunArm:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/SwordArm:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/SwordArm:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_eequt"]
 resource_name = "Walk"
 length = 0.225
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Node2D/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -79,7 +164,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Node2D/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -91,50 +176,61 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q7o8a"]
 _data = {
+"Hurt": SubResource("Animation_oy8t5"),
 "Idle": SubResource("Animation_4111j"),
 "RESET": SubResource("Animation_h78jd"),
 "Walk": SubResource("Animation_eequt"),
 "WalkBackwards": SubResource("Animation_6gbsn")
 }
 
-[node name="Jeffery" type="CharacterBody2D" node_paths=PackedStringArray("visuals")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkrwf"]
+size = Vector2(73, 171)
+
+[node name="Jeffery" type="CharacterBody2D" node_paths=PackedStringArray("visuals", "audioPlayer")]
 material = SubResource("ShaderMaterial_rsqeg")
-collision_mask = 10
+collision_mask = 42
 floor_constant_speed = true
 floor_max_angle = 1.0472
 floor_snap_length = 7.3
 script = ExtResource("1_vcdsa")
 speed = 600.0
-health = 11
+health = 111
 GRAVITY = 64.0
 FRICTION = 20.0
-visuals = NodePath("Sprite")
+visuals = NodePath("Node2D/Sprite")
+audioPlayer = NodePath("AudioStreamPlayer2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, 2.5)
-shape = SubResource("RectangleShape2D_fkrwf")
+[node name="Node2D" type="Node2D" parent="."]
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="Node2D"]
 z_as_relative = false
 material = SubResource("ShaderMaterial_binv0")
 texture = ExtResource("3_ktrsr")
 
-[node name="GunArm" type="Node2D" parent="."]
+[node name="GunArm" type="Node2D" parent="Node2D"]
 position = Vector2(0, 5)
 
-[node name="GunHolder" type="Node2D" parent="GunArm"]
+[node name="GunHolder" type="Node2D" parent="Node2D/GunArm"]
 position = Vector2(54, 0)
 
-[node name="GunArmSprite" type="Sprite2D" parent="GunArm"]
+[node name="GunArmSprite" type="Sprite2D" parent="Node2D/GunArm"]
 z_index = -2
 z_as_relative = false
 material = SubResource("ShaderMaterial_x4i71")
 position = Vector2(8, -5)
 texture = ExtResource("4_pjefk")
 
-[node name="SwordArm" type="Node2D" parent="."]
+[node name="SwordArm" type="Node2D" parent="Node2D"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_q7o8a")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 2.5)
+shape = SubResource("RectangleShape2D_fkrwf")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_34jt6")

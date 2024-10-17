@@ -9,15 +9,20 @@ var cayoteTime: int = 3
 var onGround: bool = true
 
 const TEST_GUN = preload("res://Scenes/Prefabs/Weapons/TestGun.tscn")
-@onready var gun_holder: Node2D = $GunArm/GunHolder
-@onready var GunArm: Node2D = $GunArm
+@onready var gun_holder: Node2D = $Node2D/GunArm/GunHolder
+@onready var GunArm: Node2D = $Node2D/GunArm
 var currentGun: Weapon
 
 const TEST_SWORD = preload("res://Scenes/Prefabs/Weapons/TestSword.tscn")
-@onready var sword_holder: Node2D = $SwordArm
+@onready var sword_holder: Node2D = $Node2D/SwordArm
 var currentSword: Weapon
 
-@onready var anims: AnimationPlayer = $AnimationPlayer
+@onready var anims: AnimationPlayer = $Node2D/AnimationPlayer
+
+var hitStun: float = 0
+var iLength: float = 0
+
+var flipDir: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,6 +43,30 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
+	
+	if (iLength > 0) :
+		
+		iLength -= delta
+		
+		visuals.visible = !visuals.visible
+		
+		if (iLength <= 0):
+			collision_layer = 1
+			visuals.visible = true
+		
+		currentGun.visuals.visible = visuals.visible
+		currentSword.visuals.visible = visuals.visible
+		$Node2D/GunArm/GunArmSprite.visible = visuals.visible
+	
+	if (hitStun > 0) :
+		hitStun -= delta
+		if (hitStun <= 0) :
+			enableWeapons()
+			anims.play("RESET")
+			GunArm.position = Vector2(0,5)
+			sword_holder.position = Vector2(0,0)
+		super._physics_process(delta)
+		return
 	
 	var sideVelocity: float = 0
 	
@@ -71,33 +100,43 @@ func _physics_process(delta: float) -> void:
 	var mousePos = get_viewport().get_camera_2d().get_global_mouse_position()
 	GunArm.look_at(mousePos)
 	
-	if (mousePos.x < position.x):
-		currentGun.scale.y = -1
-		currentSword.scale.x = -1
-		visuals.flip_h = true
-	else:
-		currentGun.scale.y = 1
-		currentSword.scale.x = 1
-		visuals.flip_h = false
-	
+	$Node2D.scale.x = -1 if mousePos.x < position.x else 1
 	
 	if (sideVelocity != 0):
-		if (mousePos.x < position.x) :
-			if (sideVelocity > 0) :
-				anims.play("WalkBackwards")
-			else :
+		if (sideVelocity > 0) :
+			if ($Node2D.scale.x == 1):
 				anims.play("Walk")
+			else:
+				anims.play_backwards("Walk")
 		else :
-			if (sideVelocity < 0) :
-				anims.play("WalkBackwards")
-			else :
+			if ($Node2D.scale.x == 1):
+				anims.play_backwards("Walk")
+			else:
 				anims.play("Walk")
 	else:
 		anims.play("Idle")
 	
 	super._physics_process(delta)
-	
-	
+	pass
+
+func takeDamage(damage: int):
+	anims.play("Hurt")
+	audioPlayer.play()
+	hitStun = 0.33
+	iLength = 1.5
+	collision_layer = 64
+	disableWeapons()
+	setKnockback(-600 * $Node2D.scale.x, -500)
+	super.takeDamage(damage)
+
+func disableWeapons() -> void:
+	currentGun.enabled = false;
+	currentSword.enabled = false;
+	pass
+
+func enableWeapons() -> void:
+	currentGun.enabled = true;
+	currentSword.enabled = true;
 	pass
 
 func EvolveWeapon(gunorsowrd: bool, piece: String) -> void:

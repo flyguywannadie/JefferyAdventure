@@ -274,7 +274,7 @@ position = Vector2(-1, 80.5)
 shape = SubResource("RectangleShape2D_0b5nr")
 
 [node name="TrackDamageArea" type="Area2D" parent="TankBoss"]
-collision_layer = 32
+collision_layer = 2
 script = ExtResource("15_f2405")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TankBoss/TrackDamageArea"]

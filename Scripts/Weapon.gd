@@ -1,20 +1,25 @@
 extends Node2D
 class_name Weapon
 
+var enabled: bool = true
+
 @export var inputAction: String = "jef_shoot"
 var cooldown: float = 1
 @export var COOLDOWNLENGTH: float = 1
 var readyUse: bool = true
 var pressed: bool = false
 @export var visuals: Sprite2D
+@export var audioPlayer: AudioStreamPlayer2D
 
 @export var dEvo : PackedScene
 @export var cEvo : PackedScene
 @export var fEvo : PackedScene
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	cooldown = COOLDOWNLENGTH
+	
 	pass # Replace with function body.
 
 func OnCreate() -> void:
@@ -22,6 +27,9 @@ func OnCreate() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if (!enabled) :
+		return
+	
 	if (!readyUse):
 		cooldown -= delta
 		if(cooldown <= 0):
@@ -38,7 +46,13 @@ func _physics_process(delta: float) -> void:
 	
 	pass
 
+func playAudio() -> void:
+	audioPlayer.play()
+
 func _input(event: InputEvent) -> void:
+	if (!enabled) :
+		return
+	
 	if(readyUse && event.is_action(inputAction)):
 		if (Input.is_action_just_pressed(inputAction)) :
 			onUse()

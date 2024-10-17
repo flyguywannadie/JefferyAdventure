@@ -8,8 +8,9 @@ var movement: Vector2
 var knockback: float
 
 var flashFrames: int = 3
-var flashesLeft: int
+var framesLeft: int
 @export var visuals: Sprite2D
+@export var audioPlayer: AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,9 +23,9 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	velocity = Vector2(movement.x + knockback, movement.y)
 	
-	if (flashesLeft > 0) :
-		flashesLeft -= 1
-		if (flashesLeft <= 0) :
+	if (framesLeft > 0) :
+		framesLeft -= 1
+		if (framesLeft <= 0) :
 			visuals.visible = true
 	
 	# basically making knockback decrease regarless of sign
@@ -83,7 +84,7 @@ func takeDamage(damage: int):
 	health -= damage
 	print(name, " ouch ", health, " Took ", damage);
 	visuals.visible = false
-	flashesLeft = flashFrames
+	framesLeft = flashFrames
 	if (health <= 0) :
 		_die()
 	pass

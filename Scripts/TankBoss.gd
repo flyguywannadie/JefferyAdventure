@@ -9,8 +9,9 @@ extends Boss
 @onready var gun: Node2D = $Gun
 @onready var hatchSprite: Sprite2D = $TankHatch
 @onready var gunSprite: Sprite2D = $Gun/TankGun
-
 @export var hatchAnims: AnimationPlayer
+
+@onready var trackDamageArea: DamageArea = $TrackDamageArea
 
 var jeffery: Jeffery
 
@@ -52,7 +53,6 @@ func aiLogic(delta: float) -> void:
 		else :
 			hatchAnims.play("HatchRotateBack")
 	
-	
 	waitTimer -= delta
 	
 	match(state):
@@ -60,23 +60,28 @@ func aiLogic(delta: float) -> void:
 			
 			if (waitTimer <= 0):
 				state = randi_range(1, 2)
+				
+				trackDamageArea.process_mode = Node.PROCESS_MODE_INHERIT
+				
 				waitTimer = 1
 				moveDirection = leftOrRight
+				if (state == 1) :
+					moveDirection = randi_range(0,1) == 0
 			
 			pass
 		1:
 			
 			if (moveDirection) :
 				setMovement(speed, movement.y)
+				print("Going Right")
 				anims.play("MoveTracks")
 			else:
 				setMovement(-speed, movement.y)
+				print("Going Left")
 				anims.play_backwards("MoveTracks")
 			
 			if (waitTimer <= 0) :
-				waitTimer = 0.5
-				anims.play("RESET")
-				state = 0
+				backToIdle(0.5)
 			
 			
 			pass
@@ -84,16 +89,22 @@ func aiLogic(delta: float) -> void:
 			
 			if (moveDirection) :
 				setMovement(speed * 3, movement.y)
+				print("Charging Right")
 				anims.play("TrackCharge")
 			else:
 				setMovement(-speed * 3, movement.y)
+				print("Charging Left")
 				anims.play_backwards("TrackCharge")
 			
 			if (waitTimer <= 0) :
-				waitTimer = 0.5
-				anims.play("RESET")
-				state = 0
+				backToIdle(1)
 			
 			pass
 	
 	pass
+
+func backToIdle(waittime: float) -> void:
+	waitTimer = waittime
+	anims.play("RESET")
+	state = 0
+	trackDamageArea.process_mode = Node.PROCESS_MODE_DISABLED

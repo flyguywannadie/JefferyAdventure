@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dj1f0t1ndcxyk"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_hud86"]
-[ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_h07m5"]
+[ext_resource type="Texture2D" uid="uid://drs4ppbnvegjc" path="res://Textures/ShotgunWeapon/ShotgunBullet.png" id="2_ypumr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4im6f"]
 size = Vector2(34, 33)
@@ -15,12 +15,10 @@ lifetime = 1.0
 slowdown = 6.0
 dieOnStop = true
 knockback = Vector2(150, 1)
-pierce = 1
 damage = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(20, 20)
-texture = ExtResource("2_h07m5")
+texture = ExtResource("2_ypumr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)

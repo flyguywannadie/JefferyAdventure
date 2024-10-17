@@ -46,8 +46,8 @@ func onRelease() -> void:
 
 func spawnHitbox() -> void:
 	var s = slash.instantiate()
-	s.position = slashSpawn.position.rotated(rotation) * scale
-	s.rotation_degrees = 0 if (scale.x == 1) else 90
+	s.position = getSlashSpawnPosition()
+	#s.rotation_degrees = 0 if (global_scale.y == 1) else 90
 	var s2 = s as Bullet
 	if (s2):
 		s2.damage += roundi(totalBonusTime)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://lf7eq2nvptrq"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_bfpk0"]
-[ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_ojtv2"]
+[ext_resource type="Texture2D" uid="uid://cdu410bu5q11d" path="res://Textures/BaseGun/BaseBullet.png" id="2_m254v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4im6f"]
 size = Vector2(34, 33)
@@ -17,8 +17,7 @@ dieOnStop = true
 damage = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(20, 20)
-texture = ExtResource("2_ojtv2")
+texture = ExtResource("2_m254v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dc2oo5d4e4gee"]
+[gd_scene load_steps=17 format=3 uid="uid://dc2oo5d4e4gee"]
 
 [ext_resource type="Script" path="res://Scripts/eWalker.gd" id="1_242kc"]
 [ext_resource type="Texture2D" uid="uid://0g8484u17gnh" path="res://Textures/WalkerEnemy/IdleWalker.png" id="2_gyqev"]
@@ -7,9 +7,27 @@
 [ext_resource type="Texture2D" uid="uid://qd2t47oa33pv" path="res://Textures/WalkerEnemy/008.png" id="5_xtj0r"]
 [ext_resource type="Texture2D" uid="uid://vb0msanwj0by" path="res://Textures/WalkerEnemy/009.png" id="6_cfpo2"]
 [ext_resource type="Texture2D" uid="uid://ge01k5whrqsw" path="res://Textures/WalkerEnemy/WalkerHurt.png" id="7_ohne1"]
+[ext_resource type="Script" path="res://Scripts/DamageArea.gd" id="8_qb70d"]
+[ext_resource type="AudioStream" uid="uid://csis6np1bgtsa" path="res://Sounds/Hurt2.wav" id="9_rka5k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epq2w"]
 size = Vector2(50, 88)
+
+[sub_resource type="Animation" id="Animation_3y8mp"]
+resource_name = "Hurt"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_ohne1")]
+}
 
 [sub_resource type="Animation" id="Animation_m8li8"]
 resource_name = "Idle"
@@ -58,22 +76,6 @@ tracks/0/keys = {
 "values": [ExtResource("3_60npi"), ExtResource("4_jabk0"), ExtResource("5_xtj0r"), ExtResource("6_cfpo2")]
 }
 
-[sub_resource type="Animation" id="Animation_3y8mp"]
-resource_name = "Hurt"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("7_ohne1")]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e1vjx"]
 _data = {
 "Hurt": SubResource("Animation_3y8mp"),
@@ -82,7 +84,10 @@ _data = {
 "Walk": SubResource("Animation_uv52e")
 }
 
-[node name="Walker" type="CharacterBody2D" node_paths=PackedStringArray("anims", "visuals")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_1hce3"]
+radius = 41.0
+
+[node name="Walker" type="CharacterBody2D" node_paths=PackedStringArray("anims", "visuals", "audioPlayer")]
 collision_layer = 2
 collision_mask = 25
 floor_constant_speed = true
@@ -93,6 +98,7 @@ anims = NodePath("AnimationPlayer")
 health = 3
 FRICTION = 16.0
 visuals = NodePath("Sprite2D")
+audioPlayer = NodePath("AudioStreamPlayer2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
@@ -106,3 +112,17 @@ texture = ExtResource("2_gyqev")
 libraries = {
 "": SubResource("AnimationLibrary_e1vjx")
 }
+
+[node name="Damage" type="Area2D" parent="."]
+position = Vector2(3, 25)
+collision_layer = 32
+script = ExtResource("8_qb70d")
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage"]
+shape = SubResource("CircleShape2D_1hce3")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_rka5k")
+
+[connection signal="body_entered" from="Damage" to="Damage" method="_on_body_entered"]

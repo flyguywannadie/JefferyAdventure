@@ -12,13 +12,9 @@ func OnCreate() -> void:
 func _physics_process(delta: float) -> void:
 	
 	if (myHook != null) :
-		if (scale.y == -1):
-			tether.rotation = player.GunArm.rotation
-			var secondPoint = (myHook.global_position - bulletSpawn.global_position)
-			tether.points = [Vector2(0,0), Vector2(secondPoint.x, -secondPoint.y)]
-		else:
-			tether.rotation = -player.GunArm.rotation
-			tether.points = [Vector2(0,0), (myHook.global_position - bulletSpawn.global_position)]
+		tether.rotation = -player.GunArm.rotation
+		var secondPoint = (myHook.global_position - bulletSpawn.global_position)
+		tether.points = [Vector2(0,0), Vector2(secondPoint.x * global_scale.y, secondPoint.y)]
 	
 	super._physics_process(delta)
 	pass

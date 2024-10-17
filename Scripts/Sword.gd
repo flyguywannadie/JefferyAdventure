@@ -6,10 +6,15 @@ class_name Sword
 
 func spawnHitbox() -> void:
 	var s = slash.instantiate()
-	s.position = slashSpawn.position.rotated(rotation) * scale
-	s.rotation_degrees = 0 if (scale.x == 1) else 90
+	#print("Position " , slashSpawn.position, ", scale ", slashSpawn.scale, ", rotation ", slashSpawn.rotation_degrees)
+	#print("Position " , slashSpawn.global_position, ", scale ", slashSpawn.global_scale, ", rotation ", slashSpawn.global_rotation_degrees)
+	s.position = getSlashSpawnPosition()
+	#s.rotation_degrees = 0 if (global_scale.y == 1) else 90
 	owner.add_child(s)
 	pass
+
+func getSlashSpawnPosition() -> Vector2:
+	return slashSpawn.position * Vector2(slashSpawn.global_scale.y, slashSpawn.global_scale.x)
 
 func endCooldown() -> void:
 	$AnimationPlayer.play("RESET")
@@ -18,6 +23,7 @@ func endCooldown() -> void:
 func onUse() -> void:
 	#print("weaponUse")
 	startCooldown()
+	audioPlayer.play()
 	#print("SwordSlash")
 	$AnimationPlayer.play("SwordSlash")
 	pass

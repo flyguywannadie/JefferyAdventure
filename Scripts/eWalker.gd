@@ -4,7 +4,6 @@ class_name Walker
 #states reference
 #0 = idle
 #1 = walking
-#2 = hurt
 
 var walkDirection: bool = true
 
@@ -48,12 +47,6 @@ func aiLogic(delta: float) -> void:
 				setIdleTimer()
 			
 			pass
-		2: 
-			idleTimer -= delta
-			
-			if (idleTimer <= 0):
-				setIdleTimer()
-			pass
 
 func setKnockback(x: float, y: float) -> void:
 	
@@ -65,12 +58,13 @@ func setKnockback(x: float, y: float) -> void:
 	pass
 
 func hitStunDone() -> void:
+	setIdleTimer()
 	pass
 
 func takeDamage(damage: int):
-	state = 2
+	audioPlayer.play()
 	anims.play("Hurt")
-	idleTimer = 0.1
+	hitStun = 0.2
 	super.takeDamage(damage)
 
 func setIdleTimer() -> void:

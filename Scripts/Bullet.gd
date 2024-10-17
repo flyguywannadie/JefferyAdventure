@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	
 	ApplySlowdown(delta)
 	
-	if (dieOnStop && motion.is_zero_approx()) :
+	if (dieOnStop && motion.distance_to(Vector2(0,0)) < 1) :
 		_bulletDeath()
 	pass
 

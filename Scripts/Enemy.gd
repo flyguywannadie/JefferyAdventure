@@ -11,12 +11,12 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	
-	aiLogic(delta)
-	
 	if (hitStun > 0) :
 		hitStun -= delta
 		if (hitStun <= 0):
 			hitStunDone()
+	else:
+		aiLogic(delta)
 	
 	super._physics_process(delta)
 

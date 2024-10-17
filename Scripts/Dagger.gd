@@ -29,7 +29,7 @@ func onUse() -> void:
 	#print(player.GunArm.rotation)
 	#print(test)
 	
-	player.setKnockback(900 * scale.x, -600)
+	player.setKnockback(900 * global_scale.y, -600)
 	#player.setKnockback(test.x, test.y/2)
 	$AnimationPlayer.play("SwordSlash")
 	pass

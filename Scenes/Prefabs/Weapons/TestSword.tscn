@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctgukpulbvl10"]
+[gd_scene load_steps=16 format=3 uid="uid://ctgukpulbvl10"]
 
 [ext_resource type="Script" path="res://Scripts/Sword.gd" id="1_fdem6"]
 [ext_resource type="Texture2D" uid="uid://rbu453mi54hq" path="res://Textures/BaseSwordSwin/002.png" id="2_8rmx3"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bklfwpi4no4a8" path="res://Textures/BaseSwordSwin/004.png" id="5_icjn2"]
 [ext_resource type="Texture2D" uid="uid://gwxk8u4xkh6u" path="res://Textures/BaseSwordSwin/005.png" id="6_wix4j"]
 [ext_resource type="Texture2D" uid="uid://cxvtgp8ltth7s" path="res://Textures/BaseSwordSwin/006.png" id="7_cocst"]
+[ext_resource type="AudioStream" uid="uid://ccuag6tut7hqn" path="res://Sounds/Slash.wav" id="11_jfnbi"]
 
 [sub_resource type="Animation" id="Animation_bgu8v"]
 length = 0.001
@@ -78,12 +79,13 @@ _data = {
 "SwordSlash": SubResource("Animation_6paf1")
 }
 
-[node name="Sword" type="Node2D" node_paths=PackedStringArray("slashSpawn", "visuals")]
+[node name="Sword" type="Node2D" node_paths=PackedStringArray("slashSpawn", "visuals", "audioPlayer")]
 script = ExtResource("1_fdem6")
 slashSpawn = NodePath("SlashSpawn")
 inputAction = "jef_slash"
 COOLDOWNLENGTH = 1.5
 visuals = NodePath("Sprite2D")
+audioPlayer = NodePath("AudioStreamPlayer2D")
 dEvo = ExtResource("2_ht41d")
 cEvo = ExtResource("3_pn87b")
 fEvo = ExtResource("4_0ji4i")
@@ -106,3 +108,6 @@ texture = ExtResource("3_y86dp")
 libraries = {
 "": SubResource("AnimationLibrary_x2h1l")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_jfnbi")
