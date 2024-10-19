@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://b4x5i41o7t1j1"]
+[gd_scene load_steps=35 format=4 uid="uid://b4x5i41o7t1j1"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_y6yf7"]
 [ext_resource type="Script" path="res://Scripts/TankBoss.gd" id="2_kg316"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://pun1x300rofk" path="res://Textures/ChargeBoss/TankHatch.png" id="4_lv41s"]
 [ext_resource type="PackedScene" uid="uid://bh523bxi5rvi" path="res://Scenes/Prefabs/camera_track.tscn" id="4_pgogi"]
 [ext_resource type="Texture2D" uid="uid://bqx3m2rgdgqgp" path="res://Textures/ChargeBoss/TankTrack1.png" id="5_0at73"]
+[ext_resource type="Script" path="res://Scenes/GameStateChange.gd" id="5_a12qr"]
 [ext_resource type="PackedScene" uid="uid://v42kviymhbdq" path="res://Scenes/Prefabs/doorway.tscn" id="6_7ad3p"]
 [ext_resource type="Texture2D" uid="uid://dkep6n4rtlsvd" path="res://Textures/ChargeBoss/TankTrack2.png" id="6_tps44"]
 [ext_resource type="Texture2D" uid="uid://dj2aksup3bd0c" path="res://Textures/ChargeBoss/TankTrack3.png" id="7_ij7cq"]
@@ -18,6 +19,11 @@
 [ext_resource type="Texture2D" uid="uid://cx24sdw3n0qfr" path="res://Textures/ChargeBoss/TankHatchTurn6.png" id="13_kd8w1"]
 [ext_resource type="Texture2D" uid="uid://dfwu1yiwn3gva" path="res://Textures/ChargeBoss/TankHatchFlip.png" id="13_ws5tu"]
 [ext_resource type="Script" path="res://Scripts/DamageArea.gd" id="15_f2405"]
+[ext_resource type="Script" path="res://Scenes/DeathEventTrigger.gd" id="20_c2mqe"]
+[ext_resource type="Script" path="res://Scenes/TileMapHider.gd" id="21_2l8m5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_443x5"]
+size = Vector2(2115, 36)
 
 [sub_resource type="Animation" id="Animation_rbmun"]
 resource_name = "MoveTracks"
@@ -213,73 +219,10 @@ size = Vector2(384, 87)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w60wy"]
 size = Vector2(407.5, 52)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_443x5"]
-size = Vector2(2115, 36)
-
-[node name="BossScene" type="Node2D" node_paths=PackedStringArray("camTracks")]
+[node name="BossScene" type="Node2D" node_paths=PackedStringArray("camTracks", "stateChanges")]
 script = ExtResource("1_y6yf7")
 camTracks = [NodePath("CameraTrack")]
-
-[node name="TankBoss" type="CharacterBody2D" parent="." node_paths=PackedStringArray("hatchAnims", "anims", "visuals")]
-position = Vector2(15564, 4358)
-scale = Vector2(2, 2)
-collision_layer = 2
-collision_mask = 9
-floor_stop_on_slope = false
-floor_block_on_wall = false
-floor_snap_length = 14.2
-platform_on_leave = 2
-platform_floor_layers = 4294901760
-safe_margin = 0.001
-script = ExtResource("2_kg316")
-hatchAnims = NodePath("HatchAnimations")
-pieceIHold = "c"
-anims = NodePath("TrackAnimation")
-health = 15
-GRAVITY = 100.0
-FRICTION = 100.0
-visuals = NodePath("TankTracks")
-
-[node name="Gun" type="Node2D" parent="TankBoss"]
-position = Vector2(0, -6.5)
-
-[node name="TankGun" type="Sprite2D" parent="TankBoss/Gun"]
-z_index = -2
-z_as_relative = false
-texture = ExtResource("3_7v0af")
-flip_h = true
-
-[node name="TankHatch" type="Sprite2D" parent="TankBoss"]
-z_index = -2
-z_as_relative = false
-position = Vector2(0, -6.5)
-texture = ExtResource("4_lv41s")
-flip_h = true
-
-[node name="TankTracks" type="Sprite2D" parent="TankBoss"]
-texture = ExtResource("5_0at73")
-
-[node name="TrackAnimation" type="AnimationPlayer" parent="TankBoss"]
-libraries = {
-"": SubResource("AnimationLibrary_gn6dd")
-}
-
-[node name="HatchAnimations" type="AnimationPlayer" parent="TankBoss"]
-libraries = {
-"": SubResource("AnimationLibrary_3q5hb")
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TankBoss"]
-position = Vector2(-1, 80.5)
-shape = SubResource("RectangleShape2D_0b5nr")
-
-[node name="TrackDamageArea" type="Area2D" parent="TankBoss"]
-collision_layer = 32
-script = ExtResource("15_f2405")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TankBoss/TrackDamageArea"]
-position = Vector2(-0.25, 100)
-shape = SubResource("RectangleShape2D_w60wy")
+stateChanges = NodePath("Changes")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 position = Vector2(0, -2)
@@ -304,4 +247,83 @@ position = Vector2(14923, 4721)
 position = Vector2(43.5, 8)
 shape = SubResource("RectangleShape2D_443x5")
 
-[connection signal="body_entered" from="TankBoss/TrackDamageArea" to="TankBoss/TrackDamageArea" method="_on_body_entered"]
+[node name="Changes" type="Node2D" parent="."]
+
+[node name="BossExists" type="Node2D" parent="Changes"]
+script = ExtResource("5_a12qr")
+condition = 2
+
+[node name="TankBoss" type="CharacterBody2D" parent="Changes/BossExists" node_paths=PackedStringArray("hatchAnims", "anims", "visuals")]
+position = Vector2(15564, 4358)
+scale = Vector2(2, 2)
+collision_layer = 2
+collision_mask = 9
+floor_stop_on_slope = false
+floor_block_on_wall = false
+floor_snap_length = 14.2
+platform_on_leave = 2
+platform_floor_layers = 4294901760
+safe_margin = 0.001
+script = ExtResource("2_kg316")
+hatchAnims = NodePath("HatchAnimations")
+pieceIHold = "c"
+anims = NodePath("TrackAnimation")
+health = 15
+GRAVITY = 100.0
+FRICTION = 100.0
+visuals = NodePath("TankTracks")
+
+[node name="Gun" type="Node2D" parent="Changes/BossExists/TankBoss"]
+position = Vector2(0, -6.5)
+
+[node name="TankGun" type="Sprite2D" parent="Changes/BossExists/TankBoss/Gun"]
+z_index = -2
+z_as_relative = false
+texture = ExtResource("3_7v0af")
+flip_h = true
+
+[node name="TankHatch" type="Sprite2D" parent="Changes/BossExists/TankBoss"]
+z_index = -2
+z_as_relative = false
+position = Vector2(0, -6.5)
+texture = ExtResource("4_lv41s")
+flip_h = true
+
+[node name="TankTracks" type="Sprite2D" parent="Changes/BossExists/TankBoss"]
+texture = ExtResource("5_0at73")
+
+[node name="TrackAnimation" type="AnimationPlayer" parent="Changes/BossExists/TankBoss"]
+libraries = {
+"": SubResource("AnimationLibrary_gn6dd")
+}
+
+[node name="HatchAnimations" type="AnimationPlayer" parent="Changes/BossExists/TankBoss"]
+libraries = {
+"": SubResource("AnimationLibrary_3q5hb")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Changes/BossExists/TankBoss"]
+position = Vector2(-1, 80.5)
+shape = SubResource("RectangleShape2D_0b5nr")
+
+[node name="TrackDamageArea" type="Area2D" parent="Changes/BossExists/TankBoss"]
+collision_layer = 32
+script = ExtResource("15_f2405")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Changes/BossExists/TankBoss/TrackDamageArea"]
+position = Vector2(-0.25, 100)
+shape = SubResource("RectangleShape2D_w60wy")
+
+[node name="ConditionalAppear" type="Node2D" parent="." node_paths=PackedStringArray("WhoCanDie", "whoICallTo")]
+script = ExtResource("20_c2mqe")
+WhoCanDie = NodePath("../Changes/BossExists/TankBoss")
+whoICallTo = NodePath("TileMapLayer")
+functionToCall = "Show"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="ConditionalAppear"]
+visible = false
+tile_map_data = PackedByteArray("AABsACIAAQAAAAAAAABtACMAAQAAAAAAAABrACIAAQACAAAAAABsACMAAQACAAAAAABtACQAAQACAAAAAABsACQAAQACAAEAAABrACQAAQACAAEAAABrACMAAQACAAEAAAA=")
+tile_set = ExtResource("3_nhxys")
+script = ExtResource("21_2l8m5")
+
+[connection signal="body_entered" from="Changes/BossExists/TankBoss/TrackDamageArea" to="Changes/BossExists/TankBoss/TrackDamageArea" method="_on_body_entered"]

@@ -15,7 +15,7 @@ size = Vector2(50, 88)
 
 [sub_resource type="Animation" id="Animation_3y8mp"]
 resource_name = "Hurt"
-length = 0.25
+length = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -95,6 +95,7 @@ floor_snap_length = 13.5
 platform_on_leave = 2
 script = ExtResource("1_242kc")
 anims = NodePath("AnimationPlayer")
+hitStun = 0.25
 health = 3
 FRICTION = 16.0
 visuals = NodePath("Sprite2D")

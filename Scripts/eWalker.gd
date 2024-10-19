@@ -64,7 +64,7 @@ func hitStunDone() -> void:
 func takeDamage(damage: int):
 	audioPlayer.play()
 	anims.play("Hurt")
-	hitStun = 0.2
+	hitstunAmount = hitStun
 	super.takeDamage(damage)
 
 func setIdleTimer() -> void:

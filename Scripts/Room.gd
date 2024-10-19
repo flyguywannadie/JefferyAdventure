@@ -3,6 +3,7 @@ class_name Room
 
 @export var camTracks: Array[CamTrack]
 #@export var entrances: Array[Doorway]
+@export var stateChanges: Node2D
 
 var gamemanager: GameManager
 
@@ -31,22 +32,32 @@ func gameStateChanges(gamestate: String) -> void:
 	# I can probably do something better than this with some seperate script that this functi#on will check through
 	# just keep this here for thinking, should be updated with next week's level creation thinking
 	
-	# ds = Deadly Sword
-	if (gamestate.contains("ds")):
-		pass
-	# cs = Charge Sword
-	if (gamestate.contains("cs")):
-		pass
-	# fs = Fast Sword
-	if (gamestate.contains("fs")):
-		pass
-	# dg = Deadly Gun
-	if (gamestate.contains("dg")):
-		pass
-	# cg = Charge Gun
-	if (gamestate.contains("cg")):
-		pass
-	# fg = Fast Gun
-	if (gamestate.contains("fg")):
-		pass
+	if (stateChanges == null) :
+		return
+	
+	if (stateChanges.get_child_count() == 0):
+		return
+	
+	for change in stateChanges.get_children():
+		change.visible = true
+		change.call("CheckCondition", gamestate)
+	
+	## ds = Deadly Sword
+	#if (gamestate.contains("ds")):
+		#pass
+	## cs = Charge Sword
+	#if (gamestate.contains("cs")):
+		#pass
+	## fs = Fast Sword
+	#if (gamestate.contains("fs")):
+		#pass
+	## dg = Deadly Gun
+	#if (gamestate.contains("dg")):
+		#pass
+	## cg = Charge Gun
+	#if (gamestate.contains("cg")):
+		#pass
+	## fg = Fast Gun
+	#if (gamestate.contains("fg")):
+		#pass
 	pass
