@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 	if (framesLeft > 0) :
 		framesLeft -= 1
 		if (framesLeft <= 0) :
-			visuals.visible = true
+			visuals.material.set("shader_parameter/hit", false)
 	
 	# basically making knockback decrease regarless of sign
 	var sig = sign(knockback)
@@ -83,8 +83,9 @@ func _die():
 func takeDamage(damage: int):
 	health -= damage
 	print(name, " ouch ", health, " Took ", damage);
-	visuals.visible = false
-	framesLeft = flashFrames
+	if (visuals.material != null) :
+		visuals.material.set("shader_parameter/hit", true)
+		framesLeft = flashFrames
 	if (health <= 0) :
 		_die()
 	pass

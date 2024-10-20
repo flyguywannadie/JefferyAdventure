@@ -8,7 +8,7 @@ size = Vector2(80, 80)
 
 [node name="ChainsawSlash" type="Area2D"]
 collision_layer = 4
-collision_mask = 10
+collision_mask = 2
 script = ExtResource("1_rta3y")
 velocity = 0.0
 lifetime = 0.05

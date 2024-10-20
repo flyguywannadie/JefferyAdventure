@@ -8,10 +8,10 @@ size = Vector2(142, 181)
 
 [node name="DaggerSlash" type="Area2D"]
 collision_layer = 4
-collision_mask = 10
+collision_mask = 2
 script = ExtResource("1_nr0tg")
 velocity = 1.0
-lifetime = 0.05
+lifetime = 0.1
 knockback = Vector2(350, 1)
 damage = 2
 

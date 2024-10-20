@@ -1,14 +1,11 @@
 extends Sword
 class_name Dagger
 
-var player: Jeffery
-
 func _ready() -> void:
 	super._ready()
 	pass
 
 func OnCreate() -> void:
-	player = owner as Jeffery
 	super.OnCreate()
 
 func _physics_process(delta: float) -> void:
@@ -28,8 +25,7 @@ func onUse() -> void:
 	#test = test.rotated(player.GunArm.rotation)
 	#print(player.GunArm.rotation)
 	#print(test)
-	
-	player.setKnockback(900 * global_scale.y, -600)
+	KnockbackJeffery.emit(900 * global_scale.y, -600)
 	#player.setKnockback(test.x, test.y/2)
 	$AnimationPlayer.play("SwordSlash")
 	pass

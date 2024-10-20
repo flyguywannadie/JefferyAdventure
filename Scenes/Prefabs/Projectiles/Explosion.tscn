@@ -1,0 +1,118 @@
+[gd_scene load_steps=15 format=3 uid="uid://bnvs2mkbj80ef"]
+
+[ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_lkaii"]
+[ext_resource type="Texture2D" uid="uid://r52iqyxd5e1" path="res://Textures/ChargeBoss/Explosion/Explosion9.png" id="2_575dq"]
+[ext_resource type="Texture2D" uid="uid://bttj5i6g75h14" path="res://Textures/ChargeBoss/Explosion/Explosion2.png" id="3_d7fxt"]
+[ext_resource type="Texture2D" uid="uid://bo1tt3xbe3mgr" path="res://Textures/ChargeBoss/Explosion/Explosion3.png" id="4_jt845"]
+[ext_resource type="Texture2D" uid="uid://c2s0ljfcxxxyn" path="res://Textures/ChargeBoss/Explosion/Explosion4.png" id="5_lwnp1"]
+[ext_resource type="Texture2D" uid="uid://d2ytq2k1tdmjy" path="res://Textures/ChargeBoss/Explosion/Explosion5.png" id="6_qbf3w"]
+[ext_resource type="Texture2D" uid="uid://dnx5bg66nccnf" path="res://Textures/ChargeBoss/Explosion/Explosion6.png" id="7_c1w30"]
+[ext_resource type="Texture2D" uid="uid://bq62teevhrmxc" path="res://Textures/ChargeBoss/Explosion/Explosion7.png" id="8_ef82l"]
+[ext_resource type="Texture2D" uid="uid://deaxxmtype3rj" path="res://Textures/ChargeBoss/Explosion/Explosion8.png" id="9_176hl"]
+[ext_resource type="AudioStream" uid="uid://d2i348gd88es4" path="res://Sounds/ExplosionSound.wav" id="10_io764"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4im6f"]
+size = Vector2(192, 192)
+
+[sub_resource type="Animation" id="Animation_ggn5w"]
+resource_name = "Explosion"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.166667, 0.266667, 0.366667, 0.466667, 0.566667, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_d7fxt"), ExtResource("4_jt845"), ExtResource("5_lwnp1"), ExtResource("6_qbf3w"), ExtResource("7_c1w30"), ExtResource("8_ef82l"), ExtResource("9_176hl"), ExtResource("2_575dq")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.766667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_bulletDeath"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0666667, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_xns7j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_575dq")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_chqdb"]
+_data = {
+"Explosion": SubResource("Animation_ggn5w"),
+"RESET": SubResource("Animation_xns7j")
+}
+
+[node name="Explosion" type="Area2D"]
+scale = Vector2(2, 2)
+collision_layer = 32
+script = ExtResource("1_lkaii")
+velocity = 0.0
+slowdown = 0.0
+persistantEffect = true
+damage = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_575dq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4im6f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_chqdb")
+}
+autoplay = "Explosion"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_io764")
+autoplay = true
+max_distance = 10000.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

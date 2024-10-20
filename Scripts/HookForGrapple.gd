@@ -1,7 +1,7 @@
 extends Bullet
 class_name HookForGrapple
 
-var myGrapple: GrappleHook # replace gun with GrappleHook when made
+var myGrapple: GrappleHook
 var returnToDie: bool = false
 
 var speedUp: float = 1
@@ -13,7 +13,7 @@ func _physics_process(delta: float) -> void:
 		
 		motion = lerp(Vector2(0,0), (myGrapple.bulletSpawn.global_position - global_position), delta * speedUp)
 		
-		speedUp *= 2
+		speedUp *= 1.5
 		
 		if (myGrapple.bulletSpawn.global_position.distance_to(global_position) < 50 || lifetime <= 0 || position.distance_to(myGrapple.position) > 100000) :
 			myGrapple.startCooldown()
@@ -29,14 +29,14 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	pass
 
-func _hitCharacter(char: Character):
+func _hitCharacter(chara: Character):
 	var move = (global_position - myGrapple.bulletSpawn.global_position).normalized() * 1000
-	super._hitCharacter(char)
-	char.setKnockback(-move.x, -move.y)
+	super._hitCharacter(chara)
+	chara.setKnockback(-move.x, -move.y)
 
 func _hitWall():
 	var move = (global_position - myGrapple.bulletSpawn.global_position).normalized() * 1500
-	myGrapple.player.setKnockback( 1.5 * move.x, move.y)
+	myGrapple.KnockbackJeffery.emit( 1.5 * move.x, move.y)
 	super._hitWall()
 
 func ApplySlowdown(delta: float) -> void:

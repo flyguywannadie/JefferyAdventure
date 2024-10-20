@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+
+
 uniform float size;
 
 // Gotten from here https://godotshaders.com/snippet/random-value/

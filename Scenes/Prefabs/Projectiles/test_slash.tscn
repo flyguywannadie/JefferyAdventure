@@ -4,14 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_usbh8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8yytm"]
-size = Vector2(100, 182)
+size = Vector2(126, 182)
 
 [node name="TestSlash" type="Area2D"]
 collision_layer = 4
-collision_mask = 10
+collision_mask = 2
 script = ExtResource("1_m72m8")
 velocity = 0.0
-lifetime = 11.0
+lifetime = 0.1
 damage = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -20,7 +20,7 @@ scale = Vector2(100, 122.471)
 texture = ExtResource("2_usbh8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 29)
+position = Vector2(13, 29)
 shape = SubResource("RectangleShape2D_8yytm")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

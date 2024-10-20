@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://dc2oo5d4e4gee"]
+[gd_scene load_steps=18 format=3 uid="uid://dc2oo5d4e4gee"]
 
 [ext_resource type="Script" path="res://Scripts/eWalker.gd" id="1_242kc"]
+[ext_resource type="Material" uid="uid://4qginuh7uhxl" path="res://EnemyMaterial.tres" id="2_6kv4u"]
 [ext_resource type="Texture2D" uid="uid://0g8484u17gnh" path="res://Textures/WalkerEnemy/IdleWalker.png" id="2_gyqev"]
 [ext_resource type="Texture2D" uid="uid://bn1e2xt7daqrj" path="res://Textures/WalkerEnemy/006.png" id="3_60npi"]
 [ext_resource type="Texture2D" uid="uid://de7lfcd6q6d1j" path="res://Textures/WalkerEnemy/007.png" id="4_jabk0"]
@@ -106,6 +107,7 @@ position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_epq2w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("2_6kv4u")
 position = Vector2(0, -43)
 texture = ExtResource("2_gyqev")
 

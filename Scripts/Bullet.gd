@@ -5,7 +5,10 @@ class_name Bullet
 @export var lifetime: float = 5
 @export var slowdown: float = 1
 @export var dieOnStop: bool
+@export var persistantEffect: bool
 @export var knockback: Vector2 = Vector2(1,1)
+
+@export var HitEffect: PackedScene
 
 var prevPosition: Vector2
 var motion: Vector2
@@ -14,6 +17,8 @@ var alreadyHit: Array[Node2D]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	
 	motion = Vector2(velocity, 0)
 	#print("before rot ", motion, " and ", rotation)
 	motion = motion.rotated(rotation)
@@ -35,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	translate(motion)
 	
 	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(prevPosition, position, 10)
+	var query = PhysicsRayQueryParameters2D.create(prevPosition, position, collision_mask)
 	var result = space_state.intersect_ray(query)
 	
 	if (result):
@@ -53,12 +58,18 @@ func ApplySlowdown(delta: float) -> void:
 	pass
 
 func _bulletDeath() -> void:
+	if (HitEffect != null):
+		var deathEffect = HitEffect.instantiate()
+		deathEffect.position = global_position
+		owner.call_deferred("add_child", deathEffect)
+		deathEffect.set_deferred("owner", owner)
+	
 	queue_free()
 	pass
 
-func _hitCharacter(char: Character):
-	char.setKnockback(knockback.x * sign(motion.x), knockback.y * sign(motion.y))
-	super._hitCharacter(char)
+func _hitCharacter(chara: Character):
+	chara.setKnockback(knockback.x * sign(motion.x), knockback.y * sign(motion.y))
+	super._hitCharacter(chara)
 
 func _hitWall():
 	pass
@@ -75,5 +86,10 @@ func _on_body_entered(body: Node2D) -> void:
 	else:
 		_hitWall()
 	
-	_bulletDeath()
+	if (persistantEffect) :
+		collision_mask = 0
+		collision_layer = 0
+	else:
+		_bulletDeath()
+	
 	pass

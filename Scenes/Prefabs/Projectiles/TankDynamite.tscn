@@ -1,0 +1,77 @@
+[gd_scene load_steps=13 format=3 uid="uid://bhqsoqk36ebk2"]
+
+[ext_resource type="Script" path="res://Scripts/Dynamite.gd" id="1_7siyr"]
+[ext_resource type="PackedScene" uid="uid://bnvs2mkbj80ef" path="res://Scenes/Prefabs/Projectiles/Explosion.tscn" id="2_kuscj"]
+[ext_resource type="Texture2D" uid="uid://b0jtqlub3sm37" path="res://Textures/ChargeBoss/Dynamite/000.png" id="3_mbf56"]
+[ext_resource type="Texture2D" uid="uid://b0wd1ed2llrut" path="res://Textures/ChargeBoss/Dynamite/001.png" id="4_r4wwe"]
+[ext_resource type="Texture2D" uid="uid://ctm324qaulde7" path="res://Textures/ChargeBoss/Dynamite/002.png" id="5_w3m1k"]
+[ext_resource type="Texture2D" uid="uid://bhejhj1puo0kd" path="res://Textures/ChargeBoss/Dynamite/003.png" id="6_xafkn"]
+[ext_resource type="Texture2D" uid="uid://cb82mb7b38sdw" path="res://Textures/ChargeBoss/Dynamite/004.png" id="7_fuokj"]
+[ext_resource type="Texture2D" uid="uid://xestj1d3k8ty" path="res://Textures/ChargeBoss/Dynamite/005.png" id="8_17bgm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4im6f"]
+size = Vector2(34, 33)
+
+[sub_resource type="Animation" id="Animation_rb2gs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_mbf56")]
+}
+
+[sub_resource type="Animation" id="Animation_6tn5q"]
+resource_name = "Spin"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_mbf56"), ExtResource("4_r4wwe"), ExtResource("5_w3m1k"), ExtResource("6_xafkn"), ExtResource("7_fuokj"), ExtResource("8_17bgm")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w10ln"]
+_data = {
+"RESET": SubResource("Animation_rb2gs"),
+"Spin": SubResource("Animation_6tn5q")
+}
+
+[node name="Dynamite" type="Area2D"]
+z_index = -5
+z_as_relative = false
+rotation = -1.5708
+collision_layer = 32
+collision_mask = 9
+script = ExtResource("1_7siyr")
+velocity = 20.0
+slowdown = 0.0
+HitEffect = ExtResource("2_kuscj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_mbf56")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_4im6f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w10ln")
+}
+autoplay = "Spin"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

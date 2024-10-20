@@ -21,7 +21,6 @@ func onUse() -> void:
 	SpawnBullet()
 	if (audioPlayer != null) :
 		audioPlayer.play()
-	
 	$AnimationPlayer.play("GunShoot")
 	pass
 

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bc6rtses7nwf4"]
+
+[ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_ismu5"]
+[ext_resource type="PackedScene" uid="uid://bnvs2mkbj80ef" path="res://Scenes/Prefabs/Projectiles/Explosion.tscn" id="2_dk1y2"]
+[ext_resource type="Texture2D" uid="uid://4dkjq1241kbc" path="res://Textures/ChargeBoss/GunCharge/TankShot.png" id="3_amknm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4im6f"]
+size = Vector2(34, 33)
+
+[node name="TankShot" type="Area2D"]
+z_index = -5
+z_as_relative = false
+scale = Vector2(2, 2)
+collision_layer = 32
+collision_mask = 9
+script = ExtResource("1_ismu5")
+velocity = 100.0
+slowdown = 0.0
+knockback = Vector2(500, 1)
+HitEffect = ExtResource("2_dk1y2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_amknm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_4im6f")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

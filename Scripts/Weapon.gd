@@ -3,6 +3,8 @@ class_name Weapon
 
 var enabled: bool = true
 
+signal KnockbackJeffery(x: float, y: float)
+
 @export var inputAction: String = "jef_shoot"
 var cooldown: float = 1
 @export var COOLDOWNLENGTH: float = 1

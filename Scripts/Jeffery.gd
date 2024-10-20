@@ -33,12 +33,14 @@ func _ready() -> void:
 	gun_holder.add_child(gun)
 	gun.owner = $"."
 	currentGun = gun as Weapon
+	currentGun.KnockbackJeffery.connect(setKnockback)
 	
 	#create base sword
 	var sword = TEST_SWORD.instantiate()
 	sword_holder.add_child(sword)
 	sword.owner = $"."
 	currentSword = sword as Weapon
+	currentSword.KnockbackJeffery.connect(setKnockback)
 	
 	pass
 
@@ -141,60 +143,46 @@ func enableWeapons() -> void:
 
 func EvolveWeapon(gunorsowrd: bool, piece: String) -> void:
 	
-	match (piece):
-		"d":
-			if (gunorsowrd) :
-				if (currentGun.dEvo) :
-					var gun = currentGun.dEvo.instantiate()
-					currentGun.queue_free()
-					gun_holder.add_child(gun)
-					gun.owner = $"."
-					currentGun = gun as Weapon
-					currentGun.OnCreate()
-			else :
-				if (currentSword.dEvo) :
-					var sword = currentSword.dEvo.instantiate()
-					currentSword.queue_free()
-					sword_holder.add_child(sword)
-					sword.owner = $"."
-					currentSword = sword as Weapon
-					currentSword.OnCreate()
-			pass
-		"c":
-			if (gunorsowrd) :
-				if (currentGun.cEvo) :
-					var gun = currentGun.cEvo.instantiate()
-					currentGun.queue_free()
-					gun_holder.add_child(gun)
-					gun.owner = $"."
-					currentGun = gun as Weapon
-					currentGun.OnCreate()
-			else :
-				if (currentSword.cEvo) :
-					var sword = currentSword.cEvo.instantiate()
-					currentSword.queue_free()
-					sword_holder.add_child(sword)
-					sword.owner = $"."
-					currentSword = sword as Weapon
-					currentSword.OnCreate()
-			pass
-		"f":
-			if (gunorsowrd) :
-				if (currentGun.fEvo) :
-					var gun = currentGun.fEvo.instantiate()
-					currentGun.queue_free()
-					gun_holder.add_child(gun)
-					gun.owner = $"."
-					currentGun = gun as Weapon
-					currentGun.OnCreate()
-			else :
-				if (currentSword.fEvo) :
-					var sword = currentSword.fEvo.instantiate()
-					currentSword.queue_free()
-					sword_holder.add_child(sword)
-					sword.owner = $"."
-					currentSword = sword as Weapon
-					currentSword.OnCreate()
-			pass
-	
+	if (gunorsowrd) :
+		var gun
+		match(piece):
+			"d":
+				if (currentGun.dEvo == null) :
+					return
+				gun = currentGun.dEvo.instantiate()
+			"c":
+				if (currentGun.cEvo == null) :
+					return
+				gun = currentGun.cEvo.instantiate()
+			"f":
+				if (currentGun.fEvo == null) :
+					return
+				gun = currentGun.fEvo.instantiate()
+		currentGun.queue_free()
+		gun_holder.add_child(gun)
+		gun.owner = $"."
+		currentGun = gun as Weapon
+		currentGun.OnCreate()
+		currentGun.KnockbackJeffery.connect(setKnockback)
+	else:
+		var sword
+		match(piece):
+			"d":
+				if (currentSword.dEvo == null) :
+					return
+				sword = currentSword.dEvo.instantiate()
+			"c":
+				if (currentSword.cEvo == null) :
+					return
+				sword = currentSword.cEvo.instantiate()
+			"f":
+				if (currentSword.fEvo == null) :
+					return
+				sword = currentSword.fEvo.instantiate()
+		currentSword.queue_free()
+		sword_holder.add_child(sword)
+		sword.owner = $"."
+		currentSword = sword as Weapon
+		currentSword.OnCreate()
+		currentSword.KnockbackJeffery.connect(setKnockback)
 	pass
