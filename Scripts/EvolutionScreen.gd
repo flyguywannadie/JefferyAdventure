@@ -1,13 +1,11 @@
 extends Control
 class_name EvolutionScreen
 
-@onready var jeffery: Jeffery = $"../../Jeffery"
 var evoPiece: String
-@onready var game_manager: GameManager = $"../../GameManager"
 
 func _ready() -> void:
 	visible = false
-	evoPiece = ""
+	GameManager.evolutionScreen = self
 
 func StartEvolution(piece: String) -> void:
 	visible = true
@@ -15,19 +13,16 @@ func StartEvolution(piece: String) -> void:
 
 func CloseEvolution() -> void:
 	visible = false
-	get_tree().paused = false
-	evoPiece = ""
+	GameManager.ResumeGame()
 
+func doEvolution(weaponUsed: String) -> void:
+	GameManager.GetJeffery().EvolveWeapon(weaponUsed == "g ", evoPiece)
+	GameManager.AddToGameState(weaponUsed)
+	CloseEvolution()
 
 func _on_Sword_button_pressed() -> void:
-	jeffery.EvolveWeapon(false, evoPiece)
-	game_manager.gameState += "s "
-	CloseEvolution()
-	pass # Replace with function body.
+	doEvolution("s ")
 
 
 func _on_Gun_button_pressed() -> void:
-	jeffery.EvolveWeapon(true, evoPiece)
-	game_manager.gameState += "g "
-	CloseEvolution()
-	pass # Replace with function body.
+	doEvolution("g ")

@@ -10,11 +10,11 @@ func _input(event: InputEvent) -> void:
 		pause()
 
 func pause():
-	get_tree().paused = true
+	GameManager.PauseGame()
 	visible = true
 
 func resume():
-	get_tree().paused = false
+	GameManager.ResumeGame()
 	visible = false
 
 func _on_resume_pressed() -> void:
@@ -22,4 +22,4 @@ func _on_resume_pressed() -> void:
 
 func _on_back_to_title_pressed() -> void:
 	resume()
-	get_tree().change_scene_to_file("res://Scenes/StartMenu.tscn")
+	GameManager.ChangeScene("res://Scenes/StartMenu.tscn")

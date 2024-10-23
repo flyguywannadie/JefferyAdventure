@@ -5,17 +5,26 @@ void vertex() {
 }
 
 void fragment() {
-	
+
 	//float xOffset = UV.y * 0.25;
 	//float t = cos((UV.x + xOffset + (TIME * 0.2)) * TAU * 5.0) * 0.5 + 0.5;
-	
+
 	//COLOR *= t;// vec4(max(COLOR.rgb, vec3(t)),COLOR.a);
-	
-	vec2 uvsCentered = UV * 2.0 - 1.0;
-	float radialDistance = length(uvsCentered);
-	
-	float wave = cos((radialDistance - TIME * 0.5) * TAU * 5.0) * 0.5 + 0.5;
-	COLOR = vec4(max(COLOR.xyz, vec3(wave)), COLOR.a);
+
+	if (COLOR.a > 0.95) {
+		vec3 outlineColor = vec3(207.0, 172.0, 80.0);
+
+		float test = abs(cos(TIME) * 1.0);//float(false);
+
+		COLOR = vec4(outlineColor,test);
+	}
+
+
+	//vec2 uvsCentered = UV * 2.0 - 1.0;
+	//float radialDistance = length(uvsCentered);
+
+	//float wave = cos((radialDistance - abs(cos(TIME)) * 0.2) * TAU * 5.0) * 2.0 - 1.0;// * 0.5 + 0.5;
+	//COLOR *= vec4(wave);
 }
 
 //void light() {

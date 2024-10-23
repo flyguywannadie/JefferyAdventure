@@ -1,9 +1,11 @@
 extends Node2D
-class_name GameManager
 
-@onready var evolution_screen: EvolutionScreen = $"../CanvasLayer/EvolutionScreen"
+var rootScene
 
-@onready var startLevel: String = "TestFirstScene"
+var evolutionScreen: EvolutionScreen #= $"../CanvasLayer/EvolutionScreen"
+var deathScreen: DeathScreen #= $"../CanvasLayer/DeathScreenJeffery"
+
+var startLevel: String = "TestFirstScene"
 var currentLevel: Room
 var prevLevel: Room
 
@@ -14,57 +16,89 @@ var nextCamPos: Vector2
 var moveCamJeff: bool = false
 var movinglerp: float
 
-@export var jeffery: Jeffery
-@export var camera: GameCamera
+var jeffery: Jeffery
+var camera: GameCamera
+
+var currentCheckpoint: Checkpoint
 
 var gameState: String = ""
 var piecesGotten: int = 0
 
 func _ready() -> void:
-	for child in get_tree().root.get_child(0).get_children():
-		if child is GameCamera:
-			camera = child
-		if child is Jeffery:
-			jeffery = child
-	call_deferred("addLevel", startLevel)
-	pass
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	#
+	#for child in get_tree().root.get_child(0).get_children():
+		#if child is GameCamera:
+			#camera = child
+		#if child is Jeffery:
+			#jeffery = child
+	#call_deferred("addLevel", startLevel)
+	#pass
+
+func SetJeffery(jeff: Jeffery) -> void:
+	jeffery = jeff
+
+func GetJeffery() -> Jeffery:
+	return jeffery
+
+func SetGameCamera(cam: GameCamera) -> void:
+	camera = cam
+
+func GetGameCamera() -> GameCamera:
+	return camera
+
+func ChangeScene(filePath: String) -> void:
+	endLevels()
+	get_tree().change_scene_to_file(filePath)
+	rootScene = get_tree().root.get_child(0)
 
 func endLevels() -> void:
-	currentLevel.queue_free()
+	if (currentLevel != null) :
+		currentLevel.queue_free()
 	pass
 
 func addLevel(levelName: String) -> void:
+	print(get_tree().root.get_child_count())
 	prevLevel = currentLevel
 	var level = load("res://Scenes/" + levelName + ".tscn").instantiate()
-	owner.add_child(level)
-	level.owner = owner
+	rootScene.add_child(level)
+	level.owner = rootScene
 	currentLevel = level as Room
 	pass
 
-func swapRoom(roomName: String, entranceDirection: float):
+func SwapRoom(roomName: String, enterDirection: float):
 	# pause the game
-	get_tree().paused = true
+	PauseGame()
 	# add the new level
 	addLevel(roomName)
 	currentLevel.gameStateChanges(gameState)
-	# move jeffery and camera to the new room
+	# Set Up Movment variables for moving jeffery and camera between rooms smoothyl
 	prevJefferyPos = jeffery.position
-	nextJefferyPos = jeffery.position + Vector2(128 * 3, 0).rotated(entranceDirection)
+	nextJefferyPos = jeffery.position + Vector2(128 * 3, 0).rotated(enterDirection)
 	prevCamPos = camera.position
 	camera.changeTrack(currentLevel.getClosestTrack(camera.position))
 	nextCamPos = camera.currentTrack.placeVectorWithinBounds(camera.position)
+	# replace chackpoint with new checkpoint
+	currentCheckpoint = currentLevel.getClosestCheckpoint(jeffery.position)
+	# allow game manager to move jeffery and camera
 	moveCamJeff = true
 	pass
 
 func endSwap() -> void:
+	# stop letting gamemanger move things and reset some variables
 	moveCamJeff = false
 	movinglerp = 0
 	camera.followOffset = Vector2(0,0)
-	# remove previous level
+	# remove previous level as it is no longer needed
 	prevLevel.queue_free()
 	# unpause the game
-	get_tree().paused = false
+	ResumeGame()
 	pass
+
+func JefferyDie() -> void :
+	jeffery.health = 2
+	jeffery.position = currentCheckpoint.position
+	jeffery.Reset()
 
 func _physics_process(delta: float) -> void:
 	if(moveCamJeff):
@@ -74,6 +108,7 @@ func _physics_process(delta: float) -> void:
 		
 		if (movinglerp > 1) :
 			endSwap()
+	
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -82,17 +117,27 @@ func _process(delta: float) -> void:
 	#print(gameState)
 	if (!get_tree().paused) :
 		if (Input.is_key_pressed(KEY_V)):
-			StartEvolution("d")
+			PiecePickedUp("d")
 		if (Input.is_key_pressed(KEY_B)):
-			StartEvolution("c")
+			PiecePickedUp("c")
 		if (Input.is_key_pressed(KEY_N)):
-			StartEvolution("f")
+			PiecePickedUp("f")
 	
 	pass
 
-func StartEvolution(piece: String) -> void:
-	get_tree().paused = true
-	gameState += piece
+func PiecePickedUp(piece: String) -> void:
+	PauseGame()
+	AddToGameState(piece)
 	piecesGotten += 1
-	evolution_screen.StartEvolution(piece)
+	evolutionScreen.StartEvolution(piece)
+	pass
+
+func PauseGame():
+	get_tree().paused = true
+
+func ResumeGame():
+	get_tree().paused = false
+
+func AddToGameState(added: String) -> void:
+	gameState += added
 	pass

@@ -343,7 +343,7 @@ shape = SubResource("RectangleShape2D_443x5")
 
 [node name="BossExists" type="Node2D" parent="Changes"]
 script = ExtResource("5_a12qr")
-condition = 1
+condition = 2
 
 [node name="TankBoss" type="CharacterBody2D" parent="Changes/BossExists" node_paths=PackedStringArray("hatchAnims", "anims", "visuals")]
 position = Vector2(15564, 4358)
@@ -379,7 +379,7 @@ flip_h = true
 z_index = -3
 z_as_relative = false
 material = SubResource("ShaderMaterial_1qovh")
-position = Vector2(-215, 13)
+position = Vector2(-226, 13)
 texture = ExtResource("8_qb71r")
 
 [node name="DynamiteHatch" type="Sprite2D" parent="Changes/BossExists/TankBoss"]

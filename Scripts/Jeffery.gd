@@ -28,24 +28,25 @@ var flipDir: bool = false
 func _ready() -> void:
 	super._ready()
 	
+	GameManager.SetJeffery(self)
+	
 	#create base gun
 	var gun = TEST_GUN.instantiate()
-	gun_holder.add_child(gun)
-	gun.owner = $"."
-	currentGun = gun as Weapon
-	currentGun.KnockbackJeffery.connect(setKnockback)
+	evolveGun(gun)
 	
 	#create base sword
 	var sword = TEST_SWORD.instantiate()
-	sword_holder.add_child(sword)
-	sword.owner = $"."
-	currentSword = sword as Weapon
-	currentSword.KnockbackJeffery.connect(setKnockback)
+	evolveSword(sword)
 	
 	pass
 
-func _physics_process(delta: float) -> void:
+func _input(event: InputEvent) -> void:
 	
+	
+	
+	pass
+
+func _physics_process(delta: float) -> void:	
 	if (iLength > 0) :
 		
 		iLength -= delta
@@ -65,17 +66,15 @@ func _physics_process(delta: float) -> void:
 		if (hitStun <= 0) :
 			enableWeapons()
 			anims.play("RESET")
-			GunArm.position = Vector2(0,5)
-			sword_holder.position = Vector2(0,0)
 		super._physics_process(delta)
 		return
 	
 	var sideVelocity: float = 0
 	
-	if (Input.is_key_pressed(KEY_A)):
+	if (Input.is_action_pressed("jef_left")):
 		sideVelocity += -speed
 	
-	if (Input.is_key_pressed(KEY_D)):
+	if (Input.is_action_pressed("jef_right")):
 		sideVelocity += speed
 	
 	setMovement(sideVelocity, movement.y)
@@ -131,6 +130,32 @@ func takeDamage(damage: int):
 	setKnockback(-600 * $Node2D.scale.x, -500)
 	super.takeDamage(damage)
 
+func Reset() -> void:
+	hitStun = 0;
+	
+	setMovement(0,0)
+	setKnockback(0,0)
+	
+	audioPlayer.stop()
+	
+	visuals.visible = true
+	currentGun.visuals.visible = visuals.visible
+	currentSword.visuals.visible = visuals.visible
+	$Node2D/GunArm/GunArmSprite.visible = visuals.visible
+	
+	collision_layer = 1
+	
+	enableWeapons()
+	anims.play("RESET")
+
+func _die():
+	print("START DEATH")
+	
+	iLength = 1.5
+	GameManager.JefferyDie()
+	
+	pass
+
 func disableWeapons() -> void:
 	currentGun.enabled = false;
 	currentSword.enabled = false;
@@ -140,6 +165,20 @@ func enableWeapons() -> void:
 	currentGun.enabled = true;
 	currentSword.enabled = true;
 	pass
+
+func evolveGun(gun: Node) -> void:
+	gun_holder.add_child(gun)
+	gun.owner = $"."
+	currentGun = gun as Weapon
+	currentGun.OnCreate()
+	currentGun.KnockbackJeffery.connect(setKnockback)
+
+func evolveSword(sword: Node) -> void:
+	sword_holder.add_child(sword)
+	sword.owner = $"."
+	currentSword = sword as Weapon
+	currentSword.OnCreate()
+	currentSword.KnockbackJeffery.connect(setKnockback)
 
 func EvolveWeapon(gunorsowrd: bool, piece: String) -> void:
 	
@@ -158,12 +197,10 @@ func EvolveWeapon(gunorsowrd: bool, piece: String) -> void:
 				if (currentGun.fEvo == null) :
 					return
 				gun = currentGun.fEvo.instantiate()
+			_:
+				return
 		currentGun.queue_free()
-		gun_holder.add_child(gun)
-		gun.owner = $"."
-		currentGun = gun as Weapon
-		currentGun.OnCreate()
-		currentGun.KnockbackJeffery.connect(setKnockback)
+		evolveGun(gun)
 	else:
 		var sword
 		match(piece):
@@ -179,10 +216,8 @@ func EvolveWeapon(gunorsowrd: bool, piece: String) -> void:
 				if (currentSword.fEvo == null) :
 					return
 				sword = currentSword.fEvo.instantiate()
+			_:
+				return
 		currentSword.queue_free()
-		sword_holder.add_child(sword)
-		sword.owner = $"."
-		currentSword = sword as Weapon
-		currentSword.OnCreate()
-		currentSword.KnockbackJeffery.connect(setKnockback)
+		evolveSword(sword)
 	pass
