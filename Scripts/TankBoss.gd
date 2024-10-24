@@ -16,50 +16,32 @@ var gunState: int
 @onready var hatchSprite: Sprite2D = $TankHatch
 @onready var gunSprite: Sprite2D = $Gun/TankGun
 @export var hatchAnims: AnimationPlayer
-const TANK_DYNAMITE = preload("res://Scenes/Prefabs/Projectiles/TankDynamite.tscn")
-const TANK_SHOT = preload("res://Scenes/Prefabs/Projectiles/TankShot.tscn")
+
 @onready var trackDamageArea: DamageArea = $TrackDamageArea
 @onready var explosionThrower: Node2D = $ExplosionThrower
 @onready var gun_charge: Sprite2D = $Gun/GunCharge
 @export var gunChargeSprites: Array[Texture]
 
-var jeffery: Jeffery
-
 var gunCharge: int
 var gunCooldown: float
 
-var waitTimer: float
 var leftOrRight: bool
 var moveDirection: bool
 var speed: int = 200
-var gameProgress: int
 
 func _ready() -> void:
 	super._ready()
-	for child in get_tree().root.get_child(0).get_children():
-		if child is Jeffery:
-			jeffery = child
+	
 	state = 0
-	gameProgress = gamemanager.piecesGotten
+	gameProgress = GameManager.piecesGotten
 	health += 10 * gameProgress
 	speed += 50 * gameProgress
-	pass
 
 func setKnockback(x:float, y:float):
 	pass
 
 func spawnDynamite() -> void:
-	for x in range(gameProgress + 2):
-		var d = TANK_DYNAMITE.instantiate()
-		
-		d.position = explosionThrower.global_position
-		d.rotation_degrees = -80 - ((20.0 / (gameProgress+1.0)) * x)
-		
-		(d as Bullet).velocity += randf_range(-5,5)
-		
-		owner.add_child(d)
-		d.owner = owner
-		
+	spawnProjectile(explosionThrower.global_position, -90, 0, gameProgress + 2)
 
 func resetGunState() -> void:
 	gunState = 0
@@ -68,12 +50,12 @@ func aiLogic(delta: float) -> void:
 	
 	if (jeffery == null) :
 		return
-	#setMovement(movement.x, 0)
 	
 	var hasJefferySwitchedSides = ((jeffery.position.x - position.x < 0) && leftOrRight) || ((jeffery.position.x - position.x > 0) && !leftOrRight)
 	
+	# gun state chooser
 	match (gunState): 
-		0:
+		0: # look at player and charge
 			if (hasJefferySwitchedSides) :
 				leftOrRight = !leftOrRight
 			
@@ -81,63 +63,49 @@ func aiLogic(delta: float) -> void:
 				if (leftOrRight) :
 					hatchAnims.play("HatchRotate")
 					gun_charge.position = Vector2(215, 13)
-					gunCooldown = 0.75
 				else :
 					hatchAnims.play("HatchRotateBack")
 					gun_charge.position = Vector2(-215, 13)
-					gunCooldown = 0.75
+				gunCooldown = 0.75
 			
-			if (jeffery.global_position.y - gun.global_position.y > 40) :
-				gun.rotation_degrees = -7.5 if (gunSprite.flip_h) else 7.5
-			else:
-				gun.rotation_degrees = 0
-			
-			if (gunCooldown > 0) :
-				gunCooldown -= delta
+			var jefferyOffset = jeffery.global_position - gun.global_position;
+			gun.rotation_degrees = rad_to_deg(atan2(jefferyOffset.y, abs(jefferyOffset.x)))
+			gun.rotation_degrees = clamp(gun.rotation_degrees,-7.5,7.5)
+			if (!leftOrRight) :
+				gun.rotation_degrees = -gun.rotation_degrees
 			
 			if (gunCooldown <= 0):
-				if (position.distance_to(jeffery.position) < 400):
+				if (position.distance_to(jeffery.position) < 450):
 					gunState = 1
 				else:
 					gunCharge += 1
 					gunCooldown = 2.1 / (gameProgress + 1.0)
 					if (gunCharge >= 4) :
-						
 						gunCooldown = 2
 						gunCharge = 0
-						var d = TANK_SHOT.instantiate()
-						d.position = gun_charge.global_position
-						d.rotation_degrees = (0 if (leftOrRight) else 180) + gun.rotation_degrees
-						owner.add_child(d)
-						d.owner = owner
-						
+						spawnProjectile(gun_charge.global_position, (0 if (leftOrRight) else 180) + gun.rotation_degrees, 1)
 					gun_charge.texture = gunChargeSprites[gunCharge]
-			
-		1:
+			else:
+				gunCooldown -= delta
+		1: # throw dynamite
 			$DynamiteHatch.flip_h = !leftOrRight
 			hatchAnims.play("DynamiteThrow")
-			gunState = 2
+			gunState = -1
 			gunCooldown = 1
 	
-	
-	waitTimer -= delta
-	
+	# tank track state chooser
 	match(state):
-		0:
-			
-			if (waitTimer <= 0):
+		0: # idle state
+			if (stateTimer <= 0):
 				state = randi_range(1, 2)
 				
 				trackDamageArea.process_mode = Node.PROCESS_MODE_INHERIT
 				
 				print(position.distance_to(jeffery.position))
 				
-				waitTimer = 1
+				stateTimer = 1
 				moveDirection = !leftOrRight if (position.distance_to(jeffery.position) < 550) else leftOrRight
-			
-			pass
-		1:
-			
+		1: # moving state
 			if (moveDirection) :
 				setMovement(speed, movement.y)
 				#print("Going Right")
@@ -147,13 +115,9 @@ func aiLogic(delta: float) -> void:
 				#print("Going Left")
 				anims.play_backwards("MoveTracks")
 			
-			if (waitTimer <= 0) :
+			if (stateTimer <= 0) :
 				backToIdle(0.5)
-			
-			
-			pass
-		2:
-			
+		2: # Charging state
 			if (moveDirection) :
 				setMovement(speed * 3, movement.y)
 				#print("Charging Right")
@@ -163,15 +127,13 @@ func aiLogic(delta: float) -> void:
 				#print("Charging Left")
 				anims.play_backwards("TrackCharge")
 			
-			if (waitTimer <= 0) :
+			if (stateTimer <= 0) :
 				backToIdle(1)
-			
-			pass
 	
-	pass
+	super.aiLogic(delta)
 
 func backToIdle(waittime: float) -> void:
-	waitTimer = waittime
+	stateTimer = waittime
 	anims.play("RESET")
 	state = 0
 	trackDamageArea.process_mode = Node.PROCESS_MODE_DISABLED

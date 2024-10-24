@@ -40,13 +40,12 @@ func _ready() -> void:
 	
 	pass
 
-func _input(event: InputEvent) -> void:
-	
-	
-	
-	pass
-
 func _physics_process(delta: float) -> void:	
+	
+	if (health <= 0) :
+		super._physics_process(delta)
+		return
+	
 	if (iLength > 0) :
 		
 		iLength -= delta
@@ -118,7 +117,6 @@ func _physics_process(delta: float) -> void:
 		anims.play("Idle")
 	
 	super._physics_process(delta)
-	pass
 
 func takeDamage(damage: int):
 	anims.play("Hurt")
@@ -133,6 +131,8 @@ func takeDamage(damage: int):
 func Reset() -> void:
 	hitStun = 0;
 	
+	health = 2
+	
 	setMovement(0,0)
 	setKnockback(0,0)
 	
@@ -143,17 +143,13 @@ func Reset() -> void:
 	currentSword.visuals.visible = visuals.visible
 	$Node2D/GunArm/GunArmSprite.visible = visuals.visible
 	
-	collision_layer = 1
-	
 	enableWeapons()
 	anims.play("RESET")
 
 func _die():
-	print("START DEATH")
-	
+	#print("START DEATH")
 	iLength = 1.5
-	GameManager.JefferyDie()
-	
+	GameManager.JefferyGameOver()
 	pass
 
 func disableWeapons() -> void:

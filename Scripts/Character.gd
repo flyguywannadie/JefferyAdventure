@@ -14,7 +14,7 @@ var framesLeft: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 func _process(delta: float) -> void:
 	pass
@@ -28,23 +28,11 @@ func _physics_process(delta: float) -> void:
 		if (framesLeft <= 0) :
 			visuals.material.set("shader_parameter/hit", false)
 	
-	# basically making knockback decrease regarless of sign
-	var sig = sign(knockback)
-	var knock = abs(knockback)
-	knock -= FRICTION
-	if (knock <= 0) :
-		knockback = 0
-	else :
-		knockback = knock * sig
+	# move knockback towards zero based on friction
+	knockback = MoveTowardsZero(knockback, FRICTION)
 	
-	#redoing the same thing but with x movement
-	sig = sign(movement.x)
-	var moveX = abs(movement.x)
-	moveX -= FRICTION
-	if(moveX <= 0) :
-		movement.x = 0
-	else :
-		movement.x = moveX * sig
+	# redoing the same thing but with x movement
+	movement.x = MoveTowardsZero(movement.x, FRICTION)
 	
 	move_and_slide()
 	
@@ -59,12 +47,21 @@ func _physics_process(delta: float) -> void:
 	if (is_on_wall()):
 		knockback = 0
 	
-	
 	pass
+
+func MoveTowardsZero(value: float, speed: float) -> float:
+	# moves a value towards 0 using a constant speed
+	var sig = sign(value)
+	var move = abs(value)
+	move -= speed
+	if(move <= 0) :
+		return 0
+	else :
+		return move * sig
 
 func setKnockback(x: float, y: float):
 	knockback = x
-	setMovement(0, y)
+	setMovement(movement.x, y)
 	pass
 
 func addMovement(x: float, y: float):

@@ -1,12 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgi22rw2oexdx"]
+[gd_scene load_steps=19 format=3 uid="uid://cgi22rw2oexdx"]
 
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_mxtlc"]
 [ext_resource type="PackedScene" uid="uid://bwib2ihjobuvm" path="res://Scenes/Prefabs/jeffery.tscn" id="4_oebhw"]
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="7_2u6g4"]
 [ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="11_1d1kq"]
 [ext_resource type="Shader" path="res://FadingShader.gdshader" id="11_swtah"]
+[ext_resource type="Texture2D" uid="uid://00pjhuxgfex0" path="res://Textures/GameOverBackWall.png" id="12_6lrp0"]
 [ext_resource type="Script" path="res://Scenes/DeathScreen.gd" id="12_bf6tn"]
 [ext_resource type="Script" path="res://Scripts/EvolutionScreen.gd" id="12_cvh8f"]
+[ext_resource type="Texture2D" uid="uid://d2tw5irnrwf6k" path="res://Textures/JefferyGameOver.png" id="12_x30i3"]
 [ext_resource type="Texture2D" uid="uid://cq67xj1g1bm8q" path="res://Textures/SwordEvoButton.png" id="13_1tk7r"]
 [ext_resource type="Texture2D" uid="uid://qotynlinrtcj" path="res://Textures/SwordEvoButtonHover.png" id="14_k02nj"]
 [ext_resource type="Texture2D" uid="uid://07jullcmmn2w" path="res://Textures/GunEvoButton.png" id="15_bv6un"]
@@ -14,13 +16,130 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dp4uq"]
 shader = ExtResource("11_swtah")
-shader_parameter/fade = 1.0
+shader_parameter/fade = 0.27
+
+[sub_resource type="Animation" id="Animation_yf22g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/fade")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.27]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_p3snt"]
+resource_name = "FadeIn"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/fade")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"nowPauseGame"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_0nogc"]
+resource_name = "Fadeout"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/fade")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"buttonPressed"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k1qm4"]
+_data = {
+"FadeIn": SubResource("Animation_p3snt"),
+"Fadeout": SubResource("Animation_0nogc"),
+"RESET": SubResource("Animation_yf22g")
+}
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Jeffery" parent="." instance=ExtResource("4_oebhw")]
 slide_on_ceiling = false
-health = 2222
+health = 2
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("toFollow")]
 z_index = 100
@@ -163,7 +282,7 @@ text = "Gun"
 horizontal_alignment = 1
 
 [node name="DeathScreenJeffery" type="Control" parent="CanvasLayer"]
-visible = false
+process_mode = 3
 material = SubResource("ShaderMaterial_dp4uq")
 layout_mode = 3
 anchors_preset = 15
@@ -184,6 +303,7 @@ grow_vertical = 2
 color = Color(0.099986, 0.099986, 0.099986, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/DeathScreenJeffery"]
+visible = false
 use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
@@ -196,28 +316,68 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DeathScreenJeffery/MarginContainer"]
+[node name="Visuals" type="Control" parent="CanvasLayer/DeathScreenJeffery/MarginContainer"]
+layout_mode = 2
+
+[node name="Backwall" type="TextureRect" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/Visuals"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -134.865
+offset_right = 256.0
+offset_bottom = 185.135
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_6lrp0")
+
+[node name="Jeffery" type="TextureRect" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/Visuals"]
+layout_mode = 2
+offset_left = 436.0
+offset_top = 212.0
+offset_right = 820.0
+offset_bottom = 532.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture = ExtResource("12_x30i3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DeathScreenJeffery/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme_override_constants/separation = 280
 
-[node name="Label" type="Label" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "YOU ARE NOW DEAD"
 
-[node name="Retry" type="Button" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/HBoxContainer"]
+[node name="Retry" type="Button" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Retry"
 
-[node name="Quit" type="Button" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/HBoxContainer"]
+[node name="Quit" type="Button" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 text = "Quit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/DeathScreenJeffery"]
+libraries = {
+"": SubResource("AnimationLibrary_k1qm4")
+}
 
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/Resume" to="CanvasLayer/PauseMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/Back To Title" to="CanvasLayer/PauseMenu" method="_on_back_to_title_pressed"]
 [connection signal="pressed" from="CanvasLayer/EvolutionScreen/MarginContainer/HBoxContainer/Sword/TextureButton" to="CanvasLayer/EvolutionScreen" method="_on_Sword_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/EvolutionScreen/MarginContainer/HBoxContainer/Gun/TextureButton" to="CanvasLayer/EvolutionScreen" method="_on_Gun_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/DeathScreenJeffery/MarginContainer/VBoxContainer/HBoxContainer/Retry" to="CanvasLayer/DeathScreenJeffery" method="_on_retry_pressed"]
+[connection signal="pressed" from="CanvasLayer/DeathScreenJeffery/MarginContainer/VBoxContainer/HBoxContainer/Quit" to="CanvasLayer/DeathScreenJeffery" method="_on_quit_pressed"]

@@ -1,14 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv7nk8ba5doq8"]
+[gd_scene load_steps=2 format=3 uid="uid://cv7nk8ba5doq8"]
 
-[ext_resource type="Script" path="res://Scenes/Checkpoint.gd" id="1_4lf20"]
+[sub_resource type="GDScript" id="GDScript_cvitc"]
+script/source = "@tool extends Area2D
+class_name Checkpoint
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_stbk4"]
+@export var shape2 : RectangleShape2D
+@export var collisionPosition: Vector2
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+
+func _ready() -> void:
+	if (!Engine.is_editor_hint()) :
+		setCollisionShape()
+
+func _process(delta: float) -> void:
+	if (Engine.is_editor_hint()) :
+		setCollisionShape()
+
+func setCollisionShape() -> void:
+	collision_shape_2d.shape = shape2
+	collision_shape_2d.position = collisionPosition
+
+func _on_body_entered(body: Node2D) -> void:
+	print(body.name)
+	GameManager.currentCheckpoint = self
+"
 
 [node name="Checkpoint" type="Area2D"]
-script = ExtResource("1_4lf20")
-collisionPosition = null
+script = SubResource("GDScript_cvitc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_stbk4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

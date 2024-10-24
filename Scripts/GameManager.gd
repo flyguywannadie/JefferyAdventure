@@ -1,7 +1,5 @@
 extends Node2D
 
-var rootScene
-
 var evolutionScreen: EvolutionScreen #= $"../CanvasLayer/EvolutionScreen"
 var deathScreen: DeathScreen #= $"../CanvasLayer/DeathScreenJeffery"
 
@@ -19,10 +17,10 @@ var movinglerp: float
 var jeffery: Jeffery
 var camera: GameCamera
 
-var currentCheckpoint: Checkpoint
-
 var gameState: String = ""
 var piecesGotten: int = 0
+
+var gameOver
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -50,21 +48,31 @@ func GetGameCamera() -> GameCamera:
 func ChangeScene(filePath: String) -> void:
 	endLevels()
 	get_tree().change_scene_to_file(filePath)
-	rootScene = get_tree().root.get_child(0)
+
+func MakeFirstScene() -> void:
+	await Signal(get_tree().create_timer(0.01), "timeout")
+	call_deferred("addLevel", "TestFirstScene")
 
 func endLevels() -> void:
 	if (currentLevel != null) :
 		currentLevel.queue_free()
 	pass
 
+func resetLevel():
+	print(currentLevel.scene_file_path)
+	var level = load(currentLevel.scene_file_path).instantiate()
+	currentLevel.queue_free()
+	get_tree().root.get_node("Node2D").add_child(level)
+	level.owner = get_tree().root.get_node("Node2D")
+	currentLevel = level as Room
+	camera.changeTrack(currentLevel.getClosestTrack(camera.position))
+
 func addLevel(levelName: String) -> void:
-	print(get_tree().root.get_child_count())
 	prevLevel = currentLevel
 	var level = load("res://Scenes/" + levelName + ".tscn").instantiate()
-	rootScene.add_child(level)
-	level.owner = rootScene
+	get_tree().root.get_node("Node2D").add_child(level)
+	level.owner = get_tree().root.get_node("Node2D")
 	currentLevel = level as Room
-	pass
 
 func SwapRoom(roomName: String, enterDirection: float):
 	# pause the game
@@ -78,11 +86,8 @@ func SwapRoom(roomName: String, enterDirection: float):
 	prevCamPos = camera.position
 	camera.changeTrack(currentLevel.getClosestTrack(camera.position))
 	nextCamPos = camera.currentTrack.placeVectorWithinBounds(camera.position)
-	# replace chackpoint with new checkpoint
-	currentCheckpoint = currentLevel.getClosestCheckpoint(jeffery.position)
 	# allow game manager to move jeffery and camera
 	moveCamJeff = true
-	pass
 
 func endSwap() -> void:
 	# stop letting gamemanger move things and reset some variables
@@ -95,10 +100,18 @@ func endSwap() -> void:
 	ResumeGame()
 	pass
 
-func JefferyDie() -> void :
-	jeffery.health = 2
-	jeffery.position = currentCheckpoint.position
-	jeffery.Reset()
+func JefferyGameOver() -> void :
+	#jeffery.position = currentCheckpoint.position
+	deathScreen.BeginGameOver()
+
+func JefferyRetry() -> void:
+	ResumeGame()
+	
+	jeffery.global_position = currentLevel.getCheckpointPosition()
+	camera.global_position = currentLevel.getCheckpointPosition()
+	resetLevel()
+	
+	jeffery.call_deferred("Reset")
 
 func _physics_process(delta: float) -> void:
 	if(moveCamJeff):

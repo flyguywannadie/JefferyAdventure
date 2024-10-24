@@ -1,14 +1,17 @@
 extends Enemy
 class_name Boss
 
-var gamemanager: GameManager
+var jeffery: Jeffery
+
 @export var pieceIHold : String
 
+@export var projectiles: Array[PackedScene]
+
+var gameProgress: int
+
 func _ready() -> void:
-	# https://www.reddit.com/r/godot/comments/16kkpo2/finding_child_node_by_type/
-	for child in get_tree().root.get_child(0).get_children():
-		if child is GameManager:
-			gamemanager = child
+	
+	jeffery = GameManager.jeffery
 	
 	match(randi_range(0, 2)):
 		0:
@@ -21,7 +24,17 @@ func _ready() -> void:
 	super._ready()
 	pass
 
+func spawnProjectile(pos: Vector2, rot: float, selection: int, amount: int = 1) -> void:
+	for x in range(amount):
+		var p = projectiles[selection].instantiate()
+		
+		p.position = pos
+		p.rotation_degrees = rot
+		
+		owner.add_child(p)
+		p.owner = owner
+
 func _die() -> void:
-	gamemanager.StartEvolution(pieceIHold)
+	GameManager.PiecePickedUp(pieceIHold)
 	super._die()
 	pass

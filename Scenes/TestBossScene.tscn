@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://b4x5i41o7t1j1"]
+[gd_scene load_steps=52 format=4 uid="uid://b4x5i41o7t1j1"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_y6yf7"]
 [ext_resource type="Script" path="res://Scripts/TankBoss.gd" id="2_kg316"]
@@ -19,8 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://deq8ackp7mr1f" path="res://Textures/ChargeBoss/TankHatchTurn2.png" id="9_er5ij"]
 [ext_resource type="Texture2D" uid="uid://c4g7q0sc4kslg" path="res://Textures/ChargeBoss/GunCharge/GunCharge2.png" id="9_yhe6x"]
 [ext_resource type="Texture2D" uid="uid://pmbyi0vje251" path="res://Textures/ChargeBoss/TankHatchTurn3.png" id="10_suh4c"]
+[ext_resource type="PackedScene" uid="uid://bhqsoqk36ebk2" path="res://Scenes/Prefabs/Projectiles/TankDynamite.tscn" id="11_5bkk8"]
 [ext_resource type="Texture2D" uid="uid://u1egukioccf8" path="res://Textures/ChargeBoss/TankHatchTurn4.png" id="11_p7jne"]
 [ext_resource type="Shader" path="res://ChargeShader.gdshader" id="12_cbvw7"]
+[ext_resource type="PackedScene" uid="uid://bc6rtses7nwf4" path="res://Scenes/Prefabs/Projectiles/TankShot.tscn" id="12_elm4q"]
 [ext_resource type="Texture2D" uid="uid://cgmhvl6vx5mnc" path="res://Textures/ChargeBoss/TankHatchTurn5.png" id="12_l26y2"]
 [ext_resource type="Texture2D" uid="uid://cx24sdw3n0qfr" path="res://Textures/ChargeBoss/TankHatchTurn6.png" id="13_kd8w1"]
 [ext_resource type="Texture2D" uid="uid://dfwu1yiwn3gva" path="res://Textures/ChargeBoss/TankHatchFlip.png" id="13_ws5tu"]
@@ -360,6 +362,7 @@ script = ExtResource("2_kg316")
 hatchAnims = NodePath("HatchAnimations")
 gunChargeSprites = Array[Texture]([ExtResource("7_xl462"), ExtResource("8_h48dl"), ExtResource("9_yhe6x"), ExtResource("8_qb71r")])
 pieceIHold = "c"
+projectiles = Array[PackedScene]([ExtResource("11_5bkk8"), ExtResource("12_elm4q")])
 anims = NodePath("TrackAnimation")
 health = 15
 GRAVITY = 100.0
@@ -379,7 +382,7 @@ flip_h = true
 z_index = -3
 z_as_relative = false
 material = SubResource("ShaderMaterial_1qovh")
-position = Vector2(-226, 13)
+position = Vector2(-215, 13)
 texture = ExtResource("8_qb71r")
 
 [node name="DynamiteHatch" type="Sprite2D" parent="Changes/BossExists/TankBoss"]

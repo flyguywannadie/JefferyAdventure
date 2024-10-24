@@ -9,9 +9,6 @@ var walkDirection: bool = true
 
 var walkOffEdge: bool = false
 
-var idleTimer: float = 1.0
-var walkTimer: float = 2.0
-
 func _ready() -> void:
 	setIdleTimer()
 	$Sprite2D.flip_h = !walkDirection
@@ -19,17 +16,14 @@ func _ready() -> void:
 
 func aiLogic(delta: float) -> void:
 	match (state):
-		0:
-			idleTimer -= delta
-			
-			if (idleTimer <= 0):
+		0: # Idle State
+			if (stateTimer <= 0):
 				setWalkTimer()
-			
-			pass
-		1:
+		1: # Walking State
 			if (is_on_wall()):
 				#print("hit wall")
 				walkDirection = !walkDirection
+			
 			visuals.flip_h = !walkDirection
 			
 			if (walkDirection) :
@@ -41,12 +35,10 @@ func aiLogic(delta: float) -> void:
 				#setMovement(0,movement.y)
 				#setIdleTimer()
 			
-			walkTimer -= delta
-			
-			if (walkTimer <= 0):
+			if (stateTimer <= 0):
 				setIdleTimer()
-			
-			pass
+	
+	super.aiLogic(delta)
 
 func setKnockback(x: float, y: float) -> void:
 	
@@ -64,13 +56,12 @@ func hitStunDone() -> void:
 func takeDamage(damage: int):
 	audioPlayer.play()
 	anims.play("Hurt")
-	hitstunAmount = hitStun
+	SetHitStun(0.5)
 	super.takeDamage(damage)
 
 func setIdleTimer() -> void:
-	idleTimer = randf_range(-2.0, 1.5)
-	if (idleTimer < 0) :
-		idleTimer = 0
+	stateTimer = randf_range(-2.0, 1.5)
+	if (stateTimer < 0) :
 		setWalkTimer()
 	else:
 		setMovement(0,movement.y)
@@ -78,8 +69,7 @@ func setIdleTimer() -> void:
 		state = 0
 		anims.play("Idle")
 
-
 func setWalkTimer() -> void:
-	walkTimer = randf_range(1.0, 3.0)
+	stateTimer = randf_range(1.0, 3.0)
 	state = 1
 	anims.play("Walk")

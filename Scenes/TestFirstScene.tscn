@@ -1,24 +1,17 @@
-[gd_scene load_steps=11 format=4 uid="uid://yvyx6mtm7sgc"]
+[gd_scene load_steps=8 format=4 uid="uid://yvyx6mtm7sgc"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_irw42"]
 [ext_resource type="PackedScene" uid="uid://bh523bxi5rvi" path="res://Scenes/Prefabs/camera_track.tscn" id="4_4j1fo"]
 [ext_resource type="PackedScene" uid="uid://soputgv8t7rk" path="res://Scenes/Prefabs/CamTrackSwitch.tscn" id="5_xoiql"]
 [ext_resource type="PackedScene" uid="uid://dc2oo5d4e4gee" path="res://Scenes/Prefabs/testguybounce.tscn" id="6_sbjgi"]
 [ext_resource type="Script" path="res://Scripts/GameStateChange.gd" id="7_dfbi7"]
-[ext_resource type="PackedScene" uid="uid://cv7nk8ba5doq8" path="res://Scenes/Prefabs/checkpoint.tscn" id="8_ioxny"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="8_yuprv"]
 [ext_resource type="PackedScene" uid="uid://v42kviymhbdq" path="res://Scenes/Prefabs/doorway.tscn" id="9_tuu40"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0u36x"]
-size = Vector2(256, 600)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_55t45"]
-size = Vector2(256, 256)
-
-[node name="FirstScene" type="Node2D" node_paths=PackedStringArray("camTracks", "checkpoints", "stateChanges")]
+[node name="FirstScene" type="Node2D" node_paths=PackedStringArray("camTracks", "checkpoint", "stateChanges")]
 script = ExtResource("1_irw42")
 camTracks = [NodePath("CameraTracks/PitCamtrack"), NodePath("CameraTracks/CameraTrack"), NodePath("CameraTracks/BottomPitTrack"), NodePath("CameraTracks/RuinedHallwayTrack"), NodePath("CameraTracks/InbetweenbottomPitTrack")]
-checkpoints = [NodePath("Checkpoint2"), NodePath("Chec2kpoint")]
+checkpoint = NodePath("Restart")
 stateChanges = NodePath("Changes")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -120,11 +113,5 @@ position = Vector2(7752, 4062)
 [node name="RigidBody2D7" parent="Changes/RemoveBackWall" instance=ExtResource("6_sbjgi")]
 position = Vector2(8499, 4037)
 
-[node name="Checkpoint2" parent="." instance=ExtResource("8_ioxny")]
-position = Vector2(4800, 4416)
-shape2 = SubResource("RectangleShape2D_0u36x")
-collisionPosition = Vector2(0, 0)
-
-[node name="Chec2kpoint" parent="." instance=ExtResource("8_ioxny")]
-shape2 = SubResource("RectangleShape2D_55t45")
-collisionPosition = Vector2(0, 0)
+[node name="Restart" type="Node2D" parent="."]
+position = Vector2(0, 64)

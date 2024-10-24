@@ -5,6 +5,11 @@ var thrownAt: float
 
 func _ready() -> void:
 	thrownAt = position.y + 10
+	
+	rotation_degrees += randf_range(-5,5)
+	
+	velocity += randf_range(-5,5)
+	
 	super._ready()
 	pass # Replace with function body.
 
