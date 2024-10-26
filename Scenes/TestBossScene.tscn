@@ -313,9 +313,10 @@ size = Vector2(384, 87)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w60wy"]
 size = Vector2(407.5, 52)
 
-[node name="BossScene" type="Node2D" node_paths=PackedStringArray("camTracks", "stateChanges")]
+[node name="BossScene" type="Node2D" node_paths=PackedStringArray("camTracks", "checkpoint", "stateChanges")]
 script = ExtResource("1_y6yf7")
 camTracks = [NodePath("CameraTrack")]
+checkpoint = NodePath("Checkpoint")
 stateChanges = NodePath("Changes")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
@@ -441,5 +442,8 @@ script = ExtResource("21_2l8m5")
 
 [node name="BossDynamite" parent="." instance=ExtResource("30_pc152")]
 position = Vector2(15582, 4265)
+
+[node name="Checkpoint" type="Node2D" parent="."]
+position = Vector2(13908, 4490)
 
 [connection signal="body_entered" from="Changes/BossExists/TankBoss/TrackDamageArea" to="Changes/BossExists/TankBoss/TrackDamageArea" method="_on_body_entered"]

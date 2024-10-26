@@ -51,6 +51,7 @@ func ChangeScene(filePath: String) -> void:
 
 func MakeFirstScene() -> void:
 	await Signal(get_tree().create_timer(0.01), "timeout")
+	gameState = ""
 	call_deferred("addLevel", "TestFirstScene")
 
 func endLevels() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cgi22rw2oexdx"]
+[gd_scene load_steps=24 format=3 uid="uid://cgi22rw2oexdx"]
 
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_mxtlc"]
 [ext_resource type="PackedScene" uid="uid://bwib2ihjobuvm" path="res://Scenes/Prefabs/jeffery.tscn" id="4_oebhw"]
@@ -10,40 +10,16 @@
 [ext_resource type="Script" path="res://Scripts/EvolutionScreen.gd" id="12_cvh8f"]
 [ext_resource type="Texture2D" uid="uid://d2tw5irnrwf6k" path="res://Textures/JefferyGameOver.png" id="12_x30i3"]
 [ext_resource type="Texture2D" uid="uid://cq67xj1g1bm8q" path="res://Textures/SwordEvoButton.png" id="13_1tk7r"]
+[ext_resource type="Shader" path="res://HealthBar.gdshader" id="14_ipcyo"]
 [ext_resource type="Texture2D" uid="uid://qotynlinrtcj" path="res://Textures/SwordEvoButtonHover.png" id="14_k02nj"]
 [ext_resource type="Texture2D" uid="uid://07jullcmmn2w" path="res://Textures/GunEvoButton.png" id="15_bv6un"]
+[ext_resource type="Texture2D" uid="uid://citn2xtmb77e3" path="res://Textures/healthbar.png" id="15_p44oh"]
+[ext_resource type="Shader" path="res://SDFExample.gdshader" id="16_d37y0"]
 [ext_resource type="Texture2D" uid="uid://dqgv2ia0li61e" path="res://Textures/GunEvoButtonHover.png" id="16_vvsn2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dp4uq"]
 shader = ExtResource("11_swtah")
 shader_parameter/fade = 0.27
-
-[sub_resource type="Animation" id="Animation_yf22g"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/fade")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.27]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MarginContainer:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_p3snt"]
 resource_name = "FadeIn"
@@ -128,6 +104,33 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_yf22g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/fade")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.27]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k1qm4"]
 _data = {
 "FadeIn": SubResource("Animation_p3snt"),
@@ -135,11 +138,20 @@ _data = {
 "RESET": SubResource("Animation_yf22g")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_agwya"]
+shader = ExtResource("14_ipcyo")
+shader_parameter/fill = 1.0
+shader_parameter/borderSize = 0.3
+shader_parameter/Test = ExtResource("15_p44oh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_giyw7"]
+shader = ExtResource("16_d37y0")
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Jeffery" parent="." instance=ExtResource("4_oebhw")]
 slide_on_ceiling = false
-health = 2
+health = 2222
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("toFollow")]
 z_index = 100
@@ -374,6 +386,21 @@ text = "Quit"
 libraries = {
 "": SubResource("AnimationLibrary_k1qm4")
 }
+
+[node name="JefferyHealthbar" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_agwya")
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 352.0
+offset_bottom = 96.0
+
+[node name="TestingSDF" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_giyw7")
+offset_left = 512.0
+offset_top = -256.0
+offset_right = 768.0
+color = Color(0.244776, 0.244776, 0.244776, 1)
 
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/Resume" to="CanvasLayer/PauseMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/Back To Title" to="CanvasLayer/PauseMenu" method="_on_back_to_title_pressed"]
