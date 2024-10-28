@@ -1,7 +1,8 @@
 extends CharacterBody2D
 class_name Character
 
-@export var health: int = 10
+@export var maxHealth: int = 10
+var health: int 
 var movement: Vector2
 @export var GRAVITY: float = 9.8
 @export var FRICTION: float = 9.8
@@ -14,6 +15,7 @@ var framesLeft: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	health = maxHealth
 	pass
 
 func _process(delta: float) -> void:

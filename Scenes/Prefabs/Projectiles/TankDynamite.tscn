@@ -60,6 +60,7 @@ script = ExtResource("1_7siyr")
 velocity = 20.0
 slowdown = 0.0
 HitEffect = ExtResource("2_kuscj")
+damage = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_mbf56")

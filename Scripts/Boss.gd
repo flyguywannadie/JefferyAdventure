@@ -12,6 +12,7 @@ var gameProgress: int
 func _ready() -> void:
 	
 	jeffery = GameManager.jeffery
+	GameManager.BossHealthbarSetup(self)
 	
 	match(randi_range(0, 2)):
 		0:
@@ -35,6 +36,7 @@ func spawnProjectile(pos: Vector2, rot: float, selection: int, amount: int = 1) 
 		p.owner = owner
 
 func _die() -> void:
+	GameManager.BossDied()
 	GameManager.PiecePickedUp(pieceIHold)
 	super._die()
 	pass

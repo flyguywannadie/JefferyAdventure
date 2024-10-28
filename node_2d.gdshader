@@ -2,7 +2,8 @@ shader_type canvas_item;
 
 
 
-uniform float size;
+//uniform float size;
+
 
 // Gotten from here https://godotshaders.com/snippet/random-value/
 float random (vec2 uv) {

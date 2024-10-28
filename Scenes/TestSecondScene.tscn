@@ -152,7 +152,6 @@ floor_snap_length = 13.5
 platform_on_leave = 2
 script = ExtResource("6_31vgy")
 anims = NodePath("AnimationPlayer")
-health = 30
 GRAVITY = 200.0
 FRICTION = 200.0
 visuals = NodePath("Sprite2D")

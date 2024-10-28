@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cgi22rw2oexdx"]
+[gd_scene load_steps=27 format=3 uid="uid://cgi22rw2oexdx"]
 
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_mxtlc"]
 [ext_resource type="PackedScene" uid="uid://bwib2ihjobuvm" path="res://Scenes/Prefabs/jeffery.tscn" id="4_oebhw"]
@@ -16,6 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://citn2xtmb77e3" path="res://Textures/healthbar.png" id="15_p44oh"]
 [ext_resource type="Shader" path="res://SDFExample.gdshader" id="16_d37y0"]
 [ext_resource type="Texture2D" uid="uid://dqgv2ia0li61e" path="res://Textures/GunEvoButtonHover.png" id="16_vvsn2"]
+[ext_resource type="Script" path="res://Healthbar.gd" id="16_xu1u0"]
+[ext_resource type="Script" path="res://BossHealthbar.gd" id="18_5cy5a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dp4uq"]
 shader = ExtResource("11_swtah")
@@ -146,12 +148,18 @@ shader_parameter/Test = ExtResource("15_p44oh")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_giyw7"]
 shader = ExtResource("16_d37y0")
+shader_parameter/size = Vector2(0.65, 0.645)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mrjfq"]
+shader = ExtResource("14_ipcyo")
+shader_parameter/fill = 1.0
+shader_parameter/borderSize = 0.3
+shader_parameter/Test = ExtResource("15_p44oh")
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Jeffery" parent="." instance=ExtResource("4_oebhw")]
 slide_on_ceiling = false
-health = 2222
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("toFollow")]
 z_index = 100
@@ -387,20 +395,36 @@ libraries = {
 "": SubResource("AnimationLibrary_k1qm4")
 }
 
-[node name="JefferyHealthbar" type="ColorRect" parent="CanvasLayer"]
+[node name="JefferyHealthbar" type="ColorRect" parent="CanvasLayer" node_paths=PackedStringArray("whoITrack")]
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_agwya")
 offset_left = 32.0
 offset_top = 32.0
 offset_right = 352.0
 offset_bottom = 96.0
+script = ExtResource("16_xu1u0")
+whoITrack = NodePath("../../Jeffery")
 
 [node name="TestingSDF" type="ColorRect" parent="CanvasLayer"]
-visible = false
+z_index = -10
+z_as_relative = false
 material = SubResource("ShaderMaterial_giyw7")
 offset_left = 512.0
 offset_top = -256.0
 offset_right = 768.0
 color = Color(0.244776, 0.244776, 0.244776, 1)
+
+[node name="BossHealthbar" type="ColorRect" parent="CanvasLayer"]
+z_index = -10
+z_as_relative = false
+material = SubResource("ShaderMaterial_mrjfq")
+offset_left = 1248.0
+offset_top = 32.0
+offset_right = 1568.0
+offset_bottom = 96.0
+scale = Vector2(-1, 1)
+script = ExtResource("18_5cy5a")
 
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/Resume" to="CanvasLayer/PauseMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/Back To Title" to="CanvasLayer/PauseMenu" method="_on_back_to_title_pressed"]

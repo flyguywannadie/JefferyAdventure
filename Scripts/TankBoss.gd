@@ -51,7 +51,12 @@ func aiLogic(delta: float) -> void:
 	if (jeffery == null) :
 		return
 	
+	gun_charge.material.set("shader_parameter/size", gunCooldown)
+	
 	var hasJefferySwitchedSides = ((jeffery.position.x - position.x < 0) && leftOrRight) || ((jeffery.position.x - position.x > 0) && !leftOrRight)
+	
+	if (gunCooldown > 0) :
+		gunCooldown -= delta
 	
 	# gun state chooser
 	match (gunState): 
@@ -81,17 +86,22 @@ func aiLogic(delta: float) -> void:
 					gunCharge += 1
 					gunCooldown = 2.1 / (gameProgress + 1.0)
 					if (gunCharge >= 4) :
-						gunCooldown = 2
-						gunCharge = 0
-						spawnProjectile(gun_charge.global_position, (0 if (leftOrRight) else 180) + gun.rotation_degrees, 1)
-					gun_charge.texture = gunChargeSprites[gunCharge]
-			else:
-				gunCooldown -= delta
+						gunState = 3
+						gunCooldown = 0.3
+					else:
+						gun_charge.texture = gunChargeSprites[gunCharge]
 		1: # throw dynamite
 			$DynamiteHatch.flip_h = !leftOrRight
 			hatchAnims.play("DynamiteThrow")
 			gunState = -1
 			gunCooldown = 1
+		3: # Shooting Gun Delay
+			if (gunCooldown <= 0):
+				gunCooldown = 2
+				gunCharge = 0
+				spawnProjectile(gun_charge.global_position, (0 if (leftOrRight) else 180) + gun.rotation_degrees, 1)
+				gunState = 0
+				gun_charge.texture = gunChargeSprites[gunCharge]
 	
 	# tank track state chooser
 	match(state):

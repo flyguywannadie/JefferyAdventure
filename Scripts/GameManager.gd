@@ -2,6 +2,7 @@ extends Node2D
 
 var evolutionScreen: EvolutionScreen #= $"../CanvasLayer/EvolutionScreen"
 var deathScreen: DeathScreen #= $"../CanvasLayer/DeathScreenJeffery"
+var bossHealthbar: BossHealthbar
 
 var startLevel: String = "TestFirstScene"
 var currentLevel: Room
@@ -100,6 +101,13 @@ func endSwap() -> void:
 	# unpause the game
 	ResumeGame()
 	pass
+
+func BossHealthbarSetup(boss: Boss) -> void:
+	bossHealthbar.bossITrack = boss
+	bossHealthbar.Appear()
+
+func BossDied() -> void:
+	bossHealthbar.Hide()
 
 func JefferyGameOver() -> void :
 	#jeffery.position = currentCheckpoint.position

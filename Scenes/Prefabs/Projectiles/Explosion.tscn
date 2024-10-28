@@ -96,7 +96,7 @@ script = ExtResource("1_lkaii")
 velocity = 0.0
 slowdown = 0.0
 persistantEffect = true
-damage = 5
+damage = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_575dq")

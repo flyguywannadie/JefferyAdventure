@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bwib2ihjobuvm"]
+[gd_scene load_steps=21 format=3 uid="uid://bwib2ihjobuvm"]
 
 [ext_resource type="Script" path="res://Scripts/Jeffery.gd" id="1_vcdsa"]
 [ext_resource type="Shader" path="res://node_2d.gdshader" id="2_q8qc8"]
@@ -14,15 +14,9 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rsqeg"]
 shader = ExtResource("2_q8qc8")
-shader_parameter/size = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_binv0"]
-shader = ExtResource("2_q8qc8")
-shader_parameter/size = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x4i71"]
 shader = ExtResource("2_q8qc8")
-shader_parameter/size = null
 
 [sub_resource type="Animation" id="Animation_oy8t5"]
 resource_name = "Hurt"
@@ -194,33 +188,37 @@ floor_max_angle = 1.0472
 floor_snap_length = 7.3
 script = ExtResource("1_vcdsa")
 speed = 600.0
-health = 111
 GRAVITY = 64.0
 FRICTION = 20.0
 visuals = NodePath("Node2D/Sprite")
 audioPlayer = NodePath("AudioStreamPlayer2D")
 
 [node name="Node2D" type="Node2D" parent="."]
+use_parent_material = true
 
 [node name="Sprite" type="Sprite2D" parent="Node2D"]
 z_as_relative = false
-material = SubResource("ShaderMaterial_binv0")
+use_parent_material = true
 texture = ExtResource("3_ktrsr")
 
 [node name="GunArm" type="Node2D" parent="Node2D"]
+use_parent_material = true
 position = Vector2(0, 5)
 
 [node name="GunHolder" type="Node2D" parent="Node2D/GunArm"]
+use_parent_material = true
 position = Vector2(54, 0)
 
 [node name="GunArmSprite" type="Sprite2D" parent="Node2D/GunArm"]
 z_index = -2
 z_as_relative = false
 material = SubResource("ShaderMaterial_x4i71")
+use_parent_material = true
 position = Vector2(8, -5)
 texture = ExtResource("4_pjefk")
 
 [node name="SwordArm" type="Node2D" parent="Node2D"]
+use_parent_material = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
 root_node = NodePath("../..")

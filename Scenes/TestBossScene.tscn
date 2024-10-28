@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://b4x5i41o7t1j1"]
+[gd_scene load_steps=51 format=4 uid="uid://b4x5i41o7t1j1"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_y6yf7"]
 [ext_resource type="Script" path="res://Scripts/TankBoss.gd" id="2_kg316"]
@@ -37,13 +37,13 @@
 [ext_resource type="Texture2D" uid="uid://dv7bheh5gubxf" path="res://Textures/ChargeBoss/TankHatch/HatchClose1.png" id="24_0d1ra"]
 [ext_resource type="Texture2D" uid="uid://cboj188p3alkw" path="res://Textures/ChargeBoss/TankHatch/HatchClose2.png" id="25_cpsjk"]
 [ext_resource type="Texture2D" uid="uid://bn7g88haev5iv" path="res://Textures/ChargeBoss/TankHatch/HatchClose3.png" id="26_6blii"]
-[ext_resource type="PackedScene" uid="uid://bnvs2mkbj80ef" path="res://Scenes/Prefabs/Projectiles/Explosion.tscn" id="30_pc152"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_443x5"]
 size = Vector2(2115, 36)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1qovh"]
 shader = ExtResource("12_cbvw7")
+shader_parameter/size = 0.0
 
 [sub_resource type="Animation" id="Animation_rbmun"]
 resource_name = "MoveTracks"
@@ -365,7 +365,6 @@ gunChargeSprites = Array[Texture]([ExtResource("7_xl462"), ExtResource("8_h48dl"
 pieceIHold = "c"
 projectiles = Array[PackedScene]([ExtResource("11_5bkk8"), ExtResource("12_elm4q")])
 anims = NodePath("TrackAnimation")
-health = 15
 GRAVITY = 100.0
 FRICTION = 100.0
 visuals = NodePath("TankTracks")
@@ -423,6 +422,7 @@ shape = SubResource("RectangleShape2D_0b5nr")
 [node name="TrackDamageArea" type="Area2D" parent="Changes/BossExists/TankBoss"]
 collision_layer = 32
 script = ExtResource("15_f2405")
+damage = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Changes/BossExists/TankBoss/TrackDamageArea"]
 position = Vector2(-0.25, 100)
@@ -439,9 +439,6 @@ visible = false
 tile_map_data = PackedByteArray("AABsACIAAQAAAAAAAABtACMAAQAAAAAAAABrACIAAQACAAAAAABsACMAAQACAAAAAABtACQAAQACAAAAAABsACQAAQACAAEAAABrACQAAQACAAEAAABrACMAAQACAAEAAAA=")
 tile_set = ExtResource("3_nhxys")
 script = ExtResource("21_2l8m5")
-
-[node name="BossDynamite" parent="." instance=ExtResource("30_pc152")]
-position = Vector2(15582, 4265)
 
 [node name="Checkpoint" type="Node2D" parent="."]
 position = Vector2(13908, 4490)
