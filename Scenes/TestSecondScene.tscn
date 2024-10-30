@@ -93,9 +93,10 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lfeif"]
 size = Vector2(52.25, 86.5)
 
-[node name="SecondScene" type="Node2D" node_paths=PackedStringArray("camTracks", "stateChanges")]
+[node name="SecondScene" type="Node2D" node_paths=PackedStringArray("camTracks", "checkpoint", "stateChanges")]
 script = ExtResource("1_27lyf")
 camTracks = [NodePath("CameraTrack")]
+checkpoint = NodePath("CheckPoint")
 stateChanges = NodePath("Changes")
 
 [node name="2ndRoomTest" type="TileMapLayer" parent="."]
@@ -191,5 +192,8 @@ expectedGameState = "f"
 [node name="TileMapLayer" type="TileMapLayer" parent="Changes/Fast Jumps"]
 tile_map_data = PackedByteArray("AABOACMAAQABAAEAAABOACIAAQABAAMAAABPACIAAQAAAAAAAABPACMAAQADAAIAAABXACEAAQAAAAAAAABWACEAAQABAAMAAABeACMAAQABAAAAAABeACIAAQABAAMAAABfACIAAQAAAAAAAABfACMAAQACAAAAAABWACIAAQABAAAAAABXACIAAQADAAIAAABXACMAAQADAAIAAABWACMAAQABAAAAAABeACQAAQABAAAAAABeACUAAQABAAAAAABeACYAAQABAAAAAABWACQAAQABAAAAAABWACUAAQABAAAAAABWACYAAQABAAAAAABXACQAAQADAAIAAABXACUAAQADAAIAAABXACYAAQADAAIAAABOACQAAQACAAEAAABOACUAAQACAAEAAABOACYAAQACAAEAAABPACQAAQADAAIAAABPACUAAQADAAIAAABPACYAAQADAAIAAAA=")
 tile_set = ExtResource("2_j2dbk")
+
+[node name="CheckPoint" type="Node2D" parent="."]
+position = Vector2(9024, 4096)
 
 [connection signal="body_entered" from="Changes/Big Enemy Deadly/God/Damage" to="Changes/Big Enemy Deadly/God/Damage" method="_on_body_entered"]

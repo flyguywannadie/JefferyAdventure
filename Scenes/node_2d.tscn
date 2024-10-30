@@ -1,12 +1,13 @@
-[gd_scene load_steps=27 format=3 uid="uid://cgi22rw2oexdx"]
+[gd_scene load_steps=29 format=3 uid="uid://cgi22rw2oexdx"]
 
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_mxtlc"]
+[ext_resource type="Shader" path="res://PostProcessShader.gdshader" id="4_7nfid"]
 [ext_resource type="PackedScene" uid="uid://bwib2ihjobuvm" path="res://Scenes/Prefabs/jeffery.tscn" id="4_oebhw"]
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="7_2u6g4"]
 [ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="11_1d1kq"]
 [ext_resource type="Shader" path="res://FadingShader.gdshader" id="11_swtah"]
 [ext_resource type="Texture2D" uid="uid://00pjhuxgfex0" path="res://Textures/GameOverBackWall.png" id="12_6lrp0"]
-[ext_resource type="Script" path="res://Scenes/DeathScreen.gd" id="12_bf6tn"]
+[ext_resource type="Script" path="res://Scripts/DeathScreen.gd" id="12_bf6tn"]
 [ext_resource type="Script" path="res://Scripts/EvolutionScreen.gd" id="12_cvh8f"]
 [ext_resource type="Texture2D" uid="uid://d2tw5irnrwf6k" path="res://Textures/JefferyGameOver.png" id="12_x30i3"]
 [ext_resource type="Texture2D" uid="uid://cq67xj1g1bm8q" path="res://Textures/SwordEvoButton.png" id="13_1tk7r"]
@@ -16,8 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://citn2xtmb77e3" path="res://Textures/healthbar.png" id="15_p44oh"]
 [ext_resource type="Shader" path="res://SDFExample.gdshader" id="16_d37y0"]
 [ext_resource type="Texture2D" uid="uid://dqgv2ia0li61e" path="res://Textures/GunEvoButtonHover.png" id="16_vvsn2"]
-[ext_resource type="Script" path="res://Healthbar.gd" id="16_xu1u0"]
-[ext_resource type="Script" path="res://BossHealthbar.gd" id="18_5cy5a"]
+[ext_resource type="Script" path="res://Scripts/Healthbar.gd" id="16_xu1u0"]
+[ext_resource type="Script" path="res://Scripts/BossHealthbar.gd" id="18_5cy5a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dp4uq"]
 shader = ExtResource("11_swtah")
@@ -156,6 +157,9 @@ shader_parameter/fill = 1.0
 shader_parameter/borderSize = 0.3
 shader_parameter/Test = ExtResource("15_p44oh")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q3wrm"]
+shader = ExtResource("4_7nfid")
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Jeffery" parent="." instance=ExtResource("4_oebhw")]
@@ -167,6 +171,7 @@ ignore_rotation = false
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("7_2u6g4")
 toFollow = NodePath("../Jeffery")
+shakeIntensity = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
 visible = false
@@ -425,6 +430,19 @@ offset_right = 1568.0
 offset_bottom = 96.0
 scale = Vector2(-1, 1)
 script = ExtResource("18_5cy5a")
+
+[node name="PostProcess" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="PostProcess" type="ColorRect" parent="PostProcess"]
+z_index = -1
+z_as_relative = false
+material = SubResource("ShaderMaterial_q3wrm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/Resume" to="CanvasLayer/PauseMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/Back To Title" to="CanvasLayer/PauseMenu" method="_on_back_to_title_pressed"]

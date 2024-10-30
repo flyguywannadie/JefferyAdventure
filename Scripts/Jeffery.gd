@@ -87,12 +87,15 @@ func _physics_process(delta: float) -> void:
 		onGround = true
 	
 	if (Input.is_action_just_pressed("jef_Jump") && onGround):
-		onGround = false
-		cayoteTime = -1
-		addMovement(0,-jumpPower/1.5)
-		jumpTimer = 0.15
+		if (Input.is_action_pressed("jef_down") || Input.is_action_just_pressed("jef_down")) :
+			position.y += 1
+		else:
+			onGround = false
+			cayoteTime = -1
+			addMovement(0,-jumpPower/1.5)
+			jumpTimer = 0.15
 	if (Input.is_action_pressed("jef_Jump") && jumpTimer > 0):
-		addMovement(0,-jumpPower/20.0)
+		addMovement(0,-jumpPower/19.0)
 		jumpTimer -= delta
 	if (Input.is_action_just_released("jef_Jump")):
 		jumpTimer = 0

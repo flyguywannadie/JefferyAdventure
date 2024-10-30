@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bnvs2mkbj80ef"]
+[gd_scene load_steps=16 format=3 uid="uid://bnvs2mkbj80ef"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_lkaii"]
 [ext_resource type="Texture2D" uid="uid://r52iqyxd5e1" path="res://Textures/ChargeBoss/Explosion/Explosion9.png" id="2_575dq"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bq62teevhrmxc" path="res://Textures/ChargeBoss/Explosion/Explosion7.png" id="8_ef82l"]
 [ext_resource type="Texture2D" uid="uid://deaxxmtype3rj" path="res://Textures/ChargeBoss/Explosion/Explosion8.png" id="9_176hl"]
 [ext_resource type="AudioStream" uid="uid://d2i348gd88es4" path="res://Sounds/ExplosionSound.wav" id="10_io764"]
+[ext_resource type="Script" path="res://Scripts/ScreenShakeCauser.gd" id="11_48eca"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4im6f"]
 size = Vector2(192, 192)
@@ -114,5 +115,10 @@ autoplay = "Explosion"
 stream = ExtResource("10_io764")
 autoplay = true
 max_distance = 10000.0
+
+[node name="ScreenShakeCauser" type="Node2D" parent="."]
+script = ExtResource("11_48eca")
+shakeType = 1
+intensity = 1.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

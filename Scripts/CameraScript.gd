@@ -8,6 +8,11 @@ var followPreviousPosition: Vector2
 
 var changeProgress: float = 0.0
 
+# screen shake stuff
+@export var shakeIntensity: float = 0.0
+var shakeOffset: Vector2
+var shakeAmount : Vector2 = Vector2(50.0,50.0)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.SetGameCamera(self)
@@ -16,6 +21,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
+	if (shakeIntensity > 0) :
+		shakeIntensity -= delta
+		shakeOffset = shakeAmount * shakeIntensity
+		
+		
 	
 	if (currentTrack != null && toFollow != null):
 		# move the camera to desired location relative to player
@@ -43,6 +54,12 @@ func _process(delta: float) -> void:
 		position = currentTrack.placeVectorWithinBounds(toFollow.position) + followOffset
 		
 		#followPreviousPosition = toFollow.position
+	position += shakeOffset
+	pass
+
+func ScreenShake(dir: Vector2, intensity: float):
+	shakeIntensity = intensity
+	shakeAmount = dir * 50.0
 	pass
 
 func changeTrack(newTrack: CamTrack) -> void:
