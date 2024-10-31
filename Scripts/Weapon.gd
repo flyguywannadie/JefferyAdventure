@@ -11,7 +11,6 @@ var cooldown: float = 1
 var readyUse: bool = true
 var pressed: bool = false
 @export var visuals: Sprite2D
-@export var audioPlayer: AudioStreamPlayer2D
 
 @export var dEvo : PackedScene
 @export var cEvo : PackedScene
@@ -48,8 +47,8 @@ func _physics_process(delta: float) -> void:
 	
 	pass
 
-func playAudio() -> void:
-	audioPlayer.play()
+func playAudio(name: String) -> void:
+	SoundManager.PlaySound(name)
 
 func _input(event: InputEvent) -> void:
 	if (!enabled) :

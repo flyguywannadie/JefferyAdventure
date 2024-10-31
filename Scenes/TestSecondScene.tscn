@@ -143,7 +143,7 @@ visible = false
 script = ExtResource("5_ut3tb")
 expectedGameState = "d"
 
-[node name="God" type="CharacterBody2D" parent="Changes/Big Enemy Deadly" node_paths=PackedStringArray("anims", "visuals", "audioPlayer")]
+[node name="God" type="CharacterBody2D" parent="Changes/Big Enemy Deadly" node_paths=PackedStringArray("anims", "visuals")]
 position = Vector2(11136, 4140)
 scale = Vector2(8, 8)
 collision_layer = 2
@@ -156,7 +156,6 @@ anims = NodePath("AnimationPlayer")
 GRAVITY = 200.0
 FRICTION = 200.0
 visuals = NodePath("Sprite2D")
-audioPlayer = NodePath("AudioStreamPlayer2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="Changes/Big Enemy Deadly/God"]
 material = ExtResource("7_kurnn")

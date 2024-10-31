@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bwib2ihjobuvm"]
+[gd_scene load_steps=20 format=3 uid="uid://bwib2ihjobuvm"]
 
 [ext_resource type="Script" path="res://Scripts/Jeffery.gd" id="1_vcdsa"]
 [ext_resource type="Shader" path="res://node_2d.gdshader" id="2_q8qc8"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://dg0wljoyh1bts" path="res://Textures/JefferyWalkAnim/005.png" id="7_vhmne"]
 [ext_resource type="Texture2D" uid="uid://bw30y4w4q5wkc" path="res://Textures/JefferyWalkAnim/006.png" id="8_jn2f0"]
 [ext_resource type="Texture2D" uid="uid://bjlm6w5ic53au" path="res://Textures/JefferyWalkAnim/JefferyHurt.png" id="10_cr6eu"]
-[ext_resource type="AudioStream" uid="uid://cpkr8rhdhgtuf" path="res://Sounds/Hurt.wav" id="11_34jt6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rsqeg"]
 shader = ExtResource("2_q8qc8")
@@ -180,7 +179,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkrwf"]
 size = Vector2(73, 171)
 
-[node name="Jeffery" type="CharacterBody2D" node_paths=PackedStringArray("visuals", "audioPlayer")]
+[node name="Jeffery" type="CharacterBody2D" node_paths=PackedStringArray("visuals")]
 material = SubResource("ShaderMaterial_rsqeg")
 collision_mask = 42
 floor_constant_speed = true
@@ -191,7 +190,6 @@ speed = 600.0
 GRAVITY = 64.0
 FRICTION = 20.0
 visuals = NodePath("Node2D/Sprite")
-audioPlayer = NodePath("AudioStreamPlayer2D")
 
 [node name="Node2D" type="Node2D" parent="."]
 use_parent_material = true
@@ -229,6 +227,3 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, 2.5)
 shape = SubResource("RectangleShape2D_fkrwf")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("11_34jt6")

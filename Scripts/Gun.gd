@@ -19,8 +19,7 @@ func onUse() -> void:
 	#print("weaponUse")
 	startCooldown()
 	SpawnBullet()
-	if (audioPlayer != null) :
-		audioPlayer.play()
+	playAudio("Shoot")
 	$AnimationPlayer.play("GunShoot")
 	pass
 

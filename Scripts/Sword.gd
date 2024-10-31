@@ -23,7 +23,7 @@ func endCooldown() -> void:
 func onUse() -> void:
 	#print("weaponUse")
 	startCooldown()
-	audioPlayer.play()
+	playAudio("Slash")
 	#print("SwordSlash")
 	$AnimationPlayer.play("SwordSlash")
 	pass

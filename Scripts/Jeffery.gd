@@ -123,7 +123,7 @@ func _physics_process(delta: float) -> void:
 
 func takeDamage(damage: int):
 	anims.play("Hurt")
-	audioPlayer.play()
+	SoundManager.PlaySound("Hurt")
 	hitStun = 0.33
 	iLength = 1.5
 	collision_layer = 64
@@ -134,12 +134,10 @@ func takeDamage(damage: int):
 func Reset() -> void:
 	hitStun = 0;
 	
-	health = 2
+	health = maxHealth
 	
 	setMovement(0,0)
 	setKnockback(0,0)
-	
-	audioPlayer.stop()
 	
 	visuals.visible = true
 	currentGun.visuals.visible = visuals.visible

@@ -17,21 +17,19 @@ var alreadyHit: Array[Node2D]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
-	
 	motion = Vector2(velocity, 0)
 	#print("before rot ", motion, " and ", rotation)
 	motion = motion.rotated(rotation)
 	#print("after rot ", motion)
-	pass # Replace with function body.
 
 func _process(delta: float) -> void:
 	
 	lifetime -= delta
 	if (lifetime <= 0) :
 		_bulletDeath()
-	
-	pass
+
+func PlayAudio(name: String) -> void:
+	SoundManager.PlaySound(name)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -51,11 +49,9 @@ func _physics_process(delta: float) -> void:
 	
 	if (dieOnStop && motion.distance_to(Vector2(0,0)) < 1) :
 		_bulletDeath()
-	pass
 
 func ApplySlowdown(delta: float) -> void:
 	motion = lerp(motion, Vector2(0,0), slowdown * delta)
-	pass
 
 func _bulletDeath() -> void:
 	if (HitEffect != null):
@@ -65,7 +61,6 @@ func _bulletDeath() -> void:
 		deathEffect.set_deferred("owner", owner)
 	
 	queue_free()
-	pass
 
 func _hitCharacter(chara: Character):
 	chara.setKnockback(knockback.x * sign(motion.x), knockback.y * sign(motion.y))
@@ -91,5 +86,3 @@ func _on_body_entered(body: Node2D) -> void:
 		collision_layer = 0
 	else:
 		_bulletDeath()
-	
-	pass

@@ -30,12 +30,12 @@ var moveDirection: bool
 var speed: int = 200
 
 func _ready() -> void:
+	gameProgress = GameManager.piecesGotten
+	state = 0
+	maxHealth = 5 + (10 * (gameProgress + 1))
+	speed += 50 * gameProgress
 	super._ready()
 	
-	state = 0
-	gameProgress = GameManager.piecesGotten
-	health += 10 * gameProgress
-	speed += 50 * gameProgress
 
 func setKnockback(x:float, y:float):
 	pass

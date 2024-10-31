@@ -11,7 +11,6 @@ var knockback: float
 var flashFrames: int = 3
 var framesLeft: int
 @export var visuals: Sprite2D
-@export var audioPlayer: AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

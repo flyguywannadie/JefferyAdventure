@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bnvs2mkbj80ef"]
+[gd_scene load_steps=15 format=3 uid="uid://bnvs2mkbj80ef"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_lkaii"]
 [ext_resource type="Texture2D" uid="uid://r52iqyxd5e1" path="res://Textures/ChargeBoss/Explosion/Explosion9.png" id="2_575dq"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://dnx5bg66nccnf" path="res://Textures/ChargeBoss/Explosion/Explosion6.png" id="7_c1w30"]
 [ext_resource type="Texture2D" uid="uid://bq62teevhrmxc" path="res://Textures/ChargeBoss/Explosion/Explosion7.png" id="8_ef82l"]
 [ext_resource type="Texture2D" uid="uid://deaxxmtype3rj" path="res://Textures/ChargeBoss/Explosion/Explosion8.png" id="9_176hl"]
-[ext_resource type="AudioStream" uid="uid://d2i348gd88es4" path="res://Sounds/ExplosionSound.wav" id="10_io764"]
 [ext_resource type="Script" path="res://Scripts/ScreenShakeCauser.gd" id="11_48eca"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4im6f"]
@@ -37,9 +36,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.766667),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.766667),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": ["ExplosionSound"],
+"method": &"PlayAudio"
+}, {
 "args": [],
 "method": &"_bulletDeath"
 }]
@@ -110,11 +112,6 @@ libraries = {
 "": SubResource("AnimationLibrary_chqdb")
 }
 autoplay = "Explosion"
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_io764")
-autoplay = true
-max_distance = 10000.0
 
 [node name="ScreenShakeCauser" type="Node2D" parent="."]
 script = ExtResource("11_48eca")

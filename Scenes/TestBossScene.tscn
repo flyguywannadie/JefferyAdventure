@@ -346,7 +346,7 @@ shape = SubResource("RectangleShape2D_443x5")
 
 [node name="BossExists" type="Node2D" parent="Changes"]
 script = ExtResource("5_a12qr")
-condition = 2
+condition = 1
 
 [node name="TankBoss" type="CharacterBody2D" parent="Changes/BossExists" node_paths=PackedStringArray("hatchAnims", "anims", "visuals")]
 position = Vector2(15564, 4358)

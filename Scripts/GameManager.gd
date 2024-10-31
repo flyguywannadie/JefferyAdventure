@@ -130,8 +130,6 @@ func _physics_process(delta: float) -> void:
 		
 		if (movinglerp > 1) :
 			endSwap()
-	
-	pass
 
 func ShakeScreenDirection(emitterpos: Vector2, intensity: float) -> void:
 	camera.ScreenShake((jeffery.global_position - emitterpos).normalized(), intensity)
@@ -141,7 +139,6 @@ func ShakeScreen(intensity: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	pass
-		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -154,8 +151,6 @@ func _process(delta: float) -> void:
 			PiecePickedUp("c")
 		if (Input.is_key_pressed(KEY_N)):
 			PiecePickedUp("f")
-	
-	pass
 
 func PiecePickedUp(piece: String) -> void:
 	PauseGame()
