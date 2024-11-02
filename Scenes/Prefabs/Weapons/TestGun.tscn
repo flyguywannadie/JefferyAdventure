@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://crao8r2kw8mhy"]
+[gd_scene load_steps=15 format=3 uid="uid://crao8r2kw8mhy"]
 
 [ext_resource type="Script" path="res://Scripts/Gun.gd" id="1_yvqmw"]
 [ext_resource type="Texture2D" uid="uid://cab61l5aahjll" path="res://Textures/Gun.png" id="2_103kc"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://mai187yxyo5a" path="res://Scenes/Prefabs/Weapons/GrappleHook.tscn" id="4_ab1ey"]
 [ext_resource type="Texture2D" uid="uid://cgkbwkj4tgprx" path="res://Textures/BaseGun/003.png" id="4_lj184"]
 [ext_resource type="Texture2D" uid="uid://bek86tx1noxal" path="res://Textures/BaseGun/004.png" id="5_j3kh6"]
+[ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="6_2lqud"]
 [ext_resource type="AudioStream" uid="uid://dbk8gcdjcbdu7" path="res://Sounds/Shoot.wav" id="9_wkvs7"]
 
 [sub_resource type="Animation" id="Animation_83tqf"]
@@ -63,14 +64,13 @@ _data = {
 "RESET": SubResource("Animation_8f8m3")
 }
 
-[node name="Weapon" type="Node2D" node_paths=PackedStringArray("bulletSpawn", "visuals", "audioPlayer")]
+[node name="Weapon" type="Node2D" node_paths=PackedStringArray("bulletSpawn", "visuals")]
 z_index = -1
 z_as_relative = false
 script = ExtResource("1_yvqmw")
 bulletSpawn = NodePath("BulletSpawn")
 COOLDOWNLENGTH = 0.75
 visuals = NodePath("Sprite2D")
-audioPlayer = NodePath("AudioStreamPlayer2D")
 dEvo = ExtResource("2_nwjkh")
 cEvo = ExtResource("3_b1775")
 fEvo = ExtResource("4_ab1ey")
@@ -81,6 +81,11 @@ texture = ExtResource("2_103kc")
 
 [node name="BulletSpawn" type="Node2D" parent="."]
 position = Vector2(53, -11)
+
+[node name="Sprite2D2" type="Sprite2D" parent="BulletSpawn"]
+visible = false
+scale = Vector2(20, 20)
+texture = ExtResource("6_2lqud")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cgi22rw2oexdx"]
+[gd_scene load_steps=31 format=3 uid="uid://cgi22rw2oexdx"]
 
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_mxtlc"]
 [ext_resource type="Shader" path="res://PostProcessShader.gdshader" id="4_7nfid"]
@@ -19,6 +19,13 @@
 [ext_resource type="Texture2D" uid="uid://dqgv2ia0li61e" path="res://Textures/GunEvoButtonHover.png" id="16_vvsn2"]
 [ext_resource type="Script" path="res://Scripts/Healthbar.gd" id="16_xu1u0"]
 [ext_resource type="Script" path="res://Scripts/BossHealthbar.gd" id="18_5cy5a"]
+[ext_resource type="Script" path="res://Scripts/post_process.gd" id="20_tcyl4"]
+[ext_resource type="Script" path="res://Scripts/label.gd" id="21_6kcmb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q3wrm"]
+shader = ExtResource("4_7nfid")
+shader_parameter/colorTint = Color(0, 0, 0, 1)
+shader_parameter/colorSprites = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dp4uq"]
 shader = ExtResource("11_swtah")
@@ -157,9 +164,6 @@ shader_parameter/fill = 1.0
 shader_parameter/borderSize = 0.3
 shader_parameter/Test = ExtResource("15_p44oh")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q3wrm"]
-shader = ExtResource("4_7nfid")
-
 [node name="Node2D" type="Node2D"]
 
 [node name="Jeffery" parent="." instance=ExtResource("4_oebhw")]
@@ -177,6 +181,19 @@ shakeIntensity = 0.5
 visible = false
 scale = Vector2(25, 25)
 texture = ExtResource("2_mxtlc")
+
+[node name="PostProcess" type="CanvasLayer" parent="."]
+
+[node name="PostProcess" type="ColorRect" parent="PostProcess"]
+z_index = -5
+z_as_relative = false
+material = SubResource("ShaderMaterial_q3wrm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("20_tcyl4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -431,18 +448,10 @@ offset_bottom = 96.0
 scale = Vector2(-1, 1)
 script = ExtResource("18_5cy5a")
 
-[node name="PostProcess" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="PostProcess" type="ColorRect" parent="PostProcess"]
-z_index = -1
-z_as_relative = false
-material = SubResource("ShaderMaterial_q3wrm")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 256.0
+offset_bottom = 128.0
+script = ExtResource("21_6kcmb")
 
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/Resume" to="CanvasLayer/PauseMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/Back To Title" to="CanvasLayer/PauseMenu" method="_on_back_to_title_pressed"]

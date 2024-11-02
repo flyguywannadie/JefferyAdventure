@@ -24,6 +24,39 @@ tracks/0/keys = {
 "values": [ExtResource("3_m10b4")]
 }
 
+[sub_resource type="Animation" id="Animation_1j75h"]
+resource_name = "SwordDown"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("6_e7osj"), ExtResource("7_e52p0")]
+}
+
+[sub_resource type="Animation" id="Animation_dnutw"]
+resource_name = "SwordHold"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_jc6ws")]
+}
+
 [sub_resource type="Animation" id="Animation_6paf1"]
 resource_name = "SwordSlash"
 length = 0.5
@@ -55,39 +88,6 @@ tracks/1/keys = {
 "args": [],
 "method": &"swordDown"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_dnutw"]
-resource_name = "SwordHold"
-length = 0.1
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_jc6ws")]
-}
-
-[sub_resource type="Animation" id="Animation_1j75h"]
-resource_name = "SwordDown"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("6_e7osj"), ExtResource("7_e52p0")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x2h1l"]

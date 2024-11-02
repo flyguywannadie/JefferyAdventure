@@ -46,13 +46,13 @@ func onRelease() -> void:
 
 func spawnHitbox() -> void:
 	var s = slash.instantiate()
-	s.position = getSlashSpawnPosition()
+	s.position = slashSpawn.global_position
 	#s.rotation_degrees = 0 if (global_scale.y == 1) else 90
 	var s2 = s as Bullet
 	if (s2):
 		s2.damage += roundi(totalBonusTime)
 		print("slash Damage ", s2.damage, " added ", totalBonusTime )
-	owner.add_child(s)
+	owner.owner.add_child(s)
 	pass
 
 func swordDown() -> void:

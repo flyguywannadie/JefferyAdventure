@@ -35,6 +35,9 @@ func _physics_process(delta: float) -> void:
 	# redoing the same thing but with x movement
 	movement.x = MoveTowardsZero(movement.x, FRICTION)
 	
+	if (sign(movement.x) != sign(knockback) && movement.x != 0) :
+		knockback = MoveTowardsZero(knockback, FRICTION)
+	
 	move_and_slide()
 	
 	if (is_on_ceiling()):
@@ -47,8 +50,6 @@ func _physics_process(delta: float) -> void:
 	
 	if (is_on_wall()):
 		knockback = 0
-	
-	pass
 
 func MoveTowardsZero(value: float, speed: float) -> float:
 	# moves a value towards 0 using a constant speed

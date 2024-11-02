@@ -25,8 +25,7 @@ func _process(delta: float) -> void:
 	if (shakeIntensity > 0) :
 		shakeIntensity -= delta
 		shakeOffset = shakeAmount * shakeIntensity
-		
-		
+	
 	
 	if (currentTrack != null && toFollow != null):
 		# move the camera to desired location relative to player

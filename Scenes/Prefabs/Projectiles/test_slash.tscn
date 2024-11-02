@@ -16,7 +16,8 @@ damage = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
-scale = Vector2(100, 122.471)
+position = Vector2(13, 29.3823)
+scale = Vector2(126, 181.236)
 texture = ExtResource("2_usbh8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

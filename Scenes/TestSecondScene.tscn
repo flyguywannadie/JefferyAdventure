@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://cv7qnaqkfgdmk"]
+[gd_scene load_steps=24 format=4 uid="uid://cv7qnaqkfgdmk"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_27lyf"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="2_j2dbk"]
@@ -93,6 +93,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lfeif"]
 size = Vector2(52.25, 86.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abjtk"]
+size = Vector2(1920, 128)
+
 [node name="SecondScene" type="Node2D" node_paths=PackedStringArray("camTracks", "checkpoint", "stateChanges")]
 script = ExtResource("1_27lyf")
 camTracks = [NodePath("CameraTrack")]
@@ -184,7 +187,6 @@ shape = SubResource("RectangleShape2D_lfeif")
 stream = ExtResource("14_fvpes")
 
 [node name="Fast Jumps" type="Node2D" parent="Changes"]
-visible = false
 script = ExtResource("5_ut3tb")
 expectedGameState = "f"
 
@@ -192,7 +194,18 @@ expectedGameState = "f"
 tile_map_data = PackedByteArray("AABOACMAAQABAAEAAABOACIAAQABAAMAAABPACIAAQAAAAAAAABPACMAAQADAAIAAABXACEAAQAAAAAAAABWACEAAQABAAMAAABeACMAAQABAAAAAABeACIAAQABAAMAAABfACIAAQAAAAAAAABfACMAAQACAAAAAABWACIAAQABAAAAAABXACIAAQADAAIAAABXACMAAQADAAIAAABWACMAAQABAAAAAABeACQAAQABAAAAAABeACUAAQABAAAAAABeACYAAQABAAAAAABWACQAAQABAAAAAABWACUAAQABAAAAAABWACYAAQABAAAAAABXACQAAQADAAIAAABXACUAAQADAAIAAABXACYAAQADAAIAAABOACQAAQACAAEAAABOACUAAQACAAEAAABOACYAAQACAAEAAABPACQAAQADAAIAAABPACUAAQADAAIAAABPACYAAQADAAIAAAA=")
 tile_set = ExtResource("2_j2dbk")
 
+[node name="DamageArea" type="Area2D" parent="Changes/Fast Jumps"]
+position = Vector2(11136, 4992)
+collision_layer = 33
+collision_mask = 33
+script = ExtResource("13_yp1l2")
+damage = 1111111
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Changes/Fast Jumps/DamageArea"]
+shape = SubResource("RectangleShape2D_abjtk")
+
 [node name="CheckPoint" type="Node2D" parent="."]
 position = Vector2(9024, 4096)
 
 [connection signal="body_entered" from="Changes/Big Enemy Deadly/God/Damage" to="Changes/Big Enemy Deadly/God/Damage" method="_on_body_entered"]
+[connection signal="body_entered" from="Changes/Fast Jumps/DamageArea" to="Changes/Fast Jumps/DamageArea" method="_on_body_entered"]

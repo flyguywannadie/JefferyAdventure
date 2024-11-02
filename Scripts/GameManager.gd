@@ -61,13 +61,17 @@ func endLevels() -> void:
 	pass
 
 func resetLevel():
-	print(currentLevel.scene_file_path)
 	var level = load(currentLevel.scene_file_path).instantiate()
 	currentLevel.queue_free()
 	get_tree().root.get_node("Node2D").add_child(level)
 	level.owner = get_tree().root.get_node("Node2D")
 	currentLevel = level as Room
-	camera.changeTrack(currentLevel.getClosestTrack(camera.position))
+	currentLevel.gameStateChanges(gameState)
+	camera.changeTrack(currentLevel.getClosestTrack(currentLevel.getCheckpointPosition()))
+	print(camera.global_position)
+	print(camera.currentTrack.placeVectorWithinBounds(currentLevel.getCheckpointPosition()))
+	camera.global_position = camera.currentTrack.placeVectorWithinBounds(currentLevel.getCheckpointPosition())
+	print(camera.global_position)
 
 func addLevel(levelName: String) -> void:
 	prevLevel = currentLevel
@@ -82,7 +86,7 @@ func SwapRoom(roomName: String, enterDirection: float):
 	# add the new level
 	addLevel(roomName)
 	currentLevel.gameStateChanges(gameState)
-	# Set Up Movment variables for moving jeffery and camera between rooms smoothyl
+	# Set Up Movment variables for moving jeffery and camera between rooms smooth
 	prevJefferyPos = jeffery.position
 	nextJefferyPos = jeffery.position + Vector2(128 * 3, 0).rotated(enterDirection)
 	prevCamPos = camera.position
@@ -117,7 +121,7 @@ func JefferyRetry() -> void:
 	ResumeGame()
 	
 	jeffery.global_position = currentLevel.getCheckpointPosition()
-	camera.global_position = currentLevel.getCheckpointPosition()
+	print(jeffery.global_position)
 	resetLevel()
 	
 	jeffery.call_deferred("Reset")

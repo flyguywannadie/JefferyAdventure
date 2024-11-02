@@ -79,13 +79,12 @@ _data = {
 "SwordSlash": SubResource("Animation_6paf1")
 }
 
-[node name="Sword" type="Node2D" node_paths=PackedStringArray("slashSpawn", "visuals", "audioPlayer")]
+[node name="Sword" type="Node2D" node_paths=PackedStringArray("slashSpawn", "visuals")]
 script = ExtResource("1_fdem6")
 slashSpawn = NodePath("SlashSpawn")
 inputAction = "jef_slash"
 COOLDOWNLENGTH = 1.5
 visuals = NodePath("Sprite2D")
-audioPlayer = NodePath("AudioStreamPlayer2D")
 dEvo = ExtResource("2_ht41d")
 cEvo = ExtResource("3_pn87b")
 fEvo = ExtResource("4_0ji4i")

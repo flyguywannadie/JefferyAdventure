@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_sd0bl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4bxn7"]
-radius = 243.132
+radius = 203.0
 
 [node name="KatanaSlash" type="Area2D"]
 collision_layer = 4
@@ -16,8 +16,8 @@ damage = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(-1.5, -2.49999)
-scale = Vector2(483, 479)
+position = Vector2(0.499992, -1.99999)
+scale = Vector2(403, 400)
 texture = ExtResource("2_sd0bl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
