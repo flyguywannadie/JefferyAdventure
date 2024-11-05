@@ -8,13 +8,13 @@ func spawnHitbox() -> void:
 	var s = slash.instantiate()
 	#print("Position " , slashSpawn.position, ", scale ", slashSpawn.scale, ", rotation ", slashSpawn.rotation_degrees)
 	#print("Position " , slashSpawn.global_position, ", scale ", slashSpawn.global_scale, ", rotation ", slashSpawn.global_rotation_degrees)
-	s.position = getSlashSpawnPosition()
 	#s.rotation_degrees = 0 if (global_scale.y == 1) else 90
 	owner.add_child(s)
+	s.position = getSlashSpawnPosition()
 	pass
 
-func getSlashSpawnPosition() -> Vector2:
-	return slashSpawn.position * Vector2(slashSpawn.global_scale.y, slashSpawn.global_scale.x)
+func getSlashSpawnPosition() -> Vector2:	
+	return (slashSpawn.global_position - GameManager.jeffery.global_position)
 
 func endCooldown() -> void:
 	$AnimationPlayer.play("RESET")

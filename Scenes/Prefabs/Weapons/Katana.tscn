@@ -1,13 +1,20 @@
-[gd_scene load_steps=14 format=3 uid="uid://d322aro5xk1k"]
+[gd_scene load_steps=16 format=3 uid="uid://d322aro5xk1k"]
 
 [ext_resource type="Script" path="res://Scripts/Katana.gd" id="1_xxwqj"]
 [ext_resource type="PackedScene" uid="uid://bnrrqi0kl0764" path="res://Scenes/Prefabs/Projectiles/KatanaSlash.tscn" id="2_rwcp6"]
+[ext_resource type="Shader" path="res://ChargeWeapon.gdshader" id="3_btx3h"]
 [ext_resource type="Texture2D" uid="uid://co44uwbhbet1x" path="res://Textures/KatanaWeapon/idle.png" id="3_m10b4"]
 [ext_resource type="Texture2D" uid="uid://bibgij7fcg6yf" path="res://Textures/KatanaWeapon/KatanaSlash1.png" id="3_vagql"]
 [ext_resource type="Texture2D" uid="uid://ber1f757s7o8t" path="res://Textures/KatanaWeapon/KatanaSlash2.png" id="4_kavcx"]
 [ext_resource type="Texture2D" uid="uid://bcehrjkq6g47r" path="res://Textures/KatanaWeapon/KatanaHold.png" id="5_jc6ws"]
 [ext_resource type="Texture2D" uid="uid://cwmcopw6tcyri" path="res://Textures/KatanaWeapon/KatanaDown1.png" id="6_e7osj"]
 [ext_resource type="Texture2D" uid="uid://cd0tfy58wgqo1" path="res://Textures/KatanaWeapon/KatanaDown2.png" id="7_e52p0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kxuwt"]
+resource_local_to_scene = true
+shader = ExtResource("3_btx3h")
+shader_parameter/charge = 1.0
+shader_parameter/color = Color(0.987874, 0.857474, 0.498623, 1)
 
 [sub_resource type="Animation" id="Animation_bgu8v"]
 length = 0.001
@@ -22,6 +29,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("3_m10b4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Sprite2D:material:shader_parameter/charge")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_1j75h"]
@@ -42,8 +61,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_dnutw"]
 resource_name = "SwordHold"
-length = 0.1
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -55,6 +72,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("5_jc6ws")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Sprite2D:material:shader_parameter/charge")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.25, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_6paf1"]
@@ -109,6 +138,7 @@ visuals = NodePath("Sprite2D")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 z_as_relative = false
+material = SubResource("ShaderMaterial_kxuwt")
 position = Vector2(0, -128)
 texture = ExtResource("3_m10b4")
 

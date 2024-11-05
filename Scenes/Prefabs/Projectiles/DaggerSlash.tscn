@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_h4t45"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mx74q"]
-size = Vector2(142, 181)
+size = Vector2(142, 148)
 
 [node name="DaggerSlash" type="Area2D"]
 collision_layer = 4
@@ -21,7 +21,7 @@ scale = Vector2(142.428, 150.777)
 texture = ExtResource("2_h4t45")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 15.5)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_mx74q")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

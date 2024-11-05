@@ -49,10 +49,13 @@ void fragment() {
 	
 	vec4 col = texture(screen_texture, SCREEN_UV);
 	
+	// maybe replace this with a normal color tinting function
+	vec4 ct = colorTint;
+	
 	if (colorSprites || !(col.r == col.g && col.r == col.b)) {
-		col.rgb = rotateX(col.rgb, colorTint.r);
-		col.rgb = rotateY(col.rgb, colorTint.g);
-		col.rgb = rotateZ(col.rgb, colorTint.b);
+		col.rgb = rotateX(col.rgb, ct.r);
+		col.rgb = rotateY(col.rgb, ct.g);
+		col.rgb = rotateZ(col.rgb, ct.b);
 	}
 	
 	COLOR = col;

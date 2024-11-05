@@ -61,13 +61,26 @@ func MoveTowardsZero(value: float, speed: float) -> float:
 	else :
 		return move * sig
 
+func addKnockback(x: float, y: float):
+	knockback += x
+	addMovement(0, y)
+	pass
+
 func setKnockback(x: float, y: float):
 	knockback = x
 	setMovement(movement.x, y)
 	pass
 
+func addMovementV(vec: Vector2):
+	addMovement(vec.x, vec.y)
+	pass
+
 func addMovement(x: float, y: float):
 	movement += Vector2(x, y)
+	pass
+
+func setMovementV(vec: Vector2):
+	setMovement(vec.x, vec.y)
 	pass
 
 func setMovement(x: float, y: float):

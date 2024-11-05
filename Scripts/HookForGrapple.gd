@@ -36,6 +36,12 @@ func _hitCharacter(chara: Character):
 
 func _hitWall():
 	var move = (global_position - myGrapple.bulletSpawn.global_position).normalized() * 1500
+	
+	print(move.y)
+	
+	if (abs(move.y) < 700) :
+		move.y = -abs(move.y)
+	
 	myGrapple.KnockbackJeffery.emit( 1.5 * move.x, move.y)
 	super._hitWall()
 

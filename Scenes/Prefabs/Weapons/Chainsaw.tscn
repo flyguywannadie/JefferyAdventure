@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://vbwtcpv5tduf"]
+[gd_scene load_steps=17 format=3 uid="uid://vbwtcpv5tduf"]
 
 [ext_resource type="Script" path="res://Scripts/Chainsaw.gd" id="1_mq1hk"]
 [ext_resource type="Texture2D" uid="uid://d0clfkrqewrq7" path="res://Textures/ChainsawWeapon/ChainsawIdle1.png" id="2_o0ndy"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dyxqv5mg4antn" path="res://Textures/ChainsawWeapon/Chainsawidle4.png" id="5_k4qma"]
 [ext_resource type="PackedScene" uid="uid://d3sca70jsiy2x" path="res://Scenes/Prefabs/Projectiles/ChainsawSlash.tscn" id="6_dhc0t"]
 [ext_resource type="Texture2D" uid="uid://bp4316fcr0p4k" path="res://Textures/ChainsawWeapon/ChainsawSwing2.png" id="7_ok3kw"]
+[ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="8_8h0qp"]
 [ext_resource type="Texture2D" uid="uid://dpcf1btyjnvkw" path="res://Textures/ChainsawWeapon/ChainsawAttack1.png" id="8_jx2nl"]
 [ext_resource type="Texture2D" uid="uid://bjxn4c8624aum" path="res://Textures/ChainsawWeapon/ChainsawAttack2.png" id="9_23jl7"]
 [ext_resource type="Texture2D" uid="uid://d1aogvy6av4ci" path="res://Textures/ChainsawWeapon/attackArm.png" id="9_ya8fv"]
@@ -111,6 +112,11 @@ texture = ExtResource("10_skf2d")
 
 [node name="SlashSpawner" type="Node2D" parent="."]
 position = Vector2(59, 29)
+
+[node name="Sprite2D" type="Sprite2D" parent="SlashSpawner"]
+visible = false
+scale = Vector2(20, 20)
+texture = ExtResource("8_8h0qp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

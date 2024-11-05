@@ -11,15 +11,13 @@ func _ready() -> void:
 	velocity += randf_range(-5,5)
 	
 	super._ready()
-	pass # Replace with function body.
 
 func _physics_process(delta: float) -> void:
 	
 	motion.y += 20 * delta
 	
-	if (position.y > thrownAt) :
-		_bulletDeath()
-		return
+	#if (position.y > thrownAt) :
+		#_bulletDeath()
+		#return
 	
 	super._physics_process(delta)
-	pass

@@ -4,6 +4,7 @@ class_name Sniper
 var charge: float = 0
 
 func onUse() -> void:
+	visuals.material.set("shader_parameter/charge", 1.0)
 	pressed = true
 	pass
 
@@ -15,11 +16,13 @@ func onHold(delta: float) -> void:
 	else :
 		charge = 1
 	
+	visuals.material.set("shader_parameter/charge", lerp(0.85, 0.1, charge))
 	pass
 
 func onRelease() -> void:
 	#print("weaponUse")
 	cooldown -= charge * 0.75
+	visuals.material.set("shader_parameter/charge", 1.0)
 	startCooldown()
 	SpawnBullet()
 	$AnimationPlayer.play("GunShoot")

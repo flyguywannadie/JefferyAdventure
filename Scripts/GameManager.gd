@@ -53,6 +53,7 @@ func ChangeScene(filePath: String) -> void:
 func MakeFirstScene() -> void:
 	await Signal(get_tree().create_timer(0.01), "timeout")
 	gameState = ""
+	piecesGotten = 0
 	call_deferred("addLevel", "TestFirstScene")
 
 func endLevels() -> void:
@@ -172,3 +173,6 @@ func ResumeGame():
 func AddToGameState(added: String) -> void:
 	gameState += added
 	pass
+
+func CheckGameState(check: String) -> bool:
+	return gameState.contains(check)

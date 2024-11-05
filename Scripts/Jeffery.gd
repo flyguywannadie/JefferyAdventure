@@ -63,11 +63,11 @@ func _physics_process(delta: float) -> void:
 	if (crouching != Input.is_action_pressed("jef_down") && trySlide) :
 		crouching = Input.is_action_pressed("jef_down")
 		if (!crouching) :
-			print("stand hitbox")
+			#print("stand hitbox")
 			$StandingHitbox.shape.size = hitboxSize
 			$StandingHitbox.position = hitboxPos
 		else:
-			print("crouch hitbox")
+			#print("crouch hitbox")
 			$StandingHitbox.shape.size = Vector2(hitboxSize.x, hitboxSize.y / 2)
 			$StandingHitbox.position = hitboxPos + Vector2(0, hitboxSize.y / 4)
 			
@@ -100,8 +100,6 @@ func _physics_process(delta: float) -> void:
 		super._physics_process(delta)
 		return
 	
-	
-	
 	if (!is_on_floor() && onGround):
 		if (!trySlide) :
 			doneSlide()
@@ -114,7 +112,7 @@ func _physics_process(delta: float) -> void:
 		#doneSlide()
 	
 	if (Input.is_action_just_pressed("jef_slide") && trySlide) :
-		setKnockback(speed * 2 * $Node2D.scale.x, 100)
+		addKnockback(speed * 2.2 * $Node2D.scale.x, 100)
 		anims.play("RESET")
 		anims.play("Slide")
 		$StandingHitbox.shape.size = Vector2(hitboxSize.x, hitboxSize.y / 2)
@@ -169,7 +167,7 @@ func _physics_process(delta: float) -> void:
 
 func takeDamage(damage: int):
 	anims.play("Hurt")
-	trySlide = true
+	doneSlide()
 	SoundManager.PlaySound("Hurt")
 	hitStun = 0.33
 	iLength = 1.5
@@ -190,6 +188,8 @@ func Reset() -> void:
 	currentGun.visuals.visible = visuals.visible
 	currentSword.visuals.visible = visuals.visible
 	$Node2D/GunArm/GunArmSprite.visible = visuals.visible
+	
+	doneSlide()
 	
 	enableWeapons()
 	anims.play("RESET")

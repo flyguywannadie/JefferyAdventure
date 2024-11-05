@@ -5,6 +5,7 @@ var bonusDamage: int
 var totalBonusTime: float
 
 func _ready() -> void:
+	visuals.material.set("shader_parameter/charge", 1.0)
 	super._ready()
 	pass
 
@@ -29,6 +30,7 @@ func onHold(delta: float) -> void:
 	
 	if (totalBonusTime < 3):
 		totalBonusTime += delta
+		visuals.material.set("shader_parameter/charge", lerp(0.6, 0.3, totalBonusTime/3.0))
 	
 	#scale = Vector2(1 + totalBonusTime, 1 + totalBonusTime)
 	
@@ -36,6 +38,7 @@ func onHold(delta: float) -> void:
 
 func onRelease() -> void:
 	#print("on release use")
+	visuals.material.set("shader_parameter/charge", 1.0)
 	pressed = false
 	startCooldown()
 	$AnimationPlayer.play("SwordSlash")

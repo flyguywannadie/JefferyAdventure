@@ -88,7 +88,7 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_1hce3"]
 radius = 41.0
 
-[node name="Walker" type="CharacterBody2D" node_paths=PackedStringArray("anims", "visuals", "audioPlayer")]
+[node name="Walker" type="CharacterBody2D" node_paths=PackedStringArray("anims", "visuals")]
 collision_layer = 2
 collision_mask = 25
 floor_constant_speed = true
@@ -99,7 +99,6 @@ anims = NodePath("AnimationPlayer")
 maxHealth = 3
 FRICTION = 16.0
 visuals = NodePath("Sprite2D")
-audioPlayer = NodePath("AudioStreamPlayer2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
