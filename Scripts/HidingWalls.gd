@@ -12,9 +12,9 @@ func _physics_process(delta: float) -> void:
 	material.set("shader_parameter/fade", material.get("shader_parameter/fade") + (delta * test))
 
 
-func _on_secret_thing_body_entered(body: Node2D) -> void:
+func _on_body_entered(body: Node2D) -> void:
 	fadeto = 0.33
 
 
-func _on_secret_thing_body_exited(body: Node2D) -> void:
+func _on_body_exited(body: Node2D) -> void:
 	fadeto = 1.0

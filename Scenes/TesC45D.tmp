@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cab61l5aahjll" path="res://Textures/Gun.png" id="8_tw4us"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="8_yuprv"]
 [ext_resource type="PackedScene" uid="uid://v42kviymhbdq" path="res://Scenes/Prefabs/doorway.tscn" id="9_tuu40"]
-[ext_resource type="Script" path="res://Scripts/Jeff_InteractionEventTrigger.gd" id="12_lnl2d"]
+[ext_resource type="Script" path="res://scripts/InteractionEventTrigger.gd" id="12_sklld"]
 [ext_resource type="Texture2D" uid="uid://k0y8wvehqbih" path="res://Textures/EButton.png" id="13_6exel"]
 [ext_resource type="Script" path="res://Scripts/vent_test.gd" id="14_3dg58"]
 [ext_resource type="Shader" path="res://ColorPaletteChanger.gdshader" id="15_k8urx"]
@@ -32,7 +32,7 @@ size = Vector2(256, 192)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tbjbs"]
 shader = ExtResource("3_g6chs")
-shader_parameter/fade = 1.0
+shader_parameter/fade = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2u14o"]
 size = Vector2(15, 128)
@@ -197,11 +197,9 @@ texture = ExtResource("8_tw4us")
 [node name="VentOpen" type="Node2D" parent="."]
 position = Vector2(4416, 64)
 
-[node name="InteractionArea" type="Area2D" parent="VentOpen" node_paths=PackedStringArray("whoICallTo")]
+[node name="InteractionArea" type="Area2D" parent="VentOpen"]
 collision_layer = 0
-script = ExtResource("12_lnl2d")
-whoICallTo = NodePath("../VentTest")
-functionToCall = "Open"
+script = ExtResource("12_sklld")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VentOpen/InteractionArea"]
 position = Vector2(64, 32)
@@ -211,17 +209,12 @@ shape = SubResource("RectangleShape2D_u7ws2")
 position = Vector2(0, -64)
 texture = ExtResource("13_6exel")
 
-[node name="VentHider" type="Area2D" parent="VentOpen"]
-position = Vector2(64, -64)
-
-[node name="Vent" type="TileMapLayer" parent="VentOpen/VentHider"]
+[node name="Vent" type="TileMapLayer" parent="VentOpen"]
 material = SubResource("ShaderMaterial_tbjbs")
+position = Vector2(64, -64)
 tile_map_data = PackedByteArray("AAAAAAAAAQABAAAAAAABAAAAAQACAAEAAAACAAAAAQACAAEAAAADAAAAAQACAAEAAAABAP//AQACAAEAAAACAP//AQACAAEAAAADAP//AQACAAEAAAABAAEAAQACAAEAAAACAAEAAQACAAEAAAADAAEAAQACAAEAAAAAAP//AQABAAAAAAAAAAEAAQABAAEAAAA=")
 tile_set = ExtResource("3_6i68h")
 script = ExtResource("4_qf2af")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VentOpen/VentHider"]
-polygon = PackedVector2Array(512, 0, 512, 128, 64, 128, 64, 0)
 
 [node name="VentTest" type="StaticBody2D" parent="VentOpen"]
 collision_layer = 8
@@ -238,9 +231,7 @@ position = Vector2(77.25, 0)
 scale = Vector2(20, 144)
 texture = ExtResource("16_gm5op")
 
-[connection signal="body_entered" from="secretThing" to="secretThing/Secret" method="_on_body_entered"]
-[connection signal="body_exited" from="secretThing" to="secretThing/Secret" method="_on_body_exited"]
+[connection signal="body_entered" from="secretThing" to="secretThing/Secret" method="_on_secret_thing_body_entered"]
+[connection signal="body_exited" from="secretThing" to="secretThing/Secret" method="_on_secret_thing_body_exited"]
 [connection signal="body_entered" from="VentOpen/InteractionArea" to="VentOpen/InteractionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="VentOpen/InteractionArea" to="VentOpen/InteractionArea" method="_on_body_exited"]
-[connection signal="body_entered" from="VentOpen/VentHider" to="VentOpen/VentHider/Vent" method="_on_body_entered"]
-[connection signal="body_exited" from="VentOpen/VentHider" to="VentOpen/VentHider/Vent" method="_on_body_exited"]

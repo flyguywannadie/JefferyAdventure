@@ -10,7 +10,7 @@ void vertex() {
 
 void fragment() {
 
-	
+
 	//float xOffset = UV.y * 0.25;
 	//float t = cos((UV.x + xOffset + (TIME * 0.2)) * TAU * 5.0) * 0.5 + 0.5;
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bwib2ihjobuvm"]
+[gd_scene load_steps=36 format=3 uid="uid://bwib2ihjobuvm"]
 
 [ext_resource type="Script" path="res://Scripts/Jeffery.gd" id="1_vcdsa"]
 [ext_resource type="Shader" path="res://node_2d.gdshader" id="2_q8qc8"]
@@ -351,12 +351,17 @@ graph_offset = Vector2(-24.8339, -74)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkrwf"]
 size = Vector2(73, 171)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5i3tr"]
+size = Vector2(30, 85)
+
 [node name="Jeffery" type="CharacterBody2D" node_paths=PackedStringArray("visuals")]
 material = SubResource("ShaderMaterial_rsqeg")
 collision_mask = 42
+collision_priority = 2.0
 floor_constant_speed = true
 floor_max_angle = 1.0472
 floor_snap_length = 7.3
+platform_floor_layers = 4278190080
 script = ExtResource("1_vcdsa")
 speed = 600.0
 GRAVITY = 64.0
@@ -407,3 +412,9 @@ parameters/conditions/Walk = false
 [node name="StandingHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-5, 2.5)
 shape = SubResource("RectangleShape2D_fkrwf")
+
+[node name="KeepCrouchingCheck" type="ShapeCast2D" parent="."]
+position = Vector2(-4, -31)
+shape = SubResource("RectangleShape2D_5i3tr")
+target_position = Vector2(0, 0)
+collision_mask = 8

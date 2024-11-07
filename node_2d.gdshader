@@ -15,16 +15,16 @@ void vertex() {
 	// Called for every vertex the material is visible on.
 	//VERTEX = vec2(15,15);
 	//VERTEX += vec2(10.0, 0.0);
-	
+
 	//VERTEX += vec2(cos(TIME), sin(TIME)) * 100.0;
-	
+
 	//float rate = 3.5;
 	//VERTEX += vec2(sin(TIME), -(sqrt(sin(rate*mod(TIME, PI / rate))) + cos(TIME)))* 300.0;
-	
+
 	//VERTEX += vec2(random(UV * ceil(TIME)),random(UV * ceil(TIME))) * 100.0;
 	//VERTEX += (vec2(random(UV * ceil(TIME)),random(UV * ceil(TIME))) * 25.0) - 12.5;
-	
-	
+
+
 	//float c = cos(ceil(2.0*TIME));
 	//float s = sin(ceil(2.0*TIME));
 	//
@@ -44,13 +44,13 @@ void fragment() {
 			//COLOR = vec4(1.0);
 		//}
 	//}
-	
-	
+
+
 	//COLOR = vec4(sqrt(UV * pow(tan(TIME),2.0)), pow(tan(TIME),-0.5), 1.0);
-	
+
 	//float thing = sqrt(sin(TIME));
 	//COLOR = vec4(vec3(thing),1.0);
-	
+
 	//COLOR.rgb += vec3(smoothstep(0.2, 0.2 + 0.5, length(UV - vec2(0.5))));
 	//if (COLOR.r > 0.5 && COLOR.g > 0.5 && COLOR.b > 0.5) {
 		//COLOR.a = 0.0;

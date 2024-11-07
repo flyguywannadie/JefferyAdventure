@@ -27,12 +27,12 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q3wrm"]
 shader = ExtResource("4_7nfid")
-shader_parameter/colorTint = Color(0, 0, 0, 1)
+shader_parameter/colorTint = Color(0.164706, 0.113725, 0.321569, 1)
 shader_parameter/colorSprites = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_54ad7"]
 shader = ExtResource("6_i01nh")
-shader_parameter/angle = 270.0
+shader_parameter/angle = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wjjor"]
 shader = ExtResource("7_x5nwx")
@@ -176,9 +176,10 @@ shader_parameter/Test = ExtResource("15_p44oh")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hvlrm"]
 shader = ExtResource("6_i01nh")
-shader_parameter/angle = 0.0
+shader_parameter/angle = 83.4
 
 [node name="Node2D" type="Node2D"]
+texture_filter = 1
 
 [node name="Jeffery" parent="." instance=ExtResource("4_oebhw")]
 slide_on_ceiling = false
@@ -221,7 +222,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0, 0, 1)
+color = Color(0.879155, 0.337716, 0, 1)
 
 [node name="RainbowTest" type="ColorRect" parent="PostProcess"]
 visible = false

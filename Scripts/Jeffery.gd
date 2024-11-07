@@ -30,6 +30,7 @@ var iLength: float = 0
 var flipDir: bool = false
 var hitboxSize: Vector2
 var hitboxPos: Vector2
+@onready var crouchCheck: ShapeCast2D = $KeepCrouchingCheck
 
 @export var trySlide: bool = true
 
@@ -51,25 +52,33 @@ func _ready() -> void:
 	
 	pass
 
+func shouldBeCrouching() -> bool:
+	# returns true if the player should be crouching
+	#print(crouching)
+	#print(crouchCheck.is_colliding())
+	
+	return crouching || crouchCheck.is_colliding()
+
 func doneSlide() -> void:
-	if (!crouching) :
-		$StandingHitbox.shape.size = hitboxSize
-		$StandingHitbox.position = hitboxPos
+	checkCrouch()
 	trySlide = true
 	pass
 
-func _physics_process(delta: float) -> void:	
+func checkCrouch() -> void:
+	if (!shouldBeCrouching()) :
+		crouching = false
+		$StandingHitbox.shape.size = hitboxSize
+		$StandingHitbox.position = hitboxPos
+	else:
+		crouching = true
+		$StandingHitbox.shape.size = Vector2(hitboxSize.x, hitboxSize.y / 2)
+		$StandingHitbox.position = hitboxPos + Vector2(0, hitboxSize.y / 4)
+
+func _physics_process(delta: float) -> void:
 	
 	if (crouching != Input.is_action_pressed("jef_down") && trySlide) :
 		crouching = Input.is_action_pressed("jef_down")
-		if (!crouching) :
-			#print("stand hitbox")
-			$StandingHitbox.shape.size = hitboxSize
-			$StandingHitbox.position = hitboxPos
-		else:
-			#print("crouch hitbox")
-			$StandingHitbox.shape.size = Vector2(hitboxSize.x, hitboxSize.y / 2)
-			$StandingHitbox.position = hitboxPos + Vector2(0, hitboxSize.y / 4)
+		checkCrouch()
 			
 	
 	if (health <= 0) :

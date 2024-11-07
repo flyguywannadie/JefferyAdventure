@@ -8,7 +8,7 @@ void fragment() {
 	// Called for every pixel the material is visible on.
 	vec4 col = texture(TEXTURE, UV);
 	//float test = cos((TIME * PI) / 360.0) * 0.5 + 0.5;
-	float H = ((fract(UV.x + (TIME/3.0))) * 360.0) / 60.0;
+	float H = ((fract(UV.x + (TIME/10.0))) * 360.0) / 60.0;
 	float C = 1.0;
 	float X = C * (1.0 - abs(mod(H, 2.0) - 1.0));
 	
