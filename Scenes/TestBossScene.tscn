@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://b4x5i41o7t1j1"]
+[gd_scene load_steps=51 format=4 uid="uid://b4x5i41o7t1j1"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_y6yf7"]
 [ext_resource type="Script" path="res://Scripts/TankBoss.gd" id="2_kg316"]
@@ -29,7 +29,7 @@
 [ext_resource type="Material" uid="uid://4qginuh7uhxl" path="res://EnemyMaterial.tres" id="14_hhnsq"]
 [ext_resource type="Script" path="res://Scripts/DamageArea.gd" id="15_f2405"]
 [ext_resource type="Texture2D" uid="uid://cf6pe6vhk2fwi" path="res://Textures/ChargeBoss/TankHatch/HatchOpen2.png" id="20_2o7ea"]
-[ext_resource type="Script" path="res://Scripts/DeathEventTrigger.gd" id="20_c2mqe"]
+[ext_resource type="Script" path="res://Scripts/jeff_DeathEventTrigger.gd" id="20_c2mqe"]
 [ext_resource type="Script" path="res://Scripts/TileMapHider.gd" id="21_2l8m5"]
 [ext_resource type="Texture2D" uid="uid://47m5uydxlm06" path="res://Textures/ChargeBoss/TankHatch/HatchOpen3.png" id="21_qn54p"]
 [ext_resource type="Texture2D" uid="uid://dkeop63hksmk5" path="res://Textures/ChargeBoss/TankHatch/HatchOpen4.png" id="22_6lnbq"]
@@ -37,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://dv7bheh5gubxf" path="res://Textures/ChargeBoss/TankHatch/HatchClose1.png" id="24_0d1ra"]
 [ext_resource type="Texture2D" uid="uid://cboj188p3alkw" path="res://Textures/ChargeBoss/TankHatch/HatchClose2.png" id="25_cpsjk"]
 [ext_resource type="Texture2D" uid="uid://bn7g88haev5iv" path="res://Textures/ChargeBoss/TankHatch/HatchClose3.png" id="26_6blii"]
+[ext_resource type="Script" path="res://Scripts/jeff_EventCaller.gd" id="38_swram"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1qovh"]
 shader = ExtResource("12_cbvw7")
@@ -425,13 +426,20 @@ damage = 2
 position = Vector2(-0.25, 100)
 shape = SubResource("RectangleShape2D_w60wy")
 
-[node name="ConditionalAppear" type="Node2D" parent="." node_paths=PackedStringArray("WhoWillDie", "whoICallTo")]
+[node name="ConditionalAppear" type="Node2D" parent="." node_paths=PackedStringArray("WhoWillDie", "whoToCall")]
 script = ExtResource("20_c2mqe")
 WhoWillDie = NodePath("../Changes/BossExists/TankBoss")
-whoICallTo = NodePath("../StairsOutOfRoom")
-functionToCall = "Show"
+oneTime = true
+whoToCall = [NodePath("../Events/MakeStairsAppear")]
 
 [node name="Checkpoint" type="Node2D" parent="."]
 position = Vector2(13908, 4490)
+
+[node name="Events" type="Node" parent="."]
+
+[node name="MakeStairsAppear" type="Node" parent="Events" node_paths=PackedStringArray("whoICallTo")]
+script = ExtResource("38_swram")
+whoICallTo = NodePath("../../StairsOutOfRoom")
+functionToCall = "Show"
 
 [connection signal="body_entered" from="Changes/BossExists/TankBoss/TrackDamageArea" to="Changes/BossExists/TankBoss/TrackDamageArea" method="_on_body_entered"]

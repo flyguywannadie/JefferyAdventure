@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://cv7qnaqkfgdmk"]
+[gd_scene load_steps=31 format=4 uid="uid://cv7qnaqkfgdmk"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_27lyf"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="2_j2dbk"]
@@ -14,9 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://qd2t47oa33pv" path="res://Textures/WalkerEnemy/008.png" id="11_j6xfc"]
 [ext_resource type="Texture2D" uid="uid://vb0msanwj0by" path="res://Textures/WalkerEnemy/009.png" id="12_riogt"]
 [ext_resource type="Script" path="res://Scripts/DamageArea.gd" id="13_yp1l2"]
-[ext_resource type="Script" path="res://Scripts/OnEnterEventTrigger.gd" id="16_42rcl"]
+[ext_resource type="Script" path="res://Scripts/jeff_OnEnterEventTrigger.gd" id="16_42rcl"]
 [ext_resource type="PackedScene" uid="uid://dh7xlshv1k2mx" path="res://Scenes/Prefabs/flyingGuy.tscn" id="16_g6fxc"]
+[ext_resource type="Script" path="res://Scripts/TileMapHider.gd" id="16_pr7gj"]
 [ext_resource type="Shader" path="res://EnemyShader.gdshader" id="17_afcd3"]
+[ext_resource type="Script" path="res://Scripts/jeff_EventCaller.gd" id="19_8eif2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epq2w"]
 size = Vector2(50, 88)
@@ -155,6 +157,7 @@ tile_map_data = PackedByteArray("AABOACIAAQABAAMAAABOACMAAQABAAEAAABPACMAAQACAAA
 tile_set = ExtResource("2_j2dbk")
 
 [node name="NotDeadlyPiece" type="Node2D" parent="Changes"]
+visible = false
 script = ExtResource("5_ut3tb")
 condition = 1
 expectedGameState = "d"
@@ -204,9 +207,11 @@ script = ExtResource("13_yp1l2")
 position = Vector2(-3, -27.25)
 shape = SubResource("RectangleShape2D_lfeif")
 
-[node name="SpawnGod" type="Area2D" parent="Changes/Big Enemy Deadly"]
+[node name="SpawnGod" type="Area2D" parent="Changes/Big Enemy Deadly" node_paths=PackedStringArray("whoToCall")]
 position = Vector2(12800, 4288)
 script = ExtResource("16_42rcl")
+oneTime = true
+whoToCall = [NodePath("../../../Events/BreakCieling")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Changes/Big Enemy Deadly/SpawnGod"]
 position = Vector2(-1664, -448)
@@ -223,11 +228,11 @@ shape = SubResource("RectangleShape2D_pit12")
 position = Vector2(256, 0)
 shape = SubResource("RectangleShape2D_pit12")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Changes/Big Enemy Deadly"]
+[node name="Cieling" type="TileMapLayer" parent="Changes/Big Enemy Deadly"]
 tile_map_data = PackedByteArray("AABSABkAAQABAAIAAABTABkAAQABAAIAAABUABkAAQABAAIAAABVABkAAQABAAIAAABWABkAAQABAAIAAABXABkAAQABAAIAAABYABkAAQABAAIAAABZABkAAQABAAIAAABaABkAAQABAAIAAABbABkAAQABAAIAAABaABgAAQACAAEAAABZABgAAQACAAEAAABYABgAAQACAAEAAABXABgAAQACAAEAAABWABgAAQACAAEAAABVABgAAQACAAEAAABUABgAAQACAAEAAABTABgAAQACAAEAAABSABgAAQACAAEAAABRABkAAQABAAIAAABbABgAAQACAAEAAABcABkAAQABAAIAAABcABgAAQACAAEAAABRABgAAQACAAEAAAA=")
 tile_set = ExtResource("2_j2dbk")
-
-[node name="Sprite2D" type="Sprite2D" parent="Changes/Big Enemy Deadly"]
+script = ExtResource("16_pr7gj")
+startHiden = false
 
 [node name="Fast Jumps" type="Node2D" parent="Changes"]
 script = ExtResource("5_ut3tb")
@@ -257,6 +262,13 @@ position = Vector2(11200, 3648)
 
 [node name="CheckPoint" type="Node2D" parent="."]
 position = Vector2(9024, 4096)
+
+[node name="Events" type="Node" parent="."]
+
+[node name="BreakCieling" type="Node" parent="Events" node_paths=PackedStringArray("whoICallTo")]
+script = ExtResource("19_8eif2")
+whoICallTo = NodePath("../../Changes/Big Enemy Deadly/Cieling")
+functionToCall = "Hide"
 
 [connection signal="body_entered" from="Changes/Big Enemy Deadly/God/Damage" to="Changes/Big Enemy Deadly/God/Damage" method="_on_body_entered"]
 [connection signal="body_entered" from="Changes/Big Enemy Deadly/SpawnGod" to="Changes/Big Enemy Deadly/SpawnGod" method="_on_body_entered"]
