@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cgi22rw2oexdx"]
+[gd_scene load_steps=38 format=3 uid="uid://cgi22rw2oexdx"]
 
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_mxtlc"]
 [ext_resource type="Shader" path="res://PostProcessShader.gdshader" id="4_7nfid"]
@@ -24,6 +24,8 @@
 [ext_resource type="Script" path="res://Scripts/BossHealthbar.gd" id="18_5cy5a"]
 [ext_resource type="Script" path="res://Scripts/post_process.gd" id="20_tcyl4"]
 [ext_resource type="Script" path="res://Scripts/label.gd" id="21_6kcmb"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ku0xa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q3wrm"]
 shader = ExtResource("4_7nfid")
@@ -183,6 +185,7 @@ texture_filter = 1
 
 [node name="Jeffery" parent="." instance=ExtResource("4_oebhw")]
 slide_on_ceiling = false
+platform_floor_layers = 4278190082
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("toFollow")]
 z_index = 100
@@ -190,7 +193,7 @@ ignore_rotation = false
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("7_2u6g4")
 toFollow = NodePath("../Jeffery")
-shakeIntensity = 0.5
+noise = SubResource("FastNoiseLite_ku0xa")
 
 [node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
 visible = false

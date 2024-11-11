@@ -116,6 +116,7 @@ autoplay = "Explosion"
 [node name="ScreenShakeCauser" type="Node2D" parent="."]
 script = ExtResource("11_48eca")
 shakeType = 1
-intensity = 1.0
+intensity = 3.0
+duration = 0.25
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

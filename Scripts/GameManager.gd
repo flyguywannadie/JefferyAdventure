@@ -136,11 +136,11 @@ func _physics_process(delta: float) -> void:
 		if (movinglerp > 1) :
 			endSwap()
 
-func ShakeScreenDirection(emitterpos: Vector2, intensity: float) -> void:
-	camera.ScreenShake((jeffery.global_position - emitterpos).normalized(), intensity)
+func ShakeScreenDirection(emitterpos: Vector2, intensity: float, duration: float) -> void:
+	camera.ScreenShake((jeffery.global_position - emitterpos).normalized(), intensity, duration)
 
-func ShakeScreen(intensity: float) -> void:
-	camera.ScreenShake(Vector2(randf_range(-1.0, 1.0),randf_range(-1.0, 1.0)).normalized(), intensity)
+func ShakeScreen(intensity: float , duration: float) -> void:
+	camera.ScreenShake(Vector2(randf_range(-1.0, 1.0),randf_range(-1.0, 1.0)).normalized(), intensity, duration)
 
 func _input(event: InputEvent) -> void:
 	pass

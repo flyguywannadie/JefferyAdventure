@@ -6,6 +6,7 @@ enum ShakeTypes { DEFAULT, DIRECTION}
 
 @export var shakeType: ShakeTypes
 @export var intensity: float
+@export var duration: float
 
 func _ready() -> void:
 	Shake()
@@ -13,6 +14,6 @@ func _ready() -> void:
 func Shake() -> void:
 	match (shakeType):
 		ShakeTypes.DEFAULT:
-			GameManager.ShakeScreen(intensity)
+			GameManager.ShakeScreen(intensity,duration)
 		ShakeTypes.DIRECTION:
-			GameManager.ShakeScreenDirection(global_position,intensity)
+			GameManager.ShakeScreenDirection(global_position, intensity, duration)
