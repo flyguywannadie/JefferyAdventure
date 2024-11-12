@@ -2,8 +2,7 @@ extends Node2D
 class_name Room
 
 @export var camTracks: Array[CamTrack]
-@export var checkpoint: Node2D
-#@export var entrances: Array[Doorway]
+@export var entrances: Array[Doorway]
 @export var stateChanges: Node2D
 
 func _ready() -> void:
@@ -20,12 +19,11 @@ func getClosestTrack(pos: Vector2) -> CamTrack:
 	
 	return closest
 
-func getCheckpointPosition() -> Vector2:
-	return checkpoint.global_position
-
-func leaveRoom(roomName: String, entranceDirection: float) -> void:
-	GameManager.SwapRoom(roomName, entranceDirection)
-	pass
+func getEntranceWithID(id: int) -> Doorway:
+	for entrance in entrances:
+		if (entrance.doorID == id) :
+			return entrance
+	return null
 
 func gameStateChanges(gamestate: String) -> void:
 	# upon the room being loaded, change things based on the game state

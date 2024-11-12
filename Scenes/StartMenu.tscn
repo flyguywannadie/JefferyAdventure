@@ -1,9 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3wn0yj7sfv05"]
 
 [ext_resource type="Script" path="res://Scripts/StartMenu.gd" id="1_ylkdf"]
-
-[sub_resource type="SystemFont" id="SystemFont_1t6rs"]
-font_names = PackedStringArray("Broadway")
+[ext_resource type="FontFile" uid="uid://56kabaq45qkg" path="res://Textures/Font.png" id="2_7yqlb"]
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -24,7 +22,7 @@ offset_top = 199.0
 offset_right = 257.5
 offset_bottom = 276.0
 grow_horizontal = 2
-theme_override_fonts/normal_font = SubResource("SystemFont_1t6rs")
+theme_override_fonts/normal_font = ExtResource("2_7yqlb")
 theme_override_font_sizes/normal_font_size = 56
 text = "Jeffery's Adventure"
 fit_content = true

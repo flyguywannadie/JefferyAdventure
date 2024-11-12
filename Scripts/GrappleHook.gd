@@ -13,7 +13,7 @@ func _physics_process(delta: float) -> void:
 	
 	if (myHook != null) :
 		tether.rotation = -player.GunArm.rotation
-		var secondPoint = (myHook.global_position - bulletSpawn.global_position)
+		var secondPoint = (myHook.global_position - projectileSpawn.global_position)
 		tether.points = [Vector2(0,0), Vector2(secondPoint.x * global_scale.y, secondPoint.y)]
 	
 	super._physics_process(delta)
@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 func onUse() -> void:
 	#print("weaponUse")
 	if (myHook == null) :
-		SpawnBullet()
+		spawnProjectile()
 		$AnimationPlayer.play("GunShoot")
 	pass
 
@@ -30,17 +30,9 @@ func startCooldown() -> void:
 	tether.points = []
 	super.startCooldown()
 
-func SpawnBullet() -> void:
-	var t = bullet.instantiate()
-	
+func attackModifiers(t: Node) -> void:
 	(t as HookForGrapple).myGrapple = $"."
 	myHook = (t as HookForGrapple)
-	
-	
-	t.rotation = global_rotation
-	t.position = bulletSpawn.global_position
-	owner.owner.add_child(t)
-	pass
 
 func endCooldown() -> void:
 	$AnimationPlayer.play("RESET")

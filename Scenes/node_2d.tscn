@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cgi22rw2oexdx"]
+[gd_scene load_steps=39 format=3 uid="uid://cgi22rw2oexdx"]
 
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_mxtlc"]
 [ext_resource type="Shader" path="res://PostProcessShader.gdshader" id="4_7nfid"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://coutgcsx3t2w6" path="res://Textures/ColorPalette.png" id="6_qunfb"]
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="7_2u6g4"]
 [ext_resource type="Shader" path="res://Rainbow.gdshader" id="7_x5nwx"]
+[ext_resource type="FontFile" uid="uid://56kabaq45qkg" path="res://Textures/Font.png" id="9_otam7"]
 [ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="11_1d1kq"]
 [ext_resource type="Shader" path="res://FadingShader.gdshader" id="11_swtah"]
 [ext_resource type="Texture2D" uid="uid://00pjhuxgfex0" path="res://Textures/GameOverBackWall.png" id="12_6lrp0"]
@@ -23,13 +24,12 @@
 [ext_resource type="Script" path="res://Scripts/Healthbar.gd" id="16_xu1u0"]
 [ext_resource type="Script" path="res://Scripts/BossHealthbar.gd" id="18_5cy5a"]
 [ext_resource type="Script" path="res://Scripts/post_process.gd" id="20_tcyl4"]
-[ext_resource type="Script" path="res://Scripts/label.gd" id="21_6kcmb"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ku0xa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q3wrm"]
 shader = ExtResource("4_7nfid")
-shader_parameter/colorTint = Color(0.164706, 0.113725, 0.321569, 1)
+shader_parameter/colorTint = Color(0.0629538, 0.184104, 0.160279, 1)
 shader_parameter/colorSprites = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_54ad7"]
@@ -38,6 +38,8 @@ shader_parameter/angle = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wjjor"]
 shader = ExtResource("7_x5nwx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1opql"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dp4uq"]
 shader = ExtResource("11_swtah")
@@ -178,25 +180,25 @@ shader_parameter/Test = ExtResource("15_p44oh")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hvlrm"]
 shader = ExtResource("6_i01nh")
-shader_parameter/angle = 83.4
+shader_parameter/angle = 0.0
 
 [node name="Node2D" type="Node2D"]
 texture_filter = 1
 
 [node name="Jeffery" parent="." instance=ExtResource("4_oebhw")]
+position = Vector2(8, -88)
 slide_on_ceiling = false
 platform_floor_layers = 4278190082
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("toFollow")]
 z_index = 100
 ignore_rotation = false
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.25, 0.25)
 script = ExtResource("7_2u6g4")
 toFollow = NodePath("../Jeffery")
 noise = SubResource("FastNoiseLite_ku0xa")
 
 [node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
-visible = false
 scale = Vector2(25, 25)
 texture = ExtResource("2_mxtlc")
 
@@ -272,6 +274,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("9_otam7")
 theme_override_font_sizes/font_size = 60
 text = "PAUSE MENU"
 horizontal_alignment = 1
@@ -288,13 +291,16 @@ alignment = 1
 [node name="Resume" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("9_otam7")
 theme_override_font_sizes/font_size = 24
 text = "Resume
 "
 
 [node name="Back To Title" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer"]
+material = SubResource("ShaderMaterial_1opql")
 custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("9_otam7")
 theme_override_font_sizes/font_size = 24
 text = "Title"
 
@@ -474,6 +480,7 @@ script = ExtResource("16_xu1u0")
 whoITrack = NodePath("../../Jeffery")
 
 [node name="TestingSDF" type="ColorRect" parent="CanvasLayer"]
+visible = false
 z_index = -10
 z_as_relative = false
 material = SubResource("ShaderMaterial_giyw7")
@@ -493,12 +500,8 @@ offset_bottom = 96.0
 scale = Vector2(-1, 1)
 script = ExtResource("18_5cy5a")
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_right = 256.0
-offset_bottom = 128.0
-script = ExtResource("21_6kcmb")
-
 [node name="TestingPalette" type="Sprite2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_hvlrm")
 position = Vector2(1024, 256)
 scale = Vector2(0.233333, 0.233333)

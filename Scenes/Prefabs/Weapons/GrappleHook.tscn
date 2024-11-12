@@ -43,14 +43,14 @@ _data = {
 "RESET": SubResource("Animation_8f8m3")
 }
 
-[node name="GrappleHook" type="Node2D" node_paths=PackedStringArray("bulletSpawn", "visuals")]
+[node name="GrappleHook" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn")]
 z_index = -1
 z_as_relative = false
 script = ExtResource("1_yfv2y")
-bullet = ExtResource("2_msowe")
-bulletSpawn = NodePath("BulletSpawn")
 COOLDOWNLENGTH = 0.5
 visuals = NodePath("Sprite2D")
+attack = ExtResource("2_msowe")
+projectileSpawn = NodePath("BulletSpawn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(16, -1)

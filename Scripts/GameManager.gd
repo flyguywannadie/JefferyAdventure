@@ -8,6 +8,8 @@ var startLevel: String = "TestFirstScene"
 var currentLevel: Room
 var prevLevel: Room
 
+var projectileOwner: Node2D
+
 var prevJefferyPos: Vector2
 var nextJefferyPos: Vector2
 var prevCamPos: Vector2
@@ -15,13 +17,17 @@ var nextCamPos: Vector2
 var moveCamJeff: bool = false
 var movinglerp: float
 
+var checkpoint: Node2D
+
+var levelResetPosition: Vector2
+
 var jeffery: Jeffery
 var camera: GameCamera
 
 var gameState: String = ""
 var piecesGotten: int = 0
 
-var gameOver
+
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -33,6 +39,9 @@ func _ready() -> void:
 			#jeffery = child
 	#call_deferred("addLevel", startLevel)
 	#pass
+
+func SetCheckpoint(point: Node2D) -> void:
+	checkpoint = point
 
 func SetJeffery(jeff: Jeffery) -> void:
 	jeffery = jeff
@@ -52,6 +61,7 @@ func ChangeScene(filePath: String) -> void:
 
 func MakeFirstScene() -> void:
 	await Signal(get_tree().create_timer(0.01), "timeout")
+	projectileOwner = get_tree().root.get_node("Node2D")
 	gameState = ""
 	piecesGotten = 0
 	call_deferred("addLevel", "TestFirstScene")
@@ -64,34 +74,38 @@ func endLevels() -> void:
 func resetLevel():
 	var level = load(currentLevel.scene_file_path).instantiate()
 	currentLevel.queue_free()
-	get_tree().root.get_node("Node2D").add_child(level)
-	level.owner = get_tree().root.get_node("Node2D")
+	projectileOwner.add_child(level)
+	level.owner = projectileOwner
 	currentLevel = level as Room
+	currentLevel.position = levelResetPosition
 	currentLevel.gameStateChanges(gameState)
-	camera.changeTrack(currentLevel.getClosestTrack(currentLevel.getCheckpointPosition()))
-	print(camera.global_position)
-	print(camera.currentTrack.placeVectorWithinBounds(currentLevel.getCheckpointPosition()))
-	camera.global_position = camera.currentTrack.placeVectorWithinBounds(currentLevel.getCheckpointPosition())
-	print(camera.global_position)
+	camera.changeTrack(currentLevel.getClosestTrack(checkpoint.global_position), false)
+	camera.global_position = camera.currentTrack.placeVectorWithinBounds(checkpoint.global_position)
 
 func addLevel(levelName: String) -> void:
 	prevLevel = currentLevel
 	var level = load("res://Scenes/" + levelName + ".tscn").instantiate()
-	get_tree().root.get_node("Node2D").add_child(level)
-	level.owner = get_tree().root.get_node("Node2D")
+	projectileOwner.add_child(level)
+	level.owner = projectileOwner
 	currentLevel = level as Room
 
-func SwapRoom(roomName: String, enterDirection: float):
+func SwapRoom(roomName: String, enterDirection: float, entranceID: int):
 	# pause the game
 	PauseGame()
 	# add the new level
 	addLevel(roomName)
 	currentLevel.gameStateChanges(gameState)
+	var prevEntrance = prevLevel.getEntranceWithID(entranceID)
+	var newEntrance = currentLevel.getEntranceWithID(entranceID)
+	#print(prevEntrance.global_position, " and ", newEntrance.global_position)
+	currentLevel.position += prevEntrance.global_position - newEntrance.global_position
+	#print(currentLevel.global_position)
+	levelResetPosition = currentLevel.position
 	# Set Up Movment variables for moving jeffery and camera between rooms smooth
 	prevJefferyPos = jeffery.position
 	nextJefferyPos = jeffery.position + Vector2(128 * 3, 0).rotated(enterDirection)
 	prevCamPos = camera.position
-	camera.changeTrack(currentLevel.getClosestTrack(camera.position))
+	camera.changeTrack(newEntrance.closestCameraTrack, false)
 	nextCamPos = camera.currentTrack.placeVectorWithinBounds(camera.position)
 	# allow game manager to move jeffery and camera
 	moveCamJeff = true
@@ -100,7 +114,8 @@ func endSwap() -> void:
 	# stop letting gamemanger move things and reset some variables
 	moveCamJeff = false
 	movinglerp = 0
-	camera.followOffset = Vector2(0,0)
+	camera.changeTrack(camera.currentTrack, true)
+	#camera.followOffset = Vector2(0,0)
 	# remove previous level as it is no longer needed
 	prevLevel.queue_free()
 	# unpause the game
@@ -121,8 +136,7 @@ func JefferyGameOver() -> void :
 func JefferyRetry() -> void:
 	ResumeGame()
 	
-	jeffery.global_position = currentLevel.getCheckpointPosition()
-	print(jeffery.global_position)
+	jeffery.global_position = checkpoint.global_position
 	resetLevel()
 	
 	jeffery.call_deferred("Reset")
@@ -130,10 +144,11 @@ func JefferyRetry() -> void:
 func _physics_process(delta: float) -> void:
 	if(moveCamJeff):
 		movinglerp += 1.0/(60.0 * 1.5)
+		movinglerp = minf(movinglerp, 1.0)
 		jeffery.position = lerp(prevJefferyPos, nextJefferyPos, movinglerp)
 		camera.position = lerp(prevCamPos, nextCamPos, movinglerp)
 		
-		if (movinglerp > 1) :
+		if (movinglerp == 1) :
 			endSwap()
 
 func ShakeScreenDirection(emitterpos: Vector2, intensity: float, duration: float) -> void:

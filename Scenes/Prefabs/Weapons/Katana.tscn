@@ -112,7 +112,7 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"spawnHitbox"
+"method": &"spawnProjectile"
 }, {
 "args": [],
 "method": &"swordDown"
@@ -127,13 +127,13 @@ _data = {
 "SwordSlash": SubResource("Animation_6paf1")
 }
 
-[node name="Katana" type="Node2D" node_paths=PackedStringArray("slashSpawn", "visuals")]
+[node name="Katana" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn")]
 script = ExtResource("1_xxwqj")
-slash = ExtResource("2_rwcp6")
-slashSpawn = NodePath("SlashSpawn")
 inputAction = "jef_slash"
 COOLDOWNLENGTH = 2.0
 visuals = NodePath("Sprite2D")
+attack = ExtResource("2_rwcp6")
+projectileSpawn = NodePath("SlashSpawn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1

@@ -12,6 +12,9 @@ var readyUse: bool = true
 var pressed: bool = false
 @export var visuals: Sprite2D
 
+@export var attack : PackedScene
+@export var projectileSpawn : Node2D
+
 @export var dEvo : PackedScene
 @export var cEvo : PackedScene
 @export var fEvo : PackedScene
@@ -49,6 +52,16 @@ func _physics_process(delta: float) -> void:
 
 func playAudio(name: String) -> void:
 	SoundManager.PlaySound(name)
+
+func spawnProjectile() -> void:
+	var t = attack.instantiate()
+	t.rotation = global_rotation
+	t.position = projectileSpawn.global_position
+	attackModifiers(t)
+	GameManager.projectileOwner.add_child(t)
+
+func attackModifiers(t: Node) -> void:
+	pass
 
 func _input(event: InputEvent) -> void:
 	if (!enabled) :

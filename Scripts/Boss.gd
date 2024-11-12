@@ -32,8 +32,8 @@ func spawnProjectile(pos: Vector2, rot: float, selection: int, amount: int = 1) 
 		p.position = pos
 		p.rotation_degrees = rot
 		
-		owner.add_child(p)
-		p.owner = owner
+		GameManager.projectileOwner.add_child(p)
+		p.owner = GameManager.projectileOwner
 
 func _die() -> void:
 	GameManager.BossDied()

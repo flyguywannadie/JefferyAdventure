@@ -53,7 +53,7 @@ func aiLogic(delta: float) -> void:
 	
 	gun_charge.material.set("shader_parameter/size", gunCooldown)
 	
-	var hasJefferySwitchedSides = ((jeffery.position.x - position.x < 0) && leftOrRight) || ((jeffery.position.x - position.x > 0) && !leftOrRight)
+	var hasJefferySwitchedSides = ((jeffery.global_position.x - global_position.x < 0) && leftOrRight) || ((jeffery.global_position.x - global_position.x > 0) && !leftOrRight)
 	
 	if (gunCooldown > 0) :
 		gunCooldown -= delta
@@ -80,7 +80,7 @@ func aiLogic(delta: float) -> void:
 				gun.rotation_degrees = -gun.rotation_degrees
 			
 			if (gunCooldown <= 0):
-				if (position.distance_to(jeffery.position) < 450):
+				if (global_position.distance_to(jeffery.global_position) < 450):
 					gunState = 1
 				else:
 					gunCharge += 1
@@ -114,7 +114,7 @@ func aiLogic(delta: float) -> void:
 				print(position.distance_to(jeffery.position))
 				
 				stateTimer = 1
-				moveDirection = !leftOrRight if (position.distance_to(jeffery.position) < 550) else leftOrRight
+				moveDirection = !leftOrRight if (global_position.distance_to(jeffery.global_position) < 550) else leftOrRight
 		1: # moving state
 			if (moveDirection) :
 				setMovement(speed, movement.y)

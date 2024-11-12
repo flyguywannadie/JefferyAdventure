@@ -11,11 +11,11 @@ func _physics_process(delta: float) -> void:
 	if(returnToDie):
 		#queue_free() # replace this with code to pull the grapple back to the hook
 		
-		motion = lerp(Vector2(0,0), (myGrapple.bulletSpawn.global_position - global_position), delta * speedUp)
+		motion = lerp(Vector2(0,0), (myGrapple.projectileSpawn.global_position - global_position), delta * speedUp)
 		
 		speedUp *= 1.5
 		
-		if (myGrapple.bulletSpawn.global_position.distance_to(global_position) < 50 || lifetime <= 0 || position.distance_to(myGrapple.position) > 100000) :
+		if (myGrapple.projectileSpawn.global_position.distance_to(global_position) < 50 || lifetime <= 0 || position.distance_to(myGrapple.position) > 100000) :
 			myGrapple.startCooldown()
 			queue_free()
 		
@@ -30,12 +30,12 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func _hitCharacter(chara: Character):
-	var move = (global_position - myGrapple.bulletSpawn.global_position).normalized() * 1000
+	var move = (global_position - myGrapple.projectileSpawn.global_position).normalized() * 1000
 	super._hitCharacter(chara)
 	chara.setKnockback(-move.x, -move.y)
 
 func _hitWall():
-	var move = (global_position - myGrapple.bulletSpawn.global_position).normalized() * 1500
+	var move = (global_position - myGrapple.projectileSpawn.global_position).normalized() * 1500
 	
 	print(move.y)
 	

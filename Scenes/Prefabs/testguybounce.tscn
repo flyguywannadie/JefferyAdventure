@@ -98,6 +98,7 @@ platform_floor_layers = 4294967294
 script = ExtResource("1_242kc")
 anims = NodePath("AnimationPlayer")
 maxHealth = 3
+GRAVITY = 32.0
 FRICTION = 16.0
 visuals = NodePath("Sprite2D")
 

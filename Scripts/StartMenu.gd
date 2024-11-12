@@ -10,8 +10,8 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _on_start_pressed() -> void:
-	GameManager.MakeFirstScene()
 	GameManager.ChangeScene("res://Scenes/node_2d.tscn")
+	GameManager.MakeFirstScene()
 	pass
 
 func _on_quit_pressed() -> void:

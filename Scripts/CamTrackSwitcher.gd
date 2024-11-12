@@ -8,4 +8,4 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	var other: Jeffery = body as Jeffery
 	if (other != null):
-		GameManager.GetGameCamera().changeTrack(myTrack)
+		GameManager.GetGameCamera().changeTrack(myTrack, true)

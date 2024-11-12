@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 	if (shakeTime > 0) :
 		shakeTime -= delta
 		shakeOffset = lerp( Vector2(0,0), Vector2(shakeOffset.y + noise.get_noise_1d(shakeOffset.x),shakeOffset.x + noise.get_noise_1d(shakeOffset.y)), shakeTime)
-	
+
 	if (currentTrack != null && toFollow != null):
 		# move the camera to desired location relative to player
 		#var motion: Vector2 = toFollow.position - followPreviousPosition
@@ -63,8 +63,9 @@ func ScreenShake(dir: Vector2, intensity: float, duration: float):
 	shakeOffset = dir.normalized() * intensity * 50.0
 	pass
 
-func changeTrack(newTrack: CamTrack) -> void:
+func changeTrack(newTrack: CamTrack, smoothTransition: bool) -> void:
 	currentTrack = newTrack
+	if (!smoothTransition):
+		return
 	changeProgress = 0.0
 	followOffset = position - currentTrack.placeVectorWithinBounds(toFollow.position)
-	pass

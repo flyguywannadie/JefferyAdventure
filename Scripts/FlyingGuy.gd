@@ -25,8 +25,8 @@ func ShootGun():
 	t.global_position = $Gun/Shooter.global_position
 	t.rotation_degrees = $Gun.rotation_degrees
 		
-	owner.add_child(t)
-	t.owner = owner
+	GameManager.projectileOwner.add_child(t)
+	t.owner = GameManager.projectileOwner
 	
 
 func aiLogic(delta: float) -> void:

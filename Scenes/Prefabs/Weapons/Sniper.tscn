@@ -51,14 +51,14 @@ _data = {
 "RESET": SubResource("Animation_8f8m3")
 }
 
-[node name="Sniper" type="Node2D" node_paths=PackedStringArray("bulletSpawn", "visuals")]
+[node name="Sniper" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn")]
 z_index = -1
 z_as_relative = false
 script = ExtResource("1_5v62g")
-bullet = ExtResource("2_il0to")
-bulletSpawn = NodePath("BulletSpawn")
 COOLDOWNLENGTH = 2.0
 visuals = NodePath("Sprite2D")
+attack = ExtResource("2_il0to")
+projectileSpawn = NodePath("BulletSpawn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_b4k8r")

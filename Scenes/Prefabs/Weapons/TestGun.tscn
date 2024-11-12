@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://crao8r2kw8mhy"]
+[gd_scene load_steps=16 format=3 uid="uid://crao8r2kw8mhy"]
 
 [ext_resource type="Script" path="res://Scripts/Gun.gd" id="1_yvqmw"]
 [ext_resource type="Texture2D" uid="uid://cab61l5aahjll" path="res://Textures/Gun.png" id="2_103kc"]
 [ext_resource type="PackedScene" uid="uid://beh3os1o53qfn" path="res://Scenes/Prefabs/Weapons/Shotgun.tscn" id="2_nwjkh"]
+[ext_resource type="PackedScene" uid="uid://lf7eq2nvptrq" path="res://Scenes/Prefabs/Projectiles/TestBullet.tscn" id="2_ydiqv"]
 [ext_resource type="PackedScene" uid="uid://0t2v8d4kxbg6" path="res://Scenes/Prefabs/Weapons/Sniper.tscn" id="3_b1775"]
 [ext_resource type="Texture2D" uid="uid://egtg0d18q2qq" path="res://Textures/BaseGun/002.png" id="3_fg07v"]
 [ext_resource type="PackedScene" uid="uid://mai187yxyo5a" path="res://Scenes/Prefabs/Weapons/GrappleHook.tscn" id="4_ab1ey"]
@@ -64,13 +65,14 @@ _data = {
 "RESET": SubResource("Animation_8f8m3")
 }
 
-[node name="Weapon" type="Node2D" node_paths=PackedStringArray("bulletSpawn", "visuals")]
+[node name="Weapon" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn")]
 z_index = -1
 z_as_relative = false
 script = ExtResource("1_yvqmw")
-bulletSpawn = NodePath("BulletSpawn")
 COOLDOWNLENGTH = 0.75
 visuals = NodePath("Sprite2D")
+attack = ExtResource("2_ydiqv")
+projectileSpawn = NodePath("BulletSpawn")
 dEvo = ExtResource("2_nwjkh")
 cEvo = ExtResource("3_b1775")
 fEvo = ExtResource("4_ab1ey")
