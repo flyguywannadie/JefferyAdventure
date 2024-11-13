@@ -101,6 +101,7 @@ func SwapRoom(roomName: String, enterDirection: float, entranceID: int):
 	currentLevel.position += prevEntrance.global_position - newEntrance.global_position
 	#print(currentLevel.global_position)
 	levelResetPosition = currentLevel.position
+	checkpoint = newEntrance.closestCheckpoint
 	# Set Up Movment variables for moving jeffery and camera between rooms smooth
 	prevJefferyPos = jeffery.position
 	nextJefferyPos = jeffery.position + Vector2(128 * 3, 0).rotated(enterDirection)

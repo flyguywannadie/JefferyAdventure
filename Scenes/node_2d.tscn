@@ -193,7 +193,7 @@ platform_floor_layers = 4278190082
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("toFollow")]
 z_index = 100
 ignore_rotation = false
-zoom = Vector2(0.25, 0.25)
+zoom = Vector2(0.5, 0.5)
 script = ExtResource("7_2u6g4")
 toFollow = NodePath("../Jeffery")
 noise = SubResource("FastNoiseLite_ku0xa")

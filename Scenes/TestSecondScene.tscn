@@ -125,20 +125,18 @@ tile_set = ExtResource("2_j2dbk")
 [node name="CameraTrack" parent="." instance=ExtResource("4_sm4ij")]
 trackBounds = Vector2(2304, 0)
 
-[node name="DoorToFirst" parent="." node_paths=PackedStringArray("closestCameraTrack", "closestCheckpoint") instance=ExtResource("4_2e3h6")]
+[node name="DoorToFirst" parent="." node_paths=PackedStringArray("closestCameraTrack") instance=ExtResource("4_2e3h6")]
 position = Vector2(-2432, 64)
 rotation = 3.14159
 doorID = 0
 nextRoom = "TestFirstScene"
 closestCameraTrack = NodePath("../CameraTrack")
-closestCheckpoint = NodePath("")
 
-[node name="DoorToBoss" parent="." node_paths=PackedStringArray("closestCameraTrack", "closestCheckpoint") instance=ExtResource("4_2e3h6")]
+[node name="DoorToBoss" parent="." node_paths=PackedStringArray("closestCameraTrack") instance=ExtResource("4_2e3h6")]
 position = Vector2(2432, 64)
 doorID = 1
 nextRoom = "TestBossScene"
 closestCameraTrack = NodePath("../CameraTrack")
-closestCheckpoint = NodePath("")
 
 [node name="Changes" type="Node2D" parent="."]
 
@@ -260,7 +258,7 @@ expectedGameState = "c"
 
 [node name="Enemy" parent="Changes/GameChange" instance=ExtResource("16_g6fxc")]
 material = SubResource("ShaderMaterial_b6dj4")
-position = Vector2(11200, 3648)
+position = Vector2(0, -384)
 
 [node name="Events" type="Node" parent="."]
 

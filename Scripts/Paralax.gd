@@ -15,5 +15,9 @@ func _afterReady() -> void:
 func _process(delta: float) -> void:
 	#print(cam.global_position, " and ", startPos)
 	
-	global_position.x = cam.global_position.x
-	global_position.y = cam.global_position.y
+	global_position.x = startPos.x - ((cam.global_position.x - startPos.x)*(1.0 + distance))
+	global_position.y = startPos.y
+	
+	
+	var scal = 1.0 / (1.0 + distance)
+	global_scale = Vector2(scal,scal)
