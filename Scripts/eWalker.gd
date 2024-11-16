@@ -54,7 +54,8 @@ func hitStunDone() -> void:
 	pass
 
 func takeDamage(damage: int):
-	SoundManager.PlaySound("Hurt2")
+	if (hitstun <= 0) :
+		SoundManager.PlaySound("Hurt2")
 	anims.play("Hurt")
 	SetHitStun(0.5)
 	super.takeDamage(damage)

@@ -1,11 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://beh3os1o53qfn"]
+[gd_scene load_steps=14 format=3 uid="uid://beh3os1o53qfn"]
 
 [ext_resource type="Script" path="res://Scripts/Shotgun.gd" id="1_k5rqv"]
 [ext_resource type="PackedScene" uid="uid://dj1f0t1ndcxyk" path="res://Scenes/Prefabs/Projectiles/ShotgunBullet.tscn" id="2_crqtj"]
+[ext_resource type="PackedScene" uid="uid://dyhifxpk7urs4" path="res://Scenes/Prefabs/muzzle_flash.tscn" id="2_mvyic"]
 [ext_resource type="Texture2D" uid="uid://dyxdcbf2kyfyx" path="res://Textures/ShotgunWeapon/Shotgun.png" id="3_qgsw0"]
 [ext_resource type="Texture2D" uid="uid://i1anceto50qq" path="res://Textures/ShotgunWeapon/ShotgunShoot1.png" id="4_b0kbs"]
 [ext_resource type="Texture2D" uid="uid://ba1itqd5xsxk0" path="res://Textures/ShotgunWeapon/ShotgunShoot2.png" id="5_8ypew"]
 [ext_resource type="Texture2D" uid="uid://8q1vbrg0hmx2" path="res://Textures/ShotgunWeapon/ShotgunShoot3.png" id="6_oq6w4"]
+
+[sub_resource type="Curve" id="Curve_heb1e"]
+_data = [Vector2(0, 1), 0.0, -2.20759, 0, 0, Vector2(0.969863, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ignyn"]
+colors = PackedColorArray(1, 0.605302, 0.124392, 1, 0.60531, 0.418431, 5.77569e-07, 1)
 
 [sub_resource type="Animation" id="Animation_83tqf"]
 resource_name = "GunHold"
@@ -60,14 +68,16 @@ _data = {
 "RESET": SubResource("Animation_8f8m3")
 }
 
-[node name="Shotgun" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn")]
+[node name="Shotgun" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn", "Particle")]
 z_index = -1
 z_as_relative = false
 script = ExtResource("1_k5rqv")
+ShootEffect = ExtResource("2_mvyic")
 COOLDOWNLENGTH = 1.25
 visuals = NodePath("Sprite2D")
 attack = ExtResource("2_crqtj")
 projectileSpawn = NodePath("BulletSpawn")
+Particle = NodePath("BulletSpawn/GunBoomParticles")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(58, 1)
@@ -75,6 +85,23 @@ texture = ExtResource("3_qgsw0")
 
 [node name="BulletSpawn" type="Node2D" parent="."]
 position = Vector2(107, -7)
+
+[node name="GunBoomParticles" type="CPUParticles2D" parent="BulletSpawn"]
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+initial_velocity_min = 2000.0
+initial_velocity_max = 3000.0
+linear_accel_min = -10000.0
+linear_accel_max = -5000.0
+damping_max = 100.0
+scale_amount_min = 10.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_heb1e")
+color_ramp = SubResource("Gradient_ignyn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

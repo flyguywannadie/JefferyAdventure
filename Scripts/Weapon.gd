@@ -14,6 +14,7 @@ var pressed: bool = false
 
 @export var attack : PackedScene
 @export var projectileSpawn : Node2D
+@export var Particle : CPUParticles2D
 
 @export var dEvo : PackedScene
 @export var cEvo : PackedScene
@@ -53,12 +54,17 @@ func _physics_process(delta: float) -> void:
 func playAudio(name: String) -> void:
 	SoundManager.PlaySound(name)
 
+func activateParticles() -> void:
+	if (Particle != null) :
+		Particle.emitting = true	
+
 func spawnProjectile() -> void:
 	var t = attack.instantiate()
 	t.rotation = global_rotation
 	t.position = projectileSpawn.global_position
 	attackModifiers(t)
 	GameManager.projectileOwner.add_child(t)
+	t.owner = GameManager.projectileOwner
 
 func attackModifiers(t: Node) -> void:
 	pass

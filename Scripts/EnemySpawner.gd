@@ -7,3 +7,4 @@ func SpawnEnemy() -> void:
 	var t = enemyToSpawn.instantiate()
 	t.position = global_position
 	owner.add_child(t)
+	t.owner = owner

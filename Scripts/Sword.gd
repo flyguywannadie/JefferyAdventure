@@ -19,6 +19,8 @@ func spawnProjectile()-> void:
 	attackModifiers(t)
 	GameManager.jeffery.add_child(t)
 
+
+
 func endCooldown() -> void:
 	$AnimationPlayer.play("RESET")
 	pass

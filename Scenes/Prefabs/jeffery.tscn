@@ -355,6 +355,8 @@ size = Vector2(73, 171)
 size = Vector2(30, 85)
 
 [node name="Jeffery" type="CharacterBody2D" node_paths=PackedStringArray("visuals")]
+z_index = 10
+z_as_relative = false
 material = SubResource("ShaderMaterial_rsqeg")
 collision_mask = 42
 collision_priority = 2.0
@@ -372,6 +374,7 @@ visuals = NodePath("Node2D/Sprite")
 use_parent_material = true
 
 [node name="Sprite" type="Sprite2D" parent="Node2D"]
+z_index = 10
 z_as_relative = false
 use_parent_material = true
 texture = ExtResource("3_ktrsr")
@@ -385,7 +388,7 @@ use_parent_material = true
 position = Vector2(54, 0)
 
 [node name="GunArmSprite" type="Sprite2D" parent="Node2D/GunArm"]
-z_index = -2
+z_index = 8
 z_as_relative = false
 material = SubResource("ShaderMaterial_x4i71")
 use_parent_material = true

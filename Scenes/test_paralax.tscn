@@ -1,87 +1,41 @@
-[gd_scene load_steps=10 format=4 uid="uid://dquo18cims7kn"]
+[gd_scene load_steps=13 format=4 uid="uid://dquo18cims7kn"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_rawsw"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="2_co448"]
+[ext_resource type="TileSet" uid="uid://d0skvtijb1y7" path="res://Tilemaps/TestTileMap_Trigger.tres" id="2_hjraj"]
 [ext_resource type="PackedScene" uid="uid://bh523bxi5rvi" path="res://Scenes/Prefabs/camera_track.tscn" id="2_keel4"]
 [ext_resource type="Texture2D" uid="uid://4j4ywdjr8n0e" path="res://Textures/Test/TestShelf.png" id="2_o4a6h"]
 [ext_resource type="Texture2D" uid="uid://ba1cy76muctqw" path="res://Textures/Test/OtherWalls.png" id="2_yk4m7"]
+[ext_resource type="Texture2D" uid="uid://brtb5vtqnams6" path="res://Textures/Test/TestShelfBack.png" id="2_ykodq"]
 [ext_resource type="Texture2D" uid="uid://ik0mjhq4sy5e" path="res://Textures/Test/Backwall.png" id="3_rn7rj"]
 [ext_resource type="Script" path="res://Scripts/Paralax.gd" id="3_v3usb"]
 [ext_resource type="PackedScene" uid="uid://v42kviymhbdq" path="res://Scenes/Prefabs/doorway.tscn" id="4_drbhi"]
 [ext_resource type="Texture2D" uid="uid://d0kl71hccsvfi" path="res://Textures/Test/TestShelfContnet.png" id="4_m5h88"]
+[ext_resource type="PackedScene" uid="uid://soputgv8t7rk" path="res://Scenes/Prefabs/CamTrackSwitch.tscn" id="10_sa764"]
 
 [node name="TestParalax" type="Node2D" node_paths=PackedStringArray("camTracks", "entrances")]
 script = ExtResource("1_rawsw")
 camTracks = [NodePath("CameraTrack")]
 entrances = [NodePath("Doorway")]
 
-[node name="shelf" type="Node2D" parent="."]
-position = Vector2(-768, 0)
-
-[node name="TestShelf2" type="Sprite2D" parent="shelf"]
-position = Vector2(128, -128)
-texture = ExtResource("2_o4a6h")
-script = ExtResource("3_v3usb")
-distance = 3.0
-
-[node name="TestShelfContnet7" type="Sprite2D" parent="shelf"]
-position = Vector2(128, -128)
-texture = ExtResource("4_m5h88")
-script = ExtResource("3_v3usb")
-distance = 2.75
-
-[node name="TestShelfContnet6" type="Sprite2D" parent="shelf"]
-position = Vector2(128, -128)
-texture = ExtResource("4_m5h88")
-script = ExtResource("3_v3usb")
-distance = 2.5
-
-[node name="TestShelfContnet5" type="Sprite2D" parent="shelf"]
-position = Vector2(128, -128)
-texture = ExtResource("4_m5h88")
-script = ExtResource("3_v3usb")
-distance = 2.25
-
-[node name="TestShelfContnet4" type="Sprite2D" parent="shelf"]
-position = Vector2(128, -128)
-texture = ExtResource("4_m5h88")
-script = ExtResource("3_v3usb")
-distance = 2.0
-
-[node name="TestShelfContnet3" type="Sprite2D" parent="shelf"]
-position = Vector2(128, -128)
-texture = ExtResource("4_m5h88")
-script = ExtResource("3_v3usb")
-distance = 1.75
-
-[node name="TestShelfContnet2" type="Sprite2D" parent="shelf"]
-position = Vector2(128, -128)
-texture = ExtResource("4_m5h88")
-script = ExtResource("3_v3usb")
-distance = 1.5
-
-[node name="TestShelfContnet" type="Sprite2D" parent="shelf"]
-position = Vector2(128, -128)
-texture = ExtResource("4_m5h88")
-script = ExtResource("3_v3usb")
-distance = 1.25
-
-[node name="TestShelf" type="Sprite2D" parent="shelf"]
-position = Vector2(128, -128)
-texture = ExtResource("2_o4a6h")
-script = ExtResource("3_v3usb")
-distance = 1.0
+[node name="TileMapLayer2" type="TileMapLayer" parent="."]
+z_index = 1
+z_as_relative = false
+tile_map_data = PackedByteArray("AAAMAP7/AQADAAAAAAAMAP//AQACAAEAAAAMAAAAAQACAAEAAAAMAAEAAQACAAEAAAAMAAIAAQABAAIAAAALAAIAAQAAAAIAAAALAAEAAQABAAAAAAALAAAAAQABAAAAAAALAP//AQABAAAAAAALAP7/AQABAAMAAAANAP7/AQAAAAAAAAANAP//AQADAAIAAAANAAAAAQADAAIAAAANAAEAAQADAAIAAAANAAIAAQADAAMAAAD2//7/AQAAAAAAAAD2////AQADAAIAAAD2/wAAAQADAAIAAAD2/wEAAQADAAIAAAD2/wIAAQADAAMAAAD1/wIAAQABAAIAAAD1/wEAAQACAAEAAAD1/wAAAQACAAEAAAD1////AQACAAEAAAD1//7/AQADAAAAAAD0//7/AQABAAMAAAD0////AQABAAAAAAD0/wAAAQABAAAAAAD0/wEAAQABAAAAAAD0/wIAAQAAAAIAAAA=")
+tile_set = ExtResource("2_hjraj")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+z_index = 1
+z_as_relative = false
 tile_map_data = PackedByteArray("AAACAAIAAQADAAAAAAABAAIAAQADAAAAAAAAAAIAAQADAAAAAAD//wIAAQADAAAAAAD+/wIAAQADAAAAAAD9/wIAAQADAAAAAAD8/wIAAQADAAAAAAD7/wIAAQADAAAAAAD6/wIAAQADAAAAAAD5/wIAAQADAAAAAAD4/wIAAQADAAAAAAD3/wIAAQADAAAAAAADAAIAAQADAAAAAAAEAAIAAQADAAAAAAAFAAIAAQADAAAAAAAGAAIAAQADAAAAAAAHAAIAAQADAAAAAAAIAAIAAQADAAAAAAAJAAIAAQADAAAAAAAKAAIAAQADAAAAAAALAAIAAQADAAAAAAAMAAIAAQAAAAAAAAAMAAQAAQADAAMAAAAMAAMAAQADAAIAAAALAAQAAQABAAIAAAALAAMAAQACAAEAAAAKAAQAAQABAAIAAAAKAAMAAQACAAEAAAAJAAQAAQABAAIAAAAJAAMAAQACAAEAAAAIAAQAAQABAAIAAAAIAAMAAQACAAEAAAAHAAQAAQABAAIAAAAHAAMAAQACAAEAAAAGAAQAAQABAAIAAAAGAAMAAQACAAEAAAAFAAQAAQABAAIAAAAFAAMAAQACAAEAAAAEAAQAAQABAAIAAAAEAAMAAQACAAEAAAADAAQAAQABAAIAAAADAAMAAQACAAEAAAACAAQAAQABAAIAAAACAAMAAQACAAEAAAABAAQAAQABAAIAAAABAAMAAQACAAEAAAAAAAQAAQABAAIAAAAAAAMAAQACAAEAAAD//wQAAQABAAIAAAD//wMAAQACAAEAAAD+/wQAAQABAAIAAAD+/wMAAQACAAEAAAD9/wQAAQABAAIAAAD9/wMAAQACAAEAAAD8/wQAAQABAAIAAAD8/wMAAQACAAEAAAD7/wQAAQABAAIAAAD7/wMAAQACAAEAAAD6/wQAAQABAAIAAAD6/wMAAQACAAEAAAD5/wQAAQABAAIAAAD5/wMAAQACAAEAAAD4/wQAAQABAAIAAAD4/wMAAQACAAEAAAD3/wQAAQABAAIAAAD3/wMAAQACAAEAAAAMAP7/AQADAAMAAAAMAP3/AQADAAIAAAAMAPz/AQADAAIAAAAMAPv/AQADAAIAAAAMAPr/AQADAAIAAAAMAPn/AQADAAIAAAAMAPj/AQADAAIAAAALAP7/AQAAAAIAAAALAP3/AQABAAAAAAALAPz/AQABAAAAAAALAPv/AQABAAAAAAALAPr/AQABAAAAAAALAPn/AQABAAAAAAALAPj/AQABAAAAAAD2//j/AQADAAIAAAD2/wIAAQADAAAAAAD2/wMAAQACAAEAAAD2/wQAAQABAAIAAAD2//n/AQADAAIAAAD2//r/AQADAAIAAAD2//v/AQADAAIAAAD2//z/AQADAAIAAAD2//3/AQADAAIAAAD2//7/AQADAAMAAAALAPf/AQACAAIAAAALAPb/AQADAAAAAAAMAPb/AQAAAAAAAAAMAPf/AQADAAIAAAAJAPb/AQADAAAAAAAKAPb/AQADAAAAAAAIAPb/AQADAAAAAAAHAPb/AQADAAAAAAAGAPb/AQADAAAAAAAFAPb/AQADAAAAAAAEAPb/AQADAAAAAAADAPb/AQADAAAAAAACAPb/AQADAAAAAAABAPb/AQADAAAAAAAAAPb/AQADAAAAAAD///b/AQADAAAAAAD+//b/AQADAAAAAAD9//b/AQADAAAAAAD8//b/AQADAAAAAAD7//b/AQADAAAAAAD6//b/AQADAAAAAAD5//b/AQADAAAAAAD4//b/AQADAAAAAAD3//b/AQADAAAAAAD2//b/AQADAAAAAAD1//b/AQABAAMAAAD1//f/AQABAAAAAAD2//f/AQADAAEAAAD1//j/AQABAAAAAAD1//n/AQABAAAAAAD1//r/AQABAAAAAAD1//v/AQABAAAAAAD1//z/AQABAAAAAAD1//3/AQABAAAAAAD1//7/AQAAAAIAAAD3//f/AQABAAIAAAD4//f/AQABAAIAAAD5//f/AQABAAIAAAD6//f/AQABAAIAAAD7//f/AQABAAIAAAD8//f/AQABAAIAAAD9//f/AQABAAIAAAD+//f/AQABAAIAAAD///f/AQABAAIAAAAAAPf/AQABAAIAAAABAPf/AQABAAIAAAACAPf/AQABAAIAAAADAPf/AQABAAIAAAAEAPf/AQABAAIAAAAFAPf/AQABAAIAAAAGAPf/AQABAAIAAAAHAPf/AQABAAIAAAAIAPf/AQABAAIAAAAJAPf/AQABAAIAAAAKAPf/AQABAAIAAAD1/wIAAQABAAMAAAD1/wMAAQABAAAAAAD1/wQAAQAAAAIAAAA=")
 tile_set = ExtResource("2_co448")
 
 [node name="CameraTrack" parent="." instance=ExtResource("2_keel4")]
 position = Vector2(128, -384)
-trackBounds = Vector2(2560, 1)
+trackBounds = Vector2(2560, 0)
 
 [node name="Doorway" parent="." node_paths=PackedStringArray("closestCameraTrack") instance=ExtResource("4_drbhi")]
-position = Vector2(1600, 64)
+position = Vector2(1536, 64)
 doorID = 1
 nextRoom = "TestFirstScene"
 closestCameraTrack = NodePath("../CameraTrack")
@@ -91,17 +45,260 @@ position = Vector2(256, -384)
 zoom = Vector2(0.5, 0.5)
 
 [node name="Walls" type="Sprite2D" parent="."]
+process_mode = 4
+visible = false
 z_index = -10
 z_as_relative = false
-position = Vector2(128, -512)
+position = Vector2(128, -256)
 texture = ExtResource("2_yk4m7")
 script = ExtResource("3_v3usb")
-distance = 5.0
 
 [node name="Backwalls" type="Sprite2D" parent="."]
+process_mode = 4
+visible = false
 z_index = -10
 z_as_relative = false
-position = Vector2(128, -512)
+position = Vector2(128, -256)
 texture = ExtResource("3_rn7rj")
 script = ExtResource("3_v3usb")
-distance = 10.0
+distance = 25.0
+
+[node name="pitfrommain" parent="." node_paths=PackedStringArray("myTrack") instance=ExtResource("10_sa764")]
+position = Vector2(128, -384)
+scale = Vector2(130.6, 65.52)
+myTrack = NodePath("../CameraTrack")
+
+[node name="shelf" type="Node2D" parent="."]
+position = Vector2(-1216, 0)
+
+[node name="TestShelf2" type="Sprite2D" parent="shelf"]
+z_index = -8
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("2_ykodq")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 16.0
+
+[node name="TestShelfContnet6" type="Sprite2D" parent="shelf"]
+z_index = -6
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("4_m5h88")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 12.0
+
+[node name="TestShelfContnet4" type="Sprite2D" parent="shelf"]
+z_index = -5
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("4_m5h88")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 8.0
+
+[node name="TestShelfContnet2" type="Sprite2D" parent="shelf"]
+z_index = -2
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("4_m5h88")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 4.0
+
+[node name="TestShelf" type="Sprite2D" parent="shelf"]
+z_index = -1
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("2_o4a6h")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+
+[node name="shelf2" type="Node2D" parent="."]
+position = Vector2(-768, 0)
+
+[node name="TestShelf2" type="Sprite2D" parent="shelf2"]
+z_index = -8
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("2_ykodq")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 16.0
+
+[node name="TestShelfContnet6" type="Sprite2D" parent="shelf2"]
+z_index = -6
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("4_m5h88")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 12.0
+
+[node name="TestShelfContnet4" type="Sprite2D" parent="shelf2"]
+z_index = -5
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("4_m5h88")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 8.0
+
+[node name="TestShelfContnet2" type="Sprite2D" parent="shelf2"]
+z_index = -2
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("4_m5h88")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 4.0
+
+[node name="TestShelf" type="Sprite2D" parent="shelf2"]
+z_index = -1
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("2_o4a6h")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+
+[node name="shelf3" type="Node2D" parent="."]
+position = Vector2(-320, 0)
+
+[node name="TestShelf2" type="Sprite2D" parent="shelf3"]
+z_index = -8
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("2_ykodq")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 16.0
+
+[node name="TestShelfContnet6" type="Sprite2D" parent="shelf3"]
+z_index = -6
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("4_m5h88")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 12.0
+
+[node name="TestShelfContnet4" type="Sprite2D" parent="shelf3"]
+z_index = -5
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("4_m5h88")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 8.0
+
+[node name="TestShelfContnet2" type="Sprite2D" parent="shelf3"]
+z_index = -2
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("4_m5h88")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 4.0
+
+[node name="TestShelf" type="Sprite2D" parent="shelf3"]
+z_index = -1
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("2_o4a6h")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+
+[node name="shelf5" type="Node2D" parent="."]
+position = Vector2(512, 0)
+
+[node name="TestShelf2" type="Sprite2D" parent="shelf5"]
+z_index = -8
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("2_ykodq")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 16.0
+
+[node name="TestShelfContnet6" type="Sprite2D" parent="shelf5"]
+z_index = -6
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("4_m5h88")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 12.0
+
+[node name="TestShelfContnet4" type="Sprite2D" parent="shelf5"]
+z_index = -5
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("4_m5h88")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 8.0
+
+[node name="TestShelfContnet2" type="Sprite2D" parent="shelf5"]
+z_index = -2
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("4_m5h88")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 4.0
+
+[node name="TestShelf" type="Sprite2D" parent="shelf5"]
+z_index = -1
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("2_o4a6h")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+
+[node name="shelf6" type="Node2D" parent="."]
+position = Vector2(960, 0)
+
+[node name="TestShelf2" type="Sprite2D" parent="shelf6"]
+z_index = -8
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("2_ykodq")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 16.0
+
+[node name="TestShelfContnet6" type="Sprite2D" parent="shelf6"]
+z_index = -6
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("4_m5h88")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 12.0
+
+[node name="TestShelfContnet4" type="Sprite2D" parent="shelf6"]
+z_index = -5
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("4_m5h88")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 8.0
+
+[node name="TestShelfContnet2" type="Sprite2D" parent="shelf6"]
+z_index = -2
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("4_m5h88")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")
+distance = 4.0
+
+[node name="TestShelf" type="Sprite2D" parent="shelf6"]
+z_index = -1
+z_as_relative = false
+position = Vector2(256, -128)
+texture = ExtResource("2_o4a6h")
+offset = Vector2(128, 0)
+script = ExtResource("3_v3usb")

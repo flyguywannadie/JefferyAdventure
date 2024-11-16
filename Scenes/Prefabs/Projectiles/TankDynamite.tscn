@@ -59,7 +59,7 @@ collision_mask = 9
 script = ExtResource("1_7siyr")
 velocity = 20.0
 slowdown = 0.0
-HitEffect = ExtResource("2_kuscj")
+deathEffect = ExtResource("2_kuscj")
 damage = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

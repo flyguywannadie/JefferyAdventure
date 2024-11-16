@@ -8,7 +8,7 @@ var whoIFollow: Character
 
 
 func _ready() -> void:
-	desiredPos = position
+	desiredPos = global_position
 	whoIFollow = GameManager.jeffery
 	followOffset = Vector2(0, -200)
 	stateTimer = 2
@@ -34,7 +34,7 @@ func aiLogic(delta: float) -> void:
 	
 	match (state):
 		0:
-			mygun.look_at(whoIFollow.position)
+			mygun.look_at(whoIFollow.global_position)
 			if (stateTimer < 0) :
 				stateTimer = 0.75
 				state = 1
@@ -51,12 +51,12 @@ func aiLogic(delta: float) -> void:
 				
 		
 	
-	desiredPos = whoIFollow.position + followOffset
+	desiredPos = whoIFollow.global_position + followOffset
 	
 	if (is_on_floor()) :
 		setKnockback(0, -500)
 	
-	var toMove = (desiredPos - position)
+	var toMove = (desiredPos - global_position)
 	
 	setMovement(toMove.x, toMove.y)
 
@@ -65,10 +65,11 @@ func hitStunDone() -> void:
 	super.hitStunDone()
 
 func takeDamage(damage: int):
-	SoundManager.PlaySound("Hurt2")
+	if (hitstun <= 0) :
+		SoundManager.PlaySound("Hurt2")
 	$Gun/GUnAnims.play("idle")
 	anims.play("Hurt")
-	var knocked = (position - whoIFollow.position).normalized() * 1200
+	var knocked = (global_position - whoIFollow.global_position).normalized() * 1200
 	setKnockback(knocked.x, knocked.y)
 	SetHitStun(0.75)
 	super.takeDamage(damage)

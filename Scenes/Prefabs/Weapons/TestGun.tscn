@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://crao8r2kw8mhy"]
+[gd_scene load_steps=20 format=3 uid="uid://crao8r2kw8mhy"]
 
 [ext_resource type="Script" path="res://Scripts/Gun.gd" id="1_yvqmw"]
 [ext_resource type="Texture2D" uid="uid://cab61l5aahjll" path="res://Textures/Gun.png" id="2_103kc"]
+[ext_resource type="PackedScene" uid="uid://dyhifxpk7urs4" path="res://Scenes/Prefabs/muzzle_flash.tscn" id="2_kiysw"]
 [ext_resource type="PackedScene" uid="uid://beh3os1o53qfn" path="res://Scenes/Prefabs/Weapons/Shotgun.tscn" id="2_nwjkh"]
 [ext_resource type="PackedScene" uid="uid://lf7eq2nvptrq" path="res://Scenes/Prefabs/Projectiles/TestBullet.tscn" id="2_ydiqv"]
 [ext_resource type="PackedScene" uid="uid://0t2v8d4kxbg6" path="res://Scenes/Prefabs/Weapons/Sniper.tscn" id="3_b1775"]
@@ -10,7 +11,15 @@
 [ext_resource type="Texture2D" uid="uid://cgkbwkj4tgprx" path="res://Textures/BaseGun/003.png" id="4_lj184"]
 [ext_resource type="Texture2D" uid="uid://bek86tx1noxal" path="res://Textures/BaseGun/004.png" id="5_j3kh6"]
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="6_2lqud"]
+[ext_resource type="Texture2D" uid="uid://c2hfm2jcok3p0" path="res://Textures/GunShootEffect.png" id="8_xhnb5"]
 [ext_resource type="AudioStream" uid="uid://dbk8gcdjcbdu7" path="res://Sounds/Shoot.wav" id="9_wkvs7"]
+
+[sub_resource type="Curve" id="Curve_k7dy4"]
+_data = [Vector2(0, 1), 0.0, -2.20759, 0, 0, Vector2(0.969863, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_fwci2"]
+colors = PackedColorArray(1, 0.605302, 0.124392, 1, 0.60531, 0.418431, 5.77569e-07, 1)
 
 [sub_resource type="Animation" id="Animation_83tqf"]
 resource_name = "GunHold"
@@ -65,14 +74,16 @@ _data = {
 "RESET": SubResource("Animation_8f8m3")
 }
 
-[node name="Weapon" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn")]
+[node name="Weapon" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn", "Particle")]
 z_index = -1
 z_as_relative = false
 script = ExtResource("1_yvqmw")
+ShootEffect = ExtResource("2_kiysw")
 COOLDOWNLENGTH = 0.75
 visuals = NodePath("Sprite2D")
 attack = ExtResource("2_ydiqv")
 projectileSpawn = NodePath("BulletSpawn")
+Particle = NodePath("BulletSpawn/GunBoomParticles")
 dEvo = ExtResource("2_nwjkh")
 cEvo = ExtResource("3_b1775")
 fEvo = ExtResource("4_ab1ey")
@@ -88,6 +99,25 @@ position = Vector2(53, -11)
 visible = false
 scale = Vector2(20, 20)
 texture = ExtResource("6_2lqud")
+
+[node name="GunBoomParticles" type="CPUParticles2D" parent="BulletSpawn"]
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+texture = ExtResource("8_xhnb5")
+particle_flag_align_y = true
+spread = 35.0
+initial_velocity_min = 1500.0
+initial_velocity_max = 3000.0
+linear_accel_min = -10000.0
+linear_accel_max = -5000.0
+damping_max = 100.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_k7dy4")
+color_ramp = SubResource("Gradient_fwci2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

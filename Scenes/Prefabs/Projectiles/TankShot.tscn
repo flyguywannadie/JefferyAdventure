@@ -17,7 +17,7 @@ script = ExtResource("1_ismu5")
 velocity = 100.0
 slowdown = 0.0
 knockback = Vector2(500, 1)
-HitEffect = ExtResource("2_dk1y2")
+deathEffect = ExtResource("2_dk1y2")
 damage = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

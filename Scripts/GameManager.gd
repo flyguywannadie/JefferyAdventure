@@ -4,7 +4,7 @@ var evolutionScreen: EvolutionScreen #= $"../CanvasLayer/EvolutionScreen"
 var deathScreen: DeathScreen #= $"../CanvasLayer/DeathScreenJeffery"
 var bossHealthbar: BossHealthbar
 
-var startLevel: String = "TestFirstScene"
+var startLevel: String = "test_paralax"
 var currentLevel: Room
 var prevLevel: Room
 
@@ -26,8 +26,6 @@ var camera: GameCamera
 
 var gameState: String = ""
 var piecesGotten: int = 0
-
-
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -64,7 +62,7 @@ func MakeFirstScene() -> void:
 	projectileOwner = get_tree().root.get_node("Node2D")
 	gameState = ""
 	piecesGotten = 0
-	call_deferred("addLevel", "TestFirstScene")
+	call_deferred("addLevel", startLevel)
 
 func endLevels() -> void:
 	if (currentLevel != null) :

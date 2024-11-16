@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://b21mgrao055cl"]
+
+[ext_resource type="Script" path="res://Scripts/ParticleHitEffect.gd" id="1_btg2j"]
+[ext_resource type="Texture2D" uid="uid://c2hfm2jcok3p0" path="res://Textures/GunShootEffect.png" id="1_dlett"]
+
+[node name="WalkerDamageEffect" type="Node2D"]
+script = ExtResource("1_btg2j")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 25
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+texture = ExtResource("1_dlett")
+emission_shape = 1
+emission_sphere_radius = 25.0
+particle_flag_align_y = true
+direction = Vector2(0, -1)
+spread = 135.0
+initial_velocity_min = 328.12
+initial_velocity_max = 328.12
+angle_min = -300.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+color = Color(0.712692, 2.93598e-06, 5.77569e-07, 1)
+
+[connection signal="finished" from="CPUParticles2D" to="." method="_on_cpu_particles_2d_finished"]
