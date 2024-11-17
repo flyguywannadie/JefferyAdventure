@@ -53,12 +53,18 @@ func hitStunDone() -> void:
 	setIdleTimer()
 	pass
 
+func _die() -> void:
+	SoundManager.PlaySound("Death")
+	super._die()
+
 func takeDamage(damage: int):
+	super.takeDamage(damage)
 	if (hitstun <= 0) :
-		SoundManager.PlaySound("Hurt2")
+		match (randi_range(0,1)):
+			0:SoundManager.PlaySound("Hurt3")
+			1:SoundManager.PlaySound("hurt4")
 	anims.play("Hurt")
 	SetHitStun(0.5)
-	super.takeDamage(damage)
 
 func setIdleTimer() -> void:
 	stateTimer = randf_range(-2.0, 1.5)

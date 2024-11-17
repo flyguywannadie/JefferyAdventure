@@ -13,6 +13,8 @@ script = ExtResource("1_u4p2h")
 velocity = 50.0
 lifetime = 1.0
 dieOnStop = true
+bulletHitSound = "BulletHit"
+bulletDeathSound = "BulletPop"
 damage = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

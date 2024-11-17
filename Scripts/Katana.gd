@@ -31,6 +31,9 @@ func onHold(delta: float) -> void:
 	if (totalBonusTime < 3):
 		totalBonusTime += delta
 		visuals.material.set("shader_parameter/charge", lerp(0.6, 0.3, totalBonusTime/3.0))
+		if (totalBonusTime >= 3) :
+			SoundManager.PlaySound("ChargeFinish")
+			totalBonusTime = 3
 	
 	#scale = Vector2(1 + totalBonusTime, 1 + totalBonusTime)
 	

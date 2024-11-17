@@ -16,6 +16,8 @@ lifetime = 2.0
 slowdown = 5.0
 dieOnStop = true
 HitEffect = ExtResource("2_3bg47")
+bulletHitSound = "BulletHit"
+bulletDeathSound = "BulletPop"
 damage = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

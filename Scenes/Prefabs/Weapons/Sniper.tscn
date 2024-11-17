@@ -53,7 +53,6 @@ _data = {
 
 [node name="Sniper" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn")]
 z_index = -1
-z_as_relative = false
 script = ExtResource("1_5v62g")
 COOLDOWNLENGTH = 2.0
 visuals = NodePath("Sprite2D")

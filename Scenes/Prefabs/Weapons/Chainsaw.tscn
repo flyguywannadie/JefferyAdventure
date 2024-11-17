@@ -97,6 +97,7 @@ _data = {
 }
 
 [node name="Chainsaw" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn")]
+z_index = 1
 script = ExtResource("1_mq1hk")
 idleFrames = Array[Texture]([ExtResource("2_o0ndy"), ExtResource("3_d2b7m"), ExtResource("4_oj40q"), ExtResource("5_k4qma")])
 inputAction = "jef_slash"
@@ -106,7 +107,6 @@ attack = ExtResource("6_dhc0t")
 projectileSpawn = NodePath("SlashSpawner")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 1
 position = Vector2(0, -128)
 texture = ExtResource("10_skf2d")
 

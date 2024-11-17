@@ -23,6 +23,7 @@ func onUse() -> void:
 	#print("weaponUse")
 	if (myHook == null) :
 		spawnProjectile()
+		SoundManager.PlaySound("GrappleHit")
 		$AnimationPlayer.play("GunShoot")
 	pass
 

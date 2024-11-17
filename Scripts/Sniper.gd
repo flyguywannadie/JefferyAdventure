@@ -12,9 +12,9 @@ func onHold(delta: float) -> void:
 	# will add damage based on held length
 	if (charge < 1) :
 		charge += delta / 2
-		#print(charge)
-	else :
-		charge = 1
+		if (charge >= 1) :
+			SoundManager.PlaySound("ChargeFinish")
+			charge = 1
 	
 	visuals.material.set("shader_parameter/charge", lerp(0.85, 0.1, charge))
 	pass

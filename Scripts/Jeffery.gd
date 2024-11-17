@@ -177,13 +177,13 @@ func _physics_process(delta: float) -> void:
 func takeDamage(damage: int):
 	anims.play("Hurt")
 	doneSlide()
-	SoundManager.PlaySound("Hurt")
 	hitStun = 0.33
 	iLength = 1.5
 	collision_layer = 64
 	disableWeapons()
 	setKnockback(-600 * $Node2D.scale.x, -500)
 	super.takeDamage(damage)
+	SoundManager.PlaySound("jef_Hurt")
 
 func Reset() -> void:
 	hitStun = 0;
@@ -205,6 +205,7 @@ func Reset() -> void:
 
 func _die():
 	#print("START DEATH")
+	SoundManager.PlaySound("Death")
 	iLength = 1.5
 	GameManager.JefferyGameOver()
 	pass

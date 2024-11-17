@@ -19,6 +19,8 @@ func ShootGun():
 	stateTimer = 2
 	$Gun/GUnAnims.play("idle")
 	
+	SoundManager.PlaySound("Shoot")
+	
 	var p: PackedScene = load("res://Scenes/Prefabs/Projectiles/TankDynamite.tscn")
 	var t = p.instantiate()
 	
@@ -48,13 +50,12 @@ func aiLogic(delta: float) -> void:
 				state = 0
 				stateTimer = 0.5
 				$Gun/GUnAnims.play("idle")
-				
 		
 	
 	desiredPos = whoIFollow.global_position + followOffset
 	
 	if (is_on_floor()) :
-		setKnockback(0, -500)
+		SetHitStun(0)
 	
 	var toMove = (desiredPos - global_position)
 	
@@ -62,11 +63,30 @@ func aiLogic(delta: float) -> void:
 
 func hitStunDone() -> void:
 	anims.play("Idle")
+	if (state == 3) :
+		var p: PackedScene = load("res://Scenes/Prefabs/Projectiles/Explosion.tscn")
+		var t = p.instantiate()
+		
+		t.global_position = global_position
+			
+		GameManager.projectileOwner.add_child(t)
+		t.owner = GameManager.projectileOwner
+		super._die()
 	super.hitStunDone()
 
+func _die() -> void:
+	state = 3
+	stateTimer = 2
+	SetHitStun(2)
+
 func takeDamage(damage: int):
+	if (state == 3) :
+		return
 	if (hitstun <= 0) :
-		SoundManager.PlaySound("Hurt2")
+		match (randi_range(0,2)):
+			0:SoundManager.PlaySound("MetalHit")
+			1:SoundManager.PlaySound("MetalHit1")
+			2:SoundManager.PlaySound("MetalHit2")
 	$Gun/GUnAnims.play("idle")
 	anims.play("Hurt")
 	var knocked = (global_position - whoIFollow.global_position).normalized() * 1200

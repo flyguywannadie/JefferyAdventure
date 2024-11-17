@@ -128,6 +128,7 @@ _data = {
 }
 
 [node name="Katana" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn")]
+z_index = 1
 script = ExtResource("1_xxwqj")
 inputAction = "jef_slash"
 COOLDOWNLENGTH = 2.0
@@ -136,8 +137,6 @@ attack = ExtResource("2_rwcp6")
 projectileSpawn = NodePath("SlashSpawn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 1
-z_as_relative = false
 material = SubResource("ShaderMaterial_kxuwt")
 position = Vector2(0, -128)
 texture = ExtResource("3_m10b4")

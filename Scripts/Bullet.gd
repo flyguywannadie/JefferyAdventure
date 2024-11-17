@@ -14,6 +14,9 @@ class_name Bullet
 var prevPosition: Vector2
 var motion: Vector2
 
+@export var bulletHitSound : String
+@export var bulletDeathSound : String
+
 var alreadyHit: Array[Node2D]
 
 # Called when the node enters the scene tree for the first time.
@@ -28,9 +31,6 @@ func _process(delta: float) -> void:
 	lifetime -= delta
 	if (lifetime <= 0) :
 		_bulletDeath()
-
-func PlayAudio(name: String) -> void:
-	SoundManager.PlaySound(name)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -54,24 +54,28 @@ func _physics_process(delta: float) -> void:
 func ApplySlowdown(delta: float) -> void:
 	motion = lerp(motion, Vector2(0,0), slowdown * delta)
 
+func PlayAudio(name: String) -> void:
+	SoundManager.PlaySound(name)
+
 func _bulletDeath() -> void:
 	if (deathEffect != null):
 		var de = deathEffect.instantiate()
 		de.position = global_position
 		owner.call_deferred("add_child", de)
 		de.set_deferred("owner", owner)
-	
+	PlayAudio(bulletDeathSound)
 	queue_free()
 
 func _hitCharacter(chara: Character):
 	chara.setKnockback(knockback.x * sign(motion.x), knockback.y * sign(motion.y))
 	spawnHitEffect()
+	PlayAudio(bulletHitSound)
 	
 	super._hitCharacter(chara)
 
 func _hitWall():
 	spawnHitEffect()
-	pass
+	PlayAudio(bulletHitSound)
 
 func spawnHitEffect() -> void:
 	if (HitEffect != null):

@@ -46,6 +46,10 @@ func spawnDynamite() -> void:
 func resetGunState() -> void:
 	gunState = 0
 
+func takeDamage(damage: int):
+	SoundManager.PlaySound("TankHit")
+	super.takeDamage(damage)
+
 func aiLogic(delta: float) -> void:
 	
 	if (jeffery == null) :
@@ -100,6 +104,7 @@ func aiLogic(delta: float) -> void:
 				gunCooldown = 2
 				gunCharge = 0
 				spawnProjectile(gun_charge.global_position, (0 if (leftOrRight) else 180) + gun.rotation_degrees, 1)
+				SoundManager.PlaySound("TankShoot")
 				gunState = 0
 				gun_charge.texture = gunChargeSprites[gunCharge]
 	

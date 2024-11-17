@@ -81,6 +81,7 @@ _data = {
 }
 
 [node name="Sword" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn")]
+z_index = 1
 script = ExtResource("1_fdem6")
 inputAction = "jef_slash"
 COOLDOWNLENGTH = 1.5
@@ -92,8 +93,6 @@ cEvo = ExtResource("3_pn87b")
 fEvo = ExtResource("4_0ji4i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 1
-z_as_relative = false
 position = Vector2(128, 0)
 texture = ExtResource("2_8rmx3")
 

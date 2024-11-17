@@ -15,6 +15,8 @@ lifetime = 1.0
 slowdown = 6.0
 dieOnStop = true
 knockback = Vector2(150, 1)
+bulletHitSound = "BulletHit"
+bulletDeathSound = "BulletPop"
 damage = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

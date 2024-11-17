@@ -76,7 +76,6 @@ _data = {
 
 [node name="Weapon" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn", "Particle")]
 z_index = -1
-z_as_relative = false
 script = ExtResource("1_yvqmw")
 ShootEffect = ExtResource("2_kiysw")
 COOLDOWNLENGTH = 0.75
