@@ -11,7 +11,8 @@ func _ready() -> void:
 
 func _afterReady() -> void:
 	startPos = global_position
-	print(startPos)
+	z_index = -distance
+	#print(startPos)
 
 func _process(delta: float) -> void:
 	# I HAVE NO IDEA WHY THIS IS SO DIFFICULT TO FIGURE OUT THE MATH FOR. I AM JUST MISSING SOMETHING I GUESS.d
@@ -30,15 +31,14 @@ func _process(delta: float) -> void:
 	
 	var a = Vector3(startPos.x,startPos.y,distance)
 	var c = Vector3( cam.global_position.x, cam.global_position.y, 100.0)
-	var e =  a
 	
 	var d = a-c
 	
 	var b : Vector2
-	b.x = ((e.z/d.z)*d.x) + e.x
-	b.y = ((e.z/d.z)*d.y) + e.y
+	b.x = ((a.z/d.z)*d.x) + a.x
+	b.y = ((a.z/d.z)*d.y) + a.y
 	
-	global_position.x = b.x 
+	global_position.x = b.x + ((startPos.x - b.x) * (distance/100.0))
 	#
 	#print(b)
 	
