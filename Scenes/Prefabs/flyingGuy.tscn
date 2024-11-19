@@ -15,6 +15,21 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmcyw"]
 size = Vector2(61, 45)
 
+[sub_resource type="Animation" id="Animation_t1ovv"]
+resource_name = "Hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_x8i4f")]
+}
+
 [sub_resource type="Animation" id="Animation_tro3x"]
 resource_name = "Idle"
 length = 0.15
@@ -47,41 +62,11 @@ tracks/0/keys = {
 "values": [ExtResource("2_x8i4f")]
 }
 
-[sub_resource type="Animation" id="Animation_t1ovv"]
-resource_name = "Hurt"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_x8i4f")]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s6p8d"]
 _data = {
 "Hurt": SubResource("Animation_t1ovv"),
 "Idle": SubResource("Animation_tro3x"),
 "RESET": SubResource("Animation_uulxn")
-}
-
-[sub_resource type="Animation" id="Animation_xh3j8"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_xmaxr")]
 }
 
 [sub_resource type="Animation" id="Animation_m1dly"]
@@ -129,6 +114,21 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_xh3j8"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_xmaxr")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nsqmm"]
 _data = {
 "RESET": SubResource("Animation_m1dly"),
@@ -142,7 +142,7 @@ radius = 37.054
 [node name="FlyingGuy" type="CharacterBody2D" node_paths=PackedStringArray("anims", "visuals")]
 material = ExtResource("1_rlh8t")
 collision_layer = 2
-collision_mask = 25
+collision_mask = 27
 script = ExtResource("1_lt8b0")
 anims = NodePath("DroneAnims")
 maxHealth = 5

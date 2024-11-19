@@ -1,9 +1,10 @@
-[gd_scene load_steps=39 format=3 uid="uid://cgi22rw2oexdx"]
+[gd_scene load_steps=40 format=3 uid="uid://cgi22rw2oexdx"]
 
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_mxtlc"]
 [ext_resource type="Shader" path="res://PostProcessShader.gdshader" id="4_7nfid"]
 [ext_resource type="PackedScene" uid="uid://bwib2ihjobuvm" path="res://Scenes/Prefabs/jeffery.tscn" id="4_oebhw"]
 [ext_resource type="Shader" path="res://ColorPaletteChanger.gdshader" id="6_i01nh"]
+[ext_resource type="Shader" path="res://ScreenColorPaletteChanger.gdshader" id="6_nyx2p"]
 [ext_resource type="Texture2D" uid="uid://coutgcsx3t2w6" path="res://Textures/ColorPalette.png" id="6_qunfb"]
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="7_2u6g4"]
 [ext_resource type="Shader" path="res://Rainbow.gdshader" id="7_x5nwx"]
@@ -29,12 +30,12 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q3wrm"]
 shader = ExtResource("4_7nfid")
-shader_parameter/colorTint = Color(0.0629538, 0.184104, 0.160279, 1)
+shader_parameter/colorTint = Color(0.4895, 0.620058, 0, 1)
 shader_parameter/colorSprites = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_54ad7"]
-shader = ExtResource("6_i01nh")
-shader_parameter/angle = 0.0
+shader = ExtResource("6_nyx2p")
+shader_parameter/angle = 133.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wjjor"]
 shader = ExtResource("7_x5nwx")
@@ -194,6 +195,7 @@ platform_floor_layers = 4278190082
 z_index = 100
 ignore_rotation = false
 zoom = Vector2(0.5, 0.5)
+position_smoothing_speed = 1.0
 script = ExtResource("7_2u6g4")
 toFollow = NodePath("../Jeffery")
 noise = SubResource("FastNoiseLite_ku0xa")

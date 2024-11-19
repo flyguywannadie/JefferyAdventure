@@ -14,7 +14,7 @@ func _afterReady() -> void:
 	print(startPos)
 
 func _process(delta: float) -> void:
-	# I HAVE NO IDEA WHY THIS IS SO DIFFICULT TO FIGURE OUT THE MATH FOR. I AM JUST MISSING SOMETHING I GUESS.
+	# I HAVE NO IDEA WHY THIS IS SO DIFFICULT TO FIGURE OUT THE MATH FOR. I AM JUST MISSING SOMETHING I GUESS.d
 	
 	#print(cam.global_position, " and ", startPos)
 	
@@ -38,7 +38,10 @@ func _process(delta: float) -> void:
 	b.x = ((e.z/d.z)*d.x) + e.x
 	b.y = ((e.z/d.z)*d.y) + e.y
 	
-	global_position.x = b.x
+	global_position.x = b.x 
 	#
 	#print(b)
-	pass
+	
+	
+	global_scale.x = 1.0 - (distance / 100.0)
+	global_scale.y = 1.0 - (distance / 100.0)

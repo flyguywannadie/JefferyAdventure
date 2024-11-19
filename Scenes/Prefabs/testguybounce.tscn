@@ -96,6 +96,7 @@ floor_constant_speed = true
 floor_snap_length = 13.5
 platform_on_leave = 2
 platform_floor_layers = 4294967294
+safe_margin = 1.0
 script = ExtResource("1_242kc")
 anims = NodePath("AnimationPlayer")
 HitEffect = ExtResource("2_8ay3y")

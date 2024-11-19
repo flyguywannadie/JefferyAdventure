@@ -56,6 +56,7 @@ func _process(delta: float) -> void:
 		
 		#followPreviousPosition = toFollow.position
 	position += shakeOffset
+	position = position.floor()
 	pass
 
 func ScreenShake(dir: Vector2, intensity: float, duration: float):
