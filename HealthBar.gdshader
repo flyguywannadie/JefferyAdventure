@@ -1,7 +1,6 @@
 shader_type canvas_item;
 
 uniform float fill : hint_range(0.0, 1.0) = 0;
-uniform float borderSize: hint_range(0.0, 1.0) = 0.3;
 uniform sampler2D Test;
 
 void vertex() {
@@ -29,15 +28,15 @@ void fragment() {
 	vec2 pointOnLineSeg = vec2(clamp(coords.x, 0.5, 4.5), 0.5);
 	float sdf = distance(coords, pointOnLineSeg) * 2.0 - 1.0;
 	
-	if (sdf > 0.0) {
-		discard;
-	}
+	//if (sdf > 0.0) {
+		//discard;
+	//}
 	
-	float borderSDF = sdf + borderSize;
-	
-	float pd = fwidth(borderSDF);
-	
-	float borderMask = 1.0 - clamp(borderSDF / pd, 0.0, 1.0);
+	//float borderSDF = sdf + borderSize;
+	//
+	//float pd = fwidth(borderSDF);
+	//
+	//float borderMask = 1.0 - clamp(borderSDF / pd, 0.0, 1.0);
 	
 	
 	float healthbarMask = float(fill > UV.x); //floor(UV.x * 8.0)/8.0); can be used to break it into segments
@@ -50,18 +49,13 @@ void fragment() {
 	
 	vec3 healthbarTextureColor = texture(Test, vec2(fill,UV.y)).rgb;
 	
-	if (fill < 0.5) {
-		float flash = cos(TIME * (2.0/fill)) * 0.2 + 1.0;
-		healthbarTextureColor *= flash;
-	}
-	
 	//vec3 backgroundColor = vec3(0); // color of the background
 	//vec3 outColor = mix(backgroundColor, healthbarColor, healthbarMask); // healthbar mask will only ever equal 0 or 1, so can choose between the two colors based on that 
 	
 	//COLOR = vec4(healthbarColor, healthbarMask); // setting alpha to healthbar mask will only ever equal 0 or 1, so background color isn't needed
 	
-	
-	COLOR = vec4(healthbarTextureColor * healthbarMask * borderMask, 1.0);
+	COLOR = vec4(healthbarTextureColor * healthbarMask, COLOR.a);
+	//COLOR = vec4(healthbarTextureColor * healthbarMask * borderMask, 1.0);
 
 	//COLOR = vec4(1.0,0.0,0.0, UV.x); // Test for alpha blending I guees
 

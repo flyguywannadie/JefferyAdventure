@@ -1,4 +1,4 @@
-extends ColorRect
+extends TextureRect
 class_name Healthbar
 
 @export var whoITrack: Character

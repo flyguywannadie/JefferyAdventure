@@ -4,7 +4,7 @@ var evolutionScreen: EvolutionScreen #= $"../CanvasLayer/EvolutionScreen"
 var deathScreen: DeathScreen #= $"../CanvasLayer/DeathScreenJeffery"
 var bossHealthbar: BossHealthbar
 
-var startLevel: String = "test_paralax"
+var startLevel: String = "StartingRoom"
 var currentLevel: Room
 var prevLevel: Room
 
@@ -63,6 +63,12 @@ func MakeFirstScene() -> void:
 	gameState = ""
 	piecesGotten = 0
 	call_deferred("addLevel", startLevel)
+	call_deferred("firstLevelStuff")
+
+func firstLevelStuff() -> void:
+	camera.changeTrack(currentLevel.getClosestTrack(jeffery.global_position), false)
+	camera.global_position = camera.currentTrack.placeVectorWithinBounds(jeffery.global_position)
+	currentLevel.EnableDoorways()
 
 func endLevels() -> void:
 	if (currentLevel != null) :
@@ -92,6 +98,7 @@ func SwapRoom(roomName: String, enterDirection: float, entranceID: int):
 	PauseGame()
 	# add the new level
 	addLevel(roomName)
+	jeffery.process_mode = Node.PROCESS_MODE_DISABLED
 	currentLevel.gameStateChanges(gameState)
 	var prevEntrance = prevLevel.getEntranceWithID(entranceID)
 	var newEntrance = currentLevel.getEntranceWithID(entranceID)
@@ -101,8 +108,8 @@ func SwapRoom(roomName: String, enterDirection: float, entranceID: int):
 	levelResetPosition = currentLevel.position
 	checkpoint = newEntrance.closestCheckpoint
 	# Set Up Movment variables for moving jeffery and camera between rooms smooth
-	prevJefferyPos = jeffery.position
-	nextJefferyPos = jeffery.position + Vector2(128 * 3, 0).rotated(enterDirection)
+	prevJefferyPos = jeffery.global_position
+	nextJefferyPos = newEntrance.global_position + Vector2(128 * 3, 0).rotated(enterDirection)
 	prevCamPos = camera.position
 	camera.changeTrack(newEntrance.closestCameraTrack, false)
 	nextCamPos = camera.currentTrack.placeVectorWithinBounds(camera.position)
@@ -113,10 +120,13 @@ func endSwap() -> void:
 	# stop letting gamemanger move things and reset some variables
 	moveCamJeff = false
 	movinglerp = 0
+	jeffery.process_mode = Node.PROCESS_MODE_INHERIT
 	camera.changeTrack(camera.currentTrack, true)
 	#camera.followOffset = Vector2(0,0)
 	# remove previous level as it is no longer needed
 	prevLevel.queue_free()
+	# enable the new doorways
+	currentLevel.EnableDoorways()
 	# unpause the game
 	ResumeGame()
 	pass

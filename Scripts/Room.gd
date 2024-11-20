@@ -8,6 +8,11 @@ class_name Room
 func _ready() -> void:
 	pass
 
+func EnableDoorways() -> void:
+	print("Doors enabled")
+	for door in entrances:
+		door.call_deferred("EnableDoor")
+
 func getClosestTrack(pos: Vector2) -> CamTrack:
 	var closest: CamTrack = null
 	

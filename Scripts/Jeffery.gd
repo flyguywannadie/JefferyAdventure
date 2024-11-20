@@ -69,6 +69,7 @@ func checkCrouch() -> void:
 		crouching = false
 		$StandingHitbox.shape.size = hitboxSize
 		$StandingHitbox.position = hitboxPos
+		set_collision_mask_value(8, true)
 	else:
 		crouching = true
 		$StandingHitbox.shape.size = Vector2(hitboxSize.x, hitboxSize.y / 2)
@@ -118,6 +119,7 @@ func _physics_process(delta: float) -> void:
 	if (cayoteTime < 0 && is_on_floor()):
 		cayoteTime = 3
 		onGround = true
+		set_collision_mask_value(8, true)
 		#doneSlide()
 	
 	if (Input.is_action_just_pressed("jef_slide") && trySlide) :
@@ -130,7 +132,7 @@ func _physics_process(delta: float) -> void:
 	
 	if (Input.is_action_just_pressed("jef_Jump") && onGround && trySlide):
 		if (Input.is_action_pressed("jef_down") || Input.is_action_just_pressed("jef_down")) :
-			position.y += 1
+			set_collision_mask_value(8, false)
 		else:
 			#doneSlide()
 			onGround = false
@@ -225,14 +227,14 @@ func evolveGun(gun: Node) -> void:
 	gun.owner = $"."
 	currentGun = gun as Weapon
 	currentGun.OnCreate()
-	currentGun.KnockbackJeffery.connect(setKnockback)
+	currentGun.KnockbackJeffery.connect(addKnockback)
 
 func evolveSword(sword: Node) -> void:
 	sword_holder.add_child(sword)
 	sword.owner = $"."
 	currentSword = sword as Weapon
 	currentSword.OnCreate()
-	currentSword.KnockbackJeffery.connect(setKnockback)
+	currentSword.KnockbackJeffery.connect(addKnockback)
 
 func EvolveWeapon(gunorsowrd: bool, piece: String) -> void:
 	

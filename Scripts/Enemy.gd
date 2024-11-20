@@ -4,8 +4,8 @@ class_name Enemy
 @export var anims : AnimationPlayer
 @export var state : int
 
-var hitstun: float
-var stateTimer: float
+@export var hitstun: float
+@export var stateTimer: float
 
 @export var HitEffect: PackedScene
 

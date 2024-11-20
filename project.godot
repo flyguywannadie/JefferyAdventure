@@ -89,10 +89,8 @@ jef_interact={
 2d_physics/layer_5="Doors"
 2d_physics/layer_6="EnemyDamage"
 2d_physics/layer_7="Invincible"
+2d_physics/layer_8="OneWayPlatform"
 
 [rendering]
 
-anti_aliasing/screen_space_roughness_limiter/enabled=false
 environment/defaults/default_clear_color=Color(0.578189, 0.600304, 0.536288, 1)
-2d/snap/snap_2d_transforms_to_pixel=true
-2d/snap/snap_2d_vertices_to_pixel=true

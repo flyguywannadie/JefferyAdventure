@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_27lyf"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="2_j2dbk"]
-[ext_resource type="PackedScene" uid="uid://v42kviymhbdq" path="res://Scenes/Prefabs/doorway.tscn" id="4_2e3h6"]
-[ext_resource type="PackedScene" uid="uid://bh523bxi5rvi" path="res://Scenes/Prefabs/camera_track.tscn" id="4_sm4ij"]
+[ext_resource type="PackedScene" uid="uid://v42kviymhbdq" path="res://Scenes/Prefabs/RoomSetup/doorway.tscn" id="4_2e3h6"]
+[ext_resource type="PackedScene" uid="uid://bh523bxi5rvi" path="res://Scenes/Prefabs/RoomSetup/camera_track.tscn" id="4_sm4ij"]
 [ext_resource type="Script" path="res://Scripts/GameStateChange.gd" id="5_ut3tb"]
 [ext_resource type="Script" path="res://Scripts/eWalker.gd" id="6_31vgy"]
 [ext_resource type="Material" uid="uid://4qginuh7uhxl" path="res://EnemyMaterial.tres" id="7_kurnn"]

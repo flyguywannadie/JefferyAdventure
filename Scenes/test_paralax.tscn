@@ -3,19 +3,19 @@
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_rawsw"]
 [ext_resource type="TileSet" uid="uid://dvjpdafy12snk" path="res://Tilemaps/TestTileMap_NoShadow.tres" id="2_c8vub"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="2_co448"]
-[ext_resource type="PackedScene" uid="uid://bh523bxi5rvi" path="res://Scenes/Prefabs/camera_track.tscn" id="2_keel4"]
+[ext_resource type="PackedScene" uid="uid://bh523bxi5rvi" path="res://Scenes/Prefabs/RoomSetup/camera_track.tscn" id="2_keel4"]
 [ext_resource type="Texture2D" uid="uid://4j4ywdjr8n0e" path="res://Textures/Test/TestShelf.png" id="2_o4a6h"]
 [ext_resource type="Texture2D" uid="uid://brtb5vtqnams6" path="res://Textures/Test/TestShelfBack.png" id="2_ykodq"]
 [ext_resource type="Script" path="res://Scripts/Paralax.gd" id="3_v3usb"]
-[ext_resource type="PackedScene" uid="uid://v42kviymhbdq" path="res://Scenes/Prefabs/doorway.tscn" id="4_drbhi"]
+[ext_resource type="PackedScene" uid="uid://v42kviymhbdq" path="res://Scenes/Prefabs/RoomSetup/doorway.tscn" id="4_drbhi"]
 [ext_resource type="Texture2D" uid="uid://d0kl71hccsvfi" path="res://Textures/Test/TestShelfContnet.png" id="4_m5h88"]
-[ext_resource type="PackedScene" uid="uid://soputgv8t7rk" path="res://Scenes/Prefabs/CamTrackSwitch.tscn" id="10_sa764"]
-[ext_resource type="PackedScene" uid="uid://bu1akkp0a5jd7" path="res://Scenes/Prefabs/Checkpoint.tscn" id="13_apre1"]
+[ext_resource type="PackedScene" uid="uid://soputgv8t7rk" path="res://Scenes/Prefabs/RoomSetup/CamTrackSwitch.tscn" id="10_sa764"]
+[ext_resource type="PackedScene" uid="uid://bu1akkp0a5jd7" path="res://Scenes/Prefabs/RoomSetup/Checkpoint.tscn" id="13_apre1"]
 
 [node name="TestParalax" type="Node2D" node_paths=PackedStringArray("camTracks", "entrances")]
 script = ExtResource("1_rawsw")
 camTracks = [NodePath("CameraTrack")]
-entrances = [NodePath("Doorway")]
+entrances = [NodePath("Doorway"), NodePath("Doorway2")]
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 z_index = 1
@@ -598,3 +598,10 @@ distance = -4.0
 [node name="CheckPoint" parent="." instance=ExtResource("13_apre1")]
 position = Vector2(1344, 64)
 scale = Vector2(25.04, 25.04)
+
+[node name="Doorway2" parent="." node_paths=PackedStringArray("closestCameraTrack", "closestCheckpoint") instance=ExtResource("4_drbhi")]
+position = Vector2(-1408, 64)
+rotation = 3.14159
+nextRoom = "StartingRoom"
+closestCameraTrack = NodePath("../CameraTrack")
+closestCheckpoint = NodePath("../CheckPoint")

@@ -5,13 +5,14 @@ class_name Walker
 #0 = idle
 #1 = walking
 
-var walkDirection: bool = true
+@export var walkDirection: bool = true
 
 var walkOffEdge: bool = false
 
 func _ready() -> void:
-	setIdleTimer()
 	$Sprite2D.flip_h = !walkDirection
+	if (state == 1) :
+		anims.play("Walk")
 	super._ready()
 
 func aiLogic(delta: float) -> void:

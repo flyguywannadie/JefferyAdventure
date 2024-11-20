@@ -47,6 +47,11 @@ func _physics_process(delta: float) -> void:
 		addMovement(0, GRAVITY)
 	else:
 		setMovement(movement.x, 0)
+		
+		# this is an attempt to make jeffery ramp of ramps when sliding, working kinda but not good
+		#var v = Vector2(knockback, 0).rotated(get_floor_angle())
+		#knockback = v.x
+		#movement.y = -abs(v.y)
 	
 	if (is_on_wall()):
 		knockback = 0

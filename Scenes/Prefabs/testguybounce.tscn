@@ -91,7 +91,7 @@ radius = 41.0
 
 [node name="Walker" type="CharacterBody2D" node_paths=PackedStringArray("anims", "visuals")]
 collision_layer = 2
-collision_mask = 25
+collision_mask = 155
 floor_constant_speed = true
 floor_snap_length = 13.5
 platform_on_leave = 2
