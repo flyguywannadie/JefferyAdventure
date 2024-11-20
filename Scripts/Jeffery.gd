@@ -227,14 +227,14 @@ func evolveGun(gun: Node) -> void:
 	gun.owner = $"."
 	currentGun = gun as Weapon
 	currentGun.OnCreate()
-	currentGun.KnockbackJeffery.connect(addKnockback)
+	currentGun.KnockbackJeffery.connect(setKnockback)
 
 func evolveSword(sword: Node) -> void:
 	sword_holder.add_child(sword)
 	sword.owner = $"."
 	currentSword = sword as Weapon
 	currentSword.OnCreate()
-	currentSword.KnockbackJeffery.connect(addKnockback)
+	currentSword.KnockbackJeffery.connect(setKnockback)
 
 func EvolveWeapon(gunorsowrd: bool, piece: String) -> void:
 	

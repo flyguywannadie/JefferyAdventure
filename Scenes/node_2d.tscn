@@ -202,6 +202,7 @@ toFollow = NodePath("../Jeffery")
 noise = SubResource("FastNoiseLite_ku0xa")
 
 [node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
+visible = false
 scale = Vector2(25, 25)
 texture = ExtResource("2_mxtlc")
 

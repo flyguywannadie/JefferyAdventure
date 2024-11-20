@@ -26,7 +26,6 @@ myTrack = NodePath("../CameraTrack")
 
 [node name="Doorway" parent="." node_paths=PackedStringArray("closestCameraTrack", "closestCheckpoint") instance=ExtResource("4_1i5ld")]
 position = Vector2(1408, -64)
-doorID = 0
 nextRoom = "Restrooms"
 closestCameraTrack = NodePath("../CameraTrack")
 closestCheckpoint = NodePath("../CheckPoint")

@@ -43,5 +43,5 @@ func _process(delta: float) -> void:
 	#print(b)
 	
 	
-	global_scale.x = 1.0 - (distance / 100.0)
-	global_scale.y = 1.0 - (distance / 100.0)
+	scale.x = 1.0 - (distance / 100.0)
+	scale.y = 1.0 - (distance / 100.0)

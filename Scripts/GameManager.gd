@@ -85,6 +85,7 @@ func resetLevel():
 	currentLevel.gameStateChanges(gameState)
 	camera.changeTrack(currentLevel.getClosestTrack(checkpoint.global_position), false)
 	camera.global_position = camera.currentTrack.placeVectorWithinBounds(checkpoint.global_position)
+	currentLevel.EnableDoorways()
 
 func addLevel(levelName: String) -> void:
 	prevLevel = currentLevel

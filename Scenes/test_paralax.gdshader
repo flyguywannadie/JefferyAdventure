@@ -6,13 +6,13 @@ uniform vec3 camPos;
 void vertex() {
 	vec3 a = vec3(VERTEX.xy, startPos.z);
 	vec3 c = camPos;
-	
+
 	vec3 d = a-c;
-	
+
 	vec2 b;
 	b.x = ((a.z/d.z)*d.x) + a.x;
 	b.y = ((a.z/d.z)*d.y) + a.y;
-	
+
 	VERTEX = b;
 }
 
