@@ -99,7 +99,7 @@ func SwapRoom(roomName: String, enterDirection: float, entranceID: int):
 	PauseGame()
 	# add the new level
 	addLevel(roomName)
-	jeffery.process_mode = Node.PROCESS_MODE_DISABLED
+	#jeffery.process_mode = Node.PROCESS_MODE_DISABLED
 	currentLevel.gameStateChanges(gameState)
 	var prevEntrance = prevLevel.getEntranceWithID(entranceID)
 	var newEntrance = currentLevel.getEntranceWithID(entranceID)
@@ -110,7 +110,7 @@ func SwapRoom(roomName: String, enterDirection: float, entranceID: int):
 	checkpoint = newEntrance.closestCheckpoint
 	# Set Up Movment variables for moving jeffery and camera between rooms smooth
 	prevJefferyPos = jeffery.global_position
-	nextJefferyPos = newEntrance.global_position + Vector2(128 * 3, 0).rotated(enterDirection)
+	nextJefferyPos = jeffery.global_position + Vector2(128 * 3, 0).rotated(enterDirection)
 	prevCamPos = camera.position
 	camera.changeTrack(newEntrance.closestCameraTrack, false)
 	nextCamPos = camera.currentTrack.placeVectorWithinBounds(camera.position)
@@ -121,7 +121,7 @@ func endSwap() -> void:
 	# stop letting gamemanger move things and reset some variables
 	moveCamJeff = false
 	movinglerp = 0
-	jeffery.process_mode = Node.PROCESS_MODE_INHERIT
+	#jeffery.process_mode = Node.PROCESS_MODE_INHERIT
 	camera.changeTrack(camera.currentTrack, true)
 	#camera.followOffset = Vector2(0,0)
 	# remove previous level as it is no longer needed

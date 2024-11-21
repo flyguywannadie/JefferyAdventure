@@ -63,7 +63,7 @@ func takeDamage(damage: int):
 	if (hitstun <= 0) :
 		match (randi_range(0,1)):
 			0:SoundManager.PlaySound("Hurt3")
-			1:SoundManager.PlaySound("hurt4")
+			1:SoundManager.PlaySound("Hurt4")
 	anims.play("Hurt")
 	SetHitStun(0.5)
 

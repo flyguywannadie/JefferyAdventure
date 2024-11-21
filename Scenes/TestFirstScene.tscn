@@ -218,7 +218,6 @@ GRAVITY = 19.6
 
 [node name="Doorway" parent="." node_paths=PackedStringArray("closestCameraTrack") instance=ExtResource("9_tuu40")]
 position = Vector2(8704, 4032)
-doorID = 0
 nextRoom = "TestSecondScene"
 closestCameraTrack = NodePath("../CameraTracks/RuinedHallwayTrack")
 
