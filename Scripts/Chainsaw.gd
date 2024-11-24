@@ -15,7 +15,7 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func endCooldown() -> void:
-	pass
+	$AudioStreamPlayer.play(0.0)
 
 func onUse() -> void:
 	#print("on click use")
@@ -40,4 +40,5 @@ func onRelease() -> void:
 	$AnimationPlayer.play("RESET")
 	#$AttackArm.visible = false
 	startCooldown()
+	$AudioStreamPlayer.stop()
 	pass

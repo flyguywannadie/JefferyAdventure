@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://vbwtcpv5tduf"]
+[gd_scene load_steps=18 format=3 uid="uid://vbwtcpv5tduf"]
 
 [ext_resource type="Script" path="res://Scripts/Chainsaw.gd" id="1_mq1hk"]
 [ext_resource type="Texture2D" uid="uid://d0clfkrqewrq7" path="res://Textures/ChainsawWeapon/ChainsawIdle1.png" id="2_o0ndy"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bjxn4c8624aum" path="res://Textures/ChainsawWeapon/ChainsawAttack2.png" id="9_23jl7"]
 [ext_resource type="Texture2D" uid="uid://d1aogvy6av4ci" path="res://Textures/ChainsawWeapon/attackArm.png" id="9_ya8fv"]
 [ext_resource type="Texture2D" uid="uid://d3nkn76pyxjla" path="res://Textures/ChainsawWeapon/ChainsawSwing1.png" id="10_skf2d"]
+[ext_resource type="AudioStream" uid="uid://ghixxeo61xf5" path="res://Sounds/ChainsawIdle2.wav" id="13_cwdai"]
 
 [sub_resource type="Animation" id="Animation_atsju"]
 length = 0.02
@@ -127,3 +128,8 @@ libraries = {
 visible = false
 position = Vector2(0, -128)
 texture = ExtResource("9_ya8fv")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_cwdai")
+volume_db = -11.216
+autoplay = true

@@ -42,8 +42,8 @@ size = Vector2(362.039, 34.735)
 
 [node name="FactoryFloor" type="Node2D" node_paths=PackedStringArray("camTracks", "entrances")]
 script = ExtResource("1_5md74")
-camTracks = [NodePath("CameraTrack"), NodePath("CameraTrack2")]
-entrances = [NodePath("ToBoiler"), NodePath("VentToBoiler")]
+camTracks = [NodePath("FactoryCam"), NodePath("VentCam")]
+entrances = [NodePath("ToBoiler"), NodePath("VentToBoiler"), NodePath("ToStorage"), NodePath("VentToStorage")]
 
 [node name="MainMap" type="TileMapLayer" parent="."]
 z_index = 15
@@ -101,28 +101,21 @@ shape = SubResource("RectangleShape2D_3c0le")
 position = Vector2(3360, -1088)
 shape = SubResource("RectangleShape2D_o2i6n")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-z_index = 100
-position = Vector2(0, -1088)
-ignore_rotation = false
-zoom = Vector2(0.625, 0.625)
-position_smoothing_speed = 1.0
-
 [node name="ToBoiler" parent="." node_paths=PackedStringArray("closestCameraTrack", "closestCheckpoint") instance=ExtResource("2_2y5p8")]
 position = Vector2(-1152, 64)
 rotation = 3.14159
 nextRoom = "BoilerRoom"
-closestCameraTrack = NodePath("../CameraTrack")
+closestCameraTrack = NodePath("../FactoryCam")
 closestCheckpoint = NodePath("../CheckPoint")
 
-[node name="CameraTrack" parent="." instance=ExtResource("3_vl6b5")]
+[node name="FactoryCam" parent="." instance=ExtResource("3_vl6b5")]
 position = Vector2(1280, -192)
 trackBounds = Vector2(2560, 0)
 
 [node name="CheckPoint" parent="." instance=ExtResource("4_lw6ec")]
 position = Vector2(-832, 128)
 
-[node name="CameraTrack2" parent="." instance=ExtResource("3_vl6b5")]
+[node name="VentCam" parent="." instance=ExtResource("3_vl6b5")]
 position = Vector2(1280, -1088)
 trackBounds = Vector2(2560, 0)
 
@@ -131,7 +124,7 @@ position = Vector2(-1152, -1088)
 rotation = 3.14159
 doorID = 2
 nextRoom = "BoilerRoom"
-closestCameraTrack = NodePath("../CameraTrack2")
+closestCameraTrack = NodePath("../VentCam")
 closestCheckpoint = NodePath("../CheckPoint2")
 
 [node name="CheckPoint2" parent="." instance=ExtResource("4_lw6ec")]
@@ -148,18 +141,34 @@ collision_layer = 128
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OneWayRamps"]
 position = Vector2(-372.053, 139.947)
 rotation = -0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_q8dnq")
 one_way_collision = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="OneWayRamps"]
 position = Vector2(371.719, 140.281)
 rotation = 0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_kjcyf")
 one_way_collision = true
 
-[node name="Backwalls" type="TileMapLayer" parent="."]
+[node name="ToStorage" parent="." node_paths=PackedStringArray("closestCameraTrack", "closestCheckpoint") instance=ExtResource("2_2y5p8")]
+position = Vector2(3712, 64)
+doorID = 1
+nextRoom = "StorageRoom"
+closestCameraTrack = NodePath("../FactoryCam")
+closestCheckpoint = NodePath("../CheckPoint3")
+
+[node name="CheckPoint3" parent="." instance=ExtResource("4_lw6ec")]
+position = Vector2(3392, 128)
+
+[node name="VentToStorage" parent="." node_paths=PackedStringArray("closestCameraTrack", "closestCheckpoint") instance=ExtResource("2_2y5p8")]
+position = Vector2(3712, -1088)
+doorID = 3
+nextRoom = "StorageRoom"
+closestCameraTrack = NodePath("../VentCam")
+closestCheckpoint = NodePath("../CheckPoint4")
+
+[node name="CheckPoint4" parent="." instance=ExtResource("4_lw6ec")]
+position = Vector2(3328, -1088)
 
 [connection signal="body_entered" from="Overventhide" to="Overventhide/OverVent" method="_on_body_entered"]
 [connection signal="body_exited" from="Overventhide" to="Overventhide/OverVent" method="_on_body_exited"]

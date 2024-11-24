@@ -4,7 +4,7 @@ var evolutionScreen: EvolutionScreen #= $"../CanvasLayer/EvolutionScreen"
 var deathScreen: DeathScreen #= $"../CanvasLayer/DeathScreenJeffery"
 var bossHealthbar: BossHealthbar
 
-var startLevel: String = "StartingRoom"
+var startLevel: String = "StorageRoom"
 var currentLevel: Room
 var prevLevel: Room
 
@@ -52,6 +52,12 @@ func SetGameCamera(cam: GameCamera) -> void:
 
 func GetGameCamera() -> GameCamera:
 	return camera
+
+func StartCutscene() -> void:
+	jeffery.RemoveControl()
+
+func EndCutscene() -> void:
+	jeffery.ReturnControl()
 
 func ChangeScene(filePath: String) -> void:
 	endLevels()

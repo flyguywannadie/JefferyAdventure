@@ -42,15 +42,17 @@ func _ready() -> void:
 	print(hitboxSize)
 	GameManager.SetJeffery(self)
 	
-	#create base gun
-	var gun = TEST_GUN.instantiate()
-	evolveGun(gun)
-	
-	#create base sword
-	var sword = TEST_SWORD.instantiate()
-	evolveSword(sword)
+	ResetWeapons()
 	
 	pass
+
+func RemoveControl():
+	state = 1
+	disableWeapons()
+
+func ReturnControl():
+	state = 0
+	enableWeapons()
 
 func shouldBeCrouching() -> bool:
 	# returns true if the player should be crouching
@@ -76,6 +78,9 @@ func checkCrouch() -> void:
 		$StandingHitbox.position = hitboxPos + Vector2(0, hitboxSize.y / 4)
 
 func _physics_process(delta: float) -> void:
+	
+	if (state == 1) :
+		return
 	
 	if (crouching != Input.is_action_pressed("jef_down") && trySlide) :
 		crouching = Input.is_action_pressed("jef_down")
@@ -176,6 +181,13 @@ func _physics_process(delta: float) -> void:
 	
 	super._physics_process(delta)
 
+func _input(event: InputEvent) -> void:
+	if (event.is_action("jef_reset")) :
+		ResetWeapons()
+		Reset()
+		global_position = GameManager.checkpoint.global_position
+		
+
 func takeDamage(damage: int):
 	anims.play("Hurt")
 	doneSlide()
@@ -204,6 +216,7 @@ func Reset() -> void:
 	
 	enableWeapons()
 	anims.play("RESET")
+	ReturnControl()
 
 func _die():
 	#print("START DEATH")
@@ -235,6 +248,19 @@ func evolveSword(sword: Node) -> void:
 	currentSword = sword as Weapon
 	currentSword.OnCreate()
 	currentSword.KnockbackJeffery.connect(setKnockback)
+
+func ResetWeapons():
+	#create base gun
+	var gun = TEST_GUN.instantiate()
+	if (currentGun != null) :
+		currentGun.queue_free()
+	evolveGun(gun)
+	
+	#create base sword
+	var sword = TEST_SWORD.instantiate()
+	if (currentSword != null) :
+		currentSword.queue_free()
+	evolveSword(sword)
 
 func EvolveWeapon(gunorsowrd: bool, piece: String) -> void:
 	

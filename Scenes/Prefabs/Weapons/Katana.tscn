@@ -14,7 +14,6 @@
 resource_local_to_scene = true
 shader = ExtResource("3_btx3h")
 shader_parameter/charge = 1.0
-shader_parameter/color = Color(0.987874, 0.857474, 0.498623, 1)
 
 [sub_resource type="Animation" id="Animation_bgu8v"]
 length = 0.001

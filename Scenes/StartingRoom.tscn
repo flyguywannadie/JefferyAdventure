@@ -49,6 +49,7 @@ tile_map_data = PackedByteArray("AAAJAP3/AQADAAAAAAAJAP7/AQACAAEAAAAJAP//AQACAAE
 tile_set = ExtResource("7_302dk")
 
 [node name="CheckPoint" parent="." instance=ExtResource("8_adynn")]
+position = Vector2(0, -128)
 
 [node name="Doorway2" parent="." node_paths=PackedStringArray("closestCameraTrack", "closestCheckpoint") instance=ExtResource("4_1i5ld")]
 position = Vector2(-1152, -192)

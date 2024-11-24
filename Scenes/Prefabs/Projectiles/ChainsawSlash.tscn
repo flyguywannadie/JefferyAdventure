@@ -12,8 +12,7 @@ collision_mask = 2
 script = ExtResource("1_rta3y")
 velocity = 0.0
 lifetime = 0.05
-bulletHitSound = "BulletPop"
-bulletDeathSound = "BulletHit"
+bulletHitSound = "Chainsaw1"
 damage = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -23,7 +22,5 @@ texture = ExtResource("2_uwjd7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_q7nx4")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

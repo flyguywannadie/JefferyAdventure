@@ -38,7 +38,7 @@ shader_parameter/colorSprites = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_54ad7"]
 shader = ExtResource("6_nyx2p")
-shader_parameter/angle = 133.0
+shader_parameter/angle = 270.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wjjor"]
 shader = ExtResource("7_x5nwx")
@@ -514,7 +514,6 @@ scale = Vector2(-1, 1)
 script = ExtResource("18_5cy5a")
 
 [node name="TestingPalette" type="Sprite2D" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_hvlrm")
 position = Vector2(1024, 256)
 scale = Vector2(0.233333, 0.233333)
