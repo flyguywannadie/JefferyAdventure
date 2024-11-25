@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b3wn0yj7sfv05"]
+[gd_scene load_steps=26 format=3 uid="uid://b3wn0yj7sfv05"]
 
 [ext_resource type="Script" path="res://Scripts/StartMenu.gd" id="1_ylkdf"]
 [ext_resource type="FontFile" uid="uid://56kabaq45qkg" path="res://Textures/Font.png" id="2_7yqlb"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://c5sr7o8ljhjl3" path="res://Textures/JefferyTitleSequence/015.png" id="19_puhke"]
 [ext_resource type="Texture2D" uid="uid://ctp5vhpp5craw" path="res://Textures/JefferyTitleSequence/016.png" id="20_0ijyc"]
 [ext_resource type="Texture2D" uid="uid://cpk43s0ds20jx" path="res://Textures/JefferyTitleSequence/017.png" id="21_5wmw5"]
+[ext_resource type="Texture2D" uid="uid://dl36316js5fcn" path="res://Textures/JefferyTitleSequence/JefferyTitle.png" id="22_k60kd"]
 
 [sub_resource type="Animation" id="Animation_obu4t"]
 resource_name = "StartAnimation"
@@ -501,10 +502,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.5
-offset_top = -71.5
-offset_right = 50.5
-offset_bottom = 71.5
+offset_left = -326.0
+offset_top = 35.0
+offset_right = -225.0
+offset_bottom = 178.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -706,6 +707,10 @@ libraries = {
 "": SubResource("AnimationLibrary_askho")
 }
 autoplay = "StartAnimation"
+
+[node name="JefferyTitle" type="Sprite2D" parent="."]
+position = Vector2(902, 523)
+texture = ExtResource("22_k60kd")
 
 [connection signal="pressed" from="TheMenu/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="TheMenu/Options" to="." method="_on_options_pressed"]

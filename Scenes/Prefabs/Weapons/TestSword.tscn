@@ -93,7 +93,7 @@ cEvo = ExtResource("3_pn87b")
 fEvo = ExtResource("4_0ji4i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(128, 0)
+position = Vector2(0, -128)
 texture = ExtResource("2_8rmx3")
 
 [node name="SlashSpawn" type="Node2D" parent="."]

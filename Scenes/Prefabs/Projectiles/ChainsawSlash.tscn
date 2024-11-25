@@ -13,6 +13,7 @@ script = ExtResource("1_rta3y")
 velocity = 0.0
 lifetime = 0.05
 bulletHitSound = "Chainsaw1"
+bulletDeathSound = "BulletHit"
 damage = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
