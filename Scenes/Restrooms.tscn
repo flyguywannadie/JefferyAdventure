@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://thkbcnkqvpvj"]
+[gd_scene load_steps=13 format=4 uid="uid://thkbcnkqvpvj"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_6bbdj"]
 [ext_resource type="Shader" path="res://ColorPaletteChanger.gdshader" id="2_731m6"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bu1akkp0a5jd7" path="res://Scenes/Prefabs/RoomSetup/Checkpoint.tscn" id="7_0g0b1"]
 [ext_resource type="PackedScene" uid="uid://dc2oo5d4e4gee" path="res://Scenes/Prefabs/testguybounce.tscn" id="8_f3wp7"]
 [ext_resource type="Texture2D" uid="uid://k8hxbw6muhyp" path="res://Textures/Backgrounds/ScalableBackgroundColor.png" id="10_xywdk"]
+[ext_resource type="Texture2D" uid="uid://b1iffob6dmf4m" path="res://Textures/Backgrounds/RestroomsBackground.png" id="11_1jlpf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a0xq0"]
 shader = ExtResource("2_731m6")
@@ -75,3 +76,8 @@ z_index = -555
 position = Vector2(576, -192)
 scale = Vector2(14.13, 7.57)
 texture = ExtResource("10_xywdk")
+
+[node name="RestroomsBackground" type="Sprite2D" parent="."]
+z_index = -60
+position = Vector2(576, -192)
+texture = ExtResource("11_1jlpf")

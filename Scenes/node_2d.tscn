@@ -33,7 +33,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q3wrm"]
 shader = ExtResource("4_7nfid")
-shader_parameter/colorTint = Color(0.4895, 0.620058, 0, 1)
+shader_parameter/colorTint = Color(0, 0, 0, 1)
 shader_parameter/colorSprites = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_54ad7"]
@@ -210,7 +210,6 @@ texture = ExtResource("2_mxtlc")
 [node name="PostProcess" type="CanvasLayer" parent="."]
 
 [node name="ColorTint" type="ColorRect" parent="PostProcess"]
-visible = false
 z_index = -5
 z_as_relative = false
 material = SubResource("ShaderMaterial_q3wrm")

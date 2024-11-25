@@ -85,8 +85,8 @@ closestCheckpoint = NodePath("../CheckPoint")
 position = Vector2(-1216, -832)
 
 [node name="StairCam" parent="." instance=ExtResource("5_i6kso")]
-position = Vector2(-256, -512)
-trackBounds = Vector2(0, 1024)
+position = Vector2(128, -544)
+trackBounds = Vector2(1024, 960)
 
 [node name="Stairs" type="TileMapLayer" parent="."]
 z_index = 15
@@ -103,7 +103,7 @@ shape = SubResource("RectangleShape2D_cf7fy")
 one_way_collision = true
 
 [node name="HallwayTrack" parent="." instance=ExtResource("5_i6kso")]
-position = Vector2(192, 0)
+position = Vector2(192, -64)
 trackBounds = Vector2(896, 0)
 
 [node name="FactoryDoor" parent="." node_paths=PackedStringArray("closestCameraTrack", "closestCheckpoint") instance=ExtResource("3_ebe51")]
