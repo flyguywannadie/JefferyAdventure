@@ -1,0 +1,261 @@
+[gd_scene load_steps=22 format=3 uid="uid://b3wn0yj7sfv05"]
+
+[ext_resource type="Script" path="res://Scripts/StartMenu.gd" id="1_ylkdf"]
+[ext_resource type="FontFile" uid="uid://56kabaq45qkg" path="res://Textures/Font.png" id="2_7yqlb"]
+[ext_resource type="Texture2D" uid="uid://cuouvdwgymo1s" path="res://Textures/JefferyTitleSequence/000.png" id="3_oqjp0"]
+[ext_resource type="Script" path="res://Scripts/LetterDropdown.gd" id="4_pehhe"]
+[ext_resource type="Texture2D" uid="uid://degu4nq27jds3" path="res://Textures/JefferyTitleSequence/004.png" id="5_xx2q6"]
+[ext_resource type="Texture2D" uid="uid://pe0o2ybntbn0" path="res://Textures/JefferyTitleSequence/002.png" id="6_ekxp5"]
+[ext_resource type="Texture2D" uid="uid://d2mrkv3jgnefy" path="res://Textures/JefferyTitleSequence/003.png" id="7_x00k3"]
+[ext_resource type="Texture2D" uid="uid://c4itpuvjfa4j1" path="res://Textures/JefferyTitleSequence/001.png" id="8_kmr5s"]
+[ext_resource type="Texture2D" uid="uid://buhykp8gganpx" path="res://Textures/JefferyTitleSequence/005.png" id="9_ka383"]
+[ext_resource type="Texture2D" uid="uid://na2cicsghch2" path="res://Textures/JefferyTitleSequence/006.png" id="10_wpygh"]
+[ext_resource type="Texture2D" uid="uid://c1mskvu7sw7cq" path="res://Textures/JefferyTitleSequence/007.png" id="11_o438u"]
+[ext_resource type="Texture2D" uid="uid://btqpp7kwidk50" path="res://Textures/JefferyTitleSequence/008.png" id="12_264fh"]
+[ext_resource type="Texture2D" uid="uid://jx1l8mvv8wyv" path="res://Textures/JefferyTitleSequence/009.png" id="13_v2kp7"]
+[ext_resource type="Texture2D" uid="uid://tft1h5rosvt3" path="res://Textures/JefferyTitleSequence/010.png" id="14_m6cvp"]
+[ext_resource type="Texture2D" uid="uid://dpesbxegc8ph2" path="res://Textures/JefferyTitleSequence/011.png" id="15_787x5"]
+[ext_resource type="Texture2D" uid="uid://d2b8njpbv0wi7" path="res://Textures/JefferyTitleSequence/012.png" id="16_qbgvv"]
+[ext_resource type="Texture2D" uid="uid://c7apb7xqufooe" path="res://Textures/JefferyTitleSequence/013.png" id="17_w1r1x"]
+[ext_resource type="Texture2D" uid="uid://6rv1slmpbqu7" path="res://Textures/JefferyTitleSequence/014.png" id="18_fmvkx"]
+[ext_resource type="Texture2D" uid="uid://c5sr7o8ljhjl3" path="res://Textures/JefferyTitleSequence/015.png" id="19_puhke"]
+[ext_resource type="Texture2D" uid="uid://ctp5vhpp5craw" path="res://Textures/JefferyTitleSequence/016.png" id="20_0ijyc"]
+[ext_resource type="Texture2D" uid="uid://cpk43s0ds20jx" path="res://Textures/JefferyTitleSequence/017.png" id="21_5wmw5"]
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ylkdf")
+
+[node name="JEFFERYADVENTURE" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -257.5
+offset_top = 199.0
+offset_right = 257.5
+offset_bottom = 276.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("2_7yqlb")
+theme_override_font_sizes/normal_font_size = 56
+text = "Jeffery's Adventure"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="TheMenu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = -71.5
+offset_right = 50.5
+offset_bottom = 71.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Start" type="Button" parent="TheMenu"]
+layout_mode = 2
+text = "Start"
+
+[node name="Options" type="Button" parent="TheMenu"]
+layout_mode = 2
+text = "Settings"
+
+[node name="Quit" type="Button" parent="TheMenu"]
+layout_mode = 2
+text = "Quit"
+
+[node name="Options" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background Color" type="ColorRect" parent="Options"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -300.0
+offset_right = 500.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.140447, 0.140447, 0.140447, 1)
+
+[node name="OptionsTitle" type="RichTextLabel" parent="Options"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.5
+offset_top = -224.0
+offset_right = 35.5
+offset_bottom = -201.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "OPTIONS"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="OptionsMenu" type="VBoxContainer" parent="Options"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -170.0
+offset_right = 310.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="Options/OptionsMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Testing Option"
+
+[node name="BackOptions" type="Button" parent="Options"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = 160.0
+offset_right = 50.0
+offset_bottom = 195.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back
+"
+
+[node name="JEFFERYADVENTURE2" type="Node2D" parent="."]
+script = ExtResource("4_pehhe")
+
+[node name="J" type="Sprite2D" parent="JEFFERYADVENTURE2"]
+position = Vector2(180, 160)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_oqjp0")
+
+[node name="e" type="Sprite2D" parent="JEFFERYADVENTURE2"]
+position = Vector2(249, 153)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_xx2q6")
+
+[node name="f" type="Sprite2D" parent="JEFFERYADVENTURE2"]
+position = Vector2(348, 137)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_ekxp5")
+
+[node name="f2" type="Sprite2D" parent="JEFFERYADVENTURE2"]
+position = Vector2(391, 148)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_x00k3")
+
+[node name="e1" type="Sprite2D" parent="JEFFERYADVENTURE2"]
+position = Vector2(437, 160)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("8_kmr5s")
+
+[node name="r" type="Sprite2D" parent="JEFFERYADVENTURE2"]
+position = Vector2(531, 156)
+rotation = 0.251354
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("9_ka383")
+
+[node name="y" type="Sprite2D" parent="JEFFERYADVENTURE2"]
+position = Vector2(580, 215)
+rotation = 0.124073
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("10_wpygh")
+
+[node name="\'" type="Sprite2D" parent="JEFFERYADVENTURE2"]
+position = Vector2(669, 196)
+rotation = 0.326237
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("11_o438u")
+
+[node name="s" type="Sprite2D" parent="JEFFERYADVENTURE2"]
+position = Vector2(692, 181)
+rotation = 0.251076
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_264fh")
+
+[node name="A" type="Sprite2D" parent="JEFFERYADVENTURE2"]
+position = Vector2(262, 304)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("13_v2kp7")
+
+[node name="d" type="Sprite2D" parent="JEFFERYADVENTURE2"]
+position = Vector2(334, 298)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("14_m6cvp")
+
+[node name="v" type="Sprite2D" parent="JEFFERYADVENTURE2"]
+position = Vector2(387, 302)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("15_787x5")
+
+[node name="e3" type="Sprite2D" parent="JEFFERYADVENTURE2"]
+position = Vector2(437, 298)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("16_qbgvv")
+
+[node name="n" type="Sprite2D" parent="JEFFERYADVENTURE2"]
+position = Vector2(508, 302)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("17_w1r1x")
+
+[node name="t" type="Sprite2D" parent="JEFFERYADVENTURE2"]
+position = Vector2(570, 292)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("18_fmvkx")
+
+[node name="u" type="Sprite2D" parent="JEFFERYADVENTURE2"]
+position = Vector2(632, 303)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("19_puhke")
+
+[node name="r2" type="Sprite2D" parent="JEFFERYADVENTURE2"]
+position = Vector2(687, 290)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("20_0ijyc")
+
+[node name="e4" type="Sprite2D" parent="JEFFERYADVENTURE2"]
+position = Vector2(740, 287)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("21_5wmw5")
+
+[connection signal="pressed" from="TheMenu/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="TheMenu/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="TheMenu/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Options/BackOptions" to="." method="_on_back_options_pressed"]
