@@ -1,6 +1,7 @@
 shader_type canvas_item;
 
 uniform float angle: hint_range(0.0, 359.999, 0.1);
+uniform float grayscale: hint_range(0.0, 1.0);
 
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -9,10 +10,10 @@ void vertex() {
 void fragment() {
 	// Called for every pixel the material is visible on.
 	vec4 col = texture(TEXTURE, UV);
+
 	
 	float xmax = max(max(col.r, col.g), col.b); // Maximum value
 	float xmin = min(min(col.r, col.g), col.b); // Minimum value
-	//float L = max(min(col.r, col.g), min(col.r, col.b)); // light value aka Mid value
 	float C2 = xmax - xmin; // chroma or range
 	//float C2 = 2.0 * (xmax - L); 
 	
@@ -60,6 +61,11 @@ void fragment() {
 	
 	float m = xmax - C;
 	col.rgb = vec3(col.r + m, col.g + m, col.b + m);
+	
+	float midColor = max(min(col.r, col.g), min(col.r, col.b)); // light value aka Mid value
+	col.r = mix(col.r, midColor, grayscale);
+	col.g = mix(col.g, midColor, grayscale);
+	col.b = mix(col.b, midColor, grayscale);
 	
 	COLOR = col;
 }

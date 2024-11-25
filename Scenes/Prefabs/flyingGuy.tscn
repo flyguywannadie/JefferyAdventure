@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dh7xlshv1k2mx"]
+[gd_scene load_steps=23 format=3 uid="uid://dh7xlshv1k2mx"]
 
 [ext_resource type="Script" path="res://Scripts/FlyingGuy.gd" id="1_lt8b0"]
 [ext_resource type="Material" uid="uid://4qginuh7uhxl" path="res://EnemyMaterial.tres" id="1_rlh8t"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cpdbbfdwkflhp" path="res://Textures/FlyingGuy/GunShoot2.png" id="8_6undh"]
 [ext_resource type="Texture2D" uid="uid://ddrexx2rf4yuu" path="res://Textures/FlyingGuy/GunShoot3.png" id="9_2nhl8"]
 [ext_resource type="Texture2D" uid="uid://doqy8i7alsnfn" path="res://Textures/FlyingGuy/GunShoot4.png" id="10_vflnc"]
+[ext_resource type="AudioStream" uid="uid://dbmckl4ar7rip" path="res://Sounds/FlyingEnemyWhirring.wav" id="12_nmr5f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmcyw"]
 size = Vector2(61, 45)
@@ -187,5 +188,10 @@ damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damage"]
 shape = SubResource("CircleShape2D_6uumt")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_nmr5f")
+volume_db = -20.902
+autoplay = true
 
 [connection signal="body_entered" from="Damage" to="Damage" method="_on_body_entered"]

@@ -51,6 +51,7 @@ func setKnockback(x: float, y: float) -> void:
 	pass
 
 func hitStunDone() -> void:
+	$Damage.process_mode = Node.PROCESS_MODE_INHERIT
 	setIdleTimer()
 	pass
 
@@ -65,6 +66,7 @@ func takeDamage(damage: int):
 			0:SoundManager.PlaySound("Hurt3")
 			1:SoundManager.PlaySound("Hurt4")
 	anims.play("Hurt")
+	$Damage.process_mode = Node.PROCESS_MODE_DISABLED
 	SetHitStun(0.5)
 
 func setIdleTimer() -> void:

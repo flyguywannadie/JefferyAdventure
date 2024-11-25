@@ -122,13 +122,13 @@ func _physics_process(delta: float) -> void:
 		if (cayoteTime < 0):
 			onGround = false
 	if (cayoteTime < 0 && is_on_floor()):
-		cayoteTime = 3
+		cayoteTime = int(Engine.get_frames_per_second()/10)
 		onGround = true
 		set_collision_mask_value(8, true)
 		#doneSlide()
 	
 	if (Input.is_action_just_pressed("jef_slide") && trySlide) :
-		addKnockback(speed * 2.2 * $Node2D.scale.x, 100)
+		addKnockback(speed * 2.0 * (sign(movement.x + $Node2D.scale.x)), 100)
 		anims.play("RESET")
 		anims.play("Slide")
 		$StandingHitbox.shape.size = Vector2(hitboxSize.x, hitboxSize.y / 2)

@@ -366,7 +366,6 @@ floor_snap_length = 7.0
 platform_floor_layers = 4278190080
 script = ExtResource("1_vcdsa")
 speed = 600.0
-maxHealth = 2
 GRAVITY = 64.0
 FRICTION = 20.0
 visuals = NodePath("Node2D/Sprite")

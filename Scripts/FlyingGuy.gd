@@ -68,10 +68,11 @@ func hitStunDone() -> void:
 		var t = p.instantiate()
 		
 		t.global_position = global_position
-			
+		
 		GameManager.projectileOwner.add_child(t)
 		t.owner = GameManager.projectileOwner
 		super._die()
+	$AudioStreamPlayer.play(randf())
 	super.hitStunDone()
 
 func _die() -> void:
@@ -88,6 +89,7 @@ func takeDamage(damage: int):
 			1:SoundManager.PlaySound("MetalHit1")
 			2:SoundManager.PlaySound("MetalHit2")
 	$Gun/GUnAnims.play("idle")
+	$AudioStreamPlayer.stop()
 	anims.play("Hurt")
 	var knocked = (global_position - whoIFollow.global_position).normalized() * 1200
 	setKnockback(knocked.x, knocked.y)

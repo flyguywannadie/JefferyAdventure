@@ -183,6 +183,7 @@ shader_parameter/Test = ExtResource("15_p44oh")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hvlrm"]
 shader = ExtResource("6_i01nh")
 shader_parameter/angle = 0.0
+shader_parameter/grayscale = null
 
 [node name="Node2D" type="Node2D"]
 texture_filter = 1

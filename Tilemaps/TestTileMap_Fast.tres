@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://khxjqjugnsov"]
+[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://sdarly5kgpr"]
 
-[ext_resource type="Texture2D" uid="uid://c7iw1fh0e3p8u" path="res://Textures/icon.svg" id="1_lqyfc"]
-[ext_resource type="Texture2D" uid="uid://cytt6m6pfekja" path="res://Tilemaps/TilesetTest.png" id="2_utofu"]
+[ext_resource type="Texture2D" uid="uid://c7iw1fh0e3p8u" path="res://Textures/icon.svg" id="1_bspnv"]
+[ext_resource type="Shader" path="res://ColorPaletteChanger.gdshader" id="2_lhm1w"]
+[ext_resource type="Texture2D" uid="uid://cytt6m6pfekja" path="res://Tilemaps/TilesetTest.png" id="3_ex7km"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_o1x2d"]
 tile_data = PackedInt32Array(131072, 524289, 8, 196608, 458753, 3, 65537, 524289, 8, 131073, 524289, 9, 196609, 524289, 3, 2, 393217, 8, 65538, 393217, 9, 131074, 524289, 3)
@@ -13,15 +14,17 @@ tile_data = PackedInt32Array(65536, 524289, 8, 131072, 458753, 3, 1, 393217, 8, 
 tile_data = PackedInt32Array(0, 65537, 3, 65536, 65537, 0, 131072, 65537, 0, 196608, 65537, 0, 262144, 65537, 0, 327680, 65537, 0, 393216, 65537, 0, 458752, 65537, 0, 524288, 1, 2, 786432, 65537, 3, 851968, 1, 2, 1, 196609, 0, 65537, 131073, 1, 131073, 327681, 3, 196609, 196609, 2, 262145, 196609, 2, 327681, 196609, 2, 393217, 196609, 2, 458753, 196609, 2, 524289, 196609, 3, 786433, 196609, 0, 851969, 65537, 2, 2, 196609, 0, 65538, 327681, 3, 131074, 393217, 3, 786434, 196609, 0, 851970, 65537, 2, 3, 196609, 0, 65539, 65537, 2, 786435, 196609, 0, 851971, 65537, 2, 4, 196609, 0, 65540, 65537, 2, 786436, 196609, 0, 851972, 131073, 2, 5, 196609, 0, 65541, 65537, 2, 786437, 196609, 0, 851973, 131073, 1, 6, 196609, 0, 65542, 65537, 2, 786438, 196609, 0, 851974, 131073, 1, 7, 196609, 0, 65543, 65537, 2, 786439, 196609, 0, 851975, 131073, 1, 8, 196609, 0, 65544, 65537, 2, 786440, 196609, 0, 851976, 131073, 1, 9, 196609, 0, 65545, 65537, 2, 786441, 196609, 0, 851977, 131073, 1, 10, 196609, 0, 65546, 65537, 2, 786442, 196609, 0, 851978, 131073, 1, 11, 196609, 0, 65547, 65537, 2, 786443, 196609, 0, 851979, 131073, 1, 12, 196609, 0, 65548, 65537, 2, 786444, 196609, 0, 851980, 131073, 1, 13, 196609, 0, 65549, 65537, 2, 786445, 196609, 0, 851981, 131073, 1, 14, 196609, 0, 65550, 65537, 2, 786446, 196609, 0, 851982, 131073, 1, 15, 196609, 0, 65551, 65537, 2, 786447, 196609, 0, 851983, 131073, 1, 16, 196609, 0, 65552, 65537, 2, 786448, 196609, 0, 851984, 131073, 1, 17, 196609, 0, 65553, 65537, 2, 786449, 196609, 0, 851985, 196609, 1, 18, 196609, 0, 65554, 65537, 2, 786450, 196609, 0, 851986, 65537, 2, 19, 196609, 0, 65555, 262145, 2, 131091, 262145, 3, 786451, 196609, 0, 851987, 65537, 2, 20, 196609, 0, 65556, 131073, 1, 131092, 262145, 2, 196628, 65537, 0, 262164, 65537, 0, 327700, 65537, 0, 393236, 65537, 0, 458772, 65537, 0, 524308, 1, 2, 786452, 196609, 0, 851988, 65537, 2, 21, 196609, 0, 65557, 131073, 1, 131093, 131073, 1, 196629, 131073, 1, 262165, 131073, 1, 327701, 131073, 1, 393237, 131073, 1, 458773, 131073, 1, 524309, 65537, 2, 786453, 196609, 0, 851989, 65537, 2)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sjqa0"]
-texture = ExtResource("1_lqyfc")
+texture = ExtResource("1_bspnv")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cqgy6"]
+shader = ExtResource("2_lhm1w")
+shader_parameter/angle = 260.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s6fnj"]
-texture = ExtResource("2_utofu")
+texture = ExtResource("3_ex7km")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/material = SubResource("ShaderMaterial_cqgy6")
@@ -63,10 +66,8 @@ texture_region_size = Vector2i(128, 128)
 3:0/0/terrains_peering_bit/bottom_left_corner = 0
 3:0/0/terrains_peering_bit/left_side = 0
 6:0/0 = 0
-6:0/0/material = SubResource("ShaderMaterial_cqgy6")
 6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(64, -64, 64, 64, -64, 64)
 7:0/0 = 0
-7:0/0/material = SubResource("ShaderMaterial_cqgy6")
 7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, 64, -64, 64)
 0:1/0 = 0
 0:1/0/material = SubResource("ShaderMaterial_cqgy6")
@@ -499,7 +500,6 @@ texture_region_size = Vector2i(128, 128)
 2:5/0/terrains_peering_bit/left_side = 0
 2:5/0/terrains_peering_bit/top_side = 0
 7:3/0 = 0
-7:3/0/material = SubResource("ShaderMaterial_cqgy6")
 7:3/0/terrain_set = 1
 8:3/0 = 0
 8:3/0/terrain_set = 1

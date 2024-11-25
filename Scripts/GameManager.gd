@@ -4,7 +4,7 @@ var evolutionScreen: EvolutionScreen #= $"../CanvasLayer/EvolutionScreen"
 var deathScreen: DeathScreen #= $"../CanvasLayer/DeathScreenJeffery"
 var bossHealthbar: BossHealthbar
 
-var startLevel: String = "StorageRoom"
+var startLevel: String = "StartingRoom"
 var currentLevel: Room
 var prevLevel: Room
 
@@ -18,6 +18,7 @@ var moveCamJeff: bool = false
 var movinglerp: float
 
 var checkpoint: Node2D
+var lastEntrance: int
 
 var levelResetPosition: Vector2
 
@@ -29,6 +30,7 @@ var piecesGotten: int = 0
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	#Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	#
 	#for child in get_tree().root.get_child(0).get_children():
 		#if child is GameCamera:
@@ -75,6 +77,9 @@ func firstLevelStuff() -> void:
 	camera.changeTrack(currentLevel.getClosestTrack(jeffery.global_position), false)
 	camera.global_position = camera.currentTrack.placeVectorWithinBounds(jeffery.global_position)
 	currentLevel.EnableDoorways()
+	checkpoint = currentLevel.getEntranceWithID(lastEntrance).closestCheckpoint
+	jeffery.global_position = checkpoint.global_position
+	jeffery.Reset()
 
 func endLevels() -> void:
 	if (currentLevel != null) :
@@ -89,6 +94,7 @@ func resetLevel():
 	currentLevel = level as Room
 	currentLevel.position = levelResetPosition
 	currentLevel.gameStateChanges(gameState)
+	checkpoint = currentLevel.getEntranceWithID(lastEntrance).closestCheckpoint
 	camera.changeTrack(currentLevel.getClosestTrack(checkpoint.global_position), false)
 	camera.global_position = camera.currentTrack.placeVectorWithinBounds(checkpoint.global_position)
 	currentLevel.EnableDoorways()
@@ -109,6 +115,7 @@ func SwapRoom(roomName: String, enterDirection: float, entranceID: int):
 	currentLevel.gameStateChanges(gameState)
 	var prevEntrance = prevLevel.getEntranceWithID(entranceID)
 	var newEntrance = currentLevel.getEntranceWithID(entranceID)
+	lastEntrance = entranceID
 	#print(prevEntrance.global_position, " and ", newEntrance.global_position)
 	currentLevel.position += prevEntrance.global_position - newEntrance.global_position
 	#print(currentLevel.global_position)
@@ -152,8 +159,8 @@ func JefferyGameOver() -> void :
 func JefferyRetry() -> void:
 	ResumeGame()
 	
-	jeffery.global_position = checkpoint.global_position
 	resetLevel()
+	jeffery.global_position = checkpoint.global_position
 	
 	jeffery.call_deferred("Reset")
 
