@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/HidingWalls.gd" id="4_qf2af"]
 [ext_resource type="PackedScene" uid="uid://soputgv8t7rk" path="res://Scenes/Prefabs/RoomSetup/CamTrackSwitch.tscn" id="5_xoiql"]
 [ext_resource type="Script" path="res://Scripts/Doorway.gd" id="6_l2i47"]
-[ext_resource type="PackedScene" uid="uid://dc2oo5d4e4gee" path="res://Scenes/Prefabs/testguybounce.tscn" id="6_sbjgi"]
+[ext_resource type="PackedScene" uid="uid://dc2oo5d4e4gee" path="res://Scenes/Prefabs/walker.tscn" id="6_sbjgi"]
 [ext_resource type="Script" path="res://Scripts/GameStateChange.gd" id="7_dfbi7"]
 [ext_resource type="TileSet" uid="uid://dvjpdafy12snk" path="res://Tilemaps/TestTileMap_NoShadow.tres" id="7_g5iis"]
 [ext_resource type="Texture2D" uid="uid://cab61l5aahjll" path="res://Textures/Gun.png" id="8_tw4us"]

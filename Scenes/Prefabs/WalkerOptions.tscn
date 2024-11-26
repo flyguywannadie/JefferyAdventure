@@ -1,0 +1,133 @@
+[gd_scene load_steps=19 format=3 uid="uid://cwldumg56ocif"]
+
+[ext_resource type="Script" path="res://Scripts/eWalker.gd" id="1_kh3u8"]
+[ext_resource type="PackedScene" uid="uid://b21mgrao055cl" path="res://Scenes/Prefabs/walker_damage_effect.tscn" id="2_7mv6u"]
+[ext_resource type="Material" uid="uid://4qginuh7uhxl" path="res://EnemyMaterial.tres" id="3_1qs03"]
+[ext_resource type="Texture2D" uid="uid://0g8484u17gnh" path="res://Textures/WalkerEnemy/IdleWalker.png" id="4_bpbs5"]
+[ext_resource type="Texture2D" uid="uid://ge01k5whrqsw" path="res://Textures/WalkerEnemy/WalkerHurt.png" id="5_ocqo5"]
+[ext_resource type="Texture2D" uid="uid://bn1e2xt7daqrj" path="res://Textures/WalkerEnemy/006.png" id="6_i4xwq"]
+[ext_resource type="Texture2D" uid="uid://de7lfcd6q6d1j" path="res://Textures/WalkerEnemy/007.png" id="7_8o332"]
+[ext_resource type="Texture2D" uid="uid://qd2t47oa33pv" path="res://Textures/WalkerEnemy/008.png" id="8_cytil"]
+[ext_resource type="Texture2D" uid="uid://vb0msanwj0by" path="res://Textures/WalkerEnemy/009.png" id="9_f3bno"]
+[ext_resource type="Script" path="res://Scripts/DamageArea.gd" id="10_2dywv"]
+[ext_resource type="AudioStream" uid="uid://csis6np1bgtsa" path="res://Sounds/Hurt2.wav" id="11_1voq5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epq2w"]
+size = Vector2(71, 100)
+
+[sub_resource type="Animation" id="Animation_3y8mp"]
+resource_name = "Hurt"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_ocqo5")]
+}
+
+[sub_resource type="Animation" id="Animation_m8li8"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_bpbs5")]
+}
+
+[sub_resource type="Animation" id="Animation_5tqps"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_bpbs5")]
+}
+
+[sub_resource type="Animation" id="Animation_uv52e"]
+resource_name = "Walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("6_i4xwq"), ExtResource("7_8o332"), ExtResource("8_cytil"), ExtResource("9_f3bno")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e1vjx"]
+_data = {
+"Hurt": SubResource("Animation_3y8mp"),
+"Idle": SubResource("Animation_m8li8"),
+"RESET": SubResource("Animation_5tqps"),
+"Walk": SubResource("Animation_uv52e")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1hce3"]
+radius = 42.0
+
+[node name="Walker" type="CharacterBody2D" node_paths=PackedStringArray("anims", "visuals")]
+collision_layer = 2
+collision_mask = 155
+floor_constant_speed = true
+floor_max_angle = 1.0472
+platform_on_leave = 2
+platform_floor_layers = 4294967294
+script = ExtResource("1_kh3u8")
+anims = NodePath("AnimationPlayer")
+HitEffect = ExtResource("2_7mv6u")
+maxHealth = 3
+GRAVITY = 32.0
+FRICTION = 16.0
+visuals = NodePath("Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -9)
+shape = SubResource("RectangleShape2D_epq2w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("3_1qs03")
+position = Vector2(0, -43)
+texture = ExtResource("4_bpbs5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e1vjx")
+}
+
+[node name="Damage" type="Area2D" parent="."]
+position = Vector2(-2, 25)
+collision_layer = 32
+script = ExtResource("10_2dywv")
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage"]
+shape = SubResource("CircleShape2D_1hce3")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_1voq5")
+
+[connection signal="body_entered" from="Damage" to="Damage" method="_on_body_entered"]

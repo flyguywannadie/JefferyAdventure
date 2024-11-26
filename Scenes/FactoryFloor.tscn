@@ -12,7 +12,7 @@
 [ext_resource type="TileSet" uid="uid://dvjpdafy12snk" path="res://Tilemaps/TestTileMap_NoShadow.tres" id="10_al54e"]
 [ext_resource type="PackedScene" uid="uid://dh7xlshv1k2mx" path="res://Scenes/Prefabs/flyingGuy.tscn" id="11_awg3x"]
 [ext_resource type="Shader" path="res://EnemyShader.gdshader" id="12_3h252"]
-[ext_resource type="PackedScene" uid="uid://dc2oo5d4e4gee" path="res://Scenes/Prefabs/testguybounce.tscn" id="13_66pke"]
+[ext_resource type="PackedScene" uid="uid://dc2oo5d4e4gee" path="res://Scenes/Prefabs/walker.tscn" id="13_66pke"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgqj1"]
 size = Vector2(5120, 20)

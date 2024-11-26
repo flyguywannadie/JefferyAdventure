@@ -141,6 +141,7 @@ _data = {
 radius = 37.054
 
 [node name="FlyingGuy" type="CharacterBody2D" node_paths=PackedStringArray("anims", "visuals")]
+z_index = 15
 material = ExtResource("1_rlh8t")
 collision_layer = 2
 collision_mask = 155

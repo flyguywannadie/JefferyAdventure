@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://thkbcnkqvpvj"]
+[gd_scene load_steps=17 format=4 uid="uid://thkbcnkqvpvj"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_6bbdj"]
 [ext_resource type="Shader" path="res://ColorPaletteChanger.gdshader" id="2_731m6"]
@@ -8,14 +8,19 @@
 [ext_resource type="PackedScene" uid="uid://bh523bxi5rvi" path="res://Scenes/Prefabs/RoomSetup/camera_track.tscn" id="5_mxreu"]
 [ext_resource type="PackedScene" uid="uid://soputgv8t7rk" path="res://Scenes/Prefabs/RoomSetup/CamTrackSwitch.tscn" id="6_0fe3o"]
 [ext_resource type="PackedScene" uid="uid://bu1akkp0a5jd7" path="res://Scenes/Prefabs/RoomSetup/Checkpoint.tscn" id="7_0g0b1"]
-[ext_resource type="PackedScene" uid="uid://dc2oo5d4e4gee" path="res://Scenes/Prefabs/testguybounce.tscn" id="8_f3wp7"]
+[ext_resource type="PackedScene" uid="uid://dc2oo5d4e4gee" path="res://Scenes/Prefabs/walker.tscn" id="8_f3wp7"]
 [ext_resource type="Texture2D" uid="uid://k8hxbw6muhyp" path="res://Textures/Backgrounds/ScalableBackgroundColor.png" id="10_xywdk"]
-[ext_resource type="Texture2D" uid="uid://b1iffob6dmf4m" path="res://Textures/Backgrounds/RestroomsBackground.png" id="11_1jlpf"]
+[ext_resource type="Texture2D" uid="uid://dcmrgccibj6u0" path="res://Textures/Backgrounds/Lockers.png" id="11_dpryc"]
+[ext_resource type="Texture2D" uid="uid://crmk0ns6lseg6" path="res://Textures/Backgrounds/Overheadlight_Wires.png" id="12_d342i"]
+[ext_resource type="Texture2D" uid="uid://ddcg3qabebtha" path="res://Textures/Backgrounds/RestroomDoors.png" id="13_op780"]
+[ext_resource type="Texture2D" uid="uid://jdbvcwxi3uv3" path="res://Textures/Backgrounds/ExitSignLeft.png" id="14_slyry"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a0xq0"]
 shader = ExtResource("2_731m6")
 shader_parameter/angle = 0.0
-shader_parameter/grayscale = null
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bubh"]
+size = Vector2(651, 25)
 
 [node name="Restrooms" type="Node2D" node_paths=PackedStringArray("camTracks", "entrances")]
 script = ExtResource("1_6bbdj")
@@ -71,13 +76,58 @@ closestCheckpoint = NodePath("../CheckPoint2")
 [node name="CheckPoint2" parent="." instance=ExtResource("7_0g0b1")]
 position = Vector2(2048, 64)
 
-[node name="ScalableBackgroundColor" type="Sprite2D" parent="."]
+[node name="OneWayPlatforms" type="StaticBody2D" parent="."]
+collision_layer = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OneWayPlatforms"]
+position = Vector2(1092.5, -130.5)
+shape = SubResource("RectangleShape2D_2bubh")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="OneWayPlatforms"]
+position = Vector2(1856, -128)
+shape = SubResource("RectangleShape2D_2bubh")
+one_way_collision = true
+
+[node name="BackgroundImages" type="Node2D" parent="."]
+
+[node name="ScalableBackgroundColor" type="Sprite2D" parent="BackgroundImages"]
 z_index = -555
 position = Vector2(576, -192)
 scale = Vector2(14.13, 7.57)
 texture = ExtResource("10_xywdk")
 
-[node name="RestroomsBackground" type="Sprite2D" parent="."]
-z_index = -60
-position = Vector2(576, -192)
-texture = ExtResource("11_1jlpf")
+[node name="Lockers" type="Sprite2D" parent="BackgroundImages"]
+z_index = -45
+position = Vector2(1856, 0)
+texture = ExtResource("11_dpryc")
+
+[node name="Lockers2" type="Sprite2D" parent="BackgroundImages"]
+z_index = -45
+position = Vector2(1088, 0)
+texture = ExtResource("11_dpryc")
+
+[node name="OverheadlightWires" type="Sprite2D" parent="BackgroundImages"]
+z_index = -15
+position = Vector2(-832, -496)
+texture = ExtResource("12_d342i")
+
+[node name="OverheadlightWires2" type="Sprite2D" parent="BackgroundImages"]
+z_index = -15
+position = Vector2(1984, -496)
+texture = ExtResource("12_d342i")
+
+[node name="OverheadlightWires3" type="Sprite2D" parent="BackgroundImages"]
+z_index = -15
+position = Vector2(576, -496)
+texture = ExtResource("12_d342i")
+
+[node name="RestroomDoors" type="Sprite2D" parent="BackgroundImages"]
+z_index = -10
+position = Vector2(-192, 0)
+texture = ExtResource("13_op780")
+
+[node name="ExitSignLeft" type="Sprite2D" parent="."]
+z_index = -15
+position = Vector2(-960, -256)
+texture = ExtResource("14_slyry")

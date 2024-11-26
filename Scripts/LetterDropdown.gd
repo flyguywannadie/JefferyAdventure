@@ -13,7 +13,8 @@ func _process(delta: float) -> void:
 	for child in get_children():
 		var oldY = (child as Node2D).position.y
 		(child as Node2D).position.y = lerpf((child as Node2D).position.y,oldY + (5.0 * cos(time * 2.0 + (child as Node2D).position.x)), 2 * delta)
+		#(child as Node2D).rotation = lerpf((child as Node2D).rotation, cos(time + (child as Node2D).position.x), delta)
 
-func _input(event: InputEvent) -> void:
-	if (event.is_action("jef_shoot") && $"../TitleSequence".is_playing()) :
-		$"../TitleSequence".play("RESET")
+#func _input(event: InputEvent) -> void:
+	#if (event.is_action("jef_shoot") && $"../TitleSequence".is_playing()) :
+		#$"../TitleSequence".play("RESET")

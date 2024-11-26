@@ -18,7 +18,7 @@ var moveCamJeff: bool = false
 var movinglerp: float
 
 var checkpoint: Node2D
-var lastEntrance: int
+var lastEntrance: int = -1
 
 var levelResetPosition: Vector2
 
@@ -74,6 +74,7 @@ func MakeFirstScene() -> void:
 	call_deferred("firstLevelStuff")
 
 func firstLevelStuff() -> void:
+	lastEntrance = 0
 	camera.changeTrack(currentLevel.getClosestTrack(jeffery.global_position), false)
 	camera.global_position = camera.currentTrack.placeVectorWithinBounds(jeffery.global_position)
 	currentLevel.EnableDoorways()
@@ -165,6 +166,9 @@ func JefferyRetry() -> void:
 	jeffery.call_deferred("Reset")
 
 func _physics_process(delta: float) -> void:
+	if (checkpoint == null && currentLevel != null && lastEntrance > -1) :
+		checkpoint = currentLevel.getEntranceWithID(lastEntrance).closestCheckpoint
+	
 	if(moveCamJeff):
 		movinglerp += 1.0/(60.0 * 1.5)
 		movinglerp = minf(movinglerp, 1.0)
