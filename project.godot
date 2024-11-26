@@ -98,4 +98,5 @@ jef_reset={
 
 [rendering]
 
+anti_aliasing/screen_space_roughness_limiter/enabled=false
 environment/defaults/default_clear_color=Color(0.578189, 0.600304, 0.536288, 1)
