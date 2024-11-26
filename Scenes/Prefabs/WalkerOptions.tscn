@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://Scripts/eWalker.gd" id="1_kh3u8"]
 [ext_resource type="PackedScene" uid="uid://b21mgrao055cl" path="res://Scenes/Prefabs/walker_damage_effect.tscn" id="2_7mv6u"]
 [ext_resource type="Material" uid="uid://4qginuh7uhxl" path="res://EnemyMaterial.tres" id="3_1qs03"]
-[ext_resource type="Texture2D" uid="uid://0g8484u17gnh" path="res://Textures/WalkerEnemy/IdleWalker.png" id="4_bpbs5"]
-[ext_resource type="Texture2D" uid="uid://ge01k5whrqsw" path="res://Textures/WalkerEnemy/WalkerHurt.png" id="5_ocqo5"]
-[ext_resource type="Texture2D" uid="uid://bn1e2xt7daqrj" path="res://Textures/WalkerEnemy/006.png" id="6_i4xwq"]
-[ext_resource type="Texture2D" uid="uid://de7lfcd6q6d1j" path="res://Textures/WalkerEnemy/007.png" id="7_8o332"]
-[ext_resource type="Texture2D" uid="uid://qd2t47oa33pv" path="res://Textures/WalkerEnemy/008.png" id="8_cytil"]
-[ext_resource type="Texture2D" uid="uid://vb0msanwj0by" path="res://Textures/WalkerEnemy/009.png" id="9_f3bno"]
+[ext_resource type="Texture2D" uid="uid://bg3va5e0lbbtq" path="res://Textures/OptionsMenu/WalkerForOptions/OptionWalkerIdle.png" id="4_poetw"]
+[ext_resource type="Texture2D" uid="uid://c4vwbittp5583" path="res://Textures/OptionsMenu/WalkerForOptions/OptionWalkerHurt.png" id="5_b811x"]
+[ext_resource type="Texture2D" uid="uid://5tavawdk14w6" path="res://Textures/OptionsMenu/WalkerForOptions/OptionWalkerWalk1.png" id="6_d40dc"]
+[ext_resource type="Texture2D" uid="uid://cp2jxgtw4103h" path="res://Textures/OptionsMenu/WalkerForOptions/OptionWalkerWalk2.png" id="7_ebqc5"]
+[ext_resource type="Texture2D" uid="uid://vql6yygptsgm" path="res://Textures/OptionsMenu/WalkerForOptions/OptionWalkerWalk3.png" id="8_0tcwh"]
+[ext_resource type="Texture2D" uid="uid://btd11q1jiiqwa" path="res://Textures/OptionsMenu/WalkerForOptions/OptionWalkerWalk4.png" id="9_bw0jm"]
 [ext_resource type="Script" path="res://Scripts/DamageArea.gd" id="10_2dywv"]
 [ext_resource type="AudioStream" uid="uid://csis6np1bgtsa" path="res://Sounds/Hurt2.wav" id="11_1voq5"]
 
@@ -28,7 +28,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_ocqo5")]
+"values": [ExtResource("5_b811x")]
 }
 
 [sub_resource type="Animation" id="Animation_m8li8"]
@@ -43,7 +43,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_bpbs5")]
+"values": [ExtResource("4_poetw")]
 }
 
 [sub_resource type="Animation" id="Animation_5tqps"]
@@ -58,7 +58,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_bpbs5")]
+"values": [ExtResource("4_poetw")]
 }
 
 [sub_resource type="Animation" id="Animation_uv52e"]
@@ -75,7 +75,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("6_i4xwq"), ExtResource("7_8o332"), ExtResource("8_cytil"), ExtResource("9_f3bno")]
+"values": [ExtResource("6_d40dc"), ExtResource("7_ebqc5"), ExtResource("8_0tcwh"), ExtResource("9_bw0jm")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e1vjx"]
@@ -111,7 +111,7 @@ shape = SubResource("RectangleShape2D_epq2w")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = ExtResource("3_1qs03")
 position = Vector2(0, -43)
-texture = ExtResource("4_bpbs5")
+texture = ExtResource("4_poetw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

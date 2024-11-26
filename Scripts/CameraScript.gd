@@ -18,9 +18,9 @@ func _ready() -> void:
 	GameManager.SetGameCamera(self)
 	pass # Replace with function body.
 
-func _input(event: InputEvent) -> void:
-	if (event.is_action("jef_up")) :
-		ScreenShake(Vector2(1,1), 2.0, 1.0)
+#func _input(event: InputEvent) -> void:
+	#if (event.is_action("jef_up")) :
+		#ScreenShake(Vector2(1,1), 2.0, 1.0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

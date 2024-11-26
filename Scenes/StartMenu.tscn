@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://b3wn0yj7sfv05"]
+[gd_scene load_steps=44 format=3 uid="uid://b3wn0yj7sfv05"]
 
 [ext_resource type="Script" path="res://Scripts/StartMenu.gd" id="1_ylkdf"]
 [ext_resource type="FontFile" uid="uid://56kabaq45qkg" path="res://Textures/Font.png" id="2_7yqlb"]
@@ -33,6 +33,9 @@
 [ext_resource type="Shader" path="res://ColorPaletteChanger.gdshader" id="31_8xqpo"]
 [ext_resource type="Texture2D" uid="uid://b7csduqulyxlu" path="res://Textures/JefferyTitleSequence/TitleScaleable.png" id="32_d35mw"]
 [ext_resource type="Texture2D" uid="uid://k8hxbw6muhyp" path="res://Textures/Backgrounds/ScalableBackgroundColor.png" id="32_f5lqi"]
+[ext_resource type="Texture2D" uid="uid://dtuws0mkvjlbl" path="res://Textures/OptionsMenu/WalkerForOptions/BackButtonNonHover.png" id="33_ddwaa"]
+[ext_resource type="Texture2D" uid="uid://ccqouv0gamab" path="res://Textures/OptionsMenu/WalkerForOptions/BackButton.png" id="34_7uo17"]
+[ext_resource type="PackedScene" uid="uid://cwldumg56ocif" path="res://Scenes/Prefabs/WalkerOptions.tscn" id="34_re0b8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mhhks"]
 shader = ExtResource("31_8xqpo")
@@ -49,7 +52,7 @@ size = Vector2(595, 159)
 
 [sub_resource type="Animation" id="Animation_y7urk"]
 resource_name = "GoToOptions"
-length = 5.0
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -70,9 +73,57 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(1, 2),
-"transitions": PackedFloat32Array(2.14355, 1),
+"transitions": PackedFloat32Array(1.93187, 1),
 "update": 0,
-"values": [Vector2(1843, 382), Vector2(640, 384)]
+"values": [Vector2(2109, 382), Vector2(640, 384)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Options/WalkerOptions:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.23333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-530.94, 326.06)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Options/WalkerOptions:walkDirection")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.23333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Options/WalkerOptions:state")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.23333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Options/WalkerOptions:stateTimer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.2333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
 }
 
 [sub_resource type="Animation" id="Animation_s0tru"]
@@ -100,6 +151,54 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1843, 382)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Options/WalkerOptions:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-530.685, 319.88)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Options/WalkerOptions:walkDirection")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Options/WalkerOptions:state")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Options/WalkerOptions:stateTimer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hmsut"]
@@ -137,6 +236,8 @@ autowrap_mode = 0
 
 [node name="MainMenu" type="Control" parent="."]
 anchors_preset = 0
+offset_left = -2129.0
+offset_right = -2129.0
 
 [node name="TheMenu" type="VBoxContainer" parent="MainMenu"]
 layout_mode = 1
@@ -306,40 +407,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 1203.0
-offset_top = -2.0
-offset_right = 1203.0
-offset_bottom = -2.0
+offset_left = 1461.15
+offset_top = -1.98932
+offset_right = 1461.15
+offset_bottom = -1.98932
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Background Color" type="ColorRect" parent="Options"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -500.0
-offset_top = -300.0
-offset_right = 500.0
-offset_bottom = 300.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.140447, 0.140447, 0.140447, 1)
 
 [node name="OptionsTitle" type="RichTextLabel" parent="Options"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -35.5
-offset_top = -224.0
-offset_right = 35.5
-offset_bottom = -201.0
+offset_left = -104.148
+offset_top = -352.011
+offset_right = 595.852
+offset_bottom = -252.011
 grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 30
+theme_override_fonts/normal_font = ExtResource("2_7yqlb")
+theme_override_font_sizes/normal_font_size = 100
 text = "OPTIONS"
 fit_content = true
 scroll_active = false
@@ -352,10 +438,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -310.0
-offset_top = -170.0
-offset_right = 310.0
-offset_bottom = 170.0
+offset_left = -102.148
+offset_top = -243.011
+offset_right = 517.852
+offset_bottom = 96.9893
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -365,38 +451,58 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Testing Option"
 
-[node name="BackOptions" type="Button" parent="Options"]
+[node name="BackOptions" type="TextureButton" parent="Options"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -50.0
-offset_top = 160.0
-offset_right = 50.0
-offset_bottom = 195.0
+offset_left = 148.852
+offset_top = 267.989
+offset_right = 248.852
+offset_bottom = 302.989
 grow_horizontal = 2
 grow_vertical = 0
-text = "Back
-"
+texture_normal = ExtResource("33_ddwaa")
+script = ExtResource("5_r86v5")
+normal = ExtResource("34_7uo17")
+NonHover = ExtResource("33_ddwaa")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Options"]
+[node name="WalkerCatch" type="StaticBody2D" parent="Options"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Options/StaticBody2D"]
-position = Vector2(-206, -6)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Options/WalkerCatch"]
+position = Vector2(-144, 0)
 shape = SubResource("RectangleShape2D_hfn3t")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Options/StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Options/WalkerCatch"]
 position = Vector2(-707, -6)
 shape = SubResource("RectangleShape2D_we6h4")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Options/StaticBody2D"]
-position = Vector2(-463, 476)
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Options/WalkerCatch"]
+position = Vector2(-461, 487)
 shape = SubResource("RectangleShape2D_pabda")
 
+[node name="ScalableBackgroundColor" type="Sprite2D" parent="Options"]
+z_index = -215
+material = SubResource("ShaderMaterial_mhhks")
+position = Vector2(340.895, 138.493)
+rotation = 1.57079
+scale = Vector2(9.25385, 3.77554)
+texture = ExtResource("32_d35mw")
+
+[node name="BigWire" type="Sprite2D" parent="Options"]
+z_index = -310
+position = Vector2(-91.3768, 192)
+rotation = 3.14159
+scale = Vector2(6.83635, 282.047)
+texture = ExtResource("30_dvscy")
+
+[node name="WalkerOptions" parent="Options" instance=ExtResource("34_re0b8")]
+position = Vector2(-530.685, 319.88)
+scale = Vector2(2, 2)
+
 [node name="BackgroundColor" type="Sprite2D" parent="."]
-visible = false
 z_index = -630
 position = Vector2(645.5, 372.5)
 scale = Vector2(6.04297, 3.91016)
