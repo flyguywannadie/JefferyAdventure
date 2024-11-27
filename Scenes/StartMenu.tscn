@@ -51,6 +51,34 @@ size = Vector2(98, 1159)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pabda"]
 size = Vector2(595, 153)
 
+[sub_resource type="Animation" id="Animation_ngqpc"]
+resource_name = "GoToMain"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(0.482, 1),
+"update": 0,
+"values": [Vector2(-2129, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Options:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.13925, 1),
+"update": 0,
+"values": [Vector2(640, 384), Vector2(2109, 382)]
+}
+
 [sub_resource type="Animation" id="Animation_y7urk"]
 resource_name = "GoToOptions"
 length = 2.4
@@ -104,34 +132,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(2109, 382)]
-}
-
-[sub_resource type="Animation" id="Animation_ngqpc"]
-resource_name = "GoToMain"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MainMenu:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(1, 2),
-"transitions": PackedFloat32Array(0.482, 1),
-"update": 0,
-"values": [Vector2(-2129, 0), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Options:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(2.13925, 1),
-"update": 0,
-"values": [Vector2(640, 384), Vector2(2109, 382)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hmsut"]

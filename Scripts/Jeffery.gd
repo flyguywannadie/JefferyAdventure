@@ -121,6 +121,12 @@ func _physics_process(delta: float) -> void:
 		cayoteTime -= 1
 		if (cayoteTime < 0):
 			onGround = false
+		else :
+			if (Input.is_action_pressed("jef_Jump") && !Input.is_action_pressed("jef_down")):
+				onGround = false
+				cayoteTime = -1
+				addMovement(0,-jumpPower/1.5)
+				jumpTimer = 0.15
 	if (cayoteTime < 0 && is_on_floor()):
 		cayoteTime = int(Engine.get_frames_per_second()/10)
 		onGround = true

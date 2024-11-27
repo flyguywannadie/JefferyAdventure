@@ -13,7 +13,6 @@ texture_region_size = Vector2i(128, 128)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cqgy6"]
 shader = ExtResource("2_yf8uv")
 shader_parameter/angle = 0.0
-shader_parameter/grayscale = null
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s6fnj"]
 texture = ExtResource("3_eclgy")
