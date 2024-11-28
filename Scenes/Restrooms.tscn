@@ -80,12 +80,12 @@ position = Vector2(2048, 64)
 collision_layer = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OneWayPlatforms"]
-position = Vector2(1092.5, -130.5)
+position = Vector2(859, -130.5)
 shape = SubResource("RectangleShape2D_2bubh")
 one_way_collision = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="OneWayPlatforms"]
-position = Vector2(1856, -128)
+position = Vector2(1622.5, -128)
 shape = SubResource("RectangleShape2D_2bubh")
 one_way_collision = true
 
@@ -99,12 +99,12 @@ texture = ExtResource("10_xywdk")
 
 [node name="Lockers" type="Sprite2D" parent="BackgroundImages"]
 z_index = -45
-position = Vector2(1856, 0)
+position = Vector2(1626, 0)
 texture = ExtResource("11_dpryc")
 
 [node name="Lockers2" type="Sprite2D" parent="BackgroundImages"]
 z_index = -45
-position = Vector2(1088, 0)
+position = Vector2(858, 0)
 texture = ExtResource("11_dpryc")
 
 [node name="OverheadlightWires" type="Sprite2D" parent="BackgroundImages"]

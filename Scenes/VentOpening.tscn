@@ -1,0 +1,119 @@
+[gd_scene load_steps=14 format=3 uid="uid://x7fpg81x83vb"]
+
+[ext_resource type="Script" path="res://Scripts/Jeff_InteractionEventTrigger.gd" id="1_222ou"]
+[ext_resource type="Texture2D" uid="uid://k0y8wvehqbih" path="res://Textures/EButton.png" id="2_rrfb0"]
+[ext_resource type="Script" path="res://Scripts/vent_test.gd" id="3_krbuk"]
+[ext_resource type="Shader" path="res://ColorPaletteChanger.gdshader" id="4_3oye4"]
+[ext_resource type="Texture2D" uid="uid://d5r5l6qqc76w" path="res://Textures/VentCover.png" id="5_s8aqw"]
+[ext_resource type="Script" path="res://Scripts/jeff_EventCaller.gd" id="6_8g1f5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m2ckg"]
+size = Vector2(256, 192)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xcxjk"]
+size = Vector2(15, 128)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xnvnb"]
+shader = ExtResource("4_3oye4")
+shader_parameter/angle = 267.2
+
+[sub_resource type="Animation" id="Animation_cr4xs"]
+resource_name = "Close"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VentCover:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5708, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_phagl"]
+resource_name = "Open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VentCover:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_xu4k8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VentCover:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_46gn8"]
+_data = {
+"Close": SubResource("Animation_cr4xs"),
+"Open": SubResource("Animation_phagl"),
+"RESET": SubResource("Animation_xu4k8")
+}
+
+[node name="VentOpen" type="Node2D"]
+
+[node name="InteractionArea" type="Area2D" parent="." node_paths=PackedStringArray("whoToCall")]
+collision_layer = 0
+script = ExtResource("1_222ou")
+whoToCall = [NodePath("../OpenVentEvent")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(64, 32)
+shape = SubResource("RectangleShape2D_m2ckg")
+
+[node name="E" type="Sprite2D" parent="InteractionArea"]
+z_index = 15
+position = Vector2(0, -64)
+texture = ExtResource("2_rrfb0")
+
+[node name="VentTest" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("3_krbuk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VentTest"]
+position = Vector2(71.5, 0)
+shape = SubResource("RectangleShape2D_xcxjk")
+
+[node name="VentCover" type="Node2D" parent="VentTest"]
+position = Vector2(64, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="VentTest/VentCover"]
+z_index = 15
+material = SubResource("ShaderMaterial_xnvnb")
+position = Vector2(-5.5, -64)
+texture = ExtResource("5_s8aqw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VentTest"]
+libraries = {
+"": SubResource("AnimationLibrary_46gn8")
+}
+
+[node name="OpenVentEvent" type="Node" parent="." node_paths=PackedStringArray("whoICallTo")]
+script = ExtResource("6_8g1f5")
+whoICallTo = NodePath("../VentTest")
+functionToCall = "Open"
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dlbxpobs567bb"]
+[gd_scene load_steps=16 format=4 uid="uid://dlbxpobs567bb"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_e637h"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="1_pql6c"]
@@ -9,6 +9,8 @@
 [ext_resource type="TileSet" uid="uid://dvjpdafy12snk" path="res://Tilemaps/TestTileMap_NoShadow.tres" id="7_302dk"]
 [ext_resource type="PackedScene" uid="uid://bu1akkp0a5jd7" path="res://Scenes/Prefabs/RoomSetup/Checkpoint.tscn" id="8_adynn"]
 [ext_resource type="Texture2D" uid="uid://caxyb073yd38h" path="res://Textures/Backgrounds/StartingRoomBackground.png" id="9_544oq"]
+[ext_resource type="Texture2D" uid="uid://bkek8pwddlqm5" path="res://Textures/Backgrounds/GoBathroom.png" id="10_34i73"]
+[ext_resource type="Texture2D" uid="uid://byf5fcuti3jus" path="res://Textures/Backgrounds/GoFactory.png" id="11_lcm70"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_serve"]
 size = Vector2(553.058, 45.2549)
@@ -103,3 +105,11 @@ one_way_collision = true
 position = Vector2(576, -651.314)
 shape = SubResource("RectangleShape2D_5rc03")
 one_way_collision = true
+
+[node name="GoBathroom" type="Sprite2D" parent="."]
+position = Vector2(704, -320)
+texture = ExtResource("10_34i73")
+
+[node name="GoFactory" type="Sprite2D" parent="."]
+position = Vector2(704, -384)
+texture = ExtResource("11_lcm70")

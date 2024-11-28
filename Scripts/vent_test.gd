@@ -4,4 +4,8 @@ extends StaticBody2D
 
 func Open() -> void:
 	coverCollision.disabled = !coverCollision.disabled
-	$Sprite2D.visible = !$Sprite2D.visible
+	#$VentCover/Sprite2D.visible = !$VentCover/Sprite2D.visible
+	if (coverCollision.disabled) :
+		$AnimationPlayer.play("Open")
+	else :
+		$AnimationPlayer.play("Close")

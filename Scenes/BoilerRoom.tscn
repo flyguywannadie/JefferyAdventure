@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://d0fnuvd744d6r"]
+[gd_scene load_steps=18 format=4 uid="uid://d0fnuvd744d6r"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_8pabn"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="2_6xkpd"]
@@ -12,6 +12,7 @@
 [ext_resource type="Shader" path="res://FadingShader.gdshader" id="9_vn7wp"]
 [ext_resource type="Texture2D" uid="uid://k8hxbw6muhyp" path="res://Textures/Backgrounds/ScalableBackgroundColor.png" id="11_lsln0"]
 [ext_resource type="PackedScene" uid="uid://dc2oo5d4e4gee" path="res://Scenes/Prefabs/walker.tscn" id="12_auwm8"]
+[ext_resource type="PackedScene" uid="uid://x7fpg81x83vb" path="res://Scenes/VentOpening.tscn" id="13_wnrmv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cn34p"]
 resource_local_to_scene = true
@@ -175,6 +176,9 @@ position = Vector2(512, 64)
 walkDirection = false
 state = 1
 stateTimer = 12.0
+
+[node name="VentOpen" parent="." instance=ExtResource("13_wnrmv")]
+position = Vector2(576, -1088)
 
 [connection signal="body_entered" from="VentOutsideHide" to="VentOutsideHide/VentOutside" method="_on_body_entered"]
 [connection signal="body_entered" from="VentOutsideHide" to="VentOutsideHide/VentBlock" method="_on_body_entered"]
