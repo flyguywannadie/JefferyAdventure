@@ -1,4 +1,4 @@
-extends ColorRect
+extends TextureRect
 class_name BossHealthbar
 
 @export var bossITrack: Boss
