@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://dmdnbqyvieln0"]
+[gd_scene load_steps=43 format=4 uid="uid://dmdnbqyvieln0"]
 
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="1_0f3he"]
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_5md74"]
@@ -10,9 +10,27 @@
 [ext_resource type="PackedScene" uid="uid://bu1akkp0a5jd7" path="res://Scenes/Prefabs/RoomSetup/Checkpoint.tscn" id="4_lw6ec"]
 [ext_resource type="Texture2D" uid="uid://k8hxbw6muhyp" path="res://Textures/Backgrounds/ScalableBackgroundColor.png" id="9_fywky"]
 [ext_resource type="TileSet" uid="uid://dvjpdafy12snk" path="res://Tilemaps/TestTileMap_NoShadow.tres" id="10_al54e"]
+[ext_resource type="Script" path="res://Scripts/Paralax.gd" id="10_uhj4f"]
 [ext_resource type="PackedScene" uid="uid://dh7xlshv1k2mx" path="res://Scenes/Prefabs/flyingGuy.tscn" id="11_awg3x"]
 [ext_resource type="Shader" path="res://EnemyShader.gdshader" id="12_3h252"]
 [ext_resource type="PackedScene" uid="uid://dc2oo5d4e4gee" path="res://Scenes/Prefabs/walker.tscn" id="13_66pke"]
+[ext_resource type="Texture2D" uid="uid://cthxhapvl5o57" path="res://Textures/Backgrounds/FactoryFloorRoom/SideWalls.png" id="14_4u4n1"]
+[ext_resource type="Texture2D" uid="uid://6nsnsdtj7bwc" path="res://Textures/Backgrounds/FactoryFloorRoom/BackWalls.png" id="16_ngsl2"]
+[ext_resource type="Texture2D" uid="uid://km077mxepijb" path="res://Textures/Backgrounds/FactoryFloorRoom/ConveyorBelt.png" id="17_h5dhu"]
+[ext_resource type="Texture2D" uid="uid://o5ofotdhwntx" path="res://Textures/Backgrounds/FactoryFloorRoom/ConveyorBeltMidFront.png" id="18_h0bv0"]
+[ext_resource type="Texture2D" uid="uid://dls36hk4i817x" path="res://Textures/Backgrounds/FactoryFloorRoom/ConveyorBeltMidTurn.png" id="19_jnm8v"]
+[ext_resource type="Texture2D" uid="uid://oq78ae1eqp2g" path="res://Textures/Backgrounds/FactoryFloorRoom/ConveyorBeltBelt.png" id="20_8a0wf"]
+[ext_resource type="Texture2D" uid="uid://dmb70t14bvnl6" path="res://Textures/Backgrounds/FactoryFloorRoom/ConveyorBeltBeltDepth.png" id="20_rja5t"]
+[ext_resource type="Texture2D" uid="uid://k0c833rwjgwn" path="res://Textures/Backgrounds/FactoryFloorRoom/ConveyorBeltMidBeltBend.png" id="22_mtpvs"]
+[ext_resource type="Texture2D" uid="uid://bny1773d2govs" path="res://Textures/Backgrounds/FactoryFloorRoom/ConveyorBeltMidBelt.png" id="22_pfodw"]
+[ext_resource type="Texture2D" uid="uid://plvwycvsmxys" path="res://Textures/Backgrounds/FactoryFloorRoom/ShelfFront.png" id="24_oj7jk"]
+[ext_resource type="Texture2D" uid="uid://byc8pxkf468gg" path="res://Textures/Backgrounds/FactoryFloorRoom/ShelfNothing.png" id="25_owlej"]
+[ext_resource type="Texture2D" uid="uid://lthc33lx6drv" path="res://Textures/Backgrounds/FactoryFloorRoom/ShelfStuff.png" id="26_5duh4"]
+[ext_resource type="Texture2D" uid="uid://c15s0v1tovoje" path="res://Textures/Backgrounds/FactoryFloorRoom/ShelfBack.png" id="27_von2w"]
+[ext_resource type="Texture2D" uid="uid://buvoy6prbkq77" path="res://Textures/Backgrounds/FactoryFloorRoom/OverheadLightWires.png" id="28_6njle"]
+[ext_resource type="Texture2D" uid="uid://bn0yjicgqpd6k" path="res://Textures/Backgrounds/FactoryFloorRoom/OverheadLightFront.png" id="29_vkbm4"]
+[ext_resource type="Texture2D" uid="uid://bsiff5o4yuyt6" path="res://Textures/Backgrounds/FactoryFloorRoom/OverheadLightConnector.png" id="30_cb4jq"]
+[ext_resource type="Texture2D" uid="uid://c7csrd7agqh8t" path="res://Textures/Backgrounds/FactoryFloorRoom/OverheadLight.png" id="31_0dju0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgqj1"]
 size = Vector2(5120, 20)
@@ -49,6 +67,9 @@ size = Vector2(362.039, 34.735)
 resource_local_to_scene = true
 shader = ExtResource("12_3h252")
 shader_parameter/hit = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1rwv"]
+size = Vector2(512, 128)
 
 [node name="FactoryFloor" type="Node2D" node_paths=PackedStringArray("camTracks", "entrances")]
 script = ExtResource("1_5md74")
@@ -121,8 +142,9 @@ closestCameraTrack = NodePath("../FactoryCam")
 closestCheckpoint = NodePath("../CheckPoint")
 
 [node name="FactoryCam" parent="." instance=ExtResource("3_vl6b5")]
-position = Vector2(1280, -192)
-trackBounds = Vector2(2560, 0)
+z_index = 710
+position = Vector2(1280, -320)
+trackBounds = Vector2(2560, 256)
 
 [node name="CheckPoint" parent="." instance=ExtResource("4_lw6ec")]
 position = Vector2(-832, 128)
@@ -183,13 +205,7 @@ closestCheckpoint = NodePath("../CheckPoint4")
 [node name="CheckPoint4" parent="." instance=ExtResource("4_lw6ec")]
 position = Vector2(3328, -1088)
 
-[node name="ScalableBackgroundColor" type="Sprite2D" parent="."]
-z_index = -135
-position = Vector2(1280, -448)
-scale = Vector2(12.5, 7)
-texture = ExtResource("9_fywky")
-
-[node name="Backwalls" type="TileMapLayer" parent="."]
+[node name="BackwallsHallways" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAD2//7/AQADAAAAAAD2////AQACAAEAAAD2/wAAAQACAAEAAAD2/wEAAQACAAEAAAD2/wIAAQABAAIAAAD3/wIAAQABAAIAAAD3/wEAAQACAAEAAAD3/wAAAQACAAEAAAD3////AQACAAEAAAD3//7/AQADAAAAAAD4//7/AQADAAAAAAD4////AQACAAEAAAD4/wAAAQACAAEAAAD4/wEAAQACAAEAAAD4/wIAAQABAAIAAAD5/wIAAQABAAIAAAD5/wEAAQACAAEAAAD5/wAAAQACAAEAAAD5////AQACAAEAAAD5//7/AQADAAAAAAD6//7/AQADAAAAAAD6////AQACAAEAAAD6/wAAAQACAAEAAAD6/wEAAQACAAEAAAD6/wIAAQABAAIAAAD7/wIAAQABAAIAAAD7/wEAAQACAAEAAAD7/wAAAQACAAEAAAD7////AQACAAEAAAD7//7/AQADAAAAAAD8//7/AQABAAEAAAD8////AQACAAEAAAD8/wAAAQACAAEAAAD8/wEAAQACAAEAAAD8/wIAAQABAAIAAAD9/wIAAQADAAMAAAD9/wEAAQADAAIAAAD9/wAAAQADAAIAAAD9////AQADAAIAAAD9//7/AQADAAIAAAD9//3/AQAAAAAAAAD8//3/AQABAAMAAAAWAP3/AQABAAMAAAAXAP3/AQAAAAAAAAAXAP7/AQACAAAAAAAYAP7/AQADAAAAAAAZAP7/AQADAAAAAAAaAP7/AQADAAAAAAAbAP7/AQADAAAAAAAcAP7/AQADAAAAAAAdAP7/AQADAAAAAAAdAP//AQACAAEAAAAdAAAAAQACAAEAAAAdAAEAAQACAAEAAAAdAAIAAQABAAIAAAAcAAIAAQABAAIAAAAbAAIAAQABAAIAAAAaAAIAAQABAAIAAAAZAAIAAQABAAIAAAAYAAIAAQABAAIAAAAXAAIAAQABAAIAAAAWAAIAAQAAAAIAAAAWAAEAAQABAAAAAAAWAAAAAQABAAAAAAAWAP//AQABAAAAAAAWAP7/AQABAAAAAAAXAP//AQACAAEAAAAXAAAAAQACAAEAAAAXAAEAAQACAAEAAAAYAAEAAQACAAEAAAAYAAAAAQACAAEAAAAYAP//AQACAAEAAAAZAP//AQACAAEAAAAZAAAAAQACAAEAAAAZAAEAAQACAAEAAAAaAAEAAQACAAEAAAAaAAAAAQACAAEAAAAaAP//AQACAAEAAAAbAP//AQACAAEAAAAbAAAAAQACAAEAAAAbAAEAAQACAAEAAAAcAAEAAQACAAEAAAAcAAAAAQACAAEAAAAcAP//AQACAAEAAAA=")
 tile_set = ExtResource("10_al54e")
 
@@ -200,6 +216,9 @@ position = Vector2(1280, -768)
 [node name="Walker" parent="." instance=ExtResource("13_66pke")]
 z_index = 10
 position = Vector2(1280, -1088)
+walkDirection = false
+state = 1
+stateTimer = 3.0
 
 [node name="Walker2" parent="." instance=ExtResource("13_66pke")]
 position = Vector2(695, 210)
@@ -211,6 +230,279 @@ position = Vector2(2495, 215)
 walkDirection = false
 state = 1
 stateTimer = 6.0
+
+[node name="ScalableBackgroundColor" type="Sprite2D" parent="."]
+z_index = -135
+position = Vector2(1280, -512)
+scale = Vector2(12, 6)
+texture = ExtResource("9_fywky")
+
+[node name="BackgroundArtwork" type="Node2D" parent="."]
+position = Vector2(1280, -512)
+
+[node name="SideWalls" type="Sprite2D" parent="BackgroundArtwork"]
+z_index = -1
+texture = ExtResource("14_4u4n1")
+script = ExtResource("10_uhj4f")
+distance = 4.0
+
+[node name="SideWalls2" type="Sprite2D" parent="BackgroundArtwork"]
+z_index = -1
+texture = ExtResource("14_4u4n1")
+script = ExtResource("10_uhj4f")
+distance = 8.0
+
+[node name="SideWalls3" type="Sprite2D" parent="BackgroundArtwork"]
+z_index = -1
+texture = ExtResource("14_4u4n1")
+script = ExtResource("10_uhj4f")
+distance = 12.0
+
+[node name="SideWalls4" type="Sprite2D" parent="BackgroundArtwork"]
+z_index = -1
+texture = ExtResource("14_4u4n1")
+script = ExtResource("10_uhj4f")
+distance = 16.0
+
+[node name="SideWalls5" type="Sprite2D" parent="BackgroundArtwork"]
+z_index = -1
+texture = ExtResource("14_4u4n1")
+script = ExtResource("10_uhj4f")
+distance = 20.0
+
+[node name="SideWalls6" type="Sprite2D" parent="BackgroundArtwork"]
+z_index = -1
+texture = ExtResource("14_4u4n1")
+script = ExtResource("10_uhj4f")
+distance = 24.0
+
+[node name="SideWalls7" type="Sprite2D" parent="BackgroundArtwork"]
+z_index = -1
+texture = ExtResource("14_4u4n1")
+script = ExtResource("10_uhj4f")
+distance = 28.0
+
+[node name="SideWalls8" type="Sprite2D" parent="BackgroundArtwork"]
+z_index = -1
+texture = ExtResource("14_4u4n1")
+script = ExtResource("10_uhj4f")
+distance = 32.0
+
+[node name="SideWalls9" type="Sprite2D" parent="BackgroundArtwork"]
+z_index = -1
+texture = ExtResource("14_4u4n1")
+script = ExtResource("10_uhj4f")
+distance = 36.0
+
+[node name="BackWalls" type="Sprite2D" parent="BackgroundArtwork"]
+z_index = -1
+texture = ExtResource("16_ngsl2")
+script = ExtResource("10_uhj4f")
+distance = 41.0
+
+[node name="ConveyorBelt" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(0, 704)
+texture = ExtResource("17_h5dhu")
+script = ExtResource("10_uhj4f")
+distance = 20.0
+
+[node name="ConveyorBeltBelt3" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(0, 704)
+texture = ExtResource("20_8a0wf")
+script = ExtResource("10_uhj4f")
+distance = 18.0
+
+[node name="ConveyorBeltBelt" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(0, 704)
+texture = ExtResource("20_rja5t")
+script = ExtResource("10_uhj4f")
+distance = 15.0
+
+[node name="ConveyorBeltBelt2" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(0, 704)
+texture = ExtResource("20_rja5t")
+script = ExtResource("10_uhj4f")
+distance = 12.0
+
+[node name="ConveyorBeltMidTurn" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(0, 704)
+texture = ExtResource("19_jnm8v")
+script = ExtResource("10_uhj4f")
+distance = 10.0
+
+[node name="ConveyorBeltMidBelt" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(0, 704)
+texture = ExtResource("22_pfodw")
+script = ExtResource("10_uhj4f")
+distance = 7.0
+
+[node name="ConveyorBeltMidBelt2" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(0, 704)
+texture = ExtResource("22_pfodw")
+script = ExtResource("10_uhj4f")
+distance = 4.0
+
+[node name="ConveyorBeltMidBelt3" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(0, 704)
+texture = ExtResource("22_mtpvs")
+script = ExtResource("10_uhj4f")
+distance = 1.0
+
+[node name="ConveyorBeltMidBelt4" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(0, 704)
+texture = ExtResource("22_mtpvs")
+script = ExtResource("10_uhj4f")
+distance = -2.0
+
+[node name="ConveyorBeltMidFront" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(0, 704)
+texture = ExtResource("18_h0bv0")
+script = ExtResource("10_uhj4f")
+distance = -5.0
+
+[node name="ShelfFront" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(-896, 384)
+texture = ExtResource("24_oj7jk")
+script = ExtResource("10_uhj4f")
+distance = 30.0
+
+[node name="ShelfNothing" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(-896, 384)
+texture = ExtResource("25_owlej")
+script = ExtResource("10_uhj4f")
+distance = 32.0
+
+[node name="ShelfStuff" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(-896, 384)
+texture = ExtResource("26_5duh4")
+script = ExtResource("10_uhj4f")
+distance = 35.0
+
+[node name="ShelfNothing2" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(-896, 384)
+texture = ExtResource("25_owlej")
+script = ExtResource("10_uhj4f")
+distance = 38.0
+
+[node name="ShelfBack" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(-896, 384)
+texture = ExtResource("27_von2w")
+script = ExtResource("10_uhj4f")
+distance = 40.0
+
+[node name="OverheadLightWires" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(-768, -576)
+texture = ExtResource("28_6njle")
+script = ExtResource("10_uhj4f")
+distance = 21.0
+
+[node name="OverheadLightFront" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(-768, -384)
+texture = ExtResource("29_vkbm4")
+script = ExtResource("10_uhj4f")
+distance = 18.0
+
+[node name="OverheadLightConnector" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(-768, -384)
+texture = ExtResource("30_cb4jq")
+script = ExtResource("10_uhj4f")
+distance = 19.0
+
+[node name="OverheadLightConnector2" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(-768, -384)
+texture = ExtResource("30_cb4jq")
+script = ExtResource("10_uhj4f")
+distance = 20.0
+
+[node name="OverheadLightConnector3" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(-768, -384)
+texture = ExtResource("30_cb4jq")
+script = ExtResource("10_uhj4f")
+distance = 21.0
+
+[node name="OverheadLight" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(-768, -384)
+texture = ExtResource("31_0dju0")
+script = ExtResource("10_uhj4f")
+distance = 22.0
+
+[node name="OverheadLightWires2" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(745.5, -576)
+texture = ExtResource("28_6njle")
+script = ExtResource("10_uhj4f")
+distance = 21.0
+
+[node name="OverheadLightFront2" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(745.5, -384)
+texture = ExtResource("29_vkbm4")
+script = ExtResource("10_uhj4f")
+distance = 18.0
+
+[node name="OverheadLightConnector4" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(745.5, -384)
+texture = ExtResource("30_cb4jq")
+script = ExtResource("10_uhj4f")
+distance = 19.0
+
+[node name="OverheadLightConnector5" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(745.5, -384)
+texture = ExtResource("30_cb4jq")
+script = ExtResource("10_uhj4f")
+distance = 20.0
+
+[node name="OverheadLightConnector6" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(745.5, -384)
+texture = ExtResource("30_cb4jq")
+script = ExtResource("10_uhj4f")
+distance = 21.0
+
+[node name="OverheadLight2" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(745.5, -384)
+texture = ExtResource("31_0dju0")
+script = ExtResource("10_uhj4f")
+distance = 22.0
+
+[node name="ShelfFront2" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(897.5, 384)
+texture = ExtResource("24_oj7jk")
+flip_h = true
+script = ExtResource("10_uhj4f")
+distance = 30.0
+
+[node name="ShelfNothing3" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(897.5, 384)
+texture = ExtResource("25_owlej")
+flip_h = true
+script = ExtResource("10_uhj4f")
+distance = 32.0
+
+[node name="ShelfStuff2" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(897.5, 384)
+texture = ExtResource("26_5duh4")
+flip_h = true
+script = ExtResource("10_uhj4f")
+distance = 35.0
+
+[node name="ShelfNothing4" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(897.5, 384)
+texture = ExtResource("25_owlej")
+flip_h = true
+script = ExtResource("10_uhj4f")
+distance = 38.0
+
+[node name="ShelfBack2" type="Sprite2D" parent="BackgroundArtwork"]
+position = Vector2(897.5, 384)
+texture = ExtResource("27_von2w")
+flip_h = true
+script = ExtResource("10_uhj4f")
+distance = 40.0
+
+[node name="ConveyorForeGroundCollision" type="StaticBody2D" parent="."]
+position = Vector2(1280, 192)
+collision_layer = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConveyorForeGroundCollision"]
+shape = SubResource("RectangleShape2D_j1rwv")
 
 [connection signal="body_entered" from="Overventhide" to="Overventhide/OverVent" method="_on_body_entered"]
 [connection signal="body_exited" from="Overventhide" to="Overventhide/OverVent" method="_on_body_exited"]

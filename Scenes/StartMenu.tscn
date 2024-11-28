@@ -448,6 +448,10 @@ libraries = {
 }
 
 [connection signal="pressed" from="MainMenu/TheMenu/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MainMenu/TheMenu/Start" to="MainMenu/TheMenu/Start" method="_on_pressed"]
 [connection signal="pressed" from="MainMenu/TheMenu/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MainMenu/TheMenu/Options" to="MainMenu/TheMenu/Options" method="_on_pressed"]
 [connection signal="pressed" from="MainMenu/TheMenu/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MainMenu/TheMenu/Quit" to="MainMenu/TheMenu/Quit" method="_on_pressed"]
 [connection signal="pressed" from="Options/BackOptions" to="." method="_on_back_options_pressed"]
+[connection signal="pressed" from="Options/BackOptions" to="Options/BackOptions" method="_on_pressed"]

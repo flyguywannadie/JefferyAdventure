@@ -96,7 +96,7 @@ func resetLevel():
 	currentLevel.position = levelResetPosition
 	currentLevel.gameStateChanges(gameState)
 	var entrance = currentLevel.getEntranceWithID(lastEntrance)
-	checkpoint = currentLevel.closestCheckpoint
+	checkpoint = entrance.closestCheckpoint
 	camera.changeTrack(entrance.closestCameraTrack, false)
 	camera.global_position = camera.currentTrack.placeVectorWithinBounds(checkpoint.global_position)
 	currentLevel.EnableDoorways()

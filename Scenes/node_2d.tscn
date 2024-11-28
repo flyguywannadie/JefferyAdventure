@@ -471,7 +471,8 @@ libraries = {
 "": SubResource("AnimationLibrary_k1qm4")
 }
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer" node_paths=PackedStringArray("whoITrack")]
+[node name="JefferyHealthbar" type="TextureRect" parent="CanvasLayer" node_paths=PackedStringArray("whoITrack")]
+process_mode = 3
 z_index = -10
 z_as_relative = false
 material = SubResource("ShaderMaterial_ybpjb")
@@ -484,7 +485,7 @@ expand_mode = 1
 script = ExtResource("16_xu1u0")
 whoITrack = NodePath("../../Jeffery")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TextureRect"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/JefferyHealthbar"]
 layout_mode = 0
 offset_right = 416.0
 offset_bottom = 64.0
@@ -502,6 +503,7 @@ offset_right = 768.0
 color = Color(0.244776, 0.244776, 0.244776, 1)
 
 [node name="BossHealthbar" type="ColorRect" parent="CanvasLayer"]
+process_mode = 3
 z_index = -10
 z_as_relative = false
 material = SubResource("ShaderMaterial_mrjfq")

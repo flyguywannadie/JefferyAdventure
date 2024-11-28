@@ -141,7 +141,7 @@ func aiLogic(delta: float) -> void:
 				setMovement(-speed * 3, movement.y)
 				#print("Charging Left")
 				anims.play_backwards("TrackCharge")
-			
+
 			if (stateTimer <= 0) :
 				backToIdle(1)
 	
@@ -152,3 +152,13 @@ func backToIdle(waittime: float) -> void:
 	anims.play("RESET")
 	state = 0
 	trackDamageArea.process_mode = Node.PROCESS_MODE_DISABLED
+
+
+func _on_track_damage_area_body_entered(body: Node2D) -> void:
+	stateTimer = 0
+	var sig = -sign(jeffery.global_position.x - global_position.x)
+	position.x += sig * 10
+	knockback = sig * 1000
+	
+	if (state == 2) :
+		knockback *= 2

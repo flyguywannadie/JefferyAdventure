@@ -11,10 +11,17 @@ func _ready() -> void:
 
 func _afterReady() -> void:
 	startPos = global_position
+	#offset = position
+	#position = Vector2.ZERO
 	z_index = -distance
+	if (z_index >= 0) :
+		z_index += 15
 	#print(startPos)
 
 func _process(delta: float) -> void:
+	
+	#z_index = -distance
+	
 	# I HAVE NO IDEA WHY THIS IS SO DIFFICULT TO FIGURE OUT THE MATH FOR. I AM JUST MISSING SOMETHING I GUESS.d
 	
 	#print(cam.global_position, " and ", startPos)
@@ -38,10 +45,9 @@ func _process(delta: float) -> void:
 	b.x = ((a.z/d.z)*d.x) + a.x
 	b.y = ((a.z/d.z)*d.y) + a.y
 	
-	global_position.x = b.x + ((startPos.x - b.x) * (distance/100.0))
+	global_position = b + ((startPos - b) * (distance/100.0))
 	#
 	#print(b)
-	
 	
 	scale.x = 1.0 - (distance / 100.0)
 	scale.y = 1.0 - (distance / 100.0)

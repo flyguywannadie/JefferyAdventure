@@ -352,6 +352,7 @@ position = Vector2(704, 384)
 scale = Vector2(2, 2)
 collision_layer = 2
 collision_mask = 9
+collision_priority = 2.0
 floor_stop_on_slope = false
 floor_block_on_wall = false
 floor_snap_length = 14.2
@@ -458,4 +459,5 @@ position = Vector2(320, 128)
 scale = Vector2(9, 4.5)
 texture = ExtResource("41_mli1k")
 
+[connection signal="body_entered" from="Changes/BossExists/TankBoss/TrackDamageArea" to="Changes/BossExists/TankBoss" method="_on_track_damage_area_body_entered"]
 [connection signal="body_entered" from="Changes/BossExists/TankBoss/TrackDamageArea" to="Changes/BossExists/TankBoss/TrackDamageArea" method="_on_body_entered"]
