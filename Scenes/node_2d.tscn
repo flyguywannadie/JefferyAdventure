@@ -304,7 +304,7 @@ custom_minimum_size = Vector2(0, 310)
 layout_direction = 1
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 0
+size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -319,7 +319,7 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 236.3)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 0
+size_flags_vertical = 4
 alignment = 2
 
 [node name="Resume" type="TextureButton" parent="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
@@ -518,7 +518,7 @@ color = Color(0.244776, 0.244776, 0.244776, 1)
 
 [node name="BossHealthbar" type="TextureRect" parent="CanvasLayer"]
 process_mode = 3
-z_index = 100
+z_index = -1
 z_as_relative = false
 material = SubResource("ShaderMaterial_mrjfq")
 anchors_preset = 1
@@ -543,7 +543,7 @@ expand_mode = 1
 
 [node name="JefferyHealthbar" type="TextureRect" parent="CanvasLayer" node_paths=PackedStringArray("whoITrack")]
 process_mode = 3
-z_index = 100
+z_index = -1
 z_as_relative = false
 material = SubResource("ShaderMaterial_ybpjb")
 offset_left = 64.0
