@@ -20,6 +20,8 @@ var movinglerp: float
 var checkpoint: Node2D
 var lastEntrance: int = -1
 
+var camDistance : float = 100.0
+
 var levelResetPosition: Vector2
 
 var jeffery: Jeffery
@@ -199,6 +201,13 @@ func _process(delta: float) -> void:
 			PiecePickedUp("c")
 		if (Input.is_key_pressed(KEY_N)):
 			PiecePickedUp("f")
+			
+		if (Input.is_key_pressed(KEY_8)):
+			camDistance = 100.0
+		if (Input.is_key_pressed(KEY_9)):
+			camDistance += 1
+		if (Input.is_key_pressed(KEY_0)):
+			camDistance -= 1
 
 func PiecePickedUp(piece: String) -> void:
 	PauseGame()

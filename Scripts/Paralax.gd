@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 	#global_position.y = startPos.y
 	
 	var a = Vector3(startPos.x,startPos.y,distance)
-	var c = Vector3( cam.global_position.x, cam.global_position.y, 100.0)
+	var c = Vector3( cam.global_position.x, cam.global_position.y, GameManager.camDistance)
 	
 	var d = a-c
 	
