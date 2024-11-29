@@ -188,10 +188,12 @@ func jump():
 	jumpTimer = 0.15
 
 func _input(event: InputEvent) -> void:
-	if (event.is_action("jef_reset")) :
+	if (event.is_action_pressed("jef_reset")) :
 		ResetWeapons()
 		Reset()
 		global_position = GameManager.checkpoint.global_position
+	if (event.is_action_pressed("jef_die")) :
+		takeDamage(10000)
 		
 
 func takeDamage(damage: int):

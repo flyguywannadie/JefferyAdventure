@@ -84,11 +84,10 @@ func _die() -> void:
 func takeDamage(damage: int):
 	if (state == 3) :
 		return
-	if (hitstun <= 0) :
-		match (randi_range(0,2)):
-			0:SoundManager.PlaySound("MetalHit")
-			1:SoundManager.PlaySound("MetalHit1")
-			2:SoundManager.PlaySound("MetalHit2")
+	match (randi_range(0,2)):
+		0:SoundManager.PlaySound("MetalHit")
+		1:SoundManager.PlaySound("MetalHit1")
+		2:SoundManager.PlaySound("MetalHit2")
 	$Damage.process_mode = Node.PROCESS_MODE_DISABLED
 	$Gun/GUnAnims.play("idle")
 	$AudioStreamPlayer.stop()

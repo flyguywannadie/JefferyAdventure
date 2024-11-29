@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://cgi22rw2oexdx"]
+[gd_scene load_steps=55 format=3 uid="uid://cgi22rw2oexdx"]
 
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_mxtlc"]
 [ext_resource type="Shader" path="res://PostProcessShader.gdshader" id="4_7nfid"]
@@ -36,6 +36,8 @@
 [ext_resource type="Script" path="res://Scripts/post_process.gd" id="20_tcyl4"]
 [ext_resource type="Texture2D" uid="uid://dgjjcvfbeesw" path="res://Textures/Healthbar/HealthbarBackground.png" id="21_ea7st"]
 [ext_resource type="Texture2D" uid="uid://q5c2s02lijbk" path="res://Textures/Healthbar/HealthbarOutline.png" id="23_y5erm"]
+[ext_resource type="Texture2D" uid="uid://vi4slyet1usy" path="res://Textures/GameOverMenu/Retrybutton.png" id="29_fxwiu"]
+[ext_resource type="Texture2D" uid="uid://ctxc7spnyp1sr" path="res://Textures/GameOverMenu/RetryButtonHover.png" id="30_5xsh8"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ku0xa"]
 
@@ -358,6 +360,7 @@ NonHover = ExtResource("14_5irfq")
 
 [node name="EvolutionScreen" type="Control" parent="CanvasLayer"]
 process_mode = 2
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -451,7 +454,6 @@ NonHover = ExtResource("15_bv6un")
 
 [node name="DeathScreenJeffery" type="Control" parent="CanvasLayer"]
 process_mode = 3
-visible = false
 material = SubResource("ShaderMaterial_dp4uq")
 layout_mode = 3
 anchors_preset = 15
@@ -469,7 +471,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.099986, 0.099986, 0.099986, 1)
+color = Color(0.47788, 0.47788, 0.47788, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/DeathScreenJeffery"]
 visible = false
@@ -505,39 +507,72 @@ grow_vertical = 2
 texture = ExtResource("12_6lrp0")
 
 [node name="Jeffery" type="TextureRect" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/Visuals"]
-layout_mode = 2
-offset_left = 436.0
-offset_top = 212.0
-offset_right = 820.0
-offset_bottom = 532.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -288.0
+offset_right = 269.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 texture = ExtResource("12_x30i3")
 
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/Visuals"]
+offset_left = 236.0
+offset_top = 108.0
+offset_right = 1004.0
+offset_bottom = 220.0
+texture = ExtResource("9_87p3a")
+region_rect = Rect2(0, 0, 512, 512)
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DeathScreenJeffery/MarginContainer"]
+custom_minimum_size = Vector2(0, 560.8)
 layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 305
 alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("9_otam7")
+theme_override_font_sizes/font_size = 64
+text = "JEFFERY IS DEAD"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/VBoxContainer"]
 use_parent_material = true
-layout_mode = 2
-theme_override_constants/separation = 280
-
-[node name="Label" type="Label" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "YOU ARE NOW DEAD"
-
-[node name="Retry" type="Button" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 144.205)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Retry"
+theme_override_constants/separation = 170
 
-[node name="Quit" type="Button" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Retry" type="TextureButton" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("29_fxwiu")
+script = ExtResource("11_oau7k")
+normal = ExtResource("30_5xsh8")
+NonHover = ExtResource("29_fxwiu")
+
+[node name="Quit" type="TextureButton" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-text = "Quit"
+texture_normal = ExtResource("14_5irfq")
+script = ExtResource("11_oau7k")
+normal = ExtResource("13_r2q12")
+NonHover = ExtResource("14_5irfq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/DeathScreenJeffery"]
 libraries = {
