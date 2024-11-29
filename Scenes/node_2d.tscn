@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cgi22rw2oexdx"]
+[gd_scene load_steps=49 format=3 uid="uid://cgi22rw2oexdx"]
 
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_mxtlc"]
 [ext_resource type="Shader" path="res://PostProcessShader.gdshader" id="4_7nfid"]
@@ -8,14 +8,21 @@
 [ext_resource type="Texture2D" uid="uid://coutgcsx3t2w6" path="res://Textures/ColorPalette.png" id="6_qunfb"]
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="7_2u6g4"]
 [ext_resource type="Shader" path="res://Rainbow.gdshader" id="7_x5nwx"]
+[ext_resource type="Shader" path="res://BlurShader.gdshader" id="9_1wfbu"]
+[ext_resource type="Texture2D" uid="uid://6dr284n3wdbw" path="res://Textures/PauseMenu/BackgroundPanel.png" id="9_87p3a"]
 [ext_resource type="FontFile" uid="uid://56kabaq45qkg" path="res://Textures/Font.png" id="9_otam7"]
+[ext_resource type="Texture2D" uid="uid://datrxyj3yth78" path="res://Textures/PauseMenu/ResumeButton.png" id="10_mm2cc"]
 [ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="11_1d1kq"]
+[ext_resource type="Script" path="res://Scenes/ButtonSpriteChanger.gd" id="11_oau7k"]
 [ext_resource type="Shader" path="res://FadingShader.gdshader" id="11_swtah"]
+[ext_resource type="Texture2D" uid="uid://dujvhediabp7l" path="res://Textures/PauseMenu/ResumeButtonNonHover.png" id="12_3xu54"]
 [ext_resource type="Texture2D" uid="uid://00pjhuxgfex0" path="res://Textures/GameOverBackWall.png" id="12_6lrp0"]
 [ext_resource type="Script" path="res://Scripts/DeathScreen.gd" id="12_bf6tn"]
 [ext_resource type="Script" path="res://Scripts/EvolutionScreen.gd" id="12_cvh8f"]
 [ext_resource type="Texture2D" uid="uid://d2tw5irnrwf6k" path="res://Textures/JefferyGameOver.png" id="12_x30i3"]
 [ext_resource type="Texture2D" uid="uid://cq67xj1g1bm8q" path="res://Textures/SwordEvoButton.png" id="13_1tk7r"]
+[ext_resource type="Texture2D" uid="uid://qxf2glqql5en" path="res://Textures/JefferyTitleSequence/QuitButton.png" id="13_r2q12"]
+[ext_resource type="Texture2D" uid="uid://1nd70v450kkf" path="res://Textures/JefferyTitleSequence/QuitButtonNonHover.png" id="14_5irfq"]
 [ext_resource type="Shader" path="res://HealthBar.gdshader" id="14_ipcyo"]
 [ext_resource type="Texture2D" uid="uid://qotynlinrtcj" path="res://Textures/SwordEvoButtonHover.png" id="14_k02nj"]
 [ext_resource type="Texture2D" uid="uid://07jullcmmn2w" path="res://Textures/GunEvoButton.png" id="15_bv6un"]
@@ -42,7 +49,9 @@ shader_parameter/angle = 270.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wjjor"]
 shader = ExtResource("7_x5nwx")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1opql"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hlya1"]
+shader = ExtResource("9_1wfbu")
+shader_parameter/lod = 1.132
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dp4uq"]
 shader = ExtResource("11_swtah")
@@ -165,16 +174,16 @@ _data = {
 "RESET": SubResource("Animation_yf22g")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ybpjb"]
-shader = ExtResource("14_ipcyo")
-shader_parameter/fill = 1.0
-shader_parameter/Test = ExtResource("20_nutxt")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_giyw7"]
 shader = ExtResource("16_d37y0")
 shader_parameter/size = Vector2(0.65, 0.645)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mrjfq"]
+shader = ExtResource("14_ipcyo")
+shader_parameter/fill = 1.0
+shader_parameter/Test = ExtResource("20_nutxt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ybpjb"]
 shader = ExtResource("14_ipcyo")
 shader_parameter/fill = 1.0
 shader_parameter/Test = ExtResource("20_nutxt")
@@ -255,6 +264,24 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("11_1d1kq")
 
+[node name="BlurEffect" type="ColorRect" parent="CanvasLayer/PauseMenu"]
+material = SubResource("ShaderMaterial_hlya1")
+offset_right = 1280.0
+offset_bottom = 768.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/PauseMenu"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 176.0
+offset_right = 824.0
+offset_bottom = 344.0
+texture = ExtResource("9_87p3a")
+region_rect = Rect2(0, 0, 512, 512)
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
+
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PauseMenu"]
 layout_mode = 1
 anchors_preset = 15
@@ -267,44 +294,53 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 60
-
-[node name="Seperator" type="Control" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("9_otam7")
-theme_override_font_sizes/font_size = 60
-text = "PAUSE MENU"
-horizontal_alignment = 1
-
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PauseMenu/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 310)
+layout_direction = 1
 layout_mode = 2
-theme_override_constants/separation = 64
-alignment = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
 
-[node name="Resume" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("9_otam7")
+theme_override_font_sizes/font_size = 60
+text = "GAME
+PAUSED"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 236.3)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+alignment = 2
+
+[node name="Resume" type="TextureButton" parent="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("9_otam7")
-theme_override_font_sizes/font_size = 24
-text = "Resume
-"
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("10_mm2cc")
+script = ExtResource("11_oau7k")
+normal = ExtResource("10_mm2cc")
+NonHover = ExtResource("12_3xu54")
 
-[node name="Back To Title" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer"]
-material = SubResource("ShaderMaterial_1opql")
+[node name="Back To Title" type="TextureButton" parent="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("9_otam7")
-theme_override_font_sizes/font_size = 24
-text = "Title"
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("13_r2q12")
+script = ExtResource("11_oau7k")
+normal = ExtResource("13_r2q12")
+NonHover = ExtResource("14_5irfq")
 
 [node name="EvolutionScreen" type="Control" parent="CanvasLayer"]
 process_mode = 2
@@ -377,6 +413,7 @@ horizontal_alignment = 1
 
 [node name="DeathScreenJeffery" type="Control" parent="CanvasLayer"]
 process_mode = 3
+visible = false
 material = SubResource("ShaderMaterial_dp4uq")
 layout_mode = 3
 anchors_preset = 15
@@ -469,27 +506,6 @@ libraries = {
 "": SubResource("AnimationLibrary_k1qm4")
 }
 
-[node name="JefferyHealthbar" type="TextureRect" parent="CanvasLayer" node_paths=PackedStringArray("whoITrack")]
-process_mode = 3
-z_index = -10
-z_as_relative = false
-material = SubResource("ShaderMaterial_ybpjb")
-offset_left = 64.0
-offset_top = 32.0
-offset_right = 480.0
-offset_bottom = 96.0
-texture = ExtResource("21_ea7st")
-expand_mode = 1
-script = ExtResource("16_xu1u0")
-whoITrack = NodePath("../../Jeffery")
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/JefferyHealthbar"]
-layout_mode = 0
-offset_right = 416.0
-offset_bottom = 64.0
-texture = ExtResource("23_y5erm")
-expand_mode = 1
-
 [node name="TestingSDF" type="ColorRect" parent="CanvasLayer"]
 visible = false
 z_index = -10
@@ -502,7 +518,7 @@ color = Color(0.244776, 0.244776, 0.244776, 1)
 
 [node name="BossHealthbar" type="TextureRect" parent="CanvasLayer"]
 process_mode = 3
-z_index = -10
+z_index = 100
 z_as_relative = false
 material = SubResource("ShaderMaterial_mrjfq")
 anchors_preset = 1
@@ -525,14 +541,37 @@ offset_bottom = 64.0
 texture = ExtResource("23_y5erm")
 expand_mode = 1
 
+[node name="JefferyHealthbar" type="TextureRect" parent="CanvasLayer" node_paths=PackedStringArray("whoITrack")]
+process_mode = 3
+z_index = 100
+z_as_relative = false
+material = SubResource("ShaderMaterial_ybpjb")
+offset_left = 64.0
+offset_top = 32.0
+offset_right = 480.0
+offset_bottom = 96.0
+texture = ExtResource("21_ea7st")
+expand_mode = 1
+script = ExtResource("16_xu1u0")
+whoITrack = NodePath("../../Jeffery")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/JefferyHealthbar"]
+layout_mode = 0
+offset_right = 416.0
+offset_bottom = 64.0
+texture = ExtResource("23_y5erm")
+expand_mode = 1
+
 [node name="TestingPalette" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_hvlrm")
 position = Vector2(1024, 256)
 scale = Vector2(0.233333, 0.233333)
 texture = ExtResource("6_qunfb")
 
-[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/Resume" to="CanvasLayer/PauseMenu" method="_on_resume_pressed"]
-[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/Back To Title" to="CanvasLayer/PauseMenu" method="_on_back_to_title_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Resume" to="CanvasLayer/PauseMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Resume" to="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Resume" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Back To Title" to="CanvasLayer/PauseMenu" method="_on_back_to_title_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Back To Title" to="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Back To Title" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/EvolutionScreen/MarginContainer/HBoxContainer/Sword/TextureButton" to="CanvasLayer/EvolutionScreen" method="_on_Sword_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/EvolutionScreen/MarginContainer/HBoxContainer/Gun/TextureButton" to="CanvasLayer/EvolutionScreen" method="_on_Gun_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/DeathScreenJeffery/MarginContainer/VBoxContainer/HBoxContainer/Retry" to="CanvasLayer/DeathScreenJeffery" method="_on_retry_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://b3wn0yj7sfv05"]
+[gd_scene load_steps=48 format=3 uid="uid://b3wn0yj7sfv05"]
 
 [ext_resource type="Script" path="res://Scripts/StartMenu.gd" id="1_ylkdf"]
 [ext_resource type="FontFile" uid="uid://56kabaq45qkg" path="res://Textures/Font.png" id="2_7yqlb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ni8f0jkmx66o" path="res://Textures/JefferyTitleSequence/StartButton.png" id="3_sv2gx"]
 [ext_resource type="Script" path="res://Scripts/LetterDropdown.gd" id="4_pehhe"]
 [ext_resource type="Texture2D" uid="uid://p7upndosflnq" path="res://Textures/JefferyTitleSequence/OptionsButton.png" id="4_tlike"]
+[ext_resource type="Script" path="res://Scripts/MenuColorChanger.gd" id="4_xgdqa"]
 [ext_resource type="Texture2D" uid="uid://qxf2glqql5en" path="res://Textures/JefferyTitleSequence/QuitButton.png" id="5_7iwsm"]
 [ext_resource type="Script" path="res://Scenes/ButtonSpriteChanger.gd" id="5_r86v5"]
 [ext_resource type="Texture2D" uid="uid://icxlbcuhu7o2" path="res://Textures/JefferyTitleSequence/StartButtonNotHover.png" id="5_symp3"]
@@ -38,7 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://cwldumg56ocif" path="res://Scenes/Prefabs/WalkerOptions.tscn" id="34_re0b8"]
 [ext_resource type="Texture2D" uid="uid://c8yyk3evcer62" path="res://Textures/OptionsMenu/WalkerForOptions/BackButtonNonHover2.png" id="35_3qybn"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mhhks"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ay2g"]
 shader = ExtResource("31_8xqpo")
 shader_parameter/angle = 0.0
 
@@ -50,6 +51,10 @@ size = Vector2(98, 1159)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pabda"]
 size = Vector2(595, 153)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mhhks"]
+shader = ExtResource("31_8xqpo")
+shader_parameter/angle = 0.0
 
 [sub_resource type="Animation" id="Animation_ngqpc"]
 resource_name = "GoToMain"
@@ -169,9 +174,12 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="MainMenu" type="Control" parent="."]
+material = SubResource("ShaderMaterial_0ay2g")
 anchors_preset = 0
+script = ExtResource("4_xgdqa")
 
 [node name="TheMenu" type="VBoxContainer" parent="MainMenu"]
+use_parent_material = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -187,6 +195,7 @@ grow_vertical = 2
 alignment = 1
 
 [node name="Start" type="TextureButton" parent="MainMenu/TheMenu"]
+use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -196,6 +205,7 @@ normal = ExtResource("3_sv2gx")
 NonHover = ExtResource("5_symp3")
 
 [node name="Options" type="TextureButton" parent="MainMenu/TheMenu"]
+use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -205,6 +215,7 @@ normal = ExtResource("4_tlike")
 NonHover = ExtResource("7_blb6d")
 
 [node name="Quit" type="TextureButton" parent="MainMenu/TheMenu"]
+use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -319,7 +330,7 @@ texture = ExtResource("22_k60kd")
 
 [node name="ScalableBackgroundColor" type="Sprite2D" parent="MainMenu"]
 z_index = -215
-material = SubResource("ShaderMaterial_mhhks")
+use_parent_material = true
 position = Vector2(921.388, -9.17477)
 rotation = -0.261799
 scale = Vector2(9.25385, 2.0941)
