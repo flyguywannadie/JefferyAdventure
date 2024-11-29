@@ -148,7 +148,7 @@ collision_mask = 155
 script = ExtResource("1_lt8b0")
 anims = NodePath("DroneAnims")
 maxHealth = 5
-GRAVITY = 20.0
+GRAVITY = 30.0
 visuals = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

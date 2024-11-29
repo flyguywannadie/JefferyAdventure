@@ -123,10 +123,7 @@ func _physics_process(delta: float) -> void:
 			onGround = false
 		else :
 			if (Input.is_action_pressed("jef_Jump") && !Input.is_action_pressed("jef_down")):
-				onGround = false
-				cayoteTime = -1
-				addMovement(0,-jumpPower/1.5)
-				jumpTimer = 0.15
+				jump()
 	if (cayoteTime < 0 && is_on_floor()):
 		cayoteTime = int(Engine.get_frames_per_second()/10)
 		onGround = true
@@ -146,10 +143,7 @@ func _physics_process(delta: float) -> void:
 			set_collision_mask_value(8, false)
 		else:
 			#doneSlide()
-			onGround = false
-			cayoteTime = -1
-			addMovement(0,-jumpPower/1.5)
-			jumpTimer = 0.15
+			jump()
 	if (Input.is_action_pressed("jef_Jump") && jumpTimer > 0):
 		addMovement(0,-jumpPower/19.0)
 		jumpTimer -= delta
@@ -186,6 +180,12 @@ func _physics_process(delta: float) -> void:
 	setMovement(sideVelocity, movement.y)
 	
 	super._physics_process(delta)
+
+func jump():
+	onGround = false
+	cayoteTime = -1
+	addMovement(0,-jumpPower/1.5)
+	jumpTimer = 0.15
 
 func _input(event: InputEvent) -> void:
 	if (event.is_action("jef_reset")) :

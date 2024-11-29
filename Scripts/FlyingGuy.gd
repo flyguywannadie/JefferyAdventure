@@ -73,6 +73,7 @@ func hitStunDone() -> void:
 		t.owner = GameManager.projectileOwner
 		super._die()
 	$AudioStreamPlayer.play(randf())
+	$Damage.process_mode = Node.PROCESS_MODE_INHERIT
 	super.hitStunDone()
 
 func _die() -> void:
@@ -88,10 +89,11 @@ func takeDamage(damage: int):
 			0:SoundManager.PlaySound("MetalHit")
 			1:SoundManager.PlaySound("MetalHit1")
 			2:SoundManager.PlaySound("MetalHit2")
+	$Damage.process_mode = Node.PROCESS_MODE_DISABLED
 	$Gun/GUnAnims.play("idle")
 	$AudioStreamPlayer.stop()
 	anims.play("Hurt")
-	var knocked = (global_position - whoIFollow.global_position).normalized() * 1200
+	var knocked = (global_position - whoIFollow.global_position).normalized() * 600
 	setKnockback(knocked.x, knocked.y)
 	SetHitStun(0.75)
 	super.takeDamage(damage)

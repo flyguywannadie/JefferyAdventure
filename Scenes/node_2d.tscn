@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cgi22rw2oexdx"]
+[gd_scene load_steps=53 format=3 uid="uid://cgi22rw2oexdx"]
 
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_mxtlc"]
 [ext_resource type="Shader" path="res://PostProcessShader.gdshader" id="4_7nfid"]
@@ -30,6 +30,8 @@
 [ext_resource type="Texture2D" uid="uid://dqgv2ia0li61e" path="res://Textures/GunEvoButtonHover.png" id="16_vvsn2"]
 [ext_resource type="Script" path="res://Scripts/Healthbar.gd" id="16_xu1u0"]
 [ext_resource type="Script" path="res://Scripts/BossHealthbar.gd" id="18_5cy5a"]
+[ext_resource type="Shader" path="res://ColorRectPaletteChanger.gdshader" id="18_risk0"]
+[ext_resource type="Texture2D" uid="uid://r02i156gaf21" path="res://Textures/EvoPiece.png" id="20_kpjca"]
 [ext_resource type="Texture2D" uid="uid://nyti2m3wqqo6" path="res://Textures/Healthbar/HealthGradient.png" id="20_nutxt"]
 [ext_resource type="Script" path="res://Scripts/post_process.gd" id="20_tcyl4"]
 [ext_resource type="Texture2D" uid="uid://dgjjcvfbeesw" path="res://Textures/Healthbar/HealthbarBackground.png" id="21_ea7st"]
@@ -52,6 +54,15 @@ shader = ExtResource("7_x5nwx")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hlya1"]
 shader = ExtResource("9_1wfbu")
 shader_parameter/lod = 1.132
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4tl5k"]
+shader = ExtResource("18_risk0")
+shader_parameter/color = Color(0.294118, 0.352941, 0.470588, 1)
+shader_parameter/angle = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i86fh"]
+shader = ExtResource("6_i01nh")
+shader_parameter/angle = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dp4uq"]
 shader = ExtResource("11_swtah")
@@ -256,6 +267,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -266,6 +278,7 @@ script = ExtResource("11_1d1kq")
 
 [node name="BlurEffect" type="ColorRect" parent="CanvasLayer/PauseMenu"]
 material = SubResource("ShaderMaterial_hlya1")
+layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 768.0
 
@@ -314,6 +327,7 @@ theme_override_font_sizes/font_size = 60
 text = "GAME
 PAUSED"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 236.3)
@@ -344,7 +358,6 @@ NonHover = ExtResource("14_5irfq")
 
 [node name="EvolutionScreen" type="Control" parent="CanvasLayer"]
 process_mode = 2
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -354,13 +367,42 @@ grow_vertical = 2
 script = ExtResource("12_cvh8f")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/EvolutionScreen"]
+material = SubResource("ShaderMaterial_4tl5k")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.219501, 0.219501, 0.219501, 1)
+color = Color(0.292533, 0.351667, 0.47089, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/EvolutionScreen"]
+layout_mode = 2
+offset_left = 88.0
+offset_top = 48.0
+offset_right = 1192.0
+offset_bottom = 112.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("9_otam7")
+theme_override_font_sizes/font_size = 64
+text = "Choose Weapon To Evolve"
+
+[node name="Label2" type="Label" parent="CanvasLayer/EvolutionScreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -108.0
+offset_top = 144.0
+offset_right = 108.0
+offset_bottom = 243.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("9_otam7")
+theme_override_font_sizes/font_size = 48
+text = "Deadly
+Piece"
+horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/EvolutionScreen"]
 layout_mode = 1
@@ -374,42 +416,38 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/EvolutionScreen/MarginContainer"]
+visible = false
+material = SubResource("ShaderMaterial_i86fh")
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("20_kpjca")
+stretch_mode = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/EvolutionScreen/MarginContainer"]
+custom_minimum_size = Vector2(0, 566.735)
 layout_mode = 2
-theme_override_constants/separation = 64
+size_flags_vertical = 8
+theme_override_constants/separation = 256
 alignment = 1
 
-[node name="Sword" type="VBoxContainer" parent="CanvasLayer/EvolutionScreen/MarginContainer/HBoxContainer"]
+[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/EvolutionScreen/MarginContainer/HBoxContainer"]
 layout_mode = 2
-alignment = 1
-
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/EvolutionScreen/MarginContainer/HBoxContainer/Sword"]
-layout_mode = 2
+size_flags_vertical = 4
 texture_normal = ExtResource("13_1tk7r")
-texture_hover = ExtResource("14_k02nj")
+script = ExtResource("11_oau7k")
+normal = ExtResource("14_k02nj")
+NonHover = ExtResource("13_1tk7r")
 
-[node name="Label" type="Label" parent="CanvasLayer/EvolutionScreen/MarginContainer/HBoxContainer/Sword"]
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/EvolutionScreen/MarginContainer/HBoxContainer"]
 layout_mode = 2
-text = "SWORD"
-horizontal_alignment = 1
-
-[node name="Label" type="Label" parent="CanvasLayer/EvolutionScreen/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "Choose Evolution"
-
-[node name="Gun" type="VBoxContainer" parent="CanvasLayer/EvolutionScreen/MarginContainer/HBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/EvolutionScreen/MarginContainer/HBoxContainer/Gun"]
-layout_mode = 2
+size_flags_vertical = 4
 texture_normal = ExtResource("15_bv6un")
-texture_hover = ExtResource("16_vvsn2")
-
-[node name="Label" type="Label" parent="CanvasLayer/EvolutionScreen/MarginContainer/HBoxContainer/Gun"]
-layout_mode = 2
-text = "Gun"
-horizontal_alignment = 1
+script = ExtResource("11_oau7k")
+normal = ExtResource("16_vvsn2")
+NonHover = ExtResource("15_bv6un")
 
 [node name="DeathScreenJeffery" type="Control" parent="CanvasLayer"]
 process_mode = 3
@@ -572,7 +610,7 @@ texture = ExtResource("6_qunfb")
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Resume" to="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Resume" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Back To Title" to="CanvasLayer/PauseMenu" method="_on_back_to_title_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Back To Title" to="CanvasLayer/PauseMenu/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Back To Title" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/EvolutionScreen/MarginContainer/HBoxContainer/Sword/TextureButton" to="CanvasLayer/EvolutionScreen" method="_on_Sword_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/EvolutionScreen/MarginContainer/HBoxContainer/Gun/TextureButton" to="CanvasLayer/EvolutionScreen" method="_on_Gun_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/EvolutionScreen/MarginContainer/HBoxContainer/TextureButton2" to="CanvasLayer/EvolutionScreen" method="_on_Sword_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/EvolutionScreen/MarginContainer/HBoxContainer/TextureButton" to="CanvasLayer/EvolutionScreen" method="_on_Gun_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/DeathScreenJeffery/MarginContainer/VBoxContainer/HBoxContainer/Retry" to="CanvasLayer/DeathScreenJeffery" method="_on_retry_pressed"]
 [connection signal="pressed" from="CanvasLayer/DeathScreenJeffery/MarginContainer/VBoxContainer/HBoxContainer/Quit" to="CanvasLayer/DeathScreenJeffery" method="_on_quit_pressed"]
