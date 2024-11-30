@@ -45,9 +45,9 @@ func _process(delta: float) -> void:
 	b.x = ((a.z/d.z)*d.x) + a.x
 	b.y = ((a.z/d.z)*d.y) + a.y
 	
-	global_position = b + ((startPos - b) * (distance/100.0))
+	global_position = b + ((startPos - b) * (distance/GameManager.camDistance))
 	#
 	#print(b)
 	
-	scale.x = 1.0 - (distance / 100.0)
-	scale.y = 1.0 - (distance / 100.0)
+	scale.x = 1.0 - (distance / GameManager.camDistance)
+	scale.y = 1.0 - (distance / GameManager.camDistance)

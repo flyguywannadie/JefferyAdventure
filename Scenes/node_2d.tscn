@@ -524,6 +524,7 @@ size_flags_vertical = 6
 texture = ExtResource("12_x30i3")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/DeathScreenJeffery/MarginContainer/Visuals"]
+layout_mode = 0
 offset_left = 236.0
 offset_top = 108.0
 offset_right = 1004.0
