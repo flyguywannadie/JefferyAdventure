@@ -14,13 +14,13 @@ func _ready() -> void:
 	jeffery = GameManager.jeffery
 	GameManager.BossHealthbarSetup(self)
 	
-	match(randi_range(0, 2)):
-		0:
-			pieceIHold = "d"
-		1:
-			pieceIHold = "c"
-		2:
-			pieceIHold = "f"
+	#match(randi_range(0, 2)):
+		#0:
+			#pieceIHold = "d"
+		#1:
+			#pieceIHold = "c"
+		#2:
+			#pieceIHold = "f"
 	
 	super._ready()
 	pass

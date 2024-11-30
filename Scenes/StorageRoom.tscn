@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://cbgqoxvrxq4k3"]
+[gd_scene load_steps=43 format=4 uid="uid://cbgqoxvrxq4k3"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_pt4yu"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="2_v0erk"]
@@ -17,6 +17,20 @@
 [ext_resource type="Shader" path="res://ColorPaletteChanger.gdshader" id="15_0rw3q"]
 [ext_resource type="Texture2D" uid="uid://d5r5l6qqc76w" path="res://Textures/VentCover.png" id="16_1pqbk"]
 [ext_resource type="Script" path="res://Scripts/jeff_EventCaller.gd" id="17_vk151"]
+[ext_resource type="Texture2D" uid="uid://dxssaera5to5" path="res://Textures/Backgrounds/StorageRoomParallax/SideWalls.png" id="18_f7sac"]
+[ext_resource type="Script" path="res://Scripts/Paralax.gd" id="19_17fvg"]
+[ext_resource type="Texture2D" uid="uid://d0lglpgnesc5d" path="res://Textures/Backgrounds/StorageRoomParallax/BackWall.png" id="20_8ftgd"]
+[ext_resource type="Texture2D" uid="uid://evsev71ds5l1" path="res://Textures/Backgrounds/StorageRoomParallax/ShelfTestBack.png" id="21_k0pcu"]
+[ext_resource type="Texture2D" uid="uid://bkfron6g85bdd" path="res://Textures/Backgrounds/StorageRoomParallax/ShelfTest.png" id="21_y7y8i"]
+[ext_resource type="Texture2D" uid="uid://dmcgntlcnhjfq" path="res://Textures/Backgrounds/StorageRoomParallax/ShelfTestBombs1.png" id="22_vecxy"]
+[ext_resource type="Texture2D" uid="uid://duveodvfest02" path="res://Textures/Backgrounds/StorageRoomParallax/ShelfTestConnector.png" id="23_0fqbv"]
+[ext_resource type="Texture2D" uid="uid://rntkqggdx5jw" path="res://Textures/Backgrounds/StorageRoomParallax/ShelfTestBombs3.png" id="24_wcgg4"]
+[ext_resource type="Texture2D" uid="uid://dkscf1c1caakc" path="res://Textures/Backgrounds/StorageRoomParallax/ShelfTestBombs2.png" id="26_j4235"]
+[ext_resource type="Texture2D" uid="uid://nkwgpcdkya5r" path="res://Textures/Backgrounds/StorageRoomParallax/ShelfTestBombs4.png" id="27_451mh"]
+[ext_resource type="Texture2D" uid="uid://buvoy6prbkq77" path="res://Textures/Backgrounds/FactoryFloorRoom/OverheadLightWires.png" id="28_n2tc0"]
+[ext_resource type="Texture2D" uid="uid://bn0yjicgqpd6k" path="res://Textures/Backgrounds/FactoryFloorRoom/OverheadLightFront.png" id="29_kdd3d"]
+[ext_resource type="Texture2D" uid="uid://bsiff5o4yuyt6" path="res://Textures/Backgrounds/FactoryFloorRoom/OverheadLightConnector.png" id="30_x7gy2"]
+[ext_resource type="Texture2D" uid="uid://c7csrd7agqh8t" path="res://Textures/Backgrounds/FactoryFloorRoom/OverheadLight.png" id="31_hp4m7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_005up"]
 resource_local_to_scene = true
@@ -105,7 +119,7 @@ entrances = [NodePath("ToFactoryFloor"), NodePath("VentToFactory"), NodePath("To
 
 [node name="MainMap" type="TileMapLayer" parent="."]
 z_index = 15
-tile_map_data = PackedByteArray("AAD2/wAAAQABAAIAAAD3/wAAAQABAAIAAAD3////AQACAAEAAAD2////AQACAAEAAAD2//7/AQACAAEAAAD3//7/AQACAAEAAAD4//7/AQACAAEAAAD4////AQAFAAMAAAD4/wAAAQAGAAMAAAD3/wQAAQADAAAAAAD4/wQAAQADAAAAAAD5/wQAAQADAAAAAAD4/wUAAQACAAEAAAD3/wUAAQACAAEAAAD2/wUAAQACAAEAAAD2/wQAAQADAAAAAAD5/wUAAQACAAEAAAD6/wUAAQACAAEAAAD6/wQAAQADAAAAAAD7/wUAAQACAAEAAAD7/wQAAQADAAAAAAD8/wQAAQADAAAAAAD8/wUAAQACAAEAAAD9/wQAAQADAAAAAAD9/wUAAQACAAEAAAD+/wUAAQACAAEAAAD+/wQAAQADAAAAAAD//wUAAQACAAEAAAD//wQAAQADAAAAAAD3/wYAAQACAAEAAAD3/wcAAQACAAEAAAD3/wgAAQACAAEAAAD3/wkAAQACAAEAAAD4/wYAAQACAAEAAAD4/wcAAQACAAEAAAD4/wgAAQACAAEAAAD4/wkAAQACAAEAAAD5//7/AQADAAIAAAD5////AQAGAAMAAAD5/wYAAQACAAEAAAD5/wcAAQACAAEAAAD5/wgAAQACAAEAAAD5/wkAAQACAAEAAAD6/wYAAQACAAEAAAD6/wcAAQACAAEAAAD6/wgAAQACAAEAAAD6/wkAAQACAAEAAAD2/wYAAQACAAEAAAD2/wcAAQACAAEAAAD2/wgAAQACAAEAAAD2/wkAAQACAAEAAAAAAAQAAQADAAAAAAAAAAUAAQACAAEAAAD7/wYAAQACAAEAAAD8/wYAAQACAAEAAAD9/wYAAQACAAEAAAD+/wYAAQACAAEAAAD//wYAAQACAAEAAAAAAAYAAQACAAEAAAAAAAcAAQACAAEAAAD//wcAAQACAAEAAAD+/wcAAQACAAEAAAD9/wcAAQACAAEAAAD8/wcAAQACAAEAAAD7/wcAAQACAAEAAAD7/wgAAQACAAEAAAD7/wkAAQACAAEAAAD8/wkAAQACAAEAAAD9/wkAAQACAAEAAAD+/wkAAQACAAEAAAD+/wgAAQACAAEAAAD//wgAAQACAAEAAAAAAAgAAQACAAEAAAAAAAkAAQACAAEAAAD//wkAAQACAAEAAAD9/wgAAQACAAEAAAD8/wgAAQACAAEAAAAAAAoAAQACAAEAAAD//woAAQACAAEAAAD+/woAAQACAAEAAAD9/woAAQACAAEAAAD8/woAAQACAAEAAAD7/woAAQACAAEAAAD6/woAAQACAAEAAAD5/woAAQACAAEAAAD4/woAAQACAAEAAAD3/woAAQACAAEAAAD2/woAAQACAAEAAAABAAUAAQACAAEAAAABAAYAAQACAAEAAAABAAcAAQACAAEAAAABAAgAAQACAAEAAAABAAkAAQACAAEAAAABAAoAAQACAAEAAAACAAUAAQACAAEAAAACAAYAAQACAAEAAAACAAcAAQACAAEAAAACAAgAAQACAAEAAAACAAkAAQACAAEAAAACAAoAAQACAAEAAAADAAUAAQACAAEAAAADAAYAAQACAAEAAAADAAcAAQACAAEAAAADAAgAAQACAAEAAAADAAkAAQACAAEAAAADAAoAAQACAAEAAAAEAAUAAQACAAEAAAAEAAYAAQACAAEAAAAEAAcAAQACAAEAAAAEAAgAAQACAAEAAAAEAAkAAQACAAEAAAAEAAoAAQACAAEAAAAFAAUAAQACAAEAAAAFAAYAAQACAAEAAAAFAAcAAQACAAEAAAAFAAgAAQACAAEAAAAFAAkAAQACAAEAAAAFAAoAAQACAAEAAAAGAAUAAQACAAEAAAAGAAYAAQACAAEAAAAGAAcAAQACAAEAAAAGAAgAAQACAAEAAAAGAAkAAQACAAEAAAAGAAoAAQACAAEAAAAHAAUAAQACAAEAAAAHAAYAAQACAAEAAAAHAAcAAQACAAEAAAAHAAgAAQACAAEAAAAHAAkAAQACAAEAAAAHAAoAAQACAAEAAAAIAAUAAQACAAEAAAAIAAYAAQACAAEAAAAIAAcAAQACAAEAAAAIAAgAAQACAAEAAAAIAAkAAQACAAEAAAAIAAoAAQACAAEAAAAJAAUAAQACAAEAAAAJAAYAAQACAAEAAAAJAAcAAQACAAEAAAAJAAgAAQACAAEAAAAJAAkAAQACAAEAAAAJAAoAAQACAAEAAAAKAAUAAQACAAEAAAAKAAYAAQACAAEAAAAKAAcAAQACAAEAAAAKAAgAAQACAAEAAAAKAAkAAQACAAEAAAAKAAoAAQACAAEAAAALAAUAAQACAAEAAAALAAYAAQACAAEAAAALAAcAAQACAAEAAAALAAgAAQACAAEAAAALAAkAAQACAAEAAAALAAoAAQACAAEAAAAMAAUAAQACAAEAABAMAAYAAQACAAEAABAMAAcAAQACAAEAABAMAAgAAQACAAEAAAAMAAkAAQACAAEAAAAMAAoAAQACAAEAAAANAP7/AQABAAAAAAANAP//AQAGAAMAABANAAUAAQACAAEAABANAAYAAQACAAEAABANAAcAAQACAAEAABANAAgAAQACAAEAAAANAAkAAQACAAEAAAANAAoAAQACAAEAAAAOAP7/AQACAAEAABAOAP//AQAFAAMAABAOAAAAAQAGAAMAABAOAAUAAQACAAEAABAOAAYAAQACAAEAABAOAAcAAQACAAEAABAOAAgAAQACAAEAAAAOAAkAAQACAAEAAAAOAAoAAQACAAEAAAAPAP7/AQACAAEAABAPAP//AQACAAEAABAPAAAAAQABAAIAABAPAAUAAQACAAEAABAPAAYAAQACAAEAABAPAAcAAQACAAEAABAPAAgAAQACAAEAAAAPAAkAAQACAAEAAAAPAAoAAQACAAEAAAAQAP7/AQACAAEAAAAQAP//AQACAAEAAAAQAAAAAQABAAIAAAAQAAUAAQACAAEAAAAQAAYAAQACAAEAAAAQAAcAAQACAAEAAAAQAAgAAQACAAEAAAAQAAkAAQACAAEAAAAQAAoAAQACAAEAAAABAAQAAQADAAAAAAACAAQAAQADAAAAAAADAAQAAQADAAAAAAAEAAQAAQADAAAAAAAFAAQAAQADAAAAAAAGAAQAAQADAAAAAAAHAAQAAQADAAAAAAAIAAQAAQADAAAAAAAJAAQAAQADAAAAAAAKAAQAAQADAAAAAAALAAQAAQADAAAAAAAMAAQAAQADAAAAABANAAQAAQADAAAAABAOAAQAAQADAAAAABAPAAQAAQADAAAAABAQAAQAAQADAAAAAAD2//b/AQACAAEAAAD2//f/AQACAAEAAAD2//j/AQACAAEAAAD2//n/AQACAAEAAAD2//z/AQACAAEAAAD3//b/AQACAAEAAAD3//f/AQACAAEAAAD3//j/AQACAAEAAAD3//n/AQACAAEAAAD3//z/AQACAAEAAAD4//b/AQACAAEAAAD4//f/AQACAAEAAAD4//j/AQACAAEAAAD4//n/AQACAAEAAAD4//z/AQACAAEAAAD5//b/AQACAAEAAAD5//f/AQACAAEAAAD5//j/AQADAAEAAAD5//n/AQADAAIAAAD5//z/AQADAAIAAAD6//b/AQACAAEAAAD6//f/AQACAAEAAAD6//j/AQABAAIAAAD6//z/AQAAAAkAAAD7//b/AQACAAEAAAD7//f/AQACAAEAAAD7//j/AQABAAIAAAD7//z/AQABAAkAAAD8//b/AQACAAEAAAD8//f/AQACAAEAAAD8//j/AQABAAIAAAD8//z/AQABAAkAAAD9//b/AQACAAEAAAD9//f/AQACAAEAAAD9//j/AQABAAIAAAD9//z/AQABAAkAAAD+//b/AQACAAEAAAD+//f/AQACAAEAAAD+//j/AQABAAIAAAD+//z/AQABAAkAAAD///b/AQACAAEAAAD///f/AQACAAEAAAD///j/AQABAAIAAAD///z/AQABAAkAAAAAAPb/AQACAAEAAAAAAPf/AQACAAEAAAAAAPj/AQABAAIAAAAAAPz/AQABAAkAAAABAPb/AQACAAEAAAABAPf/AQACAAEAAAABAPj/AQABAAIAAAABAPz/AQABAAkAAAACAPb/AQACAAEAAAACAPf/AQACAAEAAAACAPj/AQABAAIAAAACAPz/AQABAAkAAAADAPb/AQACAAEAAAADAPf/AQACAAEAAAADAPj/AQABAAIAAAADAPz/AQABAAkAAAAEAPb/AQACAAEAAAAEAPf/AQACAAEAAAAEAPj/AQABAAIAAAAEAPz/AQABAAkAAAAFAPb/AQACAAEAAAAFAPf/AQACAAEAAAAFAPj/AQABAAIAAAAFAPz/AQABAAkAAAAGAPb/AQACAAEAAAAGAPf/AQACAAEAAAAGAPj/AQABAAIAAAAGAPz/AQABAAkAAAAHAPb/AQACAAEAAAAHAPf/AQACAAEAAAAHAPj/AQABAAIAAAAHAPz/AQABAAkAAAAIAPb/AQACAAEAAAAIAPf/AQACAAEAAAAIAPj/AQABAAIAAAAIAPz/AQABAAkAAAAJAPb/AQACAAEAAAAJAPf/AQACAAEAAAAJAPj/AQABAAIAAAAJAPz/AQABAAkAAAAKAPb/AQACAAEAAAAKAPf/AQACAAEAAAAKAPj/AQABAAIAAAAKAPz/AQABAAkAAAALAPb/AQACAAEAAAALAPf/AQACAAEAAAALAPj/AQABAAIAAAALAPz/AQABAAkAAAAMAPb/AQACAAEAAAAMAPf/AQACAAEAAAAMAPj/AQABAAIAAAAMAPz/AQACAAkAAAANAPb/AQACAAEAAAANAPf/AQACAAEAAAANAPj/AQACAAIAAAANAPn/AQABAAAAAAANAPr/AQABAAAAAAANAPv/AQABAAAAAAANAPz/AQABAAAAAAAOAPb/AQACAAEAAAAOAPf/AQACAAEAAAAOAPj/AQACAAEAAAAOAPn/AQACAAEAAAAOAPr/AQACAAEAAAAOAPv/AQACAAEAAAAOAPz/AQACAAEAABAPAPb/AQACAAEAAAAPAPf/AQACAAEAAAAPAPj/AQACAAEAAAAPAPn/AQACAAEAAAAPAPr/AQACAAEAAAAPAPv/AQACAAEAAAAPAPz/AQACAAEAAAAQAPb/AQACAAEAAAAQAPf/AQACAAEAAAAQAPj/AQACAAEAAAAQAPn/AQACAAEAAAAQAPr/AQACAAEAAAAQAPv/AQACAAEAAAAQAPz/AQACAAEAAAD2//X/AQACAAEAAAD2//v/AQACAAEAAAD3//X/AQACAAEAAAD3//v/AQACAAEAAAD4//X/AQACAAEAAAD4//v/AQACAAEAAAD5//X/AQACAAEAAAD5//v/AQADAAIAAAD6//X/AQACAAEAAAD6//v/AQAAAAgAAAD7//X/AQACAAEAAAD7//v/AQABAAgAAAD8//X/AQACAAEAAAD8//v/AQABAAgAAAD9//X/AQACAAEAAAD9//v/AQABAAgAAAD+//X/AQACAAEAAAD+//v/AQABAAgAAAD///X/AQACAAEAAAD///v/AQABAAgAAAAAAPX/AQACAAEAAAAAAPv/AQABAAgAAAABAPX/AQACAAEAAAABAPv/AQABAAgAAAACAPX/AQACAAEAAAACAPv/AQABAAgAAAADAPX/AQACAAEAAAADAPv/AQABAAgAAAAEAPX/AQACAAEAAAAEAPv/AQABAAgAAAAFAPX/AQACAAEAAAAFAPv/AQABAAgAAAAGAPX/AQACAAEAAAAGAPv/AQABAAgAAAAHAPX/AQACAAEAAAAHAPv/AQABAAgAAAAIAPX/AQACAAEAAAAIAPv/AQABAAgAAAAJAPX/AQACAAEAAAAJAPv/AQABAAgAAAAKAPX/AQACAAEAAAAKAPv/AQABAAgAAAALAPX/AQACAAEAAAALAPv/AQABAAgAAAAMAPX/AQACAAEAAAAMAPv/AQACAAgAAAANAPX/AQACAAEAAAAOAPX/AQACAAEAAAAPAPX/AQACAAEAAAAQAPX/AQACAAEAAAD2//3/AQACAAEAAAD3//3/AQACAAEAAAD4//3/AQACAAEAAAAOAP3/AQACAAEAAAAPAP3/AQACAAEAAAAQAP3/AQACAAEAAAD5//3/AQADAAIAAAANAP3/AQABAAAAAAA=")
+tile_map_data = PackedByteArray("AAD2/wAAAQABAAIAAAD3/wAAAQABAAIAAAD3////AQACAAEAAAD2////AQACAAEAAAD2//7/AQACAAEAAAD3//7/AQACAAEAAAD4//7/AQACAAEAAAD4////AQAFAAMAAAD4/wAAAQAGAAMAAAD3/wQAAQADAAAAAAD4/wQAAQADAAAAAAD5/wQAAQADAAAAAAD4/wUAAQACAAEAAAD3/wUAAQACAAEAAAD2/wUAAQACAAEAAAD2/wQAAQADAAAAAAD5/wUAAQACAAEAAAD6/wUAAQACAAEAAAD6/wQAAQADAAAAAAD7/wUAAQACAAEAAAD7/wQAAQADAAAAAAD8/wQAAQADAAAAAAD8/wUAAQACAAEAAAD9/wQAAQADAAAAAAD9/wUAAQACAAEAAAD+/wUAAQACAAEAAAD+/wQAAQADAAAAAAD//wUAAQACAAEAAAD//wQAAQADAAAAAAD3/wYAAQACAAEAAAD3/wcAAQACAAEAAAD3/wgAAQACAAEAAAD3/wkAAQACAAEAAAD4/wYAAQACAAEAAAD4/wcAAQACAAEAAAD4/wgAAQACAAEAAAD4/wkAAQACAAEAAAD5//7/AQADAAIAAAD5////AQAGAAMAAAD5/wYAAQACAAEAAAD5/wcAAQACAAEAAAD5/wgAAQACAAEAAAD5/wkAAQACAAEAAAD6/wYAAQACAAEAAAD6/wcAAQACAAEAAAD6/wgAAQACAAEAAAD6/wkAAQACAAEAAAD2/wYAAQACAAEAAAD2/wcAAQACAAEAAAD2/wgAAQACAAEAAAD2/wkAAQACAAEAAAAAAAQAAQADAAAAAAAAAAUAAQACAAEAAAD7/wYAAQACAAEAAAD8/wYAAQACAAEAAAD9/wYAAQACAAEAAAD+/wYAAQACAAEAAAD//wYAAQACAAEAAAAAAAYAAQACAAEAAAAAAAcAAQACAAEAAAD//wcAAQACAAEAAAD+/wcAAQACAAEAAAD9/wcAAQACAAEAAAD8/wcAAQACAAEAAAD7/wcAAQACAAEAAAD7/wgAAQACAAEAAAD7/wkAAQACAAEAAAD8/wkAAQACAAEAAAD9/wkAAQACAAEAAAD+/wkAAQACAAEAAAD+/wgAAQACAAEAAAD//wgAAQACAAEAAAAAAAgAAQACAAEAAAAAAAkAAQACAAEAAAD//wkAAQACAAEAAAD9/wgAAQACAAEAAAD8/wgAAQACAAEAAAAAAAoAAQACAAEAAAD//woAAQACAAEAAAD+/woAAQACAAEAAAD9/woAAQACAAEAAAD8/woAAQACAAEAAAD7/woAAQACAAEAAAD6/woAAQACAAEAAAD5/woAAQACAAEAAAD4/woAAQACAAEAAAD3/woAAQACAAEAAAD2/woAAQACAAEAAAABAAUAAQACAAEAAAABAAYAAQACAAEAAAABAAcAAQACAAEAAAABAAgAAQACAAEAAAABAAkAAQACAAEAAAABAAoAAQACAAEAAAACAAUAAQACAAEAAAACAAYAAQACAAEAAAACAAcAAQACAAEAAAACAAgAAQACAAEAAAACAAkAAQACAAEAAAACAAoAAQACAAEAAAADAAUAAQACAAEAAAADAAYAAQACAAEAAAADAAcAAQACAAEAAAADAAgAAQACAAEAAAADAAkAAQACAAEAAAADAAoAAQACAAEAAAAEAAUAAQACAAEAAAAEAAYAAQACAAEAAAAEAAcAAQACAAEAAAAEAAgAAQACAAEAAAAEAAkAAQACAAEAAAAEAAoAAQACAAEAAAAFAAUAAQACAAEAAAAFAAYAAQACAAEAAAAFAAcAAQACAAEAAAAFAAgAAQACAAEAAAAFAAkAAQACAAEAAAAFAAoAAQACAAEAAAAGAAUAAQACAAEAAAAGAAYAAQACAAEAAAAGAAcAAQACAAEAAAAGAAgAAQACAAEAAAAGAAkAAQACAAEAAAAGAAoAAQACAAEAAAAHAAUAAQACAAEAAAAHAAYAAQACAAEAAAAHAAcAAQACAAEAAAAHAAgAAQACAAEAAAAHAAkAAQACAAEAAAAHAAoAAQACAAEAAAAIAAUAAQACAAEAAAAIAAYAAQACAAEAAAAIAAcAAQACAAEAAAAIAAgAAQACAAEAAAAIAAkAAQACAAEAAAAIAAoAAQACAAEAAAAJAAUAAQACAAEAAAAJAAYAAQACAAEAAAAJAAcAAQACAAEAAAAJAAgAAQACAAEAAAAJAAkAAQACAAEAAAAJAAoAAQACAAEAAAAKAAUAAQACAAEAAAAKAAYAAQACAAEAAAAKAAcAAQACAAEAAAAKAAgAAQACAAEAAAAKAAkAAQACAAEAAAAKAAoAAQACAAEAAAALAAUAAQACAAEAAAALAAYAAQACAAEAAAALAAcAAQACAAEAAAALAAgAAQACAAEAAAALAAkAAQACAAEAAAALAAoAAQACAAEAAAAMAAUAAQACAAEAABAMAAYAAQACAAEAABAMAAcAAQACAAEAABAMAAgAAQACAAEAAAAMAAkAAQACAAEAAAAMAAoAAQACAAEAAAANAP7/AQABAAAAAAANAP//AQAGAAMAABANAAUAAQACAAEAABANAAYAAQACAAEAABANAAcAAQACAAEAABANAAgAAQACAAEAAAANAAkAAQACAAEAAAANAAoAAQACAAEAAAAOAP7/AQACAAEAABAOAP//AQAFAAMAABAOAAAAAQAGAAMAABAOAAUAAQACAAEAABAOAAYAAQACAAEAABAOAAcAAQACAAEAABAOAAgAAQACAAEAAAAOAAkAAQACAAEAAAAOAAoAAQACAAEAAAAPAP7/AQACAAEAABAPAP//AQACAAEAABAPAAAAAQABAAIAABAPAAUAAQACAAEAABAPAAYAAQACAAEAABAPAAcAAQACAAEAABAPAAgAAQACAAEAAAAPAAkAAQACAAEAAAAPAAoAAQACAAEAAAAQAP7/AQACAAEAAAAQAP//AQACAAEAAAAQAAAAAQABAAIAAAAQAAUAAQACAAEAAAAQAAYAAQACAAEAAAAQAAcAAQACAAEAAAAQAAgAAQACAAEAAAAQAAkAAQACAAEAAAAQAAoAAQACAAEAAAABAAQAAQADAAAAAAACAAQAAQADAAAAAAADAAQAAQADAAAAAAAEAAQAAQADAAAAAAAFAAQAAQADAAAAAAAGAAQAAQADAAAAAAAHAAQAAQADAAAAAAAIAAQAAQADAAAAAAAJAAQAAQADAAAAAAAKAAQAAQADAAAAAAALAAQAAQADAAAAAAAMAAQAAQADAAAAABANAAQAAQADAAAAABAOAAQAAQADAAAAABAPAAQAAQADAAAAABAQAAQAAQADAAAAAAD2//b/AQACAAEAAAD2//f/AQACAAEAAAD2//j/AQACAAEAAAD2//n/AQACAAEAAAD2//z/AQACAAEAAAD3//b/AQACAAEAAAD3//f/AQACAAEAAAD3//j/AQACAAEAAAD3//n/AQACAAEAAAD3//z/AQACAAEAAAD4//b/AQACAAEAAAD4//f/AQACAAEAAAD4//j/AQACAAEAAAD4//n/AQACAAEAAAD4//z/AQACAAEAAAD5//b/AQACAAEAAAD5//f/AQACAAEAAAD5//j/AQADAAEAAAD5//n/AQADAAIAAAD5//z/AQADAAIAAAD6//b/AQACAAEAAAD6//f/AQACAAEAAAD6//j/AQABAAIAAAD6//z/AQADAAgAAAD7//b/AQACAAEAAAD7//f/AQACAAEAAAD7//j/AQABAAIAAAD7//z/AQABAAkAAAD8//b/AQACAAEAAAD8//f/AQACAAEAAAD8//j/AQABAAIAAAD8//z/AQABAAkAAAD9//b/AQACAAEAAAD9//f/AQACAAEAAAD9//j/AQABAAIAAAD9//z/AQABAAkAAAD+//b/AQACAAEAAAD+//f/AQACAAEAAAD+//j/AQABAAIAAAD+//z/AQABAAkAAAD///b/AQACAAEAAAD///f/AQACAAEAAAD///j/AQABAAIAAAD///z/AQABAAkAAAAAAPb/AQACAAEAAAAAAPf/AQACAAEAAAAAAPj/AQABAAIAAAAAAPz/AQABAAkAAAABAPb/AQACAAEAAAABAPf/AQACAAEAAAABAPj/AQABAAIAAAABAPz/AQABAAkAAAACAPb/AQACAAEAAAACAPf/AQACAAEAAAACAPj/AQABAAIAAAACAPz/AQABAAkAAAADAPb/AQACAAEAAAADAPf/AQACAAEAAAADAPj/AQABAAIAAAADAPz/AQAEAAgAAAAEAPb/AQACAAEAAAAEAPf/AQACAAEAAAAEAPj/AQABAAIAAAAEAPz/AQABAAkAAAAFAPb/AQACAAEAAAAFAPf/AQACAAEAAAAFAPj/AQABAAIAAAAFAPz/AQABAAkAAAAGAPb/AQACAAEAAAAGAPf/AQACAAEAAAAGAPj/AQABAAIAAAAGAPz/AQABAAkAAAAHAPb/AQACAAEAAAAHAPf/AQACAAEAAAAHAPj/AQABAAIAAAAHAPz/AQABAAkAAAAIAPb/AQACAAEAAAAIAPf/AQACAAEAAAAIAPj/AQABAAIAAAAIAPz/AQABAAkAAAAJAPb/AQACAAEAAAAJAPf/AQACAAEAAAAJAPj/AQABAAIAAAAJAPz/AQABAAkAAAAKAPb/AQACAAEAAAAKAPf/AQACAAEAAAAKAPj/AQABAAIAAAAKAPz/AQABAAkAAAALAPb/AQACAAEAAAALAPf/AQACAAEAAAALAPj/AQABAAIAAAALAPz/AQABAAkAAAAMAPb/AQACAAEAAAAMAPf/AQACAAEAAAAMAPj/AQABAAIAAAAMAPz/AQAFAAgAAAANAPb/AQACAAEAAAANAPf/AQACAAEAAAANAPj/AQACAAIAAAANAPn/AQABAAAAAAANAPr/AQABAAAAAAANAPv/AQABAAAAAAANAPz/AQABAAAAAAAOAPb/AQACAAEAAAAOAPf/AQACAAEAAAAOAPj/AQACAAEAAAAOAPn/AQACAAEAAAAOAPr/AQACAAEAAAAOAPv/AQACAAEAAAAOAPz/AQACAAEAABAPAPb/AQACAAEAAAAPAPf/AQACAAEAAAAPAPj/AQACAAEAAAAPAPn/AQACAAEAAAAPAPr/AQACAAEAAAAPAPv/AQACAAEAAAAPAPz/AQACAAEAAAAQAPb/AQACAAEAAAAQAPf/AQACAAEAAAAQAPj/AQACAAEAAAAQAPn/AQACAAEAAAAQAPr/AQACAAEAAAAQAPv/AQACAAEAAAAQAPz/AQACAAEAAAD2//X/AQACAAEAAAD2//v/AQACAAEAAAD3//X/AQACAAEAAAD3//v/AQACAAEAAAD4//X/AQACAAEAAAD4//v/AQACAAEAAAD5//X/AQACAAEAAAD5//v/AQADAAIAAAD6//X/AQACAAEAAAD6//v/AQAAAAgAAAD7//X/AQACAAEAAAD7//v/AQABAAgAAAD8//X/AQACAAEAAAD8//v/AQABAAgAAAD9//X/AQACAAEAAAD9//v/AQABAAgAAAD+//X/AQACAAEAAAD+//v/AQABAAgAAAD///X/AQACAAEAAAD///v/AQABAAgAAAAAAPX/AQACAAEAAAAAAPv/AQABAAgAAAABAPX/AQACAAEAAAABAPv/AQABAAgAAAACAPX/AQACAAEAAAACAPv/AQABAAgAAAADAPX/AQACAAEAAAADAPv/AQABAAgAAAAEAPX/AQACAAEAAAAEAPv/AQABAAgAAAAFAPX/AQACAAEAAAAFAPv/AQABAAgAAAAGAPX/AQACAAEAAAAGAPv/AQABAAgAAAAHAPX/AQACAAEAAAAHAPv/AQABAAgAAAAIAPX/AQACAAEAAAAIAPv/AQABAAgAAAAJAPX/AQACAAEAAAAJAPv/AQABAAgAAAAKAPX/AQACAAEAAAAKAPv/AQABAAgAAAALAPX/AQACAAEAAAALAPv/AQABAAgAAAAMAPX/AQACAAEAAAAMAPv/AQACAAgAAAANAPX/AQACAAEAAAAOAPX/AQACAAEAAAAPAPX/AQACAAEAAAAQAPX/AQACAAEAAAD2//3/AQACAAEAAAD3//3/AQACAAEAAAD4//3/AQACAAEAAAAOAP3/AQACAAEAAAAPAP3/AQACAAEAAAAQAP3/AQACAAEAAAD5//3/AQADAAIAAAANAP3/AQABAAAAAAA=")
 tile_set = ExtResource("2_v0erk")
 
 [node name="VentCollision" type="TileMapLayer" parent="."]
@@ -114,8 +128,9 @@ tile_map_data = PackedByteArray("AAD4//r/AQADAAAAAAD3//r/AQADAAAAAAD2//r/AQADAAA
 tile_set = ExtResource("2_v0erk")
 
 [node name="Backwall" type="TileMapLayer" parent="."]
+z_index = 1
 position = Vector2(0, 128)
-tile_map_data = PackedByteArray("AAD5//r/AQADAAMAAAD5//n/AQADAAIAAAD5//j/AQAAAAAAAAD4//r/AQABAAIAAAD4//n/AQACAAEAAAD4//j/AQADAAAAAAD3//r/AQABAAIAAAD3//n/AQACAAEAAAD3//j/AQADAAAAAAD2//r/AQAAAAIAAAD2//n/AQACAAEAAAD2//j/AQABAAMAAAA=")
+tile_map_data = PackedByteArray("AAD5//r/AQADAAMAAAD5//n/AQADAAIAAAD5//j/AQAAAAAAAAD4//r/AQABAAIAAAD4//n/AQACAAEAAAD4//j/AQADAAAAAAD3//r/AQABAAIAAAD3//n/AQACAAEAAAD3//j/AQADAAAAAAD2//r/AQAAAAIAAAD2//n/AQACAAEAAAD2//j/AQABAAMAAAD6//z/AQADAAkAAAD6//3/AQADAAkAAAD6//7/AQADAAkAAAD6////AQADAAkAAAD6/wAAAQADAAkAAAD6/wEAAQADAAkAAAD6/wIAAQADAAkAAAD6/wMAAQADAAkAAAAMAPz/AQADAAkAAAAMAP3/AQADAAkAAAAMAP7/AQADAAkAAAAMAP//AQADAAkAAAAMAAAAAQADAAkAAAAMAAEAAQADAAkAAAAMAAIAAQADAAkAAAAMAAMAAQADAAkAAAADAP3/AQADAAkAAAADAP7/AQADAAkAAAADAP//AQADAAkAAAADAAAAAQADAAkAAAADAAEAAQADAAkAAAADAAIAAQADAAkAAAADAAMAAQADAAkAAAADAPz/AQADAAkAAAA=")
 tile_set = ExtResource("3_lmkqo")
 
 [node name="VentInside" type="TileMapLayer" parent="."]
@@ -155,7 +170,7 @@ position = Vector2(-1056, -832)
 shape = SubResource("RectangleShape2D_p48pr")
 
 [node name="ToFactoryFloor" parent="." node_paths=PackedStringArray("closestCameraTrack", "closestCheckpoint") instance=ExtResource("6_2tb61")]
-position = Vector2(-1152, 320)
+position = Vector2(-1280, 320)
 rotation = 3.14159
 doorID = 1
 nextRoom = "FactoryFloor"
@@ -163,21 +178,23 @@ closestCameraTrack = NodePath("../Storage Room")
 closestCheckpoint = NodePath("../CheckPoint")
 
 [node name="Storage Room" parent="." instance=ExtResource("7_j7nv0")]
+visible = false
+z_index = 755
 position = Vector2(448, -256)
-trackBounds = Vector2(896, 512)
+trackBounds = Vector2(1152, 512)
 
 [node name="CheckPoint" parent="." instance=ExtResource("8_gmsui")]
 position = Vector2(-768, 384)
 
 [node name="VentToFactory" parent="." node_paths=PackedStringArray("closestCameraTrack") instance=ExtResource("6_2tb61")]
-position = Vector2(-1152, -704)
+position = Vector2(-1280, -704)
 rotation = 3.14159
 doorID = 3
 nextRoom = "FactoryFloor"
 closestCameraTrack = NodePath("../Storage Room")
 
 [node name="ToBossRoom" parent="." node_paths=PackedStringArray("closestCameraTrack", "closestCheckpoint") instance=ExtResource("6_2tb61")]
-position = Vector2(2048, 320)
+position = Vector2(2176, 320)
 nextRoom = "TestBossScene"
 closestCameraTrack = NodePath("../Storage Room")
 closestCheckpoint = NodePath("../CheckPoint2")
@@ -252,6 +269,474 @@ libraries = {
 script = ExtResource("17_vk151")
 whoICallTo = NodePath("../VentTest")
 functionToCall = "Open"
+
+[node name="Parallax" type="Node2D" parent="."]
+position = Vector2(448, -192)
+
+[node name="BackWall" type="Sprite2D" parent="Parallax"]
+texture = ExtResource("20_8ftgd")
+script = ExtResource("19_17fvg")
+distance = 40.0
+
+[node name="SideWalls6" type="Sprite2D" parent="Parallax"]
+texture = ExtResource("18_f7sac")
+script = ExtResource("19_17fvg")
+distance = 40.0
+
+[node name="SideWalls7" type="Sprite2D" parent="Parallax"]
+texture = ExtResource("18_f7sac")
+script = ExtResource("19_17fvg")
+distance = 36.0
+
+[node name="SideWalls8" type="Sprite2D" parent="Parallax"]
+texture = ExtResource("18_f7sac")
+script = ExtResource("19_17fvg")
+distance = 32.0
+
+[node name="SideWalls9" type="Sprite2D" parent="Parallax"]
+texture = ExtResource("18_f7sac")
+script = ExtResource("19_17fvg")
+distance = 28.0
+
+[node name="SideWalls10" type="Sprite2D" parent="Parallax"]
+texture = ExtResource("18_f7sac")
+script = ExtResource("19_17fvg")
+distance = 24.0
+
+[node name="SideWalls" type="Sprite2D" parent="Parallax"]
+texture = ExtResource("18_f7sac")
+script = ExtResource("19_17fvg")
+distance = 20.0
+
+[node name="SideWalls4" type="Sprite2D" parent="Parallax"]
+texture = ExtResource("18_f7sac")
+script = ExtResource("19_17fvg")
+distance = 16.0
+
+[node name="SideWalls2" type="Sprite2D" parent="Parallax"]
+texture = ExtResource("18_f7sac")
+script = ExtResource("19_17fvg")
+distance = 12.0
+
+[node name="SideWalls3" type="Sprite2D" parent="Parallax"]
+texture = ExtResource("18_f7sac")
+script = ExtResource("19_17fvg")
+distance = 8.0
+
+[node name="SideWalls5" type="Sprite2D" parent="Parallax"]
+texture = ExtResource("18_f7sac")
+script = ExtResource("19_17fvg")
+distance = 4.0
+
+[node name="ShelfTest" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("21_k0pcu")
+script = ExtResource("19_17fvg")
+distance = 10.0
+
+[node name="ShelfTestConnector" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 12.0
+
+[node name="ShelfTestBombs1" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("22_vecxy")
+script = ExtResource("19_17fvg")
+distance = 14.0
+
+[node name="ShelfTestConnector3" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 16.0
+
+[node name="ShelfTestBombs3" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("24_wcgg4")
+script = ExtResource("19_17fvg")
+distance = 18.0
+
+[node name="ShelfTestConnector4" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 20.0
+
+[node name="ShelfTest2" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("21_y7y8i")
+script = ExtResource("19_17fvg")
+distance = 22.0
+
+[node name="ShelfTestBombs2" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("26_j4235")
+script = ExtResource("19_17fvg")
+distance = 24.0
+
+[node name="ShelfTestConnector2" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 26.0
+
+[node name="ShelfTestBombs4" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("27_451mh")
+script = ExtResource("19_17fvg")
+distance = 28.0
+
+[node name="ShelfTestConnector5" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 30.0
+
+[node name="ShelfTestBombs5" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("24_wcgg4")
+script = ExtResource("19_17fvg")
+distance = 32.0
+
+[node name="ShelfTest3" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("21_y7y8i")
+script = ExtResource("19_17fvg")
+distance = 34.0
+
+[node name="OverheadLightWires" type="Sprite2D" parent="Parallax"]
+position = Vector2(-598.5, -550)
+texture = ExtResource("28_n2tc0")
+script = ExtResource("19_17fvg")
+distance = 21.0
+
+[node name="OverheadLightFront" type="Sprite2D" parent="Parallax"]
+position = Vector2(-598.5, -358)
+texture = ExtResource("29_kdd3d")
+script = ExtResource("19_17fvg")
+distance = 18.0
+
+[node name="OverheadLightConnector" type="Sprite2D" parent="Parallax"]
+position = Vector2(-598.5, -358)
+texture = ExtResource("30_x7gy2")
+script = ExtResource("19_17fvg")
+distance = 19.0
+
+[node name="OverheadLightConnector2" type="Sprite2D" parent="Parallax"]
+position = Vector2(-598.5, -358)
+texture = ExtResource("30_x7gy2")
+script = ExtResource("19_17fvg")
+distance = 20.0
+
+[node name="OverheadLightConnector3" type="Sprite2D" parent="Parallax"]
+position = Vector2(-598.5, -358)
+texture = ExtResource("30_x7gy2")
+script = ExtResource("19_17fvg")
+distance = 21.0
+
+[node name="OverheadLight" type="Sprite2D" parent="Parallax"]
+position = Vector2(-598.5, -358)
+texture = ExtResource("31_hp4m7")
+script = ExtResource("19_17fvg")
+distance = 22.0
+
+[node name="OverheadLightWires2" type="Sprite2D" parent="Parallax"]
+position = Vector2(617.5, -550)
+texture = ExtResource("28_n2tc0")
+script = ExtResource("19_17fvg")
+distance = 21.0
+
+[node name="OverheadLightFront2" type="Sprite2D" parent="Parallax"]
+position = Vector2(617.5, -358)
+texture = ExtResource("29_kdd3d")
+script = ExtResource("19_17fvg")
+distance = 18.0
+
+[node name="OverheadLightConnector4" type="Sprite2D" parent="Parallax"]
+position = Vector2(617.5, -358)
+texture = ExtResource("30_x7gy2")
+script = ExtResource("19_17fvg")
+distance = 19.0
+
+[node name="OverheadLightConnector5" type="Sprite2D" parent="Parallax"]
+position = Vector2(617.5, -358)
+texture = ExtResource("30_x7gy2")
+script = ExtResource("19_17fvg")
+distance = 20.0
+
+[node name="OverheadLightConnector6" type="Sprite2D" parent="Parallax"]
+position = Vector2(617.5, -358)
+texture = ExtResource("30_x7gy2")
+script = ExtResource("19_17fvg")
+distance = 21.0
+
+[node name="OverheadLight2" type="Sprite2D" parent="Parallax"]
+position = Vector2(617.5, -358)
+texture = ExtResource("31_hp4m7")
+script = ExtResource("19_17fvg")
+distance = 22.0
+
+[node name="ShelfTest4" type="Sprite2D" parent="Parallax"]
+position = Vector2(1024, 256)
+texture = ExtResource("21_k0pcu")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 10.0
+
+[node name="ShelfTestConnector6" type="Sprite2D" parent="Parallax"]
+position = Vector2(1024, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 12.0
+
+[node name="ShelfTestBombs6" type="Sprite2D" parent="Parallax"]
+position = Vector2(1024, 256)
+texture = ExtResource("22_vecxy")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 14.0
+
+[node name="ShelfTestConnector7" type="Sprite2D" parent="Parallax"]
+position = Vector2(1024, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 16.0
+
+[node name="ShelfTestBombs7" type="Sprite2D" parent="Parallax"]
+position = Vector2(1024, 256)
+texture = ExtResource("24_wcgg4")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 18.0
+
+[node name="ShelfTestConnector8" type="Sprite2D" parent="Parallax"]
+position = Vector2(1024, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 20.0
+
+[node name="ShelfTest5" type="Sprite2D" parent="Parallax"]
+position = Vector2(1024, 256)
+texture = ExtResource("21_y7y8i")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 22.0
+
+[node name="ShelfTestBombs8" type="Sprite2D" parent="Parallax"]
+position = Vector2(1024, 256)
+texture = ExtResource("26_j4235")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 24.0
+
+[node name="ShelfTestConnector9" type="Sprite2D" parent="Parallax"]
+position = Vector2(1024, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 26.0
+
+[node name="ShelfTestBombs9" type="Sprite2D" parent="Parallax"]
+position = Vector2(1024, 256)
+texture = ExtResource("27_451mh")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 28.0
+
+[node name="ShelfTestConnector10" type="Sprite2D" parent="Parallax"]
+position = Vector2(1024, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 30.0
+
+[node name="ShelfTestBombs10" type="Sprite2D" parent="Parallax"]
+position = Vector2(1024, 256)
+texture = ExtResource("24_wcgg4")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 32.0
+
+[node name="ShelfTest6" type="Sprite2D" parent="Parallax"]
+position = Vector2(1024, 256)
+texture = ExtResource("21_y7y8i")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 34.0
+
+[node name="ShelfTest7" type="Sprite2D" parent="Parallax"]
+position = Vector2(-320, 256)
+texture = ExtResource("21_k0pcu")
+script = ExtResource("19_17fvg")
+distance = 10.0
+
+[node name="ShelfTestConnector11" type="Sprite2D" parent="Parallax"]
+position = Vector2(-320, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 12.0
+
+[node name="ShelfTestBombs11" type="Sprite2D" parent="Parallax"]
+position = Vector2(-320, 256)
+texture = ExtResource("22_vecxy")
+script = ExtResource("19_17fvg")
+distance = 14.0
+
+[node name="ShelfTestConnector12" type="Sprite2D" parent="Parallax"]
+position = Vector2(-320, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 16.0
+
+[node name="ShelfTestBombs12" type="Sprite2D" parent="Parallax"]
+position = Vector2(-320, 256)
+texture = ExtResource("24_wcgg4")
+script = ExtResource("19_17fvg")
+distance = 18.0
+
+[node name="ShelfTestConnector13" type="Sprite2D" parent="Parallax"]
+position = Vector2(-320, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 20.0
+
+[node name="ShelfTest8" type="Sprite2D" parent="Parallax"]
+position = Vector2(-320, 256)
+texture = ExtResource("21_y7y8i")
+script = ExtResource("19_17fvg")
+distance = 22.0
+
+[node name="ShelfTestBombs13" type="Sprite2D" parent="Parallax"]
+position = Vector2(-320, 256)
+texture = ExtResource("26_j4235")
+script = ExtResource("19_17fvg")
+distance = 24.0
+
+[node name="ShelfTestConnector14" type="Sprite2D" parent="Parallax"]
+position = Vector2(-320, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 26.0
+
+[node name="ShelfTestBombs14" type="Sprite2D" parent="Parallax"]
+position = Vector2(-320, 256)
+texture = ExtResource("27_451mh")
+script = ExtResource("19_17fvg")
+distance = 28.0
+
+[node name="ShelfTestConnector15" type="Sprite2D" parent="Parallax"]
+position = Vector2(-320, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 30.0
+
+[node name="ShelfTestBombs15" type="Sprite2D" parent="Parallax"]
+position = Vector2(-320, 256)
+texture = ExtResource("24_wcgg4")
+script = ExtResource("19_17fvg")
+distance = 32.0
+
+[node name="ShelfTest9" type="Sprite2D" parent="Parallax"]
+position = Vector2(-320, 256)
+texture = ExtResource("21_y7y8i")
+script = ExtResource("19_17fvg")
+distance = 34.0
+
+[node name="ShelfTest10" type="Sprite2D" parent="Parallax"]
+position = Vector2(320, 256)
+texture = ExtResource("21_k0pcu")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 10.0
+
+[node name="ShelfTestConnector16" type="Sprite2D" parent="Parallax"]
+position = Vector2(320, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 12.0
+
+[node name="ShelfTestBombs16" type="Sprite2D" parent="Parallax"]
+position = Vector2(320, 256)
+texture = ExtResource("22_vecxy")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 14.0
+
+[node name="ShelfTestConnector17" type="Sprite2D" parent="Parallax"]
+position = Vector2(320, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 16.0
+
+[node name="ShelfTestBombs17" type="Sprite2D" parent="Parallax"]
+position = Vector2(320, 256)
+texture = ExtResource("24_wcgg4")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 18.0
+
+[node name="ShelfTestConnector18" type="Sprite2D" parent="Parallax"]
+position = Vector2(320, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 20.0
+
+[node name="ShelfTest11" type="Sprite2D" parent="Parallax"]
+position = Vector2(320, 256)
+texture = ExtResource("21_y7y8i")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 22.0
+
+[node name="ShelfTestBombs18" type="Sprite2D" parent="Parallax"]
+position = Vector2(320, 256)
+texture = ExtResource("26_j4235")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 24.0
+
+[node name="ShelfTestConnector19" type="Sprite2D" parent="Parallax"]
+position = Vector2(320, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 26.0
+
+[node name="ShelfTestBombs19" type="Sprite2D" parent="Parallax"]
+position = Vector2(320, 256)
+texture = ExtResource("27_451mh")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 28.0
+
+[node name="ShelfTestConnector20" type="Sprite2D" parent="Parallax"]
+position = Vector2(320, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 30.0
+
+[node name="ShelfTestBombs20" type="Sprite2D" parent="Parallax"]
+position = Vector2(320, 256)
+texture = ExtResource("24_wcgg4")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 32.0
+
+[node name="ShelfTest12" type="Sprite2D" parent="Parallax"]
+position = Vector2(320, 256)
+texture = ExtResource("21_y7y8i")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 34.0
 
 [connection signal="body_entered" from="Overventhide" to="Overventhide/OverVent" method="_on_body_entered"]
 [connection signal="body_exited" from="Overventhide" to="Overventhide/OverVent" method="_on_body_exited"]
