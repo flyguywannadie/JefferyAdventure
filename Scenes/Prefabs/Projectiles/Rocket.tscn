@@ -17,7 +17,7 @@ velocity = 100.0
 slowdown = 0.0
 knockback = Vector2(500, 1)
 deathEffect = ExtResource("2_w56hg")
-damage = 4
+damage = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_trw61")

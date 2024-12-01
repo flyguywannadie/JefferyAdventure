@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://d0fnuvd744d6r"]
+[gd_scene load_steps=27 format=4 uid="uid://d0fnuvd744d6r"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_8pabn"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="2_6xkpd"]
@@ -16,8 +16,10 @@
 [ext_resource type="Shader" path="res://EnemyShader.gdshader" id="14_lwsoy"]
 [ext_resource type="Texture2D" uid="uid://jdbvcwxi3uv3" path="res://Textures/Backgrounds/ExitSignLeft.png" id="15_2yp0y"]
 [ext_resource type="Texture2D" uid="uid://byf5fcuti3jus" path="res://Textures/Backgrounds/GoFactory.png" id="16_fdkcb"]
+[ext_resource type="Texture2D" uid="uid://dvri2nlli3ugc" path="res://Textures/Backgrounds/ExitSignUp.png" id="17_irhvw"]
 [ext_resource type="Texture2D" uid="uid://bdnu3fbhsfypb" path="res://Textures/Backgrounds/GoControlCenter.png" id="17_t361x"]
 [ext_resource type="Texture2D" uid="uid://bf4ckn5tkewfa" path="res://Textures/Backgrounds/GoStorage.png" id="18_w4pn3"]
+[ext_resource type="Script" path="res://Scripts/GameStateChange.gd" id="19_cf10t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cn34p"]
 resource_local_to_scene = true
@@ -35,15 +37,21 @@ shader_parameter/fade = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cf7fy"]
 size = Vector2(1312.39, 45.2548)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tdjdu"]
+resource_local_to_scene = true
+shader = ExtResource("14_lwsoy")
+shader_parameter/hit = false
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7pnq4"]
 resource_local_to_scene = true
 shader = ExtResource("14_lwsoy")
 shader_parameter/hit = false
 
-[node name="BoilerRoom" type="Node2D" node_paths=PackedStringArray("camTracks", "entrances")]
+[node name="BoilerRoom" type="Node2D" node_paths=PackedStringArray("camTracks", "entrances", "stateChanges")]
 script = ExtResource("1_8pabn")
 camTracks = [NodePath("StairCam")]
 entrances = [NodePath("RestroomDoor"), NodePath("FactoryDoor"), NodePath("ToFactoryVent")]
+stateChanges = NodePath("Changes")
 
 [node name="MainMap" type="TileMapLayer" parent="."]
 z_index = 15
@@ -166,23 +174,52 @@ texture = ExtResource("13_5s4h7")
 position = Vector2(-768, -1510)
 texture = ExtResource("13_5s4h7")
 
-[node name="FlyingGuy" parent="." instance=ExtResource("13_vy0gq")]
-material = SubResource("ShaderMaterial_7pnq4")
-position = Vector2(256, -384)
-
 [node name="ExitSignLeft" type="Sprite2D" parent="."]
 position = Vector2(-1344, -1056)
 texture = ExtResource("15_2yp0y")
 
-[node name="GoFactory" type="Sprite2D" parent="."]
+[node name="Changes" type="Node2D" parent="."]
+
+[node name="BossDead" type="Node2D" parent="Changes"]
+script = ExtResource("19_cf10t")
+expectedGameState = "c"
+
+[node name="FlyingGuy" parent="Changes/BossDead" instance=ExtResource("13_vy0gq")]
+material = SubResource("ShaderMaterial_tdjdu")
+position = Vector2(-256, -704)
+scale = Vector2(1.5, 1.5)
+
+[node name="ExitSignLeft2" type="Sprite2D" parent="Changes/BossDead"]
+position = Vector2(832, -192)
+texture = ExtResource("15_2yp0y")
+
+[node name="ExitSignLeft3" type="Sprite2D" parent="Changes/BossDead"]
+position = Vector2(832, -64)
+texture = ExtResource("17_irhvw")
+
+[node name="FlyingGuy2" parent="Changes/BossDead" instance=ExtResource("13_vy0gq")]
+material = SubResource("ShaderMaterial_tdjdu")
+position = Vector2(256, -704)
+scale = Vector2(1.5, 1.5)
+
+[node name="BossAlive" type="Node2D" parent="Changes"]
+script = ExtResource("19_cf10t")
+condition = 1
+expectedGameState = "c"
+
+[node name="FlyingGuy" parent="Changes/BossAlive" instance=ExtResource("13_vy0gq")]
+material = SubResource("ShaderMaterial_7pnq4")
+position = Vector2(256, -384)
+
+[node name="GoFactory" type="Sprite2D" parent="Changes/BossAlive"]
 position = Vector2(832, -192)
 texture = ExtResource("16_fdkcb")
 
-[node name="GoControlCenter" type="Sprite2D" parent="."]
+[node name="GoControlCenter" type="Sprite2D" parent="Changes/BossAlive"]
 position = Vector2(832, -64)
 texture = ExtResource("17_t361x")
 
-[node name="GoStorage" type="Sprite2D" parent="."]
+[node name="GoStorage" type="Sprite2D" parent="Changes/BossAlive"]
 position = Vector2(832, -128)
 texture = ExtResource("18_w4pn3")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://thkbcnkqvpvj"]
+[gd_scene load_steps=25 format=4 uid="uid://thkbcnkqvpvj"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_6bbdj"]
 [ext_resource type="Shader" path="res://ColorPaletteChanger.gdshader" id="2_731m6"]
@@ -18,6 +18,9 @@
 [ext_resource type="Script" path="res://Scripts/GameStateChange.gd" id="16_o7c4w"]
 [ext_resource type="Texture2D" uid="uid://bf4ckn5tkewfa" path="res://Textures/Backgrounds/GoStorage.png" id="16_tpnvy"]
 [ext_resource type="PackedScene" uid="uid://cvqnkc4p1afu7" path="res://Scenes/Prefabs/AngryWalker.tscn" id="18_jdrw6"]
+[ext_resource type="Texture2D" uid="uid://1kaaquprgoun" path="res://Textures/Backgrounds/LockersFallen.png" id="19_3agqt"]
+[ext_resource type="Texture2D" uid="uid://dsf2sx7b68hkd" path="res://Textures/Backgrounds/Overheadlight.png" id="20_tyfpr"]
+[ext_resource type="Texture2D" uid="uid://xva7d6vj36b5" path="res://Textures/Backgrounds/BigWire.png" id="21_qmmu1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a0xq0"]
 shader = ExtResource("2_731m6")
@@ -25,6 +28,9 @@ shader_parameter/angle = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bubh"]
 size = Vector2(651, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2gixl"]
+size = Vector2(651, 64)
 
 [node name="Restrooms" type="Node2D" node_paths=PackedStringArray("camTracks", "entrances", "stateChanges")]
 script = ExtResource("1_6bbdj")
@@ -85,11 +91,6 @@ z_index = -15
 position = Vector2(-832, -496)
 texture = ExtResource("12_d342i")
 
-[node name="OverheadlightWires2" type="Sprite2D" parent="BackgroundImages"]
-z_index = -15
-position = Vector2(1984, -496)
-texture = ExtResource("12_d342i")
-
 [node name="OverheadlightWires3" type="Sprite2D" parent="BackgroundImages"]
 z_index = -15
 position = Vector2(576, -496)
@@ -104,17 +105,24 @@ texture = ExtResource("13_op780")
 position = Vector2(-960, -192)
 texture = ExtResource("14_slyry")
 
-[node name="GoFactory" type="Sprite2D" parent="."]
-position = Vector2(2112, -192)
-texture = ExtResource("15_586yv")
+[node name="OneWayPlatforms" type="StaticBody2D" parent="."]
+position = Vector2(-64, 0)
+collision_layer = 128
 
-[node name="GoStorage" type="Sprite2D" parent="."]
-position = Vector2(2112, -128)
-texture = ExtResource("16_tpnvy")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OneWayPlatforms"]
+position = Vector2(859, -130.5)
+shape = SubResource("RectangleShape2D_2bubh")
+one_way_collision = true
+
+[node name="Lockers2" type="Sprite2D" parent="OneWayPlatforms"]
+z_index = -45
+position = Vector2(858, 0)
+texture = ExtResource("11_dpryc")
 
 [node name="Changes" type="Node2D" parent="."]
 
 [node name="PreBoss" type="Node2D" parent="Changes"]
+visible = false
 script = ExtResource("16_o7c4w")
 condition = 1
 expectedGameState = "c"
@@ -133,11 +141,6 @@ stateTimer = 1.0
 position = Vector2(-64, 0)
 collision_layer = 128
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Changes/PreBoss/OneWayPlatforms"]
-position = Vector2(859, -130.5)
-shape = SubResource("RectangleShape2D_2bubh")
-one_way_collision = true
-
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Changes/PreBoss/OneWayPlatforms"]
 position = Vector2(1622.5, -128)
 shape = SubResource("RectangleShape2D_2bubh")
@@ -148,28 +151,55 @@ z_index = -45
 position = Vector2(1626, 0)
 texture = ExtResource("11_dpryc")
 
-[node name="Lockers2" type="Sprite2D" parent="Changes/PreBoss/OneWayPlatforms"]
-z_index = -45
-position = Vector2(858, 0)
-texture = ExtResource("11_dpryc")
+[node name="GoFactory" type="Sprite2D" parent="Changes/PreBoss"]
+position = Vector2(2112, -192)
+texture = ExtResource("15_586yv")
+
+[node name="GoStorage" type="Sprite2D" parent="Changes/PreBoss"]
+position = Vector2(2112, -128)
+texture = ExtResource("16_tpnvy")
+
+[node name="OverheadlightWires2" type="Sprite2D" parent="Changes/PreBoss"]
+z_index = -15
+position = Vector2(1984, -496)
+texture = ExtResource("12_d342i")
 
 [node name="PostBoss" type="Node2D" parent="Changes"]
 script = ExtResource("16_o7c4w")
 expectedGameState = "c"
 
 [node name="AngryWalker" parent="Changes/PostBoss" instance=ExtResource("18_jdrw6")]
-position = Vector2(0, 64)
+position = Vector2(-832, 64)
 
 [node name="OneWayPlatforms" type="StaticBody2D" parent="Changes/PostBoss"]
 position = Vector2(-64, 0)
-collision_layer = 128
+collision_layer = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Changes/PostBoss/OneWayPlatforms"]
-position = Vector2(859, -130.5)
-shape = SubResource("RectangleShape2D_2bubh")
-one_way_collision = true
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Changes/PostBoss/OneWayPlatforms"]
+position = Vector2(1622.5, 96)
+shape = SubResource("RectangleShape2D_2gixl")
 
-[node name="Lockers2" type="Sprite2D" parent="Changes/PostBoss/OneWayPlatforms"]
-z_index = -45
-position = Vector2(858, 0)
-texture = ExtResource("11_dpryc")
+[node name="LockersFallen" type="Sprite2D" parent="Changes/PostBoss/OneWayPlatforms"]
+z_index = 14
+position = Vector2(1624, 96)
+texture = ExtResource("19_3agqt")
+
+[node name="ExitSignLeft" type="Sprite2D" parent="Changes/PostBoss"]
+position = Vector2(2112, -192)
+texture = ExtResource("14_slyry")
+
+[node name="OverheadlightWires2" type="Sprite2D" parent="Changes/PostBoss"]
+z_index = -15
+position = Vector2(2048, 79.11)
+rotation = 0.190672
+texture = ExtResource("20_tyfpr")
+
+[node name="BigWire" type="Sprite2D" parent="Changes/PostBoss"]
+position = Vector2(2117.1, -417.9)
+scale = Vector2(1, 24.475)
+texture = ExtResource("21_qmmu1")
+
+[node name="BigWire2" type="Sprite2D" parent="Changes/PostBoss"]
+position = Vector2(1861.85, -449.9)
+scale = Vector2(1, 16.475)
+texture = ExtResource("21_qmmu1")

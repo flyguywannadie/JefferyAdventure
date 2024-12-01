@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://dmdnbqyvieln0"]
+[gd_scene load_steps=47 format=4 uid="uid://dmdnbqyvieln0"]
 
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="1_0f3he"]
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_5md74"]
@@ -32,6 +32,9 @@
 [ext_resource type="Texture2D" uid="uid://c7csrd7agqh8t" path="res://Textures/Backgrounds/FactoryFloorRoom/OverheadLight.png" id="31_0dju0"]
 [ext_resource type="Texture2D" uid="uid://bf4ckn5tkewfa" path="res://Textures/Backgrounds/GoStorage.png" id="31_snvvu"]
 [ext_resource type="Texture2D" uid="uid://bdnu3fbhsfypb" path="res://Textures/Backgrounds/GoControlCenter.png" id="32_s4mcp"]
+[ext_resource type="Script" path="res://Scripts/GameStateChange.gd" id="33_f1xij"]
+[ext_resource type="PackedScene" uid="uid://dh7xlshv1k2mx" path="res://Scenes/Prefabs/flyingGuy.tscn" id="34_k3vc5"]
+[ext_resource type="Shader" path="res://EnemyShader.gdshader" id="35_6244r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgqj1"]
 size = Vector2(5120, 20)
@@ -67,10 +70,16 @@ size = Vector2(362.039, 34.735)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1rwv"]
 size = Vector2(512, 128)
 
-[node name="FactoryFloor" type="Node2D" node_paths=PackedStringArray("camTracks", "entrances")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r3x68"]
+resource_local_to_scene = true
+shader = ExtResource("35_6244r")
+shader_parameter/hit = false
+
+[node name="FactoryFloor" type="Node2D" node_paths=PackedStringArray("camTracks", "entrances", "stateChanges")]
 script = ExtResource("1_5md74")
 camTracks = [NodePath("FactoryCam"), NodePath("VentCam")]
 entrances = [NodePath("ToBoiler"), NodePath("VentToBoiler"), NodePath("ToStorage"), NodePath("VentToStorage")]
+stateChanges = NodePath("Changes")
 
 [node name="MainMap" type="TileMapLayer" parent="."]
 z_index = 15
@@ -211,17 +220,6 @@ position = Vector2(1280, -1088)
 walkDirection = false
 state = 1
 stateTimer = 3.0
-
-[node name="Walker2" parent="." instance=ExtResource("13_66pke")]
-position = Vector2(695, 210)
-state = 1
-stateTimer = 6.0
-
-[node name="Walker3" parent="." instance=ExtResource("13_66pke")]
-position = Vector2(2495, 215)
-walkDirection = false
-state = 1
-stateTimer = 6.0
 
 [node name="ScalableBackgroundColor" type="Sprite2D" parent="."]
 z_index = -135
@@ -500,11 +498,54 @@ shape = SubResource("RectangleShape2D_j1rwv")
 position = Vector2(-512, -32)
 texture = ExtResource("30_cfma0")
 
-[node name="GoStorage" type="Sprite2D" parent="."]
+[node name="Changes" type="Node2D" parent="."]
+
+[node name="BossDead" type="Node2D" parent="Changes"]
+script = ExtResource("33_f1xij")
+expectedGameState = "c"
+
+[node name="FlyingGuy" parent="Changes/BossDead" instance=ExtResource("34_k3vc5")]
+material = SubResource("ShaderMaterial_r3x68")
+position = Vector2(832, -640)
+scale = Vector2(1.5, 1.5)
+
+[node name="FlyingGuy2" parent="Changes/BossDead" instance=ExtResource("34_k3vc5")]
+material = SubResource("ShaderMaterial_r3x68")
+position = Vector2(1728, -640)
+scale = Vector2(1.5, 1.5)
+
+[node name="BiggerWalker" parent="Changes/BossDead" instance=ExtResource("13_66pke")]
+position = Vector2(1280, -64)
+scale = Vector2(1.565, 1.565)
+state = 1
+stateTimer = 6.0
+maxHealth = 6
+
+[node name="ExitSignLeft" type="Sprite2D" parent="Changes/BossDead"]
+position = Vector2(3072, -32)
+texture = ExtResource("30_cfma0")
+
+[node name="BossAlive" type="Node2D" parent="Changes"]
+script = ExtResource("33_f1xij")
+condition = 1
+expectedGameState = "c"
+
+[node name="Walker2" parent="Changes/BossAlive" instance=ExtResource("13_66pke")]
+position = Vector2(695, 210)
+state = 1
+stateTimer = 6.0
+
+[node name="Walker3" parent="Changes/BossAlive" instance=ExtResource("13_66pke")]
+position = Vector2(2495, 215)
+walkDirection = false
+state = 1
+stateTimer = 6.0
+
+[node name="GoStorage" type="Sprite2D" parent="Changes/BossAlive"]
 position = Vector2(3072, -64)
 texture = ExtResource("31_snvvu")
 
-[node name="GoControlCenter" type="Sprite2D" parent="."]
+[node name="GoControlCenter" type="Sprite2D" parent="Changes/BossAlive"]
 position = Vector2(3072, 0)
 texture = ExtResource("32_s4mcp")
 

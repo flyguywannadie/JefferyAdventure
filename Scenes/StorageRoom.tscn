@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://cbgqoxvrxq4k3"]
+[gd_scene load_steps=46 format=4 uid="uid://cbgqoxvrxq4k3"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_pt4yu"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="2_v0erk"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://dkscf1c1caakc" path="res://Textures/Backgrounds/StorageRoomParallax/ShelfTestBombs2.png" id="26_j4235"]
 [ext_resource type="Texture2D" uid="uid://nkwgpcdkya5r" path="res://Textures/Backgrounds/StorageRoomParallax/ShelfTestBombs4.png" id="27_451mh"]
 [ext_resource type="Texture2D" uid="uid://buvoy6prbkq77" path="res://Textures/Backgrounds/FactoryFloorRoom/OverheadLightWires.png" id="28_n2tc0"]
+[ext_resource type="Script" path="res://Scripts/GameStateChange.gd" id="29_davob"]
 [ext_resource type="Texture2D" uid="uid://bn0yjicgqpd6k" path="res://Textures/Backgrounds/FactoryFloorRoom/OverheadLightFront.png" id="29_kdd3d"]
 [ext_resource type="Texture2D" uid="uid://bsiff5o4yuyt6" path="res://Textures/Backgrounds/FactoryFloorRoom/OverheadLightConnector.png" id="30_x7gy2"]
 [ext_resource type="Texture2D" uid="uid://c7csrd7agqh8t" path="res://Textures/Backgrounds/FactoryFloorRoom/OverheadLight.png" id="31_hp4m7"]
@@ -114,10 +115,11 @@ _data = {
 "RESET": SubResource("Animation_xu4k8")
 }
 
-[node name="StorageRoom" type="Node2D" node_paths=PackedStringArray("camTracks", "entrances")]
+[node name="StorageRoom" type="Node2D" node_paths=PackedStringArray("camTracks", "entrances", "stateChanges")]
 script = ExtResource("1_pt4yu")
 camTracks = [NodePath("Storage Room")]
 entrances = [NodePath("ToFactoryFloor"), NodePath("VentToFactory"), NodePath("ToBossRoom")]
+stateChanges = NodePath("Changes")
 
 [node name="MainMap" type="TileMapLayer" parent="."]
 z_index = 15
@@ -213,17 +215,6 @@ z_index = -290
 position = Vector2(448, -160)
 scale = Vector2(10, 6.25)
 texture = ExtResource("10_nktyo")
-
-[node name="Walker" parent="." instance=ExtResource("11_5vdsv")]
-position = Vector2(-492, -558)
-
-[node name="Walker2" parent="." instance=ExtResource("11_5vdsv")]
-position = Vector2(1256, -561)
-walkDirection = false
-
-[node name="Walker3" parent="." instance=ExtResource("11_5vdsv")]
-position = Vector2(448, 473)
-walkDirection = false
 
 [node name="VentOpen" type="Node2D" parent="."]
 position = Vector2(-832, -704)
@@ -330,84 +321,6 @@ texture = ExtResource("18_f7sac")
 script = ExtResource("19_17fvg")
 distance = 4.0
 
-[node name="ShelfTest" type="Sprite2D" parent="Parallax"]
-position = Vector2(-1024, 256)
-texture = ExtResource("21_k0pcu")
-script = ExtResource("19_17fvg")
-distance = 10.0
-
-[node name="ShelfTestConnector" type="Sprite2D" parent="Parallax"]
-position = Vector2(-1024, 256)
-texture = ExtResource("23_0fqbv")
-script = ExtResource("19_17fvg")
-distance = 12.0
-
-[node name="ShelfTestBombs1" type="Sprite2D" parent="Parallax"]
-position = Vector2(-1024, 256)
-texture = ExtResource("22_vecxy")
-script = ExtResource("19_17fvg")
-distance = 14.0
-
-[node name="ShelfTestConnector3" type="Sprite2D" parent="Parallax"]
-position = Vector2(-1024, 256)
-texture = ExtResource("23_0fqbv")
-script = ExtResource("19_17fvg")
-distance = 16.0
-
-[node name="ShelfTestBombs3" type="Sprite2D" parent="Parallax"]
-position = Vector2(-1024, 256)
-texture = ExtResource("24_wcgg4")
-script = ExtResource("19_17fvg")
-distance = 18.0
-
-[node name="ShelfTestConnector4" type="Sprite2D" parent="Parallax"]
-position = Vector2(-1024, 256)
-texture = ExtResource("23_0fqbv")
-script = ExtResource("19_17fvg")
-distance = 20.0
-
-[node name="ShelfTest2" type="Sprite2D" parent="Parallax"]
-position = Vector2(-1024, 256)
-texture = ExtResource("21_y7y8i")
-script = ExtResource("19_17fvg")
-distance = 22.0
-
-[node name="ShelfTestBombs2" type="Sprite2D" parent="Parallax"]
-position = Vector2(-1024, 256)
-texture = ExtResource("26_j4235")
-script = ExtResource("19_17fvg")
-distance = 24.0
-
-[node name="ShelfTestConnector2" type="Sprite2D" parent="Parallax"]
-position = Vector2(-1024, 256)
-texture = ExtResource("23_0fqbv")
-script = ExtResource("19_17fvg")
-distance = 26.0
-
-[node name="ShelfTestBombs4" type="Sprite2D" parent="Parallax"]
-position = Vector2(-1024, 256)
-texture = ExtResource("27_451mh")
-script = ExtResource("19_17fvg")
-distance = 28.0
-
-[node name="ShelfTestConnector5" type="Sprite2D" parent="Parallax"]
-position = Vector2(-1024, 256)
-texture = ExtResource("23_0fqbv")
-script = ExtResource("19_17fvg")
-distance = 30.0
-
-[node name="ShelfTestBombs5" type="Sprite2D" parent="Parallax"]
-position = Vector2(-1024, 256)
-texture = ExtResource("24_wcgg4")
-script = ExtResource("19_17fvg")
-distance = 32.0
-
-[node name="ShelfTest3" type="Sprite2D" parent="Parallax"]
-position = Vector2(-1024, 256)
-texture = ExtResource("21_y7y8i")
-script = ExtResource("19_17fvg")
-distance = 34.0
-
 [node name="OverheadLightWires" type="Sprite2D" parent="Parallax"]
 position = Vector2(-598.5, -550)
 texture = ExtResource("28_n2tc0")
@@ -480,6 +393,54 @@ texture = ExtResource("31_hp4m7")
 script = ExtResource("19_17fvg")
 distance = 22.0
 
+[node name="ShelfTest" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("21_k0pcu")
+script = ExtResource("19_17fvg")
+distance = 10.0
+
+[node name="ShelfTestConnector" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 12.0
+
+[node name="ShelfTestConnector3" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 16.0
+
+[node name="ShelfTestConnector4" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 20.0
+
+[node name="ShelfTest2" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("21_y7y8i")
+script = ExtResource("19_17fvg")
+distance = 22.0
+
+[node name="ShelfTestConnector2" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 26.0
+
+[node name="ShelfTestConnector5" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 30.0
+
+[node name="ShelfTest3" type="Sprite2D" parent="Parallax"]
+position = Vector2(-1024, 256)
+texture = ExtResource("21_y7y8i")
+script = ExtResource("19_17fvg")
+distance = 34.0
+
 [node name="ShelfTest4" type="Sprite2D" parent="Parallax"]
 position = Vector2(1024, 256)
 texture = ExtResource("21_k0pcu")
@@ -494,26 +455,12 @@ flip_h = true
 script = ExtResource("19_17fvg")
 distance = 12.0
 
-[node name="ShelfTestBombs6" type="Sprite2D" parent="Parallax"]
-position = Vector2(1024, 256)
-texture = ExtResource("22_vecxy")
-flip_h = true
-script = ExtResource("19_17fvg")
-distance = 14.0
-
 [node name="ShelfTestConnector7" type="Sprite2D" parent="Parallax"]
 position = Vector2(1024, 256)
 texture = ExtResource("23_0fqbv")
 flip_h = true
 script = ExtResource("19_17fvg")
 distance = 16.0
-
-[node name="ShelfTestBombs7" type="Sprite2D" parent="Parallax"]
-position = Vector2(1024, 256)
-texture = ExtResource("24_wcgg4")
-flip_h = true
-script = ExtResource("19_17fvg")
-distance = 18.0
 
 [node name="ShelfTestConnector8" type="Sprite2D" parent="Parallax"]
 position = Vector2(1024, 256)
@@ -529,13 +476,6 @@ flip_h = true
 script = ExtResource("19_17fvg")
 distance = 22.0
 
-[node name="ShelfTestBombs8" type="Sprite2D" parent="Parallax"]
-position = Vector2(1024, 256)
-texture = ExtResource("26_j4235")
-flip_h = true
-script = ExtResource("19_17fvg")
-distance = 24.0
-
 [node name="ShelfTestConnector9" type="Sprite2D" parent="Parallax"]
 position = Vector2(1024, 256)
 texture = ExtResource("23_0fqbv")
@@ -543,26 +483,12 @@ flip_h = true
 script = ExtResource("19_17fvg")
 distance = 26.0
 
-[node name="ShelfTestBombs9" type="Sprite2D" parent="Parallax"]
-position = Vector2(1024, 256)
-texture = ExtResource("27_451mh")
-flip_h = true
-script = ExtResource("19_17fvg")
-distance = 28.0
-
 [node name="ShelfTestConnector10" type="Sprite2D" parent="Parallax"]
 position = Vector2(1024, 256)
 texture = ExtResource("23_0fqbv")
 flip_h = true
 script = ExtResource("19_17fvg")
 distance = 30.0
-
-[node name="ShelfTestBombs10" type="Sprite2D" parent="Parallax"]
-position = Vector2(1024, 256)
-texture = ExtResource("24_wcgg4")
-flip_h = true
-script = ExtResource("19_17fvg")
-distance = 32.0
 
 [node name="ShelfTest6" type="Sprite2D" parent="Parallax"]
 position = Vector2(1024, 256)
@@ -583,23 +509,11 @@ texture = ExtResource("23_0fqbv")
 script = ExtResource("19_17fvg")
 distance = 12.0
 
-[node name="ShelfTestBombs11" type="Sprite2D" parent="Parallax"]
-position = Vector2(-320, 256)
-texture = ExtResource("22_vecxy")
-script = ExtResource("19_17fvg")
-distance = 14.0
-
 [node name="ShelfTestConnector12" type="Sprite2D" parent="Parallax"]
 position = Vector2(-320, 256)
 texture = ExtResource("23_0fqbv")
 script = ExtResource("19_17fvg")
 distance = 16.0
-
-[node name="ShelfTestBombs12" type="Sprite2D" parent="Parallax"]
-position = Vector2(-320, 256)
-texture = ExtResource("24_wcgg4")
-script = ExtResource("19_17fvg")
-distance = 18.0
 
 [node name="ShelfTestConnector13" type="Sprite2D" parent="Parallax"]
 position = Vector2(-320, 256)
@@ -613,35 +527,17 @@ texture = ExtResource("21_y7y8i")
 script = ExtResource("19_17fvg")
 distance = 22.0
 
-[node name="ShelfTestBombs13" type="Sprite2D" parent="Parallax"]
-position = Vector2(-320, 256)
-texture = ExtResource("26_j4235")
-script = ExtResource("19_17fvg")
-distance = 24.0
-
 [node name="ShelfTestConnector14" type="Sprite2D" parent="Parallax"]
 position = Vector2(-320, 256)
 texture = ExtResource("23_0fqbv")
 script = ExtResource("19_17fvg")
 distance = 26.0
 
-[node name="ShelfTestBombs14" type="Sprite2D" parent="Parallax"]
-position = Vector2(-320, 256)
-texture = ExtResource("27_451mh")
-script = ExtResource("19_17fvg")
-distance = 28.0
-
 [node name="ShelfTestConnector15" type="Sprite2D" parent="Parallax"]
 position = Vector2(-320, 256)
 texture = ExtResource("23_0fqbv")
 script = ExtResource("19_17fvg")
 distance = 30.0
-
-[node name="ShelfTestBombs15" type="Sprite2D" parent="Parallax"]
-position = Vector2(-320, 256)
-texture = ExtResource("24_wcgg4")
-script = ExtResource("19_17fvg")
-distance = 32.0
 
 [node name="ShelfTest9" type="Sprite2D" parent="Parallax"]
 position = Vector2(-320, 256)
@@ -663,26 +559,12 @@ flip_h = true
 script = ExtResource("19_17fvg")
 distance = 12.0
 
-[node name="ShelfTestBombs16" type="Sprite2D" parent="Parallax"]
-position = Vector2(320, 256)
-texture = ExtResource("22_vecxy")
-flip_h = true
-script = ExtResource("19_17fvg")
-distance = 14.0
-
 [node name="ShelfTestConnector17" type="Sprite2D" parent="Parallax"]
 position = Vector2(320, 256)
 texture = ExtResource("23_0fqbv")
 flip_h = true
 script = ExtResource("19_17fvg")
 distance = 16.0
-
-[node name="ShelfTestBombs17" type="Sprite2D" parent="Parallax"]
-position = Vector2(320, 256)
-texture = ExtResource("24_wcgg4")
-flip_h = true
-script = ExtResource("19_17fvg")
-distance = 18.0
 
 [node name="ShelfTestConnector18" type="Sprite2D" parent="Parallax"]
 position = Vector2(320, 256)
@@ -698,13 +580,6 @@ flip_h = true
 script = ExtResource("19_17fvg")
 distance = 22.0
 
-[node name="ShelfTestBombs18" type="Sprite2D" parent="Parallax"]
-position = Vector2(320, 256)
-texture = ExtResource("26_j4235")
-flip_h = true
-script = ExtResource("19_17fvg")
-distance = 24.0
-
 [node name="ShelfTestConnector19" type="Sprite2D" parent="Parallax"]
 position = Vector2(320, 256)
 texture = ExtResource("23_0fqbv")
@@ -712,26 +587,12 @@ flip_h = true
 script = ExtResource("19_17fvg")
 distance = 26.0
 
-[node name="ShelfTestBombs19" type="Sprite2D" parent="Parallax"]
-position = Vector2(320, 256)
-texture = ExtResource("27_451mh")
-flip_h = true
-script = ExtResource("19_17fvg")
-distance = 28.0
-
 [node name="ShelfTestConnector20" type="Sprite2D" parent="Parallax"]
 position = Vector2(320, 256)
 texture = ExtResource("23_0fqbv")
 flip_h = true
 script = ExtResource("19_17fvg")
 distance = 30.0
-
-[node name="ShelfTestBombs20" type="Sprite2D" parent="Parallax"]
-position = Vector2(320, 256)
-texture = ExtResource("24_wcgg4")
-flip_h = true
-script = ExtResource("19_17fvg")
-distance = 32.0
 
 [node name="ShelfTest12" type="Sprite2D" parent="Parallax"]
 position = Vector2(320, 256)
@@ -744,7 +605,311 @@ distance = 34.0
 position = Vector2(-960, 224)
 texture = ExtResource("32_mpb0f")
 
-[node name="GoControlCenter" type="Sprite2D" parent="."]
+[node name="Changes" type="Node2D" parent="."]
+
+[node name="BossDead" type="Node2D" parent="Changes"]
+script = ExtResource("29_davob")
+expectedGameState = "c"
+
+[node name="BiggerWalker" parent="Changes/BossDead" instance=ExtResource("11_5vdsv")]
+position = Vector2(320, 384)
+scale = Vector2(3.21, 3.21)
+state = 1
+maxHealth = 10
+
+[node name="BiggerWalker2" parent="Changes/BossDead" instance=ExtResource("11_5vdsv")]
+position = Vector2(-192, 384)
+scale = Vector2(3.21, 3.21)
+state = 1
+maxHealth = 10
+
+[node name="ParallaxNoBombs" type="Node2D" parent="Changes/BossDead"]
+position = Vector2(448, -192)
+
+[node name="ShelfTestBombs1" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(-1024, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 14.0
+
+[node name="ShelfTestBombs3" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(-1024, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 18.0
+
+[node name="ShelfTestBombs2" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(-1024, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 24.0
+
+[node name="ShelfTestBombs4" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(-1024, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 28.0
+
+[node name="ShelfTestBombs5" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(-1024, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 32.0
+
+[node name="ShelfTestBombs6" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(1024, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 14.0
+
+[node name="ShelfTestBombs7" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(1024, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 18.0
+
+[node name="ShelfTestBombs8" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(1024, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 24.0
+
+[node name="ShelfTestBombs9" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(1024, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 28.0
+
+[node name="ShelfTestBombs10" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(1024, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 32.0
+
+[node name="ShelfTestBombs11" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(-320, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 14.0
+
+[node name="ShelfTestBombs12" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(-320, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 18.0
+
+[node name="ShelfTestBombs13" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(-320, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 24.0
+
+[node name="ShelfTestBombs14" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(-320, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 28.0
+
+[node name="ShelfTestBombs15" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(-320, 256)
+texture = ExtResource("23_0fqbv")
+script = ExtResource("19_17fvg")
+distance = 32.0
+
+[node name="ShelfTestBombs16" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(320, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 14.0
+
+[node name="ShelfTestBombs17" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(320, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 18.0
+
+[node name="ShelfTestBombs18" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(320, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 24.0
+
+[node name="ShelfTestBombs19" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(320, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 28.0
+
+[node name="ShelfTestBombs20" type="Sprite2D" parent="Changes/BossDead/ParallaxNoBombs"]
+position = Vector2(320, 256)
+texture = ExtResource("23_0fqbv")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 32.0
+
+[node name="ExitSignLeft" type="Sprite2D" parent="Changes/BossDead"]
+position = Vector2(1856, 224)
+texture = ExtResource("32_mpb0f")
+
+[node name="BossAlive" type="Node2D" parent="Changes"]
+script = ExtResource("29_davob")
+condition = 1
+expectedGameState = "c"
+
+[node name="Walker" parent="Changes/BossAlive" instance=ExtResource("11_5vdsv")]
+position = Vector2(-492, -558)
+
+[node name="Walker2" parent="Changes/BossAlive" instance=ExtResource("11_5vdsv")]
+position = Vector2(1256, -561)
+walkDirection = false
+
+[node name="Walker3" parent="Changes/BossAlive" instance=ExtResource("11_5vdsv")]
+position = Vector2(448, 473)
+walkDirection = false
+
+[node name="ParallaxBombs" type="Node2D" parent="Changes/BossAlive"]
+position = Vector2(448, -192)
+
+[node name="ShelfTestBombs1" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(-1024, 256)
+texture = ExtResource("22_vecxy")
+script = ExtResource("19_17fvg")
+distance = 14.0
+
+[node name="ShelfTestBombs3" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(-1024, 256)
+texture = ExtResource("24_wcgg4")
+script = ExtResource("19_17fvg")
+distance = 18.0
+
+[node name="ShelfTestBombs2" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(-1024, 256)
+texture = ExtResource("26_j4235")
+script = ExtResource("19_17fvg")
+distance = 24.0
+
+[node name="ShelfTestBombs4" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(-1024, 256)
+texture = ExtResource("27_451mh")
+script = ExtResource("19_17fvg")
+distance = 28.0
+
+[node name="ShelfTestBombs5" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(-1024, 256)
+texture = ExtResource("24_wcgg4")
+script = ExtResource("19_17fvg")
+distance = 32.0
+
+[node name="ShelfTestBombs6" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(1024, 256)
+texture = ExtResource("22_vecxy")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 14.0
+
+[node name="ShelfTestBombs7" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(1024, 256)
+texture = ExtResource("24_wcgg4")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 18.0
+
+[node name="ShelfTestBombs8" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(1024, 256)
+texture = ExtResource("26_j4235")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 24.0
+
+[node name="ShelfTestBombs9" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(1024, 256)
+texture = ExtResource("27_451mh")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 28.0
+
+[node name="ShelfTestBombs10" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(1024, 256)
+texture = ExtResource("24_wcgg4")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 32.0
+
+[node name="ShelfTestBombs11" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(-320, 256)
+texture = ExtResource("22_vecxy")
+script = ExtResource("19_17fvg")
+distance = 14.0
+
+[node name="ShelfTestBombs12" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(-320, 256)
+texture = ExtResource("24_wcgg4")
+script = ExtResource("19_17fvg")
+distance = 18.0
+
+[node name="ShelfTestBombs13" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(-320, 256)
+texture = ExtResource("26_j4235")
+script = ExtResource("19_17fvg")
+distance = 24.0
+
+[node name="ShelfTestBombs14" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(-320, 256)
+texture = ExtResource("27_451mh")
+script = ExtResource("19_17fvg")
+distance = 28.0
+
+[node name="ShelfTestBombs15" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(-320, 256)
+texture = ExtResource("24_wcgg4")
+script = ExtResource("19_17fvg")
+distance = 32.0
+
+[node name="ShelfTestBombs16" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(320, 256)
+texture = ExtResource("22_vecxy")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 14.0
+
+[node name="ShelfTestBombs17" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(320, 256)
+texture = ExtResource("24_wcgg4")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 18.0
+
+[node name="ShelfTestBombs18" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(320, 256)
+texture = ExtResource("26_j4235")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 24.0
+
+[node name="ShelfTestBombs19" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(320, 256)
+texture = ExtResource("27_451mh")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 28.0
+
+[node name="ShelfTestBombs20" type="Sprite2D" parent="Changes/BossAlive/ParallaxBombs"]
+position = Vector2(320, 256)
+texture = ExtResource("24_wcgg4")
+flip_h = true
+script = ExtResource("19_17fvg")
+distance = 32.0
+
+[node name="GoControlCenter" type="Sprite2D" parent="Changes/BossAlive"]
 position = Vector2(1856, 192)
 texture = ExtResource("33_tvbpq")
 

@@ -27,7 +27,7 @@ func aiLogic(delta: float) -> void:
 		movingDirection = -sign(jef.global_position.x - global_position.x)
 		state = 0
 		anims.play("WalkBackwards")
-		if (jefDistance < 200) :
+		if (jefDistance < 300) :
 			shootRocket()
 	else :
 		movingDirection = 0
@@ -35,17 +35,17 @@ func aiLogic(delta: float) -> void:
 		anims.play("Idle")
 	
 	facingDirection = sign(jef.global_position.x - global_position.x)
-	if (jef.global_position.y > global_position.y || jefDistance < 350) :	
+	if (jef.global_position.y > global_position.y || jefDistance < 400) :	
 		launcher.look_at(jef.global_position)
 		if (facingDirection > 0) :
 			launcher.scale = Vector2(1,1)
-			if (jefDistance < 350):
+			if (jefDistance < 400):
 				launcher.rotate(deg_to_rad(15))
 			#launcher.rotate(deg_to_rad(15))
 		else :
 			launcher.scale = Vector2(-1,1)
 			launcher.rotate(deg_to_rad(180))
-			if (jefDistance < 350):
+			if (jefDistance < 400):
 				launcher.rotate(deg_to_rad(-15))
 			#launcher.rotate(deg_to_rad(180-15))
 	
