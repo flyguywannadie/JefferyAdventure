@@ -19,6 +19,7 @@ func endCooldown() -> void:
 func onUse() -> void:
 	#print("weaponUse")
 	startCooldown()
+	playAudio("Slash")
 	#print("SwordSlash")
 	
 	#var test  = Vector2(1500, 0)

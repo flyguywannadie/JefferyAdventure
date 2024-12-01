@@ -192,6 +192,8 @@ func _input(event: InputEvent) -> void:
 		ResetWeapons()
 		Reset()
 		global_position = GameManager.checkpoint.global_position
+		GameManager.piecesGotten = 0
+		GameManager.gameState = ""
 	if (event.is_action_pressed("jef_die")) :
 		takeDamage(10000)
 		

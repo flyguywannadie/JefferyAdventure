@@ -35,7 +35,6 @@ func _ready() -> void:
 	maxHealth = 5 + (10 * (gameProgress + 1))
 	speed += 50 * gameProgress
 	super._ready()
-	
 
 func setKnockback(x:float, y:float):
 	pass

@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 
 func pause():
 	GameManager.PauseGame()
+	
 	visible = true
 	$BlurEffect.material.set("shader_parameter/lod", 0.0)
 

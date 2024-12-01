@@ -1,0 +1,323 @@
+[gd_scene load_steps=25 format=3 uid="uid://cvqnkc4p1afu7"]
+
+[ext_resource type="Script" path="res://Scripts/eAngryWalker.gd" id="1_1lio3"]
+[ext_resource type="PackedScene" uid="uid://b21mgrao055cl" path="res://Scenes/Prefabs/walker_damage_effect.tscn" id="2_jgdln"]
+[ext_resource type="PackedScene" uid="uid://dll6kjn8pplms" path="res://Scenes/Prefabs/Projectiles/Rocket.tscn" id="2_y6ms7"]
+[ext_resource type="Texture2D" uid="uid://bapmddiji6pox" path="res://Textures/AngryWalkerRocketLauncher/idle.png" id="3_q5y0q"]
+[ext_resource type="Material" uid="uid://4qginuh7uhxl" path="res://EnemyMaterial.tres" id="3_u7y1c"]
+[ext_resource type="Texture2D" uid="uid://cjvf0nii6vqhe" path="res://Textures/AngryWalkerRocketLauncher/Hurt.png" id="4_mjl2c"]
+[ext_resource type="Texture2D" uid="uid://bs33bcg4rbf7c" path="res://Textures/AngryWalkerRocketLauncher/Walk1.png" id="5_0aoxm"]
+[ext_resource type="Texture2D" uid="uid://ppbqvquqw5wn" path="res://Textures/AngryWalkerRocketLauncher/Walk2.png" id="6_i8jkv"]
+[ext_resource type="Texture2D" uid="uid://cp3ib36x2fa3c" path="res://Textures/AngryWalkerRocketLauncher/Walk3.png" id="7_8hxqf"]
+[ext_resource type="Texture2D" uid="uid://c540kgvl6wpbl" path="res://Textures/AngryWalkerRocketLauncher/Walk4.png" id="8_7shc0"]
+[ext_resource type="Script" path="res://Scripts/DamageArea.gd" id="10_0we7m"]
+[ext_resource type="Texture2D" uid="uid://sxklajqyayi6" path="res://Textures/AngryWalkerRocketLauncher/RocketLauncher.png" id="11_mawyn"]
+[ext_resource type="AudioStream" uid="uid://csis6np1bgtsa" path="res://Sounds/Hurt2.wav" id="11_o1xtp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epq2w"]
+size = Vector2(71, 100)
+
+[sub_resource type="Animation" id="Animation_3y8mp"]
+resource_name = "Hurt"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_mjl2c")]
+}
+
+[sub_resource type="Animation" id="Animation_m8li8"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_q5y0q")]
+}
+
+[sub_resource type="Animation" id="Animation_5tqps"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_q5y0q")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Launcher:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Launcher:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Launcher/Bulletspawn/GunBoomParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Launcher/RocketLauncher:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(33, -11)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Launcher/RocketLauncher:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_uv52e"]
+resource_name = "Walk"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_0aoxm"), ExtResource("6_i8jkv"), ExtResource("7_8hxqf"), ExtResource("8_7shc0")]
+}
+
+[sub_resource type="Animation" id="Animation_vluy0"]
+resource_name = "WalkBackwards"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_7shc0"), ExtResource("7_8hxqf"), ExtResource("6_i8jkv"), ExtResource("5_0aoxm")]
+}
+
+[sub_resource type="Animation" id="Animation_7wuoc"]
+resource_name = "Shoot"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_mjl2c")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Launcher:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.566667),
+"transitions": PackedFloat32Array(0.0544095, 3.13834, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-46.5, -0.499998), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("Launcher:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.42, 0.7),
+"transitions": PackedFloat32Array(0.120742, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.335103, -0.335103, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Launcher/Bulletspawn/GunBoomParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Launcher/RocketLauncher:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.566667),
+"transitions": PackedFloat32Array(0.0544095, 3.13834, 1),
+"update": 0,
+"values": [Vector2(33, -11), Vector2(-13.5, -11.5), Vector2(33, -11)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Launcher/RocketLauncher:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.433333, 0.7),
+"transitions": PackedFloat32Array(0.120742, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.335103, -0.335103, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e1vjx"]
+_data = {
+"Hurt": SubResource("Animation_3y8mp"),
+"Idle": SubResource("Animation_m8li8"),
+"RESET": SubResource("Animation_5tqps"),
+"Shoot": SubResource("Animation_7wuoc"),
+"Walk": SubResource("Animation_uv52e"),
+"WalkBackwards": SubResource("Animation_vluy0")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1hce3"]
+radius = 44.0
+
+[sub_resource type="Curve" id="Curve_s1r3v"]
+_data = [Vector2(0, 1), 0.0, -2.20759, 0, 0, Vector2(0.969863, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_0kdjo"]
+colors = PackedColorArray(1, 0.605302, 0.124392, 1, 0.60531, 0.418431, 5.77569e-07, 1)
+
+[node name="AngryWalker" type="CharacterBody2D" node_paths=PackedStringArray("anims", "visuals")]
+scale = Vector2(2, 2)
+collision_layer = 2
+collision_mask = 219
+floor_constant_speed = true
+floor_max_angle = 1.0472
+platform_on_leave = 2
+platform_floor_layers = 4278190080
+script = ExtResource("1_1lio3")
+rocket = ExtResource("2_y6ms7")
+anims = NodePath("AnimationPlayer")
+HitEffect = ExtResource("2_jgdln")
+visuals = NodePath("Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -9)
+shape = SubResource("RectangleShape2D_epq2w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("3_u7y1c")
+position = Vector2(0, -43)
+texture = ExtResource("3_q5y0q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e1vjx")
+}
+
+[node name="Damage" type="Area2D" parent="."]
+position = Vector2(-2, 23)
+collision_layer = 32
+script = ExtResource("10_0we7m")
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage"]
+shape = SubResource("CircleShape2D_1hce3")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_o1xtp")
+
+[node name="Launcher" type="Node2D" parent="."]
+
+[node name="RocketLauncher" type="Sprite2D" parent="Launcher"]
+z_index = -1
+position = Vector2(33, -11)
+texture = ExtResource("11_mawyn")
+
+[node name="Bulletspawn" type="Node2D" parent="Launcher"]
+position = Vector2(127, -57)
+
+[node name="GunBoomParticles" type="CPUParticles2D" parent="Launcher/Bulletspawn"]
+emitting = false
+amount = 200
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 30.86
+initial_velocity_min = 100.0
+initial_velocity_max = 3000.0
+linear_accel_min = -10000.0
+linear_accel_max = -5000.0
+damping_max = 100.0
+scale_amount_min = 10.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_s1r3v")
+color_ramp = SubResource("Gradient_0kdjo")
+
+[connection signal="body_entered" from="Damage" to="Damage" method="_on_body_entered"]

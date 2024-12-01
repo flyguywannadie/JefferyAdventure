@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://d322aro5xk1k"]
+[gd_scene load_steps=17 format=3 uid="uid://d322aro5xk1k"]
 
 [ext_resource type="Script" path="res://Scripts/Katana.gd" id="1_xxwqj"]
 [ext_resource type="PackedScene" uid="uid://bnrrqi0kl0764" path="res://Scenes/Prefabs/Projectiles/KatanaSlash.tscn" id="2_rwcp6"]
 [ext_resource type="Shader" path="res://ChargeWeapon.gdshader" id="3_btx3h"]
 [ext_resource type="Texture2D" uid="uid://co44uwbhbet1x" path="res://Textures/KatanaWeapon/idle.png" id="3_m10b4"]
+[ext_resource type="PackedScene" uid="uid://bj71t8q8bbnho" path="res://Scenes/Prefabs/Weapons/Greatsword.tscn" id="3_v7ys8"]
 [ext_resource type="Texture2D" uid="uid://bibgij7fcg6yf" path="res://Textures/KatanaWeapon/KatanaSlash1.png" id="3_vagql"]
 [ext_resource type="Texture2D" uid="uid://ber1f757s7o8t" path="res://Textures/KatanaWeapon/KatanaSlash2.png" id="4_kavcx"]
 [ext_resource type="Texture2D" uid="uid://bcehrjkq6g47r" path="res://Textures/KatanaWeapon/KatanaHold.png" id="5_jc6ws"]
@@ -134,6 +135,7 @@ COOLDOWNLENGTH = 2.0
 visuals = NodePath("Sprite2D")
 attack = ExtResource("2_rwcp6")
 projectileSpawn = NodePath("SlashSpawn")
+dEvo = ExtResource("3_v7ys8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_kxuwt")

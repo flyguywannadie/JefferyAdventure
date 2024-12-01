@@ -30,12 +30,15 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func _hitCharacter(chara: Character):
-	var move = (global_position - myGrapple.projectileSpawn.global_position).normalized() * 1000
+	var move = (global_position - myGrapple.projectileSpawn.global_position).normalized() * 800
 	super._hitCharacter(chara)
 	chara.setKnockback(-move.x, -move.y)
 
 func _hitWall():
-	var move = (global_position - myGrapple.projectileSpawn.global_position).normalized() * 1500
+	if (returnToDie) :
+		return
+	
+	var move = (global_position - myGrapple.projectileSpawn.global_position).normalized() * 1200
 	
 	print(move.y)
 	

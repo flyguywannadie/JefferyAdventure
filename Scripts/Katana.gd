@@ -45,6 +45,7 @@ func onRelease() -> void:
 	pressed = false
 	startCooldown()
 	$AnimationPlayer.play("SwordSlash")
+	playAudio("Slash")
 	#scale = Vector2(1, 1)
 	cooldown = COOLDOWNLENGTH / clampf(totalBonusTime, 1, 3)
 	print("Cooldown Length ", cooldown)

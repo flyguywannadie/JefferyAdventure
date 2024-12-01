@@ -18,7 +18,7 @@ func spawnProjectile()-> void:
 	t.position = (projectileSpawn.global_position - GameManager.jeffery.global_position)
 	attackModifiers(t)
 	GameManager.jeffery.add_child(t)
-
+	t.owner = GameManager.projectileOwner
 
 
 func endCooldown() -> void:

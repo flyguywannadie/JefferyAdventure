@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://bnvs2mkbj80ef"]
+[gd_scene load_steps=16 format=3 uid="uid://bnvs2mkbj80ef"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_lkaii"]
+[ext_resource type="Texture2D" uid="uid://ddxf7ucuxtkhq" path="res://Textures/ChargeBoss/Explosion/Explosion1.png" id="2_8wqny"]
 [ext_resource type="Texture2D" uid="uid://r52iqyxd5e1" path="res://Textures/ChargeBoss/Explosion/Explosion9.png" id="2_575dq"]
 [ext_resource type="Texture2D" uid="uid://bttj5i6g75h14" path="res://Textures/ChargeBoss/Explosion/Explosion2.png" id="3_d7fxt"]
 [ext_resource type="Texture2D" uid="uid://bo1tt3xbe3mgr" path="res://Textures/ChargeBoss/Explosion/Explosion3.png" id="4_jt845"]
@@ -39,7 +40,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.766667),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": ["ExplosionSound"],
+"args": ["ExplosionSound", -10.0],
 "method": &"PlayAudio"
 }, {
 "args": [],
@@ -71,7 +72,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_575dq")]
+"values": [ExtResource("2_8wqny")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -93,6 +94,7 @@ _data = {
 }
 
 [node name="Explosion" type="Area2D"]
+z_index = 100
 scale = Vector2(2, 2)
 collision_layer = 32
 script = ExtResource("1_lkaii")
@@ -102,7 +104,7 @@ persistantEffect = true
 damage = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_575dq")
+texture = ExtResource("2_8wqny")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4im6f")

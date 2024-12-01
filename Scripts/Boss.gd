@@ -12,7 +12,6 @@ var gameProgress: int
 func _ready() -> void:
 	
 	jeffery = GameManager.jeffery
-	GameManager.BossHealthbarSetup(self)
 	
 	#match(randi_range(0, 2)):
 		#0:
@@ -24,6 +23,9 @@ func _ready() -> void:
 	
 	super._ready()
 	pass
+
+func MakeHealthbar():
+	GameManager.BossHealthbarSetup(self)
 
 func spawnProjectile(pos: Vector2, rot: float, selection: int, amount: int = 1) -> void:
 	for x in range(amount):
@@ -38,5 +40,7 @@ func spawnProjectile(pos: Vector2, rot: float, selection: int, amount: int = 1) 
 func _die() -> void:
 	GameManager.BossDied()
 	GameManager.PiecePickedUp(pieceIHold)
+	SoundManager.PlayLoop("SecurityAlert", 0, -15.0, ".mp3")
+	GameManager.Colortint.StartAnim()
 	super._die()
 	pass

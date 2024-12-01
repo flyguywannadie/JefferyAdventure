@@ -6,6 +6,9 @@ class_name jeff_EventTrigger
 @export var whoToCall : Array[jeff_EventCaller]
 
 func Activate() -> void:
+	if (whoToCall.size() <= 0) :
+		return
+	
 	for x in range(whoToCall.size()):
 		if (whoToCall[x].whoICallTo == null) :
 			print(x, " has no one to call")

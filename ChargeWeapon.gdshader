@@ -35,7 +35,7 @@ void fragment() {
 	
 	if (UV.x > charge) {
 		COLOR.xyz += col.xyz;
-		if (COLOR.x >= 1.0 && COLOR.y >= 1.0 && COLOR.z >= 1.0) {
+		if (COLOR.x > 1.0 || COLOR.y > 1.0 || COLOR.z > 1.0) {
 			COLOR = vec4(0.0,0.0,0.0,1.0);
 		}
 	}

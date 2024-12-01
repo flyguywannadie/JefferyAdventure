@@ -1,6 +1,10 @@
 extends ColorRect
+class_name ColorTint
 
 @export var active: bool = true
+
+func _ready() -> void:
+	GameManager.Colortint = self
 
 func _process(delta: float) -> void:
 	
@@ -39,4 +43,6 @@ func _process(delta: float) -> void:
 		print(currentColor)
 		print("%x" % currentColor.to_rgba32())
 		
-		
+
+func StartAnim():
+	$"../AnimationPlayer".play("Alarm")

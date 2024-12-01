@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dfc6qfm7albpd" path="res://Textures/BulletHitEffect.png" id="2_bwosi"]
 
 [node name="HitWallEffect" type="Node2D"]
+z_index = 100
 script = ExtResource("1_w5apb")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]

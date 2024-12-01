@@ -54,8 +54,8 @@ func _physics_process(delta: float) -> void:
 func ApplySlowdown(delta: float) -> void:
 	motion = lerp(motion, Vector2(0,0), slowdown * delta)
 
-func PlayAudio(name: String) -> void:
-	SoundManager.PlaySound(name)
+func PlayAudio(name: String, Volume: float = 0.0) -> void:
+	SoundManager.PlaySound(name, Volume)
 
 func _bulletDeath() -> void:
 	if (deathEffect != null):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://cbgqoxvrxq4k3"]
+[gd_scene load_steps=45 format=4 uid="uid://cbgqoxvrxq4k3"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_pt4yu"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="2_v0erk"]
@@ -31,6 +31,8 @@
 [ext_resource type="Texture2D" uid="uid://bn0yjicgqpd6k" path="res://Textures/Backgrounds/FactoryFloorRoom/OverheadLightFront.png" id="29_kdd3d"]
 [ext_resource type="Texture2D" uid="uid://bsiff5o4yuyt6" path="res://Textures/Backgrounds/FactoryFloorRoom/OverheadLightConnector.png" id="30_x7gy2"]
 [ext_resource type="Texture2D" uid="uid://c7csrd7agqh8t" path="res://Textures/Backgrounds/FactoryFloorRoom/OverheadLight.png" id="31_hp4m7"]
+[ext_resource type="Texture2D" uid="uid://jdbvcwxi3uv3" path="res://Textures/Backgrounds/ExitSignLeft.png" id="32_mpb0f"]
+[ext_resource type="Texture2D" uid="uid://bdnu3fbhsfypb" path="res://Textures/Backgrounds/GoControlCenter.png" id="33_tvbpq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_005up"]
 resource_local_to_scene = true
@@ -737,6 +739,14 @@ texture = ExtResource("21_y7y8i")
 flip_h = true
 script = ExtResource("19_17fvg")
 distance = 34.0
+
+[node name="ExitSignLeft" type="Sprite2D" parent="."]
+position = Vector2(-960, 224)
+texture = ExtResource("32_mpb0f")
+
+[node name="GoControlCenter" type="Sprite2D" parent="."]
+position = Vector2(1856, 192)
+texture = ExtResource("33_tvbpq")
 
 [connection signal="body_entered" from="Overventhide" to="Overventhide/OverVent" method="_on_body_entered"]
 [connection signal="body_exited" from="Overventhide" to="Overventhide/OverVent" method="_on_body_exited"]

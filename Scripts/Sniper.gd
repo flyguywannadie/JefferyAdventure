@@ -24,7 +24,10 @@ func onRelease() -> void:
 	cooldown -= charge * 0.75
 	visuals.material.set("shader_parameter/charge", 1.0)
 	startCooldown()
+	activateParticles()
 	spawnProjectile()
+	SpawnShootEffect()
+	playAudio("Shoot")
 	$AnimationPlayer.play("GunShoot")
 	charge = 0
 	pressed = false
