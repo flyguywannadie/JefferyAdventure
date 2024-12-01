@@ -6,6 +6,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	SoundManager.StopLoop(0)
 	#the_menu.visible = true
 	#options.visible = false

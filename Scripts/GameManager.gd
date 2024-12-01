@@ -84,7 +84,7 @@ func firstLevelStuff() -> void:
 	checkpoint = currentLevel.getEntranceWithID(lastEntrance).closestCheckpoint
 	jeffery.global_position = checkpoint.global_position
 	jeffery.Reset()
-	SoundManager.PlayLoop("LevelMusic", 0, -10.0)
+	SoundManager.PlayLoop("LevelMusic", 0, -15.0)
 
 func endLevels() -> void:
 	if (currentLevel != null) :
@@ -219,10 +219,11 @@ func PiecePickedUp(piece: String) -> void:
 	pass
 
 func PauseGame():
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().paused = true
 
 func ResumeGame():
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	get_tree().paused = false
 
 func AddToGameState(added: String) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://im4fbphekhqn"]
+[gd_scene load_steps=11 format=4 uid="uid://im4fbphekhqn"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_8fum3"]
 [ext_resource type="TileSet" uid="uid://c7c4r7tpew8ns" path="res://Tilemaps/TestTileMap_Deadly.tres" id="2_ksmja"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cewaplmu1oeup" path="res://Textures/UnderConstruction.png" id="6_4xlgt"]
 [ext_resource type="Shader" path="res://ColorPaletteChanger.gdshader" id="7_jtxdu"]
 [ext_resource type="Texture2D" uid="uid://dmxv8enp8sofa" path="res://Textures/Backgrounds/GoAway.png" id="8_4vqva"]
+[ext_resource type="Script" path="res://Scripts/ShaderShowoff.gd" id="9_m8ptt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_smp8a"]
 shader = ExtResource("7_jtxdu")
@@ -52,3 +53,6 @@ tile_set = ExtResource("2_ksmja")
 material = SubResource("ShaderMaterial_smp8a")
 position = Vector2(960, -64)
 texture = ExtResource("8_4vqva")
+
+[node name="ShaderShowoff" type="Node2D" parent="."]
+script = ExtResource("9_m8ptt")

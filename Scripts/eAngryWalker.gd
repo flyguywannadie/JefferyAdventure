@@ -14,6 +14,13 @@ var jef : Jeffery
 
 func _ready() -> void:
 	jef = GameManager.GetJeffery()
+	facingDirection = sign(jef.global_position.x - global_position.x)
+	if (facingDirection > 0) :
+		launcher.scale = Vector2(1,1)
+		visuals.flip_h = false
+	else :
+		launcher.scale = Vector2(-1,1)
+		visuals.flip_h = true
 	super._ready()
 
 func aiLogic(delta: float) -> void:
