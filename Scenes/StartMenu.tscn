@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://b3wn0yj7sfv05"]
+[gd_scene load_steps=53 format=3 uid="uid://b3wn0yj7sfv05"]
 
 [ext_resource type="Script" path="res://Scripts/StartMenu.gd" id="1_ylkdf"]
 [ext_resource type="FontFile" uid="uid://56kabaq45qkg" path="res://Textures/Font.png" id="2_7yqlb"]
@@ -38,6 +38,10 @@
 [ext_resource type="Texture2D" uid="uid://1jagyd1padex" path="res://Textures/OptionsMenu/WalkerForOptions/BackButton2.png" id="34_8tbkn"]
 [ext_resource type="PackedScene" uid="uid://cwldumg56ocif" path="res://Scenes/Prefabs/WalkerOptions.tscn" id="34_re0b8"]
 [ext_resource type="Texture2D" uid="uid://c8yyk3evcer62" path="res://Textures/OptionsMenu/WalkerForOptions/BackButtonNonHover2.png" id="35_3qybn"]
+[ext_resource type="Shader" path="res://InverseColor.gdshader" id="39_gwioa"]
+[ext_resource type="Texture2D" uid="uid://cvu8iiyoobbrs" path="res://Textures/JefferyCursor.png" id="39_kakxm"]
+[ext_resource type="Script" path="res://Scripts/Cursor.gd" id="40_xw7ul"]
+[ext_resource type="Texture2D" uid="uid://bbivh3xjjojja" path="res://Textures/JefferyCursorMenu.png" id="41_3adsr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ay2g"]
 shader = ExtResource("31_8xqpo")
@@ -86,7 +90,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_y7urk"]
 resource_name = "GoToOptions"
-length = 2.4
+length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -95,7 +99,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.482968, 1),
+"transitions": PackedFloat32Array(0.482, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(-2129, 0)]
 }
@@ -106,7 +110,7 @@ tracks/1/path = NodePath("Options:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1, 2),
+"times": PackedFloat32Array(0.5, 1.5),
 "transitions": PackedFloat32Array(1.93187, 1),
 "update": 0,
 "values": [Vector2(2109, 382), Vector2(640, 384)]
@@ -145,6 +149,10 @@ _data = {
 "GoToOptions": SubResource("Animation_y7urk"),
 "RESET": SubResource("Animation_s0tru")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_inb52"]
+shader = ExtResource("39_gwioa")
+shader_parameter/active = false
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -387,13 +395,29 @@ offset_right = 517.852
 offset_bottom = 96.9893
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 50
 alignment = 1
 
-[node name="CheckBox" type="CheckBox" parent="Options/OptionsMenu"]
+[node name="Label" type="Label" parent="Options/OptionsMenu"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_7yqlb")
 theme_override_font_sizes/font_size = 32
-text = "Testing Option"
+text = "Volume
+"
+
+[node name="HSlider" type="HSlider" parent="Options/OptionsMenu/Label"]
+layout_mode = 2
+offset_top = 36.0
+offset_right = 620.0
+offset_bottom = 52.0
+max_value = 1.0
+step = 0.01
+
+[node name="Fullscreen" type="CheckBox" parent="Options/OptionsMenu"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7yqlb")
+theme_override_font_sizes/font_size = 32
+text = "Fullscreen"
 
 [node name="BackOptions" type="TextureButton" parent="Options"]
 layout_mode = 1
@@ -457,6 +481,15 @@ texture = ExtResource("32_f5lqi")
 libraries = {
 "": SubResource("AnimationLibrary_hmsut")
 }
+
+[node name="Cursor" type="Sprite2D" parent="."]
+top_level = true
+z_index = 1000
+material = SubResource("ShaderMaterial_inb52")
+texture = ExtResource("39_kakxm")
+script = ExtResource("40_xw7ul")
+menu = ExtResource("41_3adsr")
+game = ExtResource("39_kakxm")
 
 [connection signal="pressed" from="MainMenu/TheMenu/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MainMenu/TheMenu/Start" to="MainMenu/TheMenu/Start" method="_on_pressed"]

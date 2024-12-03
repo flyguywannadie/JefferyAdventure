@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://d0fnuvd744d6r"]
+[gd_scene load_steps=28 format=4 uid="uid://d0fnuvd744d6r"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_8pabn"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="2_6xkpd"]
@@ -38,6 +38,11 @@ shader_parameter/fade = 1.0
 size = Vector2(1312.39, 45.2548)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tdjdu"]
+resource_local_to_scene = true
+shader = ExtResource("14_lwsoy")
+shader_parameter/hit = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e5qpo"]
 resource_local_to_scene = true
 shader = ExtResource("14_lwsoy")
 shader_parameter/hit = false
@@ -198,7 +203,7 @@ position = Vector2(832, -64)
 texture = ExtResource("17_irhvw")
 
 [node name="FlyingGuy2" parent="Changes/BossDead" instance=ExtResource("13_vy0gq")]
-material = SubResource("ShaderMaterial_tdjdu")
+material = SubResource("ShaderMaterial_e5qpo")
 position = Vector2(256, -704)
 scale = Vector2(1.5, 1.5)
 

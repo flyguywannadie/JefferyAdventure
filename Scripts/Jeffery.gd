@@ -196,6 +196,8 @@ func _input(event: InputEvent) -> void:
 		GameManager.gameState = ""
 	if (event.is_action_pressed("jef_die")) :
 		takeDamage(10000)
+	if (event.is_action_pressed("jef_heal")) :
+		health = maxHealth
 		
 
 func takeDamage(damage: int):

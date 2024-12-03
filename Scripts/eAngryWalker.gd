@@ -34,7 +34,7 @@ func aiLogic(delta: float) -> void:
 		movingDirection = -sign(jef.global_position.x - global_position.x)
 		state = 0
 		anims.play("WalkBackwards")
-		if (jefDistance < 300) :
+		if (jefDistance < 300 && health < maxHealth) :
 			shootRocket()
 	else :
 		movingDirection = 0

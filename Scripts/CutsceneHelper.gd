@@ -11,7 +11,7 @@ func StartCutscene():
 	cutsceneAnimator.play("StartCutscene")
 
 func PlayMusic():
-	SoundManager.PlayLoop("BossMusic", 0, 0.0)
+	SoundManager.PlayLoop("BossMusic", 0, -7.0)
 
 func EndCutscene():
 	GameManager.GetGameCamera().changeTrack(EndCameraTrack, true)

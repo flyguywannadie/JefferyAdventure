@@ -10,6 +10,7 @@ var prevLevel: Room
 
 var projectileOwner: Node2D
 var Colortint : ColorTint 
+var Cursor : GameCursor
 
 var prevJefferyPos: Vector2
 var nextJefferyPos: Vector2
@@ -33,7 +34,7 @@ var piecesGotten: int = 0
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	#
 	#for child in get_tree().root.get_child(0).get_children():
 		#if child is GameCamera:
@@ -85,6 +86,7 @@ func firstLevelStuff() -> void:
 	jeffery.global_position = checkpoint.global_position
 	jeffery.Reset()
 	SoundManager.PlayLoop("LevelMusic", 0, -15.0)
+	UseGameCursor()
 
 func endLevels() -> void:
 	if (currentLevel != null) :
@@ -111,6 +113,7 @@ func addLevel(levelName: String) -> void:
 	projectileOwner.add_child(level)
 	level.owner = projectileOwner
 	currentLevel = level as Room
+	currentLevel.gameStateChanges(gameState)
 
 func SwapRoom(roomName: String, enterDirection: float, entranceID: int):
 	# pause the game
@@ -118,7 +121,6 @@ func SwapRoom(roomName: String, enterDirection: float, entranceID: int):
 	# add the new level
 	addLevel(roomName)
 	#jeffery.process_mode = Node.PROCESS_MODE_DISABLED
-	currentLevel.gameStateChanges(gameState)
 	var prevEntrance = prevLevel.getEntranceWithID(entranceID)
 	var newEntrance = currentLevel.getEntranceWithID(entranceID)
 	lastEntrance = entranceID
@@ -218,12 +220,16 @@ func PiecePickedUp(piece: String) -> void:
 	evolutionScreen.StartEvolution(piece)
 	pass
 
+func UseGameCursor():
+	Cursor.GameCursor()
+
+func UseMenuCursor():
+	Cursor.MenuCursor()
+
 func PauseGame():
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().paused = true
 
 func ResumeGame():
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	get_tree().paused = false
 
 func AddToGameState(added: String) -> void:

@@ -16,12 +16,14 @@ func _physics_process(delta: float) -> void:
 
 func nowPauseGame() -> void:
 	GameManager.PauseGame()
+	GameManager.UseMenuCursor()
 
 func buttonPressed() -> void:
 	visible = false
 
 func _on_retry_pressed() -> void:
 	$AnimationPlayer.play("Fadeout")
+	GameManager.UseGameCursor()
 	GameManager.JefferyRetry()
 
 func _on_quit_pressed() -> void:

@@ -15,12 +15,13 @@ func _process(delta: float) -> void:
 
 func pause():
 	GameManager.PauseGame()
-	
+	GameManager.UseMenuCursor()
 	visible = true
 	$BlurEffect.material.set("shader_parameter/lod", 0.0)
 
 func resume():
 	GameManager.ResumeGame()
+	GameManager.UseGameCursor()
 	visible = false
 
 func _on_resume_pressed() -> void:

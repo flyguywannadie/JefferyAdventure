@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dlbxpobs567bb"]
+[gd_scene load_steps=34 format=4 uid="uid://dlbxpobs567bb"]
 
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="1_e637h"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="1_pql6c"]
@@ -11,6 +11,18 @@
 [ext_resource type="Texture2D" uid="uid://caxyb073yd38h" path="res://Textures/Backgrounds/StartingRoomBackground.png" id="9_544oq"]
 [ext_resource type="Texture2D" uid="uid://bkek8pwddlqm5" path="res://Textures/Backgrounds/GoBathroom.png" id="10_34i73"]
 [ext_resource type="Texture2D" uid="uid://byf5fcuti3jus" path="res://Textures/Backgrounds/GoFactory.png" id="11_lcm70"]
+[ext_resource type="Script" path="res://Scripts/GameStateChange.gd" id="12_u68m3"]
+[ext_resource type="Script" path="res://Scripts/Jeff_InteractionEventTrigger.gd" id="13_jhun4"]
+[ext_resource type="Texture2D" uid="uid://dmi1anlgc6jn0" path="res://Textures/WButton.png" id="14_grd7j"]
+[ext_resource type="Script" path="res://Scripts/jeff_EventCaller.gd" id="15_7ymuv"]
+[ext_resource type="Script" path="res://Scripts/EndingSequencegd.gd" id="16_5wwpr"]
+[ext_resource type="Shader" path="res://FadingShader.gdshader" id="17_8ut6j"]
+[ext_resource type="Texture2D" uid="uid://bcy6orkxn6on6" path="res://Textures/Backgrounds/Board.png" id="18_6mptq"]
+[ext_resource type="Texture2D" uid="uid://cc8jr31r741qi" path="res://Textures/JefferyEndScreen.png" id="18_25tw2"]
+[ext_resource type="Texture2D" uid="uid://dfiueyl040bmv" path="res://Textures/JefferyEndScreenTitle.png" id="19_aaytk"]
+[ext_resource type="Texture2D" uid="uid://qxf2glqql5en" path="res://Textures/JefferyTitleSequence/QuitButton.png" id="20_i3agt"]
+[ext_resource type="Script" path="res://Scenes/ButtonSpriteChanger.gd" id="21_c00d0"]
+[ext_resource type="Texture2D" uid="uid://1nd70v450kkf" path="res://Textures/JefferyTitleSequence/QuitButtonNonHover.png" id="22_kfyar"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_serve"]
 size = Vector2(553.058, 45.2549)
@@ -24,14 +36,165 @@ size = Vector2(549.801, 45.2548)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5rc03"]
 size = Vector2(384, 22.6274)
 
-[node name="StartingRoom" type="Node2D" node_paths=PackedStringArray("camTracks", "entrances")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m2ckg"]
+size = Vector2(418, 192)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_chbia"]
+shader = ExtResource("17_8ut6j")
+shader_parameter/fade = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fh0he"]
+shader = ExtResource("17_8ut6j")
+shader_parameter/fade = 0.0
+
+[sub_resource type="Animation" id="Animation_xvex2"]
+resource_name = "EndingScene"
+length = 7.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:material:shader_parameter/fade")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2, 4.5),
+"transitions": PackedFloat32Array(0.450625, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/JefferyEnd:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/JefferyEnd2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/JefferyEnd2:material:shader_parameter/fade")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5, 6.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Back To Title:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(7.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_u35ch"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:material:shader_parameter/fade")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/JefferyEnd:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/JefferyEnd2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/JefferyEnd2:material:shader_parameter/fade")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Back To Title:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rawss"]
+_data = {
+"EndingScene": SubResource("Animation_xvex2"),
+"RESET": SubResource("Animation_u35ch")
+}
+
+[node name="StartingRoom" type="Node2D" node_paths=PackedStringArray("camTracks", "entrances", "stateChanges")]
 script = ExtResource("1_e637h")
 camTracks = [NodePath("CameraTrack")]
 entrances = [NodePath("Doorway"), NodePath("Doorway2")]
+stateChanges = NodePath("Changes")
 
 [node name="Main Level" type="TileMapLayer" parent="."]
 z_index = 22
 tile_map_data = PackedByteArray("AAD7//f/AQABAAIAAAD8//f/AQABAAIAAAD9//f/AQABAAIAAAD+//f/AQABAAIAAAD///f/AQABAAIAAAAAAPf/AQABAAIAAAABAPf/AQABAAIAAAACAPf/AQABAAIAAAADAPf/AQABAAIAAAAEAPf/AQABAAIAAAAFAPf/AQABAAIAAAAGAPf/AQAEAAIAAAD7//b/AQADAAAAAAD8//b/AQADAAAAAAD9//b/AQADAAAAAAD+//b/AQADAAAAAAD///b/AQADAAAAAAAAAPb/AQADAAAAAAABAPb/AQADAAAAAAACAPb/AQADAAAAAAADAPb/AQADAAAAAAAEAPb/AQADAAAAAAAFAPb/AQADAAAAAAAGAPb/AQADAAAAAAD7/wEAAQACAAEAAAD7/wIAAQACAAEAAAD7/wMAAQACAAEAAAD7/wQAAQACAAEAAAD7/wUAAQACAAEAAAD7/wYAAQABAAIAAAD8/wEAAQACAAEAAAD8/wIAAQACAAEAAAD8/wMAAQACAAEAAAD8/wQAAQACAAEAAAD8/wUAAQACAAEAAAD8/wYAAQABAAIAAAD9/wEAAQACAAEAAAD9/wIAAQACAAEAAAD9/wMAAQACAAEAAAD9/wQAAQACAAEAAAD9/wUAAQACAAEAAAD9/wYAAQABAAIAAAD+/wEAAQACAAEAAAD+/wIAAQACAAEAAAD+/wMAAQACAAEAAAD+/wQAAQACAAEAAAD+/wUAAQACAAEAAAD+/wYAAQABAAIAAAD//wEAAQACAAEAAAD//wIAAQACAAEAAAD//wMAAQACAAEAAAD//wQAAQACAAEAAAD//wUAAQACAAEAAAD//wYAAQABAAIAAAAAAAEAAQACAAEAAAAAAAIAAQACAAEAAAAAAAMAAQACAAEAAAAAAAQAAQACAAEAAAAAAAUAAQACAAEAAAAAAAYAAQABAAIAAAABAAEAAQACAAEAAAABAAIAAQACAAEAAAABAAMAAQACAAEAAAABAAQAAQACAAEAAAABAAUAAQACAAEAAAABAAYAAQABAAIAAAACAAEAAQACAAEAAAACAAIAAQACAAEAAAACAAMAAQACAAEAAAACAAQAAQACAAEAAAACAAUAAQACAAEAAAACAAYAAQABAAIAAAADAAEAAQACAAEAAAADAAIAAQACAAEAAAADAAMAAQACAAEAAAADAAQAAQACAAEAAAADAAUAAQACAAEAAAADAAYAAQABAAIAAAAEAAEAAQACAAEAAAAEAAIAAQACAAEAAAAEAAMAAQACAAEAAAAEAAQAAQACAAEAAAAEAAUAAQACAAEAAAAEAAYAAQABAAIAAAAFAAEAAQACAAEAAAAFAAIAAQACAAEAAAAFAAMAAQACAAEAAAAFAAQAAQACAAEAAAAFAAUAAQACAAEAAAAFAAYAAQABAAIAAAAGAAEAAQACAAEAAAAGAAIAAQACAAEAAAAGAAMAAQACAAEAAAAGAAQAAQACAAEAAAAGAAUAAQACAAEAAAAGAAYAAQABAAIAAAD7/wAAAQADAAAAAAD8/wAAAQADAAAAAAD9/wAAAQADAAAAAAD+/wAAAQADAAAAAAD//wAAAQADAAAAAAAAAAAAAQADAAAAAAABAAAAAQADAAAAAAACAAAAAQADAAAAAAADAAAAAQADAAAAAAAEAAAAAQADAAAAAAAFAAAAAQADAAAAAAAGAAAAAQADAAAAAAAHAPb/AQADAAAAAAAHAPf/AQACAAEAAAAHAAAAAQADAAAAAAAHAAEAAQACAAEAAAAHAAIAAQACAAEAAAAHAAMAAQACAAEAAAAHAAQAAQACAAEAAAAHAAUAAQACAAEAAAAHAAYAAQABAAIAAAAIAPb/AQADAAAAAAAIAPf/AQACAAEAAAAIAPj/AQACAAEAAAAIAAAAAQADAAAAAAAIAAEAAQACAAEAAAAIAAIAAQACAAEAAAAIAAMAAQACAAEAAAAIAAQAAQACAAEAAAAIAAUAAQACAAEAAAAIAAYAAQABAAIAAAAGAPj/AQAEAAMAAAAHAPj/AQAEAAIAAAAHAPn/AQABAAAAAAAHAPr/AQABAAAAAAAHAPv/AQABAAAAAAAHAPz/AQAAAAIAAAAIAPn/AQACAAEAAAAIAPr/AQACAAEAAAAIAPv/AQACAAEAAAAIAPz/AQABAAIAAAD6//b/AQADAAAAAAD6//f/AQABAAIAAAD6/wAAAQADAAAAAAD6/wEAAQACAAEAAAD6/wIAAQACAAEAAAD6/wMAAQACAAEAAAD6/wQAAQACAAEAAAD6/wUAAQACAAEAAAD6/wYAAQABAAIAAAD4//b/AQADAAAAAAD4//f/AQACAAEAAAD4/wAAAQADAAAAAAD4/wEAAQACAAEAAAD4/wIAAQACAAEAAAD4/wMAAQACAAEAAAD4/wQAAQACAAEAAAD4/wUAAQACAAEAAAD4/wYAAQABAAIAAAD5//b/AQADAAAAAAD5//f/AQAFAAMAAAD5/wAAAQADAAAAAAD5/wEAAQACAAEAAAD5/wIAAQACAAEAAAD5/wMAAQACAAEAAAD5/wQAAQACAAEAAAD5/wUAAQACAAEAAAD5/wYAAQABAAIAAAD3//b/AQADAAAAAAD3//f/AQACAAEAAAD3//j/AQACAAEAAAD3/wAAAQADAAAAAAD3/wEAAQACAAEAAAD3/wIAAQACAAEAAAD3/wMAAQACAAEAAAD3/wQAAQACAAEAAAD3/wUAAQACAAEAAAD3/wYAAQABAAIAAAD3//n/AQACAAEAAAD3//r/AQACAAEAABD3//v/AQACAAEAAAD3//z/AQABAAIAAAD4//j/AQAFAAMAAAD4//n/AQADAAIAAAD4//r/AQABAAAAABD4//v/AQADAAIAAAD4//z/AQADAAMAAAD5//j/AQAGAAMAAAA=")
+tile_set = ExtResource("1_pql6c")
+
+[node name="OneWayPlatforms" type="TileMapLayer" parent="."]
+z_index = 15
+position = Vector2(128, 128)
+tile_map_data = PackedByteArray("AAD6//v/AQABAAgAAAD7//v/AQABAAgAAAD8//v/AQABAAgAAAD9//v/AQACAAgAAAD9//z/AQAFAAgAAAD8//z/AQABAAkAAAD7//z/AQABAAkAAAD6//z/AQABAAkAAAD5//z/AQADAAgAAAD5//n/AQADAAgAAAD6//n/AQABAAkAAAD7//n/AQABAAkAAAD8//n/AQABAAkAAAD9//n/AQAFAAgAAAD9//j/AQACAAgAAAD8//j/AQABAAgAAAD7//j/AQABAAgAAAD6//j/AQABAAgAAAD5//j/AQAAAAgAAAD5//v/AQAAAAgAAAD5//3/AQADAAkAAAD9//3/AQADAAkAAAD9//7/AQADAAkAAAD5//7/AQADAAkAAAD9//r/AQADAAkAAAD5//r/AQADAAkAAAD9//f/AQADAAkAAAD5//f/AQADAAkAAAD9//b/AQADAAkAAAD5//b/AQADAAkAAAA=")
 tile_set = ExtResource("1_pql6c")
 
 [node name="CameraTrack" parent="." instance=ExtResource("2_upn7u")]
@@ -51,12 +214,6 @@ z_index = 15
 position = Vector2(128, 128)
 tile_map_data = PackedByteArray("AAD7//3/AQAIAAkAAAD7//7/AQAIAAMAAAD8//z/AQAGAAkAAAD8//3/AQAIAAMAAAD6//3/AQAIAAgAAAD6//7/AQAHAAMAAAD7//z/AQAIAAgAAAD8//v/AQAGAAgAAAD6//r/AQAIAAgAAAD6//v/AQAHAAMAAAD7//n/AQAIAAgAAAD7//r/AQAIAAkAAAD7//v/AQAIAAMAAAD8//j/AQAGAAgAAAD8//n/AQAGAAkAAAD8//r/AQAIAAMAAAD6//f/AQAIAAgAAAD6//j/AQAHAAMAAAD7//b/AQAIAAgAAAD7//f/AQAIAAkAAAD7//j/AQAIAAMAAAD8//X/AQAGAAgAAAD8//b/AQAGAAkAAAD8//f/AQAIAAMAAAD9//v/AQADAAkAAAD9//z/AQADAAkAAAD5//v/AQADAAkAAAD5//z/AQADAAkAAAD9//j/AQADAAkAAAD9//n/AQADAAkAAAD5//j/AQADAAkAAAD5//n/AQADAAkAAAA=")
 tile_set = ExtResource("6_bdopg")
-
-[node name="OneWayPlatforms" type="TileMapLayer" parent="."]
-z_index = 15
-position = Vector2(128, 128)
-tile_map_data = PackedByteArray("AAD6//v/AQABAAgAAAD7//v/AQABAAgAAAD8//v/AQABAAgAAAD9//v/AQACAAgAAAD9//z/AQAFAAgAAAD8//z/AQABAAkAAAD7//z/AQABAAkAAAD6//z/AQABAAkAAAD5//z/AQADAAgAAAD5//n/AQADAAgAAAD6//n/AQABAAkAAAD7//n/AQABAAkAAAD8//n/AQABAAkAAAD9//n/AQAFAAgAAAD9//j/AQACAAgAAAD8//j/AQABAAgAAAD7//j/AQABAAgAAAD6//j/AQABAAgAAAD5//j/AQAAAAgAAAD5//v/AQAAAAgAAAD5//3/AQADAAkAAAD9//3/AQADAAkAAAD9//7/AQADAAkAAAD5//7/AQADAAkAAAD9//r/AQADAAkAAAD5//r/AQADAAkAAAD9//f/AQADAAkAAAD5//f/AQADAAkAAAD9//b/AQADAAkAAAD5//b/AQADAAkAAAA=")
-tile_set = ExtResource("1_pql6c")
 
 [node name="HallwayWalls" type="TileMapLayer" parent="."]
 z_index = -1
@@ -113,3 +270,108 @@ texture = ExtResource("10_34i73")
 [node name="GoFactory" type="Sprite2D" parent="."]
 position = Vector2(704, -384)
 texture = ExtResource("11_lcm70")
+
+[node name="Changes" type="Node2D" parent="."]
+
+[node name="EndGame" type="Node2D" parent="Changes"]
+script = ExtResource("12_u68m3")
+expectedGameState = "c"
+
+[node name="VentOpen" type="Node2D" parent="Changes/EndGame"]
+position = Vector2(242, -174)
+
+[node name="InteractionArea" type="Area2D" parent="Changes/EndGame/VentOpen" node_paths=PackedStringArray("whoToCall")]
+collision_layer = 0
+script = ExtResource("13_jhun4")
+interactAction = "jef_up"
+whoToCall = [NodePath("../OpenVentEvent")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Changes/EndGame/VentOpen/InteractionArea"]
+position = Vector2(-17, 32)
+shape = SubResource("RectangleShape2D_m2ckg")
+
+[node name="E" type="Sprite2D" parent="Changes/EndGame/VentOpen/InteractionArea"]
+z_index = 15
+position = Vector2(40, -13)
+texture = ExtResource("14_grd7j")
+
+[node name="OpenVentEvent" type="Node" parent="Changes/EndGame/VentOpen" node_paths=PackedStringArray("whoICallTo")]
+script = ExtResource("15_7ymuv")
+whoICallTo = NodePath("../EndingSequenceHelper")
+functionToCall = "EndGame"
+
+[node name="EndingSequenceHelper" type="Node2D" parent="Changes/EndGame/VentOpen"]
+script = ExtResource("16_5wwpr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Changes/EndGame/VentOpen"]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="Changes/EndGame/VentOpen/CanvasLayer"]
+z_index = 1
+material = SubResource("ShaderMaterial_chbia")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JefferyEnd" type="TextureRect" parent="Changes/EndGame/VentOpen/CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_25tw2")
+
+[node name="JefferyEnd2" type="TextureRect" parent="Changes/EndGame/VentOpen/CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_fh0he")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_aaytk")
+
+[node name="Back To Title" type="TextureButton" parent="Changes/EndGame/VentOpen/CanvasLayer"]
+visible = false
+custom_minimum_size = Vector2(120, 32)
+offset_left = 885.0
+offset_top = 553.0
+offset_right = 1110.0
+offset_bottom = 665.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("20_i3agt")
+script = ExtResource("21_c00d0")
+normal = ExtResource("20_i3agt")
+NonHover = ExtResource("22_kfyar")
+
+[node name="EndingSequence" type="AnimationPlayer" parent="Changes/EndGame/VentOpen"]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_rawss")
+}
+
+[node name="NotEndgame" type="Node2D" parent="Changes"]
+script = ExtResource("12_u68m3")
+condition = 1
+expectedGameState = "c"
+
+[node name="Board" type="Sprite2D" parent="Changes/NotEndgame"]
+position = Vector2(281, -175)
+rotation = -0.261799
+scale = Vector2(1.1019, 1.1019)
+texture = ExtResource("18_6mptq")
+
+[node name="Board2" type="Sprite2D" parent="Changes/NotEndgame"]
+position = Vector2(281, -175)
+rotation = 0.261799
+scale = Vector2(1.1019, 1.1019)
+texture = ExtResource("18_6mptq")
+
+[connection signal="body_entered" from="Changes/EndGame/VentOpen/InteractionArea" to="Changes/EndGame/VentOpen/InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="Changes/EndGame/VentOpen/InteractionArea" to="Changes/EndGame/VentOpen/InteractionArea" method="_on_body_exited"]
+[connection signal="pressed" from="Changes/EndGame/VentOpen/CanvasLayer/Back To Title" to="Changes/EndGame/VentOpen/EndingSequenceHelper" method="_on_back_to_title_pressed"]
+[connection signal="pressed" from="Changes/EndGame/VentOpen/CanvasLayer/Back To Title" to="Changes/EndGame/VentOpen/CanvasLayer/Back To Title" method="_on_pressed"]

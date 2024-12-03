@@ -45,4 +45,7 @@ func _process(delta: float) -> void:
 		
 
 func StartAnim():
-	$"../AnimationPlayer".play("Alarm")
+	$"../AlarmAnim".play("Alarm")
+
+func StopAnim() :
+	$"../AlarmAnim".stop(true)
