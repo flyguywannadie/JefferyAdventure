@@ -2,7 +2,7 @@ extends Control
 
 @onready var the_menu: Control = $MainMenu
 @onready var options: Control = $Options
-@onready var menuAnims: AnimationPlayer = $AnimationPlayer
+@onready var menuAnims: AnimationPlayer = $MenuSwitcher
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

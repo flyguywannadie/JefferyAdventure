@@ -1,14 +1,14 @@
 [gd_scene load_steps=11 format=4 uid="uid://im4fbphekhqn"]
 
-[ext_resource type="Script" path="res://Scripts/Room.gd" id="1_8fum3"]
+[ext_resource type="Script" uid="uid://egxdpt44a63j" path="res://Scripts/Room.gd" id="1_8fum3"]
 [ext_resource type="TileSet" uid="uid://c7c4r7tpew8ns" path="res://Tilemaps/TestTileMap_Deadly.tres" id="2_ksmja"]
 [ext_resource type="PackedScene" uid="uid://v42kviymhbdq" path="res://Scenes/Prefabs/RoomSetup/doorway.tscn" id="3_70prc"]
 [ext_resource type="PackedScene" uid="uid://bh523bxi5rvi" path="res://Scenes/Prefabs/RoomSetup/camera_track.tscn" id="4_03yd2"]
 [ext_resource type="PackedScene" uid="uid://bu1akkp0a5jd7" path="res://Scenes/Prefabs/RoomSetup/Checkpoint.tscn" id="5_uklu4"]
 [ext_resource type="Texture2D" uid="uid://cewaplmu1oeup" path="res://Textures/UnderConstruction.png" id="6_4xlgt"]
-[ext_resource type="Shader" path="res://ColorPaletteChanger.gdshader" id="7_jtxdu"]
+[ext_resource type="Shader" uid="uid://ckhmbovit1k1i" path="res://ColorPaletteChanger.gdshader" id="7_jtxdu"]
 [ext_resource type="Texture2D" uid="uid://dmxv8enp8sofa" path="res://Textures/Backgrounds/GoAway.png" id="8_4vqva"]
-[ext_resource type="Script" path="res://Scripts/ShaderShowoff.gd" id="9_m8ptt"]
+[ext_resource type="Script" uid="uid://ctn263m8wtn2x" path="res://Scripts/ShaderShowoff.gd" id="9_m8ptt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_smp8a"]
 shader = ExtResource("7_jtxdu")

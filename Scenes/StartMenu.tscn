@@ -1,14 +1,14 @@
 [gd_scene load_steps=53 format=3 uid="uid://b3wn0yj7sfv05"]
 
-[ext_resource type="Script" path="res://Scripts/StartMenu.gd" id="1_ylkdf"]
+[ext_resource type="Script" uid="uid://dwb2ja2swd15o" path="res://Scripts/StartMenu.gd" id="1_ylkdf"]
 [ext_resource type="FontFile" uid="uid://56kabaq45qkg" path="res://Textures/Font.png" id="2_7yqlb"]
 [ext_resource type="Texture2D" uid="uid://bp4vllie2tuw7" path="res://Textures/JefferyTitleSequence/000.png" id="3_oqjp0"]
 [ext_resource type="Texture2D" uid="uid://ni8f0jkmx66o" path="res://Textures/JefferyTitleSequence/StartButton.png" id="3_sv2gx"]
-[ext_resource type="Script" path="res://Scripts/LetterDropdown.gd" id="4_pehhe"]
+[ext_resource type="Script" uid="uid://cbjygijqa46l3" path="res://Scripts/LetterDropdown.gd" id="4_pehhe"]
 [ext_resource type="Texture2D" uid="uid://p7upndosflnq" path="res://Textures/JefferyTitleSequence/OptionsButton.png" id="4_tlike"]
-[ext_resource type="Script" path="res://Scripts/MenuColorChanger.gd" id="4_xgdqa"]
+[ext_resource type="Script" uid="uid://cjqq6f2448wkf" path="res://Scripts/MenuColorChanger.gd" id="4_xgdqa"]
 [ext_resource type="Texture2D" uid="uid://qxf2glqql5en" path="res://Textures/JefferyTitleSequence/QuitButton.png" id="5_7iwsm"]
-[ext_resource type="Script" path="res://Scenes/ButtonSpriteChanger.gd" id="5_r86v5"]
+[ext_resource type="Script" uid="uid://bra8dsvgqohf5" path="res://Scenes/ButtonSpriteChanger.gd" id="5_r86v5"]
 [ext_resource type="Texture2D" uid="uid://icxlbcuhu7o2" path="res://Textures/JefferyTitleSequence/StartButtonNotHover.png" id="5_symp3"]
 [ext_resource type="Texture2D" uid="uid://dlftvp7kj88ij" path="res://Textures/JefferyTitleSequence/004.png" id="5_xx2q6"]
 [ext_resource type="Texture2D" uid="uid://ca4ith57ag63o" path="res://Textures/JefferyTitleSequence/002.png" id="6_ekxp5"]
@@ -31,16 +31,16 @@
 [ext_resource type="Texture2D" uid="uid://o3ob8hoy4324" path="res://Textures/JefferyTitleSequence/017.png" id="21_5wmw5"]
 [ext_resource type="Texture2D" uid="uid://dl36316js5fcn" path="res://Textures/JefferyTitleSequence/JefferyTitle.png" id="22_k60kd"]
 [ext_resource type="Texture2D" uid="uid://xva7d6vj36b5" path="res://Textures/Backgrounds/BigWire.png" id="30_dvscy"]
-[ext_resource type="Shader" path="res://ColorPaletteChanger.gdshader" id="31_8xqpo"]
+[ext_resource type="Shader" uid="uid://ckhmbovit1k1i" path="res://ColorPaletteChanger.gdshader" id="31_8xqpo"]
 [ext_resource type="Texture2D" uid="uid://b7csduqulyxlu" path="res://Textures/JefferyTitleSequence/TitleScaleable.png" id="32_d35mw"]
 [ext_resource type="Texture2D" uid="uid://k8hxbw6muhyp" path="res://Textures/Backgrounds/ScalableBackgroundColor.png" id="32_f5lqi"]
 [ext_resource type="Texture2D" uid="uid://dtuws0mkvjlbl" path="res://Textures/OptionsMenu/WalkerForOptions/BackButtonNonHover.png" id="33_ddwaa"]
 [ext_resource type="Texture2D" uid="uid://1jagyd1padex" path="res://Textures/OptionsMenu/WalkerForOptions/BackButton2.png" id="34_8tbkn"]
 [ext_resource type="PackedScene" uid="uid://cwldumg56ocif" path="res://Scenes/Prefabs/WalkerOptions.tscn" id="34_re0b8"]
 [ext_resource type="Texture2D" uid="uid://c8yyk3evcer62" path="res://Textures/OptionsMenu/WalkerForOptions/BackButtonNonHover2.png" id="35_3qybn"]
-[ext_resource type="Shader" path="res://InverseColor.gdshader" id="39_gwioa"]
+[ext_resource type="Shader" uid="uid://nmmowptqbg1q" path="res://InverseColor.gdshader" id="39_gwioa"]
 [ext_resource type="Texture2D" uid="uid://cvu8iiyoobbrs" path="res://Textures/JefferyCursor.png" id="39_kakxm"]
-[ext_resource type="Script" path="res://Scripts/Cursor.gd" id="40_xw7ul"]
+[ext_resource type="Script" uid="uid://beeo8cgvfoaxm" path="res://Scripts/Cursor.gd" id="40_xw7ul"]
 [ext_resource type="Texture2D" uid="uid://bbivh3xjjojja" path="res://Textures/JefferyCursorMenu.png" id="41_3adsr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ay2g"]
@@ -145,9 +145,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hmsut"]
 _data = {
-"GoToMain": SubResource("Animation_ngqpc"),
-"GoToOptions": SubResource("Animation_y7urk"),
-"RESET": SubResource("Animation_s0tru")
+&"GoToMain": SubResource("Animation_ngqpc"),
+&"GoToOptions": SubResource("Animation_y7urk"),
+&"RESET": SubResource("Animation_s0tru")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_inb52"]
@@ -477,9 +477,9 @@ position = Vector2(645.5, 372.5)
 scale = Vector2(6.04297, 3.91016)
 texture = ExtResource("32_f5lqi")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="MenuSwitcher" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_hmsut")
+&"": SubResource("AnimationLibrary_hmsut")
 }
 
 [node name="Cursor" type="Sprite2D" parent="."]

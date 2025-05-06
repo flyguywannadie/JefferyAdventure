@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://drt0s4bw61m0b"]
 
-[ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_swm6w"]
+[ext_resource type="Script" uid="uid://dofpj1ljkin1f" path="res://Scripts/Bullet.gd" id="1_swm6w"]
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_a5elh"]
 [ext_resource type="PackedScene" uid="uid://b21mgrao055cl" path="res://Scenes/Prefabs/walker_damage_effect.tscn" id="2_a67tk"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://bnvs2mkbj80ef"]
 
-[ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_lkaii"]
+[ext_resource type="Script" uid="uid://dofpj1ljkin1f" path="res://Scripts/Bullet.gd" id="1_lkaii"]
 [ext_resource type="Texture2D" uid="uid://ddxf7ucuxtkhq" path="res://Textures/ChargeBoss/Explosion/Explosion1.png" id="2_8wqny"]
 [ext_resource type="Texture2D" uid="uid://r52iqyxd5e1" path="res://Textures/ChargeBoss/Explosion/Explosion9.png" id="2_575dq"]
 [ext_resource type="Texture2D" uid="uid://bttj5i6g75h14" path="res://Textures/ChargeBoss/Explosion/Explosion2.png" id="3_d7fxt"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dnx5bg66nccnf" path="res://Textures/ChargeBoss/Explosion/Explosion6.png" id="7_c1w30"]
 [ext_resource type="Texture2D" uid="uid://bq62teevhrmxc" path="res://Textures/ChargeBoss/Explosion/Explosion7.png" id="8_ef82l"]
 [ext_resource type="Texture2D" uid="uid://deaxxmtype3rj" path="res://Textures/ChargeBoss/Explosion/Explosion8.png" id="9_176hl"]
-[ext_resource type="Script" path="res://Scripts/ScreenShakeCauser.gd" id="11_48eca"]
+[ext_resource type="Script" uid="uid://c1q820q87aaao" path="res://Scripts/ScreenShakeCauser.gd" id="11_48eca"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4im6f"]
 size = Vector2(192, 192)
@@ -89,8 +89,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_chqdb"]
 _data = {
-"Explosion": SubResource("Animation_ggn5w"),
-"RESET": SubResource("Animation_xns7j")
+&"Explosion": SubResource("Animation_ggn5w"),
+&"RESET": SubResource("Animation_xns7j")
 }
 
 [node name="Explosion" type="Area2D"]
@@ -111,7 +111,7 @@ shape = SubResource("RectangleShape2D_4im6f")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_chqdb")
+&"": SubResource("AnimationLibrary_chqdb")
 }
 autoplay = "Explosion"
 

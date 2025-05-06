@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://soputgv8t7rk"]
 
-[ext_resource type="Script" path="res://Scripts/CamTrackSwitcher.gd" id="1_33gab"]
+[ext_resource type="Script" uid="uid://b8qab8km3tl1n" path="res://Scripts/CamTrackSwitcher.gd" id="1_33gab"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xk2sh"]
 

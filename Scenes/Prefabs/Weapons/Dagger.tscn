@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://b3c8kftksktwg"]
 
-[ext_resource type="Script" path="res://Scripts/Dagger.gd" id="1_5a2jj"]
+[ext_resource type="Script" uid="uid://d0nob2yiym4h7" path="res://Scripts/Dagger.gd" id="1_5a2jj"]
 [ext_resource type="Texture2D" uid="uid://cd3sesw8bx5yo" path="res://Textures/DaggerWeapon/Idle.png" id="2_ir6p1"]
 [ext_resource type="PackedScene" uid="uid://dcn7ph8v16ujw" path="res://Scenes/Prefabs/Projectiles/DaggerSlash.tscn" id="2_tdlli"]
 [ext_resource type="Texture2D" uid="uid://54q07tjpfhii" path="res://Textures/DaggerWeapon/Slash1.png" id="4_w7p23"]
@@ -55,8 +55,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x2h1l"]
 _data = {
-"RESET": SubResource("Animation_bgu8v"),
-"SwordSlash": SubResource("Animation_6paf1")
+&"RESET": SubResource("Animation_bgu8v"),
+&"SwordSlash": SubResource("Animation_6paf1")
 }
 
 [node name="Dagger" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn")]

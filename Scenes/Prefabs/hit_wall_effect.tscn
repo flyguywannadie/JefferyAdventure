@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bw78j1mdqffcv"]
 
-[ext_resource type="Script" path="res://Scripts/ParticleHitEffect.gd" id="1_w5apb"]
+[ext_resource type="Script" uid="uid://duihyd3glcq8k" path="res://Scripts/ParticleHitEffect.gd" id="1_w5apb"]
 [ext_resource type="Texture2D" uid="uid://dfc6qfm7albpd" path="res://Textures/BulletHitEffect.png" id="2_bwosi"]
 
 [node name="HitWallEffect" type="Node2D"]

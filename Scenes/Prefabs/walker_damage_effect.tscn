@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b21mgrao055cl"]
 
-[ext_resource type="Script" path="res://Scripts/ParticleHitEffect.gd" id="1_btg2j"]
+[ext_resource type="Script" uid="uid://duihyd3glcq8k" path="res://Scripts/ParticleHitEffect.gd" id="1_btg2j"]
 [ext_resource type="Texture2D" uid="uid://c2hfm2jcok3p0" path="res://Textures/GunShootEffect.png" id="1_dlett"]
 
 [sub_resource type="Curve" id="Curve_e85l5"]

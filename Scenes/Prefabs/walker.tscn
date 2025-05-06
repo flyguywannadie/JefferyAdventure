@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://dc2oo5d4e4gee"]
 
-[ext_resource type="Script" path="res://Scripts/eWalker.gd" id="1_242kc"]
+[ext_resource type="Script" uid="uid://0wfyxhx0qbnb" path="res://Scripts/eWalker.gd" id="1_242kc"]
 [ext_resource type="Material" uid="uid://4qginuh7uhxl" path="res://EnemyMaterial.tres" id="2_6kv4u"]
 [ext_resource type="PackedScene" uid="uid://b21mgrao055cl" path="res://Scenes/Prefabs/walker_damage_effect.tscn" id="2_8ay3y"]
 [ext_resource type="Texture2D" uid="uid://0g8484u17gnh" path="res://Textures/WalkerEnemy/IdleWalker.png" id="2_gyqev"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://qd2t47oa33pv" path="res://Textures/WalkerEnemy/008.png" id="5_xtj0r"]
 [ext_resource type="Texture2D" uid="uid://vb0msanwj0by" path="res://Textures/WalkerEnemy/009.png" id="6_cfpo2"]
 [ext_resource type="Texture2D" uid="uid://ge01k5whrqsw" path="res://Textures/WalkerEnemy/WalkerHurt.png" id="7_ohne1"]
-[ext_resource type="Script" path="res://Scripts/DamageArea.gd" id="8_qb70d"]
+[ext_resource type="Script" uid="uid://d4i153t71t0k6" path="res://Scripts/DamageArea.gd" id="8_qb70d"]
 [ext_resource type="AudioStream" uid="uid://csis6np1bgtsa" path="res://Sounds/Hurt2.wav" id="9_rka5k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epq2w"]
@@ -80,10 +80,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e1vjx"]
 _data = {
-"Hurt": SubResource("Animation_3y8mp"),
-"Idle": SubResource("Animation_m8li8"),
-"RESET": SubResource("Animation_5tqps"),
-"Walk": SubResource("Animation_uv52e")
+&"Hurt": SubResource("Animation_3y8mp"),
+&"Idle": SubResource("Animation_m8li8"),
+&"RESET": SubResource("Animation_5tqps"),
+&"Walk": SubResource("Animation_uv52e")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1hce3"]

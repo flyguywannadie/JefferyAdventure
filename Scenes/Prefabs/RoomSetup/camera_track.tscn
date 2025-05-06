@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bh523bxi5rvi"]
 
-[ext_resource type="Script" path="res://Scripts/CameraTrack.gd" id="1_7iiim"]
+[ext_resource type="Script" uid="uid://drxl8y81ook6" path="res://Scripts/CameraTrack.gd" id="1_7iiim"]
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_em5s4"]
 
 [node name="CameraTrack" type="Node2D"]

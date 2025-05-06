@@ -1,25 +1,25 @@
 [gd_scene load_steps=28 format=4 uid="uid://d0fnuvd744d6r"]
 
-[ext_resource type="Script" path="res://Scripts/Room.gd" id="1_8pabn"]
+[ext_resource type="Script" uid="uid://egxdpt44a63j" path="res://Scripts/Room.gd" id="1_8pabn"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="2_6xkpd"]
 [ext_resource type="PackedScene" uid="uid://v42kviymhbdq" path="res://Scenes/Prefabs/RoomSetup/doorway.tscn" id="3_ebe51"]
 [ext_resource type="PackedScene" uid="uid://bu1akkp0a5jd7" path="res://Scenes/Prefabs/RoomSetup/Checkpoint.tscn" id="4_qy68m"]
 [ext_resource type="PackedScene" uid="uid://bh523bxi5rvi" path="res://Scenes/Prefabs/RoomSetup/camera_track.tscn" id="5_i6kso"]
 [ext_resource type="TileSet" uid="uid://d0skvtijb1y7" path="res://Tilemaps/TestTileMap_Trigger.tres" id="6_fpehq"]
 [ext_resource type="TileSet" uid="uid://dvjpdafy12snk" path="res://Tilemaps/TestTileMap_NoShadow.tres" id="8_wu0va"]
-[ext_resource type="Script" path="res://Scripts/HidingWalls.gd" id="9_phnkw"]
-[ext_resource type="Shader" path="res://FadingShader.gdshader" id="9_vn7wp"]
+[ext_resource type="Script" uid="uid://dtrvg1n3u0uen" path="res://Scripts/HidingWalls.gd" id="9_phnkw"]
+[ext_resource type="Shader" uid="uid://cnbynr7icc3te" path="res://FadingShader.gdshader" id="9_vn7wp"]
 [ext_resource type="Texture2D" uid="uid://k8hxbw6muhyp" path="res://Textures/Backgrounds/ScalableBackgroundColor.png" id="11_lsln0"]
 [ext_resource type="Texture2D" uid="uid://crmk0ns6lseg6" path="res://Textures/Backgrounds/Overheadlight_Wires.png" id="13_5s4h7"]
 [ext_resource type="PackedScene" uid="uid://dh7xlshv1k2mx" path="res://Scenes/Prefabs/flyingGuy.tscn" id="13_vy0gq"]
 [ext_resource type="PackedScene" uid="uid://x7fpg81x83vb" path="res://Scenes/VentOpening.tscn" id="13_wnrmv"]
-[ext_resource type="Shader" path="res://EnemyShader.gdshader" id="14_lwsoy"]
+[ext_resource type="Shader" uid="uid://dcojkou8844ks" path="res://EnemyShader.gdshader" id="14_lwsoy"]
 [ext_resource type="Texture2D" uid="uid://jdbvcwxi3uv3" path="res://Textures/Backgrounds/ExitSignLeft.png" id="15_2yp0y"]
 [ext_resource type="Texture2D" uid="uid://byf5fcuti3jus" path="res://Textures/Backgrounds/GoFactory.png" id="16_fdkcb"]
 [ext_resource type="Texture2D" uid="uid://dvri2nlli3ugc" path="res://Textures/Backgrounds/ExitSignUp.png" id="17_irhvw"]
 [ext_resource type="Texture2D" uid="uid://bdnu3fbhsfypb" path="res://Textures/Backgrounds/GoControlCenter.png" id="17_t361x"]
 [ext_resource type="Texture2D" uid="uid://bf4ckn5tkewfa" path="res://Textures/Backgrounds/GoStorage.png" id="18_w4pn3"]
-[ext_resource type="Script" path="res://Scripts/GameStateChange.gd" id="19_cf10t"]
+[ext_resource type="Script" uid="uid://doxfk7dsa7uk2" path="res://Scripts/GameStateChange.gd" id="19_cf10t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cn34p"]
 resource_local_to_scene = true
@@ -212,9 +212,12 @@ script = ExtResource("19_cf10t")
 condition = 1
 expectedGameState = "c"
 
-[node name="FlyingGuy" parent="Changes/BossAlive" instance=ExtResource("13_vy0gq")]
+[node name="FlyingGuy" parent="Changes/BossAlive" node_paths=PackedStringArray("patrolPoints") instance=ExtResource("13_vy0gq")]
 material = SubResource("ShaderMaterial_7pnq4")
 position = Vector2(256, -384)
+patrolPoints = [NodePath("../PatrolPoints/point2"), NodePath("../PatrolPoints/point1"), NodePath("../PatrolPoints/point3")]
+goingDownTheList = true
+patrol = 1
 
 [node name="GoFactory" type="Sprite2D" parent="Changes/BossAlive"]
 position = Vector2(832, -192)
@@ -227,6 +230,18 @@ texture = ExtResource("17_t361x")
 [node name="GoStorage" type="Sprite2D" parent="Changes/BossAlive"]
 position = Vector2(832, -128)
 texture = ExtResource("18_w4pn3")
+
+[node name="PatrolPoints" type="Node2D" parent="Changes/BossAlive"]
+position = Vector2(-192, -640)
+
+[node name="point2" type="Node2D" parent="Changes/BossAlive/PatrolPoints"]
+position = Vector2(640, 512)
+
+[node name="point1" type="Node2D" parent="Changes/BossAlive/PatrolPoints"]
+position = Vector2(-768, -512)
+
+[node name="point3" type="Node2D" parent="Changes/BossAlive/PatrolPoints"]
+position = Vector2(576, -576)
 
 [connection signal="body_entered" from="VentOutsideHide" to="VentOutsideHide/VentOutside" method="_on_body_entered"]
 [connection signal="body_entered" from="VentOutsideHide" to="VentOutsideHide/VentBlock" method="_on_body_entered"]

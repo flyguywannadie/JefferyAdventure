@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://crao8r2kw8mhy"]
 
-[ext_resource type="Script" path="res://Scripts/Gun.gd" id="1_yvqmw"]
+[ext_resource type="Script" uid="uid://dvsc7xsnaaap8" path="res://Scripts/Gun.gd" id="1_yvqmw"]
 [ext_resource type="PackedScene" uid="uid://dyhifxpk7urs4" path="res://Scenes/Prefabs/muzzle_flash.tscn" id="2_kiysw"]
 [ext_resource type="PackedScene" uid="uid://beh3os1o53qfn" path="res://Scenes/Prefabs/Weapons/Shotgun.tscn" id="2_nwjkh"]
 [ext_resource type="PackedScene" uid="uid://lf7eq2nvptrq" path="res://Scenes/Prefabs/Projectiles/TestBullet.tscn" id="2_ydiqv"]
@@ -69,9 +69,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k2ltk"]
 _data = {
-"GunHold": SubResource("Animation_83tqf"),
-"GunShoot": SubResource("Animation_nb5r5"),
-"RESET": SubResource("Animation_8f8m3")
+&"GunHold": SubResource("Animation_83tqf"),
+&"GunShoot": SubResource("Animation_nb5r5"),
+&"RESET": SubResource("Animation_8f8m3")
 }
 
 [node name="Weapon" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn", "Particle")]

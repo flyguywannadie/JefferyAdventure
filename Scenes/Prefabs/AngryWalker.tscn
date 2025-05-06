@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://cvqnkc4p1afu7"]
 
-[ext_resource type="Script" path="res://Scripts/eAngryWalker.gd" id="1_1lio3"]
+[ext_resource type="Script" uid="uid://c1778eeqrt4yv" path="res://Scripts/eAngryWalker.gd" id="1_1lio3"]
 [ext_resource type="PackedScene" uid="uid://b21mgrao055cl" path="res://Scenes/Prefabs/walker_damage_effect.tscn" id="2_jgdln"]
 [ext_resource type="PackedScene" uid="uid://dll6kjn8pplms" path="res://Scenes/Prefabs/Projectiles/Rocket.tscn" id="2_y6ms7"]
 [ext_resource type="Texture2D" uid="uid://bapmddiji6pox" path="res://Textures/AngryWalkerRocketLauncher/idle.png" id="3_q5y0q"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ppbqvquqw5wn" path="res://Textures/AngryWalkerRocketLauncher/Walk2.png" id="6_i8jkv"]
 [ext_resource type="Texture2D" uid="uid://cp3ib36x2fa3c" path="res://Textures/AngryWalkerRocketLauncher/Walk3.png" id="7_8hxqf"]
 [ext_resource type="Texture2D" uid="uid://c540kgvl6wpbl" path="res://Textures/AngryWalkerRocketLauncher/Walk4.png" id="8_7shc0"]
-[ext_resource type="Script" path="res://Scripts/DamageArea.gd" id="10_0we7m"]
+[ext_resource type="Script" uid="uid://d4i153t71t0k6" path="res://Scripts/DamageArea.gd" id="10_0we7m"]
 [ext_resource type="Texture2D" uid="uid://sxklajqyayi6" path="res://Textures/AngryWalkerRocketLauncher/RocketLauncher.png" id="11_mawyn"]
 [ext_resource type="AudioStream" uid="uid://csis6np1bgtsa" path="res://Sounds/Hurt2.wav" id="11_o1xtp"]
 
@@ -123,38 +123,6 @@ tracks/5/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_uv52e"]
-resource_name = "Walk"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("5_0aoxm"), ExtResource("6_i8jkv"), ExtResource("7_8hxqf"), ExtResource("8_7shc0")]
-}
-
-[sub_resource type="Animation" id="Animation_vluy0"]
-resource_name = "WalkBackwards"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("8_7shc0"), ExtResource("7_8hxqf"), ExtResource("6_i8jkv"), ExtResource("5_0aoxm")]
-}
-
 [sub_resource type="Animation" id="Animation_7wuoc"]
 resource_name = "Shoot"
 length = 0.7
@@ -231,14 +199,46 @@ tracks/5/keys = {
 "values": [0.0, -0.335103, -0.335103, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_uv52e"]
+resource_name = "Walk"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_0aoxm"), ExtResource("6_i8jkv"), ExtResource("7_8hxqf"), ExtResource("8_7shc0")]
+}
+
+[sub_resource type="Animation" id="Animation_vluy0"]
+resource_name = "WalkBackwards"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_7shc0"), ExtResource("7_8hxqf"), ExtResource("6_i8jkv"), ExtResource("5_0aoxm")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e1vjx"]
 _data = {
-"Hurt": SubResource("Animation_3y8mp"),
-"Idle": SubResource("Animation_m8li8"),
-"RESET": SubResource("Animation_5tqps"),
-"Shoot": SubResource("Animation_7wuoc"),
-"Walk": SubResource("Animation_uv52e"),
-"WalkBackwards": SubResource("Animation_vluy0")
+&"Hurt": SubResource("Animation_3y8mp"),
+&"Idle": SubResource("Animation_m8li8"),
+&"RESET": SubResource("Animation_5tqps"),
+&"Shoot": SubResource("Animation_7wuoc"),
+&"Walk": SubResource("Animation_uv52e"),
+&"WalkBackwards": SubResource("Animation_vluy0")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1hce3"]

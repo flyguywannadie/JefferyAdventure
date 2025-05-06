@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://vbwtcpv5tduf"]
 
-[ext_resource type="Script" path="res://Scripts/Chainsaw.gd" id="1_mq1hk"]
+[ext_resource type="Script" uid="uid://dxuwyooimu6a4" path="res://Scripts/Chainsaw.gd" id="1_mq1hk"]
 [ext_resource type="Texture2D" uid="uid://d0clfkrqewrq7" path="res://Textures/ChainsawWeapon/ChainsawIdle1.png" id="2_o0ndy"]
 [ext_resource type="Texture2D" uid="uid://b7l0mubv1buxj" path="res://Textures/ChainsawWeapon/ChainsawIdle2.png" id="3_d2b7m"]
 [ext_resource type="Texture2D" uid="uid://cjp8judseksrf" path="res://Textures/ChainsawWeapon/ChainsawIdle3.png" id="4_oj40q"]
@@ -92,9 +92,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ngc8a"]
 _data = {
-"RESET": SubResource("Animation_atsju"),
-"Swing": SubResource("Animation_4s5wl"),
-"attack": SubResource("Animation_kmfi4")
+&"RESET": SubResource("Animation_atsju"),
+&"Swing": SubResource("Animation_4s5wl"),
+&"attack": SubResource("Animation_kmfi4")
 }
 
 [node name="Chainsaw" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn")]

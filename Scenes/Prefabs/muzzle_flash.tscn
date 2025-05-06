@@ -55,8 +55,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cewvg"]
 _data = {
-"Flash": SubResource("Animation_g1i67"),
-"RESET": SubResource("Animation_2ad4i")
+&"Flash": SubResource("Animation_g1i67"),
+&"RESET": SubResource("Animation_2ad4i")
 }
 
 [node name="MuzzleFlash" type="Node2D"]

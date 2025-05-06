@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bc6rtses7nwf4"]
 
-[ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_ismu5"]
+[ext_resource type="Script" uid="uid://dofpj1ljkin1f" path="res://Scripts/Bullet.gd" id="1_ismu5"]
 [ext_resource type="PackedScene" uid="uid://bnvs2mkbj80ef" path="res://Scenes/Prefabs/Projectiles/Explosion.tscn" id="2_dk1y2"]
 [ext_resource type="Texture2D" uid="uid://4dkjq1241kbc" path="res://Textures/ChargeBoss/GunCharge/TankShot.png" id="3_amknm"]
 

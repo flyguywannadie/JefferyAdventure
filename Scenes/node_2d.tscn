@@ -1,45 +1,45 @@
 [gd_scene load_steps=66 format=3 uid="uid://cgi22rw2oexdx"]
 
 [ext_resource type="Texture2D" uid="uid://bvt75qhwokvfg" path="res://whitebox.png" id="2_mxtlc"]
-[ext_resource type="Shader" path="res://PostProcessShader.gdshader" id="4_7nfid"]
+[ext_resource type="Shader" uid="uid://drokbt7msc20m" path="res://PostProcessShader.gdshader" id="4_7nfid"]
 [ext_resource type="PackedScene" uid="uid://bwib2ihjobuvm" path="res://Scenes/Prefabs/jeffery.tscn" id="4_oebhw"]
-[ext_resource type="Shader" path="res://ColorPaletteChanger.gdshader" id="6_i01nh"]
-[ext_resource type="Shader" path="res://ScreenColorPaletteChanger.gdshader" id="6_nyx2p"]
+[ext_resource type="Shader" uid="uid://ckhmbovit1k1i" path="res://ColorPaletteChanger.gdshader" id="6_i01nh"]
+[ext_resource type="Shader" uid="uid://cduip1srpjk5s" path="res://ScreenColorPaletteChanger.gdshader" id="6_nyx2p"]
 [ext_resource type="Texture2D" uid="uid://coutgcsx3t2w6" path="res://Textures/ColorPalette.png" id="6_qunfb"]
-[ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="7_2u6g4"]
-[ext_resource type="Shader" path="res://Rainbow.gdshader" id="7_x5nwx"]
-[ext_resource type="Shader" path="res://BlurShader.gdshader" id="9_1wfbu"]
+[ext_resource type="Script" uid="uid://5d8k7f4yjlor" path="res://Scripts/CameraScript.gd" id="7_2u6g4"]
+[ext_resource type="Shader" uid="uid://g6bvqgd3hla6" path="res://Rainbow.gdshader" id="7_x5nwx"]
+[ext_resource type="Shader" uid="uid://c2ut7a24xgal8" path="res://BlurShader.gdshader" id="9_1wfbu"]
 [ext_resource type="Texture2D" uid="uid://6dr284n3wdbw" path="res://Textures/PauseMenu/BackgroundPanel.png" id="9_87p3a"]
 [ext_resource type="FontFile" uid="uid://56kabaq45qkg" path="res://Textures/Font.png" id="9_otam7"]
 [ext_resource type="Texture2D" uid="uid://datrxyj3yth78" path="res://Textures/PauseMenu/ResumeButton.png" id="10_mm2cc"]
-[ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="11_1d1kq"]
-[ext_resource type="Script" path="res://Scenes/ButtonSpriteChanger.gd" id="11_oau7k"]
-[ext_resource type="Shader" path="res://FadingShader.gdshader" id="11_swtah"]
+[ext_resource type="Script" uid="uid://cw5sk4n066c5x" path="res://Scripts/PauseMenu.gd" id="11_1d1kq"]
+[ext_resource type="Script" uid="uid://bra8dsvgqohf5" path="res://Scenes/ButtonSpriteChanger.gd" id="11_oau7k"]
+[ext_resource type="Shader" uid="uid://cnbynr7icc3te" path="res://FadingShader.gdshader" id="11_swtah"]
 [ext_resource type="Texture2D" uid="uid://dujvhediabp7l" path="res://Textures/PauseMenu/ResumeButtonNonHover.png" id="12_3xu54"]
 [ext_resource type="Texture2D" uid="uid://00pjhuxgfex0" path="res://Textures/GameOverBackWall.png" id="12_6lrp0"]
-[ext_resource type="Script" path="res://Scripts/DeathScreen.gd" id="12_bf6tn"]
-[ext_resource type="Script" path="res://Scripts/EvolutionScreen.gd" id="12_cvh8f"]
+[ext_resource type="Script" uid="uid://dm05pc5n8actu" path="res://Scripts/DeathScreen.gd" id="12_bf6tn"]
+[ext_resource type="Script" uid="uid://cyr61bqvlue8h" path="res://Scripts/EvolutionScreen.gd" id="12_cvh8f"]
 [ext_resource type="Texture2D" uid="uid://d2tw5irnrwf6k" path="res://Textures/JefferyGameOver.png" id="12_x30i3"]
 [ext_resource type="Texture2D" uid="uid://cq67xj1g1bm8q" path="res://Textures/SwordEvoButton.png" id="13_1tk7r"]
 [ext_resource type="Texture2D" uid="uid://qxf2glqql5en" path="res://Textures/JefferyTitleSequence/QuitButton.png" id="13_r2q12"]
 [ext_resource type="Texture2D" uid="uid://1nd70v450kkf" path="res://Textures/JefferyTitleSequence/QuitButtonNonHover.png" id="14_5irfq"]
-[ext_resource type="Shader" path="res://HealthBar.gdshader" id="14_ipcyo"]
+[ext_resource type="Shader" uid="uid://cybgkokwfbxhu" path="res://HealthBar.gdshader" id="14_ipcyo"]
 [ext_resource type="Texture2D" uid="uid://qotynlinrtcj" path="res://Textures/SwordEvoButtonHover.png" id="14_k02nj"]
 [ext_resource type="Texture2D" uid="uid://07jullcmmn2w" path="res://Textures/GunEvoButton.png" id="15_bv6un"]
-[ext_resource type="Shader" path="res://SDFExample.gdshader" id="16_d37y0"]
+[ext_resource type="Shader" uid="uid://d0hwcay7mdh3r" path="res://SDFExample.gdshader" id="16_d37y0"]
 [ext_resource type="Texture2D" uid="uid://dqgv2ia0li61e" path="res://Textures/GunEvoButtonHover.png" id="16_vvsn2"]
-[ext_resource type="Script" path="res://Scripts/Healthbar.gd" id="16_xu1u0"]
-[ext_resource type="Script" path="res://Scripts/BossHealthbar.gd" id="18_5cy5a"]
-[ext_resource type="Shader" path="res://ColorRectPaletteChanger.gdshader" id="18_risk0"]
+[ext_resource type="Script" uid="uid://b2up1567pu2k5" path="res://Scripts/Healthbar.gd" id="16_xu1u0"]
+[ext_resource type="Script" uid="uid://bwsgel2ysr8q5" path="res://Scripts/BossHealthbar.gd" id="18_5cy5a"]
+[ext_resource type="Shader" uid="uid://euu6m38iwo3g" path="res://ColorRectPaletteChanger.gdshader" id="18_risk0"]
 [ext_resource type="Texture2D" uid="uid://r02i156gaf21" path="res://Textures/EvoPiece.png" id="20_kpjca"]
 [ext_resource type="Texture2D" uid="uid://nyti2m3wqqo6" path="res://Textures/Healthbar/HealthGradient.png" id="20_nutxt"]
-[ext_resource type="Script" path="res://Scripts/post_process.gd" id="20_tcyl4"]
+[ext_resource type="Script" uid="uid://bxv4ixjhg1ljl" path="res://Scripts/post_process.gd" id="20_tcyl4"]
 [ext_resource type="Texture2D" uid="uid://dgjjcvfbeesw" path="res://Textures/Healthbar/HealthbarBackground.png" id="21_ea7st"]
 [ext_resource type="Texture2D" uid="uid://q5c2s02lijbk" path="res://Textures/Healthbar/HealthbarOutline.png" id="23_y5erm"]
 [ext_resource type="Texture2D" uid="uid://vi4slyet1usy" path="res://Textures/GameOverMenu/Retrybutton.png" id="29_fxwiu"]
 [ext_resource type="Texture2D" uid="uid://ctxc7spnyp1sr" path="res://Textures/GameOverMenu/RetryButtonHover.png" id="30_5xsh8"]
-[ext_resource type="Shader" path="res://InverseColor.gdshader" id="39_a8dw7"]
-[ext_resource type="Script" path="res://Scripts/Cursor.gd" id="39_qg8rr"]
+[ext_resource type="Shader" uid="uid://nmmowptqbg1q" path="res://InverseColor.gdshader" id="39_a8dw7"]
+[ext_resource type="Script" uid="uid://beeo8cgvfoaxm" path="res://Scripts/Cursor.gd" id="39_qg8rr"]
 [ext_resource type="Texture2D" uid="uid://cvu8iiyoobbrs" path="res://Textures/JefferyCursor.png" id="40_akrfa"]
 [ext_resource type="Texture2D" uid="uid://bbivh3xjjojja" path="res://Textures/JefferyCursorMenu.png" id="41_obw80"]
 
@@ -91,8 +91,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iw813"]
 _data = {
-"Alarm": SubResource("Animation_f15nc"),
-"RESET": SubResource("Animation_hum14")
+&"Alarm": SubResource("Animation_f15nc"),
+&"RESET": SubResource("Animation_hum14")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hlya1"]
@@ -224,9 +224,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k1qm4"]
 _data = {
-"FadeIn": SubResource("Animation_p3snt"),
-"Fadeout": SubResource("Animation_0nogc"),
-"RESET": SubResource("Animation_yf22g")
+&"FadeIn": SubResource("Animation_p3snt"),
+&"Fadeout": SubResource("Animation_0nogc"),
+&"RESET": SubResource("Animation_yf22g")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_giyw7"]
@@ -281,8 +281,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6orl3"]
 _data = {
-"ColorChanging": SubResource("Animation_ne2g5"),
-"RESET": SubResource("Animation_we1uv")
+&"ColorChanging": SubResource("Animation_ne2g5"),
+&"RESET": SubResource("Animation_we1uv")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gctfg"]
@@ -351,7 +351,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="AlarmAnim" type="AnimationPlayer" parent="PostProcess"]
 libraries = {
-"": SubResource("AnimationLibrary_iw813")
+&"": SubResource("AnimationLibrary_iw813")
 }
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -666,7 +666,7 @@ NonHover = ExtResource("14_5irfq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/DeathScreenJeffery"]
 libraries = {
-"": SubResource("AnimationLibrary_k1qm4")
+&"": SubResource("AnimationLibrary_k1qm4")
 }
 
 [node name="TestingSDF" type="ColorRect" parent="CanvasLayer"]
@@ -736,7 +736,7 @@ texture = ExtResource("6_qunfb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TestingPalette"]
 libraries = {
-"": SubResource("AnimationLibrary_6orl3")
+&"": SubResource("AnimationLibrary_6orl3")
 }
 autoplay = "ColorChanging"
 

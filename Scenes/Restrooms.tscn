@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=4 uid="uid://thkbcnkqvpvj"]
 
-[ext_resource type="Script" path="res://Scripts/Room.gd" id="1_6bbdj"]
-[ext_resource type="Shader" path="res://ColorPaletteChanger.gdshader" id="2_731m6"]
+[ext_resource type="Script" uid="uid://egxdpt44a63j" path="res://Scripts/Room.gd" id="1_6bbdj"]
+[ext_resource type="Shader" uid="uid://ckhmbovit1k1i" path="res://ColorPaletteChanger.gdshader" id="2_731m6"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="2_lhioj"]
 [ext_resource type="TileSet" uid="uid://dvjpdafy12snk" path="res://Tilemaps/TestTileMap_NoShadow.tres" id="3_c8cnb"]
 [ext_resource type="PackedScene" uid="uid://v42kviymhbdq" path="res://Scenes/Prefabs/RoomSetup/doorway.tscn" id="4_1y6o0"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://ddcg3qabebtha" path="res://Textures/Backgrounds/RestroomDoors.png" id="13_op780"]
 [ext_resource type="Texture2D" uid="uid://jdbvcwxi3uv3" path="res://Textures/Backgrounds/ExitSignLeft.png" id="14_slyry"]
 [ext_resource type="Texture2D" uid="uid://byf5fcuti3jus" path="res://Textures/Backgrounds/GoFactory.png" id="15_586yv"]
-[ext_resource type="Script" path="res://Scripts/GameStateChange.gd" id="16_o7c4w"]
+[ext_resource type="Script" uid="uid://doxfk7dsa7uk2" path="res://Scripts/GameStateChange.gd" id="16_o7c4w"]
 [ext_resource type="Texture2D" uid="uid://bf4ckn5tkewfa" path="res://Textures/Backgrounds/GoStorage.png" id="16_tpnvy"]
 [ext_resource type="PackedScene" uid="uid://cvqnkc4p1afu7" path="res://Scenes/Prefabs/AngryWalker.tscn" id="18_jdrw6"]
 [ext_resource type="Texture2D" uid="uid://1kaaquprgoun" path="res://Textures/Backgrounds/LockersFallen.png" id="19_3agqt"]

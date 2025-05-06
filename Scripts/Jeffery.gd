@@ -131,18 +131,18 @@ func _physics_process(delta: float) -> void:
 		#doneSlide()
 	
 	if (Input.is_action_just_pressed("jef_slide") && trySlide) :
-		addKnockback(speed * 2.0 * (sign(movement.x + $Node2D.scale.x)), 100)
+		addKnockback(speed * 2.0 * (sign(movement.x + $Node2D.scale.x)), 150)
 		anims.play("RESET")
 		anims.play("Slide")
 		$StandingHitbox.shape.size = Vector2(hitboxSize.x, hitboxSize.y / 2)
 		$StandingHitbox.position = hitboxPos + Vector2(0, hitboxSize.y / 4)
 		trySlide = false
 	
-	if (Input.is_action_just_pressed("jef_Jump") && onGround && trySlide):
+	if (Input.is_action_just_pressed("jef_Jump") && onGround):
 		if (Input.is_action_pressed("jef_down") || Input.is_action_just_pressed("jef_down")) :
 			set_collision_mask_value(8, false)
 		else:
-			#doneSlide()
+			doneSlide()
 			jump()
 	if (Input.is_action_pressed("jef_Jump") && jumpTimer > 0):
 		addMovement(0,-jumpPower/19.0)
@@ -157,14 +157,14 @@ func _physics_process(delta: float) -> void:
 	
 	
 	var sideVelocity: float = 0
+
+	if (Input.is_action_pressed("jef_left")):
+		sideVelocity += -speed
+	
+	if (Input.is_action_pressed("jef_right")):
+		sideVelocity += speed
 		
 	if (trySlide) :	
-		if (Input.is_action_pressed("jef_left")):
-			sideVelocity += -speed
-		
-		if (Input.is_action_pressed("jef_right")):
-			sideVelocity += speed
-		
 		if (crouching) :
 			sideVelocity *= 0.5
 			anims.play("CrouchIdle")
@@ -176,8 +176,14 @@ func _physics_process(delta: float) -> void:
 					anims.play_backwards("Walk")
 			else:
 				anims.play("Idle")
-	
-	setMovement(sideVelocity, movement.y)
+		
+		setMovement(sideVelocity, movement.y)
+	else :
+		if (onGround && sideVelocity != 0 && sign(sideVelocity) != sign(knockback)) :
+			knockback = MoveTowardsZero(knockback, abs(knockback) / FRICTION)
+		
+		if (knockback == 0) :
+			doneSlide()
 	
 	super._physics_process(delta)
 

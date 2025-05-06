@@ -1,6 +1,6 @@
 [gd_scene load_steps=34 format=4 uid="uid://dlbxpobs567bb"]
 
-[ext_resource type="Script" path="res://Scripts/Room.gd" id="1_e637h"]
+[ext_resource type="Script" uid="uid://egxdpt44a63j" path="res://Scripts/Room.gd" id="1_e637h"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="1_pql6c"]
 [ext_resource type="PackedScene" uid="uid://bh523bxi5rvi" path="res://Scenes/Prefabs/RoomSetup/camera_track.tscn" id="2_upn7u"]
 [ext_resource type="PackedScene" uid="uid://soputgv8t7rk" path="res://Scenes/Prefabs/RoomSetup/CamTrackSwitch.tscn" id="3_2ddr3"]
@@ -11,17 +11,17 @@
 [ext_resource type="Texture2D" uid="uid://caxyb073yd38h" path="res://Textures/Backgrounds/StartingRoomBackground.png" id="9_544oq"]
 [ext_resource type="Texture2D" uid="uid://bkek8pwddlqm5" path="res://Textures/Backgrounds/GoBathroom.png" id="10_34i73"]
 [ext_resource type="Texture2D" uid="uid://byf5fcuti3jus" path="res://Textures/Backgrounds/GoFactory.png" id="11_lcm70"]
-[ext_resource type="Script" path="res://Scripts/GameStateChange.gd" id="12_u68m3"]
-[ext_resource type="Script" path="res://Scripts/Jeff_InteractionEventTrigger.gd" id="13_jhun4"]
+[ext_resource type="Script" uid="uid://doxfk7dsa7uk2" path="res://Scripts/GameStateChange.gd" id="12_u68m3"]
+[ext_resource type="Script" uid="uid://4ho16ff8ey0n" path="res://Scripts/Jeff_InteractionEventTrigger.gd" id="13_jhun4"]
 [ext_resource type="Texture2D" uid="uid://dmi1anlgc6jn0" path="res://Textures/WButton.png" id="14_grd7j"]
-[ext_resource type="Script" path="res://Scripts/jeff_EventCaller.gd" id="15_7ymuv"]
-[ext_resource type="Script" path="res://Scripts/EndingSequencegd.gd" id="16_5wwpr"]
-[ext_resource type="Shader" path="res://FadingShader.gdshader" id="17_8ut6j"]
+[ext_resource type="Script" uid="uid://baes0fps2bxeg" path="res://Scripts/jeff_EventCaller.gd" id="15_7ymuv"]
+[ext_resource type="Script" uid="uid://dvcc8h85a4ewo" path="res://Scripts/EndingSequencegd.gd" id="16_5wwpr"]
+[ext_resource type="Shader" uid="uid://cnbynr7icc3te" path="res://FadingShader.gdshader" id="17_8ut6j"]
 [ext_resource type="Texture2D" uid="uid://bcy6orkxn6on6" path="res://Textures/Backgrounds/Board.png" id="18_6mptq"]
 [ext_resource type="Texture2D" uid="uid://cc8jr31r741qi" path="res://Textures/JefferyEndScreen.png" id="18_25tw2"]
 [ext_resource type="Texture2D" uid="uid://dfiueyl040bmv" path="res://Textures/JefferyEndScreenTitle.png" id="19_aaytk"]
 [ext_resource type="Texture2D" uid="uid://qxf2glqql5en" path="res://Textures/JefferyTitleSequence/QuitButton.png" id="20_i3agt"]
-[ext_resource type="Script" path="res://Scenes/ButtonSpriteChanger.gd" id="21_c00d0"]
+[ext_resource type="Script" uid="uid://bra8dsvgqohf5" path="res://Scenes/ButtonSpriteChanger.gd" id="21_c00d0"]
 [ext_resource type="Texture2D" uid="uid://1nd70v450kkf" path="res://Textures/JefferyTitleSequence/QuitButtonNonHover.png" id="22_kfyar"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_serve"]
@@ -176,8 +176,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rawss"]
 _data = {
-"EndingScene": SubResource("Animation_xvex2"),
-"RESET": SubResource("Animation_u35ch")
+&"EndingScene": SubResource("Animation_xvex2"),
+&"RESET": SubResource("Animation_u35ch")
 }
 
 [node name="StartingRoom" type="Node2D" node_paths=PackedStringArray("camTracks", "entrances", "stateChanges")]
@@ -351,7 +351,7 @@ NonHover = ExtResource("22_kfyar")
 [node name="EndingSequence" type="AnimationPlayer" parent="Changes/EndGame/VentOpen"]
 process_mode = 3
 libraries = {
-"": SubResource("AnimationLibrary_rawss")
+&"": SubResource("AnimationLibrary_rawss")
 }
 
 [node name="NotEndgame" type="Node2D" parent="Changes"]

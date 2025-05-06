@@ -1,7 +1,7 @@
 [gd_scene load_steps=36 format=3 uid="uid://bwib2ihjobuvm"]
 
-[ext_resource type="Script" path="res://Scripts/Jeffery.gd" id="1_vcdsa"]
-[ext_resource type="Shader" path="res://node_2d.gdshader" id="2_q8qc8"]
+[ext_resource type="Script" uid="uid://oumqayb36hy6" path="res://Scripts/Jeffery.gd" id="1_vcdsa"]
+[ext_resource type="Shader" uid="uid://bchs1fs8x85ih" path="res://node_2d.gdshader" id="2_q8qc8"]
 [ext_resource type="Texture2D" uid="uid://c8rauysdnlu3a" path="res://Textures/JefferyNoArm.png" id="3_ktrsr"]
 [ext_resource type="Texture2D" uid="uid://d1pwdsx7eulsc" path="res://Textures/JefferyGunArm.png" id="4_pjefk"]
 [ext_resource type="Texture2D" uid="uid://bbqsb6ud57ja6" path="res://Textures/JefferyWalkAnim/003.png" id="5_5lrf3"]
@@ -293,12 +293,12 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q7o8a"]
 _data = {
-"CrouchIdle": SubResource("Animation_yirjd"),
-"Hurt": SubResource("Animation_oy8t5"),
-"Idle": SubResource("Animation_4111j"),
-"RESET": SubResource("Animation_h78jd"),
-"Slide": SubResource("Animation_ikpfo"),
-"Walk": SubResource("Animation_eequt")
+&"CrouchIdle": SubResource("Animation_yirjd"),
+&"Hurt": SubResource("Animation_oy8t5"),
+&"Idle": SubResource("Animation_4111j"),
+&"RESET": SubResource("Animation_h78jd"),
+&"Slide": SubResource("Animation_ikpfo"),
+&"Walk": SubResource("Animation_eequt")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jsueg"]
@@ -399,7 +399,7 @@ use_parent_material = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_q7o8a")
+&"": SubResource("AnimationLibrary_q7o8a")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="Node2D"]

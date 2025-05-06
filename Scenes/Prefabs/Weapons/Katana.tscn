@@ -1,8 +1,8 @@
 [gd_scene load_steps=17 format=3 uid="uid://d322aro5xk1k"]
 
-[ext_resource type="Script" path="res://Scripts/Katana.gd" id="1_xxwqj"]
+[ext_resource type="Script" uid="uid://c63pukh7dghtq" path="res://Scripts/Katana.gd" id="1_xxwqj"]
 [ext_resource type="PackedScene" uid="uid://bnrrqi0kl0764" path="res://Scenes/Prefabs/Projectiles/KatanaSlash.tscn" id="2_rwcp6"]
-[ext_resource type="Shader" path="res://ChargeWeapon.gdshader" id="3_btx3h"]
+[ext_resource type="Shader" uid="uid://blrervkffbc23" path="res://ChargeWeapon.gdshader" id="3_btx3h"]
 [ext_resource type="Texture2D" uid="uid://co44uwbhbet1x" path="res://Textures/KatanaWeapon/idle.png" id="3_m10b4"]
 [ext_resource type="PackedScene" uid="uid://bj71t8q8bbnho" path="res://Scenes/Prefabs/Weapons/Greatsword.tscn" id="3_v7ys8"]
 [ext_resource type="Texture2D" uid="uid://bibgij7fcg6yf" path="res://Textures/KatanaWeapon/KatanaSlash1.png" id="3_vagql"]
@@ -121,10 +121,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x2h1l"]
 _data = {
-"RESET": SubResource("Animation_bgu8v"),
-"SwordDown": SubResource("Animation_1j75h"),
-"SwordHold": SubResource("Animation_dnutw"),
-"SwordSlash": SubResource("Animation_6paf1")
+&"RESET": SubResource("Animation_bgu8v"),
+&"SwordDown": SubResource("Animation_1j75h"),
+&"SwordHold": SubResource("Animation_dnutw"),
+&"SwordSlash": SubResource("Animation_6paf1")
 }
 
 [node name="Katana" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn")]

@@ -1,10 +1,10 @@
 shader_type canvas_item;
 
-uniform float size : hint_range(0.0, 3.0) = 1.0;
+uniform float size : hint_range(0.0, 1.0) = 1.0;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
-	VERTEX *= vec2((size * 0.25) + 1.0);
+	VERTEX *= vec2((size));
 	//COLOR = vec4(VERTEX, 0.0, 1.0);
 }
 

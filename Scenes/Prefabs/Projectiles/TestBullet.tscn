@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://lf7eq2nvptrq"]
 
-[ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_bfpk0"]
+[ext_resource type="Script" uid="uid://dofpj1ljkin1f" path="res://Scripts/Bullet.gd" id="1_bfpk0"]
 [ext_resource type="PackedScene" uid="uid://bw78j1mdqffcv" path="res://Scenes/Prefabs/hit_wall_effect.tscn" id="2_3bg47"]
 [ext_resource type="Texture2D" uid="uid://cdu410bu5q11d" path="res://Textures/BaseGun/BaseBullet.png" id="2_m254v"]
 

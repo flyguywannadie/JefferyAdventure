@@ -1,11 +1,11 @@
 [gd_scene load_steps=14 format=3 uid="uid://x7fpg81x83vb"]
 
-[ext_resource type="Script" path="res://Scripts/Jeff_InteractionEventTrigger.gd" id="1_222ou"]
+[ext_resource type="Script" uid="uid://4ho16ff8ey0n" path="res://Scripts/Jeff_InteractionEventTrigger.gd" id="1_222ou"]
 [ext_resource type="Texture2D" uid="uid://k0y8wvehqbih" path="res://Textures/EButton.png" id="2_rrfb0"]
-[ext_resource type="Script" path="res://Scripts/vent_test.gd" id="3_krbuk"]
-[ext_resource type="Shader" path="res://ColorPaletteChanger.gdshader" id="4_3oye4"]
+[ext_resource type="Script" uid="uid://7ru6w66ygsyn" path="res://Scripts/vent_test.gd" id="3_krbuk"]
+[ext_resource type="Shader" uid="uid://ckhmbovit1k1i" path="res://ColorPaletteChanger.gdshader" id="4_3oye4"]
 [ext_resource type="Texture2D" uid="uid://d5r5l6qqc76w" path="res://Textures/VentCover.png" id="5_s8aqw"]
-[ext_resource type="Script" path="res://Scripts/jeff_EventCaller.gd" id="6_8g1f5"]
+[ext_resource type="Script" uid="uid://baes0fps2bxeg" path="res://Scripts/jeff_EventCaller.gd" id="6_8g1f5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m2ckg"]
 size = Vector2(256, 192)
@@ -66,9 +66,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_46gn8"]
 _data = {
-"Close": SubResource("Animation_cr4xs"),
-"Open": SubResource("Animation_phagl"),
-"RESET": SubResource("Animation_xu4k8")
+&"Close": SubResource("Animation_cr4xs"),
+&"Open": SubResource("Animation_phagl"),
+&"RESET": SubResource("Animation_xu4k8")
 }
 
 [node name="VentOpen" type="Node2D"]

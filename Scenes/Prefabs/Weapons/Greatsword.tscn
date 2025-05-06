@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://bj71t8q8bbnho"]
 
-[ext_resource type="Script" path="res://Scripts/Greatsword.gd" id="1_uif2a"]
-[ext_resource type="Shader" path="res://ChargeWeapon.gdshader" id="3_byxlf"]
+[ext_resource type="Script" uid="uid://yuiv7irnv874" path="res://Scripts/Greatsword.gd" id="1_uif2a"]
+[ext_resource type="Shader" uid="uid://blrervkffbc23" path="res://ChargeWeapon.gdshader" id="3_byxlf"]
 [ext_resource type="Texture2D" uid="uid://dlbo3eyk8hyfd" path="res://Textures/GreatswordWeapon/idle.png" id="4_0a281"]
 [ext_resource type="Texture2D" uid="uid://cpmdlbhaehec6" path="res://Textures/GreatswordWeapon/Down1.png" id="4_dunvp"]
 [ext_resource type="Texture2D" uid="uid://b3qpmqdb081ga" path="res://Textures/GreatswordWeapon/Down2.png" id="5_qq2id"]
@@ -109,10 +109,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x2h1l"]
 _data = {
-"RESET": SubResource("Animation_bgu8v"),
-"SwordDown": SubResource("Animation_1j75h"),
-"SwordHold": SubResource("Animation_dnutw"),
-"SwordSlash": SubResource("Animation_6paf1")
+&"RESET": SubResource("Animation_bgu8v"),
+&"SwordDown": SubResource("Animation_1j75h"),
+&"SwordHold": SubResource("Animation_dnutw"),
+&"SwordSlash": SubResource("Animation_6paf1")
 }
 
 [node name="Greatsword" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn")]

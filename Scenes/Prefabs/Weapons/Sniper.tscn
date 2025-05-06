@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://0t2v8d4kxbg6"]
 
-[ext_resource type="Script" path="res://Scripts/Sniper.gd" id="1_5v62g"]
+[ext_resource type="Script" uid="uid://c4ssjyr7sjua8" path="res://Scripts/Sniper.gd" id="1_5v62g"]
 [ext_resource type="PackedScene" uid="uid://cbepbkr1ttvbl" path="res://Scenes/Prefabs/Projectiles/SniperBullet.tscn" id="2_il0to"]
 [ext_resource type="PackedScene" uid="uid://dyhifxpk7urs4" path="res://Scenes/Prefabs/muzzle_flash.tscn" id="2_jlx3t"]
-[ext_resource type="Shader" path="res://ChargeWeapon.gdshader" id="3_5bv6v"]
+[ext_resource type="Shader" uid="uid://blrervkffbc23" path="res://ChargeWeapon.gdshader" id="3_5bv6v"]
 [ext_resource type="Texture2D" uid="uid://cyc5r8kkawoug" path="res://Textures/SniperWeapon/Sniper.png" id="3_mr6tw"]
 [ext_resource type="Texture2D" uid="uid://bk0xbmqes04j7" path="res://Textures/SniperWeapon/SniperShoot1.png" id="4_i0yxf"]
 [ext_resource type="Texture2D" uid="uid://spsdqwn7ohys" path="res://Textures/SniperWeapon/SniperShoot2.png" id="5_1kipx"]
@@ -54,8 +54,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k2ltk"]
 _data = {
-"GunShoot": SubResource("Animation_nb5r5"),
-"RESET": SubResource("Animation_8f8m3")
+&"GunShoot": SubResource("Animation_nb5r5"),
+&"RESET": SubResource("Animation_8f8m3")
 }
 
 [node name="Sniper" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn", "Particle")]

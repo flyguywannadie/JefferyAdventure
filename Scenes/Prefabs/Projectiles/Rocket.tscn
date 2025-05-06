@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dll6kjn8pplms"]
 
-[ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_lxria"]
+[ext_resource type="Script" uid="uid://dofpj1ljkin1f" path="res://Scripts/Bullet.gd" id="1_lxria"]
 [ext_resource type="PackedScene" uid="uid://bnvs2mkbj80ef" path="res://Scenes/Prefabs/Projectiles/Explosion.tscn" id="2_w56hg"]
 [ext_resource type="Texture2D" uid="uid://uwtnit7d2owk" path="res://Textures/AngryWalkerRocketLauncher/Rocket.png" id="3_trw61"]
 

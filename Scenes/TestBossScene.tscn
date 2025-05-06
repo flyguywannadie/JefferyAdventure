@@ -1,13 +1,13 @@
-[gd_scene load_steps=86 format=4 uid="uid://b4x5i41o7t1j1"]
+[gd_scene load_steps=87 format=4 uid="uid://b4x5i41o7t1j1"]
 
-[ext_resource type="Script" path="res://Scripts/Room.gd" id="1_y6yf7"]
-[ext_resource type="Script" path="res://Scripts/TankBoss.gd" id="2_kg316"]
+[ext_resource type="Script" uid="uid://egxdpt44a63j" path="res://Scripts/Room.gd" id="1_y6yf7"]
+[ext_resource type="Script" uid="uid://b7suf5cgkw1sx" path="res://Scripts/TankBoss.gd" id="2_kg316"]
 [ext_resource type="Texture2D" uid="uid://ci5dr22nn2a8h" path="res://Textures/ChargeBoss/TankGun.png" id="3_7v0af"]
 [ext_resource type="TileSet" uid="uid://khxjqjugnsov" path="res://Tilemaps/TestTileMap.tres" id="3_nhxys"]
 [ext_resource type="Texture2D" uid="uid://pun1x300rofk" path="res://Textures/ChargeBoss/TankHatch.png" id="4_lv41s"]
 [ext_resource type="PackedScene" uid="uid://bh523bxi5rvi" path="res://Scenes/Prefabs/RoomSetup/camera_track.tscn" id="4_pgogi"]
 [ext_resource type="Texture2D" uid="uid://bqx3m2rgdgqgp" path="res://Textures/ChargeBoss/TankTrack1.png" id="5_0at73"]
-[ext_resource type="Script" path="res://Scripts/GameStateChange.gd" id="5_a12qr"]
+[ext_resource type="Script" uid="uid://doxfk7dsa7uk2" path="res://Scripts/GameStateChange.gd" id="5_a12qr"]
 [ext_resource type="PackedScene" uid="uid://v42kviymhbdq" path="res://Scenes/Prefabs/RoomSetup/doorway.tscn" id="6_7ad3p"]
 [ext_resource type="Texture2D" uid="uid://dkep6n4rtlsvd" path="res://Textures/ChargeBoss/TankTrack2.png" id="6_tps44"]
 [ext_resource type="Texture2D" uid="uid://b70nveaq7egjf" path="res://Textures/Backgrounds/ControlPanelPressed.png" id="6_vkar1"]
@@ -23,46 +23,47 @@
 [ext_resource type="Texture2D" uid="uid://pmbyi0vje251" path="res://Textures/ChargeBoss/TankHatchTurn3.png" id="10_suh4c"]
 [ext_resource type="PackedScene" uid="uid://bhqsoqk36ebk2" path="res://Scenes/Prefabs/Projectiles/TankDynamite.tscn" id="11_5bkk8"]
 [ext_resource type="Texture2D" uid="uid://u1egukioccf8" path="res://Textures/ChargeBoss/TankHatchTurn4.png" id="11_p7jne"]
-[ext_resource type="Shader" path="res://ChargeShader.gdshader" id="12_cbvw7"]
+[ext_resource type="Shader" uid="uid://blr66iop1kjvl" path="res://ChargeShader.gdshader" id="12_cbvw7"]
 [ext_resource type="PackedScene" uid="uid://bc6rtses7nwf4" path="res://Scenes/Prefabs/Projectiles/TankShot.tscn" id="12_elm4q"]
 [ext_resource type="Texture2D" uid="uid://cgmhvl6vx5mnc" path="res://Textures/ChargeBoss/TankHatchTurn5.png" id="12_l26y2"]
 [ext_resource type="Texture2D" uid="uid://cx24sdw3n0qfr" path="res://Textures/ChargeBoss/TankHatchTurn6.png" id="13_kd8w1"]
 [ext_resource type="Texture2D" uid="uid://dfwu1yiwn3gva" path="res://Textures/ChargeBoss/TankHatchFlip.png" id="13_ws5tu"]
 [ext_resource type="Material" uid="uid://4qginuh7uhxl" path="res://EnemyMaterial.tres" id="14_hhnsq"]
-[ext_resource type="Script" path="res://Scripts/DamageArea.gd" id="15_f2405"]
+[ext_resource type="Script" uid="uid://d4i153t71t0k6" path="res://Scripts/DamageArea.gd" id="15_f2405"]
 [ext_resource type="Texture2D" uid="uid://cf6pe6vhk2fwi" path="res://Textures/ChargeBoss/TankHatch/HatchOpen2.png" id="20_2o7ea"]
-[ext_resource type="Script" path="res://Scripts/jeff_DeathEventTrigger.gd" id="20_c2mqe"]
-[ext_resource type="Script" path="res://Scripts/TileMapHider.gd" id="21_2l8m5"]
+[ext_resource type="Script" uid="uid://blg0wm51rs4ko" path="res://Scripts/jeff_DeathEventTrigger.gd" id="20_c2mqe"]
+[ext_resource type="Script" uid="uid://dpupyrvfylkm8" path="res://Scripts/TileMapHider.gd" id="21_2l8m5"]
 [ext_resource type="Texture2D" uid="uid://47m5uydxlm06" path="res://Textures/ChargeBoss/TankHatch/HatchOpen3.png" id="21_qn54p"]
 [ext_resource type="Texture2D" uid="uid://dkeop63hksmk5" path="res://Textures/ChargeBoss/TankHatch/HatchOpen4.png" id="22_6lnbq"]
 [ext_resource type="Texture2D" uid="uid://lrbnuptl55qm" path="res://Textures/ChargeBoss/TankHatch/HatchOpen5.png" id="23_4xnm7"]
 [ext_resource type="Texture2D" uid="uid://dv7bheh5gubxf" path="res://Textures/ChargeBoss/TankHatch/HatchClose1.png" id="24_0d1ra"]
 [ext_resource type="Texture2D" uid="uid://cboj188p3alkw" path="res://Textures/ChargeBoss/TankHatch/HatchClose2.png" id="25_cpsjk"]
 [ext_resource type="Texture2D" uid="uid://bn7g88haev5iv" path="res://Textures/ChargeBoss/TankHatch/HatchClose3.png" id="26_6blii"]
-[ext_resource type="Script" path="res://Scripts/jeff_EventCaller.gd" id="38_swram"]
-[ext_resource type="Script" path="res://Scripts/Jeff_InteractionEventTrigger.gd" id="39_ny4fu"]
+[ext_resource type="Script" uid="uid://baes0fps2bxeg" path="res://Scripts/jeff_EventCaller.gd" id="38_swram"]
+[ext_resource type="Script" uid="uid://4ho16ff8ey0n" path="res://Scripts/Jeff_InteractionEventTrigger.gd" id="39_ny4fu"]
 [ext_resource type="PackedScene" uid="uid://bu1akkp0a5jd7" path="res://Scenes/Prefabs/RoomSetup/Checkpoint.tscn" id="39_w02yh"]
 [ext_resource type="TileSet" uid="uid://dvjpdafy12snk" path="res://Tilemaps/TestTileMap_NoShadow.tres" id="40_rvdd6"]
 [ext_resource type="Texture2D" uid="uid://k0y8wvehqbih" path="res://Textures/EButton.png" id="40_wuiqr"]
 [ext_resource type="Texture2D" uid="uid://k8hxbw6muhyp" path="res://Textures/Backgrounds/ScalableBackgroundColor.png" id="41_mli1k"]
-[ext_resource type="Script" path="res://Scripts/Bullet.gd" id="42_o5j6n"]
+[ext_resource type="Script" uid="uid://dofpj1ljkin1f" path="res://Scripts/Bullet.gd" id="42_o5j6n"]
 [ext_resource type="Texture2D" uid="uid://r52iqyxd5e1" path="res://Textures/ChargeBoss/Explosion/Explosion9.png" id="43_5ljc8"]
 [ext_resource type="Texture2D" uid="uid://b0484bv0d4h2v" path="res://Textures/Backgrounds/ControlPanel.png" id="44_awt5b"]
 [ext_resource type="Texture2D" uid="uid://bttj5i6g75h14" path="res://Textures/ChargeBoss/Explosion/Explosion2.png" id="44_krvbi"]
 [ext_resource type="AudioStream" uid="uid://b13yom2co1kcg" path="res://Sounds/GrappleHit.wav" id="44_xij6x"]
 [ext_resource type="Texture2D" uid="uid://bo1tt3xbe3mgr" path="res://Textures/ChargeBoss/Explosion/Explosion3.png" id="45_4vfsy"]
-[ext_resource type="Script" path="res://Scripts/jeff_AnimationEventTrigger.gd" id="45_a6pee"]
+[ext_resource type="Script" uid="uid://cbn21jc8m7ho" path="res://Scripts/jeff_AnimationEventTrigger.gd" id="45_a6pee"]
 [ext_resource type="Texture2D" uid="uid://c2s0ljfcxxxyn" path="res://Textures/ChargeBoss/Explosion/Explosion4.png" id="46_bmyam"]
 [ext_resource type="Texture2D" uid="uid://d2ytq2k1tdmjy" path="res://Textures/ChargeBoss/Explosion/Explosion5.png" id="47_2wpim"]
-[ext_resource type="Script" path="res://Scripts/CutsceneHelper.gd" id="47_b6bej"]
+[ext_resource type="Script" uid="uid://v0brc31eek7f" path="res://Scripts/CutsceneHelper.gd" id="47_b6bej"]
 [ext_resource type="Texture2D" uid="uid://dnx5bg66nccnf" path="res://Textures/ChargeBoss/Explosion/Explosion6.png" id="48_ajyfc"]
 [ext_resource type="Texture2D" uid="uid://bq62teevhrmxc" path="res://Textures/ChargeBoss/Explosion/Explosion7.png" id="49_lhijr"]
 [ext_resource type="Texture2D" uid="uid://deaxxmtype3rj" path="res://Textures/ChargeBoss/Explosion/Explosion8.png" id="50_s53r7"]
-[ext_resource type="Script" path="res://Scripts/ScreenShakeCauser.gd" id="51_ebdcg"]
-[ext_resource type="Shader" path="res://ColorPaletteChanger.gdshader" id="52_5ydsd"]
+[ext_resource type="Script" uid="uid://c1q820q87aaao" path="res://Scripts/ScreenShakeCauser.gd" id="51_ebdcg"]
+[ext_resource type="Shader" uid="uid://ckhmbovit1k1i" path="res://ColorPaletteChanger.gdshader" id="52_5ydsd"]
 [ext_resource type="Texture2D" uid="uid://bcy6orkxn6on6" path="res://Textures/Backgrounds/Board.png" id="52_sjvmg"]
 [ext_resource type="Texture2D" uid="uid://xogfjca5ooa4" path="res://Textures/Backgrounds/ControlTVbad.png" id="55_afeu7"]
 [ext_resource type="Texture2D" uid="uid://crmk0ns6lseg6" path="res://Textures/Backgrounds/Overheadlight_Wires.png" id="62_lluqb"]
+[ext_resource type="Script" uid="uid://cquiq4wadxyr8" path="res://Scripts/PlayerPositionSetter.gd" id="64_ry6wi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1qovh"]
 shader = ExtResource("12_cbvw7")
@@ -117,9 +118,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gn6dd"]
 _data = {
-"MoveTracks": SubResource("Animation_rbmun"),
-"RESET": SubResource("Animation_snqwa"),
-"TrackCharge": SubResource("Animation_0jcs1")
+&"MoveTracks": SubResource("Animation_rbmun"),
+&"RESET": SubResource("Animation_snqwa"),
+&"TrackCharge": SubResource("Animation_0jcs1")
 }
 
 [sub_resource type="Animation" id="Animation_2kuyi"]
@@ -324,10 +325,10 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3q5hb"]
 _data = {
-"DynamiteThrow": SubResource("Animation_2kuyi"),
-"HatchRotate": SubResource("Animation_afk4j"),
-"HatchRotateBack": SubResource("Animation_8whpr"),
-"RESET": SubResource("Animation_quyhf")
+&"DynamiteThrow": SubResource("Animation_2kuyi"),
+&"HatchRotate": SubResource("Animation_afk4j"),
+&"HatchRotateBack": SubResource("Animation_8whpr"),
+&"RESET": SubResource("Animation_quyhf")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0b5nr"]
@@ -908,8 +909,8 @@ tracks/24/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p0ro1"]
 _data = {
-"RESET": SubResource("Animation_tnixa"),
-"StartCutscene": SubResource("Animation_78og0")
+&"RESET": SubResource("Animation_tnixa"),
+&"StartCutscene": SubResource("Animation_78og0")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwwya"]
@@ -992,8 +993,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_chqdb"]
 _data = {
-"Explosion": SubResource("Animation_ggn5w"),
-"RESET": SubResource("Animation_xns7j")
+&"Explosion": SubResource("Animation_ggn5w"),
+&"RESET": SubResource("Animation_xns7j")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1myfl"]
@@ -1089,7 +1090,7 @@ z_index = 10
 position = Vector2(-384, -1152)
 scale = Vector2(2, 2)
 collision_layer = 2
-collision_mask = 9
+collision_mask = 89
 collision_priority = 2.0
 floor_stop_on_slope = false
 floor_block_on_wall = false
@@ -1119,6 +1120,7 @@ flip_h = true
 z_index = -3
 material = SubResource("ShaderMaterial_1qovh")
 position = Vector2(-215, 13)
+scale = Vector2(2, 2)
 texture = ExtResource("8_qb71r")
 
 [node name="DynamiteHatch" type="Sprite2D" parent="Changes/BossExists/TankBoss"]
@@ -1141,12 +1143,12 @@ texture = ExtResource("5_0at73")
 
 [node name="TrackAnimation" type="AnimationPlayer" parent="Changes/BossExists/TankBoss"]
 libraries = {
-"": SubResource("AnimationLibrary_gn6dd")
+&"": SubResource("AnimationLibrary_gn6dd")
 }
 
 [node name="HatchAnimations" type="AnimationPlayer" parent="Changes/BossExists/TankBoss"]
 libraries = {
-"": SubResource("AnimationLibrary_3q5hb")
+&"": SubResource("AnimationLibrary_3q5hb")
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Changes/BossExists/TankBoss"]
@@ -1165,7 +1167,7 @@ shape = SubResource("RectangleShape2D_w60wy")
 [node name="Tank Entrance" type="AnimationPlayer" parent="Changes/BossExists"]
 root_node = NodePath("../../..")
 libraries = {
-"": SubResource("AnimationLibrary_p0ro1")
+&"": SubResource("AnimationLibrary_p0ro1")
 }
 
 [node name="InteractionArea" type="Area2D" parent="Changes/BossExists" node_paths=PackedStringArray("whoToCall")]
@@ -1225,7 +1227,7 @@ shape = SubResource("RectangleShape2D_4im6f")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Changes/BossExists/Explosion"]
 libraries = {
-"": SubResource("AnimationLibrary_chqdb")
+&"": SubResource("AnimationLibrary_chqdb")
 }
 
 [node name="ScreenShakeCauser" type="Node2D" parent="Changes/BossExists/Explosion"]
@@ -1255,7 +1257,7 @@ shape = SubResource("RectangleShape2D_4im6f")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Changes/BossExists/Explosion2"]
 libraries = {
-"": SubResource("AnimationLibrary_chqdb")
+&"": SubResource("AnimationLibrary_chqdb")
 }
 
 [node name="ScreenShakeCauser" type="Node2D" parent="Changes/BossExists/Explosion2"]
@@ -1327,7 +1329,7 @@ process_mode = 3
 script = ExtResource("20_c2mqe")
 WhoWillDie = NodePath("../Changes/BossExists/TankBoss")
 oneTime = true
-whoToCall = [NodePath("../Events/MakeStairsAppear"), NodePath("../Events/DestroyDoor")]
+whoToCall = [NodePath("../Events/MakeStairsAppear"), NodePath("../Events/DestroyDoor"), NodePath("../Events/SetJefferyPosition")]
 
 [node name="Events" type="Node" parent="."]
 
@@ -1350,6 +1352,12 @@ functionToCall = "queue_free"
 script = ExtResource("38_swram")
 whoICallTo = NodePath("../../Changes/BossExists/TankBoss")
 functionToCall = "MakeHealthbar"
+
+[node name="SetJefferyPosition" type="Node" parent="Events" node_paths=PackedStringArray("whoICallTo")]
+script = ExtResource("38_swram")
+whoICallTo = NodePath("../../PlayerPositionSetter")
+functionToCall = "Activate"
+metadata/_custom_type_script = "uid://baes0fps2bxeg"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(128, 192)
@@ -1380,6 +1388,10 @@ texture = ExtResource("62_lluqb")
 [node name="OverheadlightWires3" type="Sprite2D" parent="."]
 position = Vector2(320, -357)
 texture = ExtResource("62_lluqb")
+
+[node name="PlayerPositionSetter" type="Node2D" parent="."]
+position = Vector2(384, 512)
+script = ExtResource("64_ry6wi")
 
 [connection signal="body_entered" from="Changes/BossExists/TankBoss/TrackDamageArea" to="Changes/BossExists/TankBoss" method="_on_track_damage_area_body_entered"]
 [connection signal="body_entered" from="Changes/BossExists/TankBoss/TrackDamageArea" to="Changes/BossExists/TankBoss/TrackDamageArea" method="_on_body_entered"]

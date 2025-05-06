@@ -128,7 +128,7 @@ func SwapRoom(roomName: String, enterDirection: float, entranceID: int):
 	currentLevel.position += prevEntrance.global_position - newEntrance.global_position
 	#print(currentLevel.global_position)
 	levelResetPosition = currentLevel.position
-	checkpoint = newEntrance.closestCheckpoint
+	SetCheckpoint(newEntrance.closestCheckpoint)
 	# Set Up Movment variables for moving jeffery and camera between rooms smooth
 	prevJefferyPos = jeffery.global_position
 	nextJefferyPos = jeffery.global_position + Vector2(128 * 3, 0).rotated(enterDirection)
@@ -168,6 +168,7 @@ func JefferyRetry() -> void:
 	ResumeGame()
 	
 	resetLevel()
+	SoundManager.PlayLoop("LevelMusic", 0, -15.0)
 	jeffery.global_position = checkpoint.global_position
 	
 	jeffery.call_deferred("Reset")

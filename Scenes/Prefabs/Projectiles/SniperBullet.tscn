@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cbepbkr1ttvbl"]
 
-[ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_5pbtt"]
+[ext_resource type="Script" uid="uid://dofpj1ljkin1f" path="res://Scripts/Bullet.gd" id="1_5pbtt"]
 [ext_resource type="Texture2D" uid="uid://bwr0no6q0cylk" path="res://Textures/SniperWeapon/SniperBullet.png" id="2_jok11"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4im6f"]

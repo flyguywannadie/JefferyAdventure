@@ -27,7 +27,7 @@ var gunCooldown: float
 
 var leftOrRight: bool
 var moveDirection: bool
-var speed: int = 200
+var speed: int = 150
 
 func _ready() -> void:
 	gameProgress = GameManager.piecesGotten
@@ -54,7 +54,7 @@ func aiLogic(delta: float) -> void:
 	if (jeffery == null) :
 		return
 	
-	gun_charge.material.set("shader_parameter/size", gunCooldown)
+	gun_charge.material.set("shader_parameter/size", gunCooldown/3.0)
 	
 	var hasJefferySwitchedSides = ((jeffery.global_position.x - global_position.x < 0) && leftOrRight) || ((jeffery.global_position.x - global_position.x > 0) && !leftOrRight)
 	
@@ -74,7 +74,8 @@ func aiLogic(delta: float) -> void:
 				else :
 					hatchAnims.play("HatchRotateBack")
 					gun_charge.position = Vector2(-215, 13)
-				gunCooldown = 0.75
+				if (gunCooldown < 0.75) :
+					gunCooldown = 0.75
 			
 			var jefferyOffset = jeffery.global_position - gun.global_position;
 			gun.rotation_degrees = rad_to_deg(atan2(jefferyOffset.y, abs(jefferyOffset.x)))
@@ -87,12 +88,12 @@ func aiLogic(delta: float) -> void:
 					gunState = 1
 				else:
 					gunCharge += 1
-					gunCooldown = 2.1 / (gameProgress + 1.0)
-					if (gunCharge >= 4) :
+					gunCooldown = 3.0 / (gameProgress + 1.0)
+					if (gunCharge >= gunChargeSprites.size()) :
 						gunState = 3
-						gunCooldown = 0.3
-					else:
-						gun_charge.texture = gunChargeSprites[gunCharge]
+						gunCooldown = 1
+						gunCharge = 0
+					gun_charge.texture = gunChargeSprites[gunCharge]
 		1: # throw dynamite
 			$DynamiteHatch.flip_h = !leftOrRight
 			hatchAnims.play("DynamiteThrow")
@@ -100,8 +101,7 @@ func aiLogic(delta: float) -> void:
 			gunCooldown = 1
 		3: # Shooting Gun Delay
 			if (gunCooldown <= 0):
-				gunCooldown = 2
-				gunCharge = 0
+				gunCooldown = 3 
 				spawnProjectile(gun_charge.global_position, (0 if (leftOrRight) else 180) + gun.rotation_degrees, 1)
 				SoundManager.PlaySound("TankShoot")
 				gunState = 0
@@ -117,7 +117,7 @@ func aiLogic(delta: float) -> void:
 				
 				print(position.distance_to(jeffery.position))
 				
-				stateTimer = 1
+				stateTimer = 2 / (1 + gameProgress)
 				moveDirection = !leftOrRight if (global_position.distance_to(jeffery.global_position) < 550) else leftOrRight
 		1: # moving state
 			if (moveDirection) :

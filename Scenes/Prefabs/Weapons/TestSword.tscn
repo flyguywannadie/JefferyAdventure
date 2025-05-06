@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://ctgukpulbvl10"]
 
-[ext_resource type="Script" path="res://Scripts/Sword.gd" id="1_fdem6"]
+[ext_resource type="Script" uid="uid://di36i46ae7cpj" path="res://Scripts/Sword.gd" id="1_fdem6"]
 [ext_resource type="Texture2D" uid="uid://rbu453mi54hq" path="res://Textures/BaseSwordSwin/002.png" id="2_8rmx3"]
 [ext_resource type="PackedScene" uid="uid://rg2cput8yfby" path="res://Scenes/Prefabs/Projectiles/test_slash.tscn" id="2_adbu6"]
 [ext_resource type="PackedScene" uid="uid://vbwtcpv5tduf" path="res://Scenes/Prefabs/Weapons/Chainsaw.tscn" id="2_ht41d"]
@@ -75,9 +75,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x2h1l"]
 _data = {
-"RESET": SubResource("Animation_bgu8v"),
-"SwordHold": SubResource("Animation_5ghy8"),
-"SwordSlash": SubResource("Animation_6paf1")
+&"RESET": SubResource("Animation_bgu8v"),
+&"SwordHold": SubResource("Animation_5ghy8"),
+&"SwordSlash": SubResource("Animation_6paf1")
 }
 
 [node name="Sword" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn")]

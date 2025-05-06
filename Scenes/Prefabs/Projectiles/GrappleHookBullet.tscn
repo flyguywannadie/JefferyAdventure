@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://1wywytfwmv3u"]
 
-[ext_resource type="Script" path="res://Scripts/HookForGrapple.gd" id="1_u4p2h"]
+[ext_resource type="Script" uid="uid://bd2m82vqev5l3" path="res://Scripts/HookForGrapple.gd" id="1_u4p2h"]
 [ext_resource type="Texture2D" uid="uid://dphcbhcgr1rau" path="res://Textures/GrappleWeapon/GrappleHook.png" id="2_w5mws"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4im6f"]

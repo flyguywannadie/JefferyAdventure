@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://mai187yxyo5a"]
 
-[ext_resource type="Script" path="res://Scripts/GrappleHook.gd" id="1_yfv2y"]
+[ext_resource type="Script" uid="uid://b0lv1wnsi4weh" path="res://Scripts/GrappleHook.gd" id="1_yfv2y"]
 [ext_resource type="PackedScene" uid="uid://1wywytfwmv3u" path="res://Scenes/Prefabs/Projectiles/GrappleHookBullet.tscn" id="2_msowe"]
 [ext_resource type="Texture2D" uid="uid://bqayaqwh2g0hm" path="res://Textures/GrappleWeapon/GrappleGun.png" id="3_uikve"]
 [ext_resource type="Texture2D" uid="uid://bc6ha863357vt" path="res://Textures/GrappleWeapon/GrappleShoot1.png" id="4_bgbak"]
@@ -39,8 +39,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k2ltk"]
 _data = {
-"GunShoot": SubResource("Animation_nb5r5"),
-"RESET": SubResource("Animation_8f8m3")
+&"GunShoot": SubResource("Animation_nb5r5"),
+&"RESET": SubResource("Animation_8f8m3")
 }
 
 [node name="GrappleHook" type="Node2D" node_paths=PackedStringArray("visuals", "projectileSpawn")]

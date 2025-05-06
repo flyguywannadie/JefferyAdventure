@@ -1,13 +1,13 @@
-[gd_scene load_steps=23 format=3 uid="uid://dh7xlshv1k2mx"]
+[gd_scene load_steps=24 format=3 uid="uid://dh7xlshv1k2mx"]
 
-[ext_resource type="Script" path="res://Scripts/FlyingGuy.gd" id="1_lt8b0"]
+[ext_resource type="Script" uid="uid://bmv4yp167j3pd" path="res://Scripts/FlyingGuy.gd" id="1_lt8b0"]
 [ext_resource type="Material" uid="uid://4qginuh7uhxl" path="res://EnemyMaterial.tres" id="1_rlh8t"]
 [ext_resource type="Texture2D" uid="uid://b0pfsrwajv5e" path="res://Textures/FlyingGuy/Flying1.png" id="2_x8i4f"]
 [ext_resource type="Texture2D" uid="uid://dj521raawa112" path="res://Textures/FlyingGuy/Flying2.png" id="3_gp4p1"]
 [ext_resource type="Texture2D" uid="uid://cu0f85khl2dr" path="res://Textures/FlyingGuy/Flying3.png" id="4_o8otv"]
 [ext_resource type="Texture2D" uid="uid://bwjq8qh4bybxi" path="res://Textures/FlyingGuy/FlyingGun.png" id="6_xmaxr"]
 [ext_resource type="Texture2D" uid="uid://c71tsfcnmjp8x" path="res://Textures/FlyingGuy/GunShoot1.png" id="7_0ttr6"]
-[ext_resource type="Script" path="res://Scripts/DamageArea.gd" id="7_d7qh5"]
+[ext_resource type="Script" uid="uid://d4i153t71t0k6" path="res://Scripts/DamageArea.gd" id="7_d7qh5"]
 [ext_resource type="Texture2D" uid="uid://cpdbbfdwkflhp" path="res://Textures/FlyingGuy/GunShoot2.png" id="8_6undh"]
 [ext_resource type="Texture2D" uid="uid://ddrexx2rf4yuu" path="res://Textures/FlyingGuy/GunShoot3.png" id="9_2nhl8"]
 [ext_resource type="Texture2D" uid="uid://doqy8i7alsnfn" path="res://Textures/FlyingGuy/GunShoot4.png" id="10_vflnc"]
@@ -65,9 +65,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s6p8d"]
 _data = {
-"Hurt": SubResource("Animation_t1ovv"),
-"Idle": SubResource("Animation_tro3x"),
-"RESET": SubResource("Animation_uulxn")
+&"Hurt": SubResource("Animation_t1ovv"),
+&"Idle": SubResource("Animation_tro3x"),
+&"RESET": SubResource("Animation_uulxn")
 }
 
 [sub_resource type="Animation" id="Animation_m1dly"]
@@ -132,10 +132,13 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nsqmm"]
 _data = {
-"RESET": SubResource("Animation_m1dly"),
-"Shoot": SubResource("Animation_7yql8"),
-"idle": SubResource("Animation_xh3j8")
+&"RESET": SubResource("Animation_m1dly"),
+&"Shoot": SubResource("Animation_7yql8"),
+&"idle": SubResource("Animation_xh3j8")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60mqp"]
+size = Vector2(2048, 50)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6uumt"]
 radius = 37.054
@@ -144,7 +147,7 @@ radius = 37.054
 z_index = 15
 material = ExtResource("1_rlh8t")
 collision_layer = 2
-collision_mask = 219
+collision_mask = 91
 platform_on_leave = 2
 platform_floor_layers = 4278190080
 script = ExtResource("1_lt8b0")
@@ -164,7 +167,7 @@ texture = ExtResource("2_x8i4f")
 
 [node name="DroneAnims" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_s6p8d")
+&"": SubResource("AnimationLibrary_s6p8d")
 }
 autoplay = "Idle"
 
@@ -177,11 +180,17 @@ texture = ExtResource("6_xmaxr")
 
 [node name="GUnAnims" type="AnimationPlayer" parent="Gun"]
 libraries = {
-"": SubResource("AnimationLibrary_nsqmm")
+&"": SubResource("AnimationLibrary_nsqmm")
 }
 
 [node name="Shooter" type="Node2D" parent="Gun"]
 position = Vector2(81, 4)
+
+[node name="JefferyDetector" type="ShapeCast2D" parent="Gun"]
+visible = false
+position = Vector2(1024, 0)
+shape = SubResource("RectangleShape2D_60mqp")
+target_position = Vector2(0, 0)
 
 [node name="Damage" type="Area2D" parent="."]
 position = Vector2(-3, 2)
